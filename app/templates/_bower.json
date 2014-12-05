@@ -1,6 +1,37 @@
 {
-  "name": "package",
-  "version": "0.0.0",
-  "dependencies": {}
+  "name": "bootstrap-kickstart",
+  "description": "This is a boilerplate for scaffolding Bootstrap themes.",
+  "version": "1.1.3",
+  "authors": [
+    "Michael Kühnel <m.kuehnel@micromata.de>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/micromata/bootstrap-kickstart",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:micromata/bootstrap-kickstart.git"
+  },
+  "keywords": [
+    "bootstrap",
+    "boilerplate",
+    "skeleton",
+    "scaffolding",
+    "scaffold",
+    "theme",
+    "themes",
+    "kickstart",
+    "kickstarter",
+    "micromata",
+    "workflow"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.1",
+    "jquery": "^1.11.1",
+    "html5shiv": "^3.7.2",
+    "respondJs": "~1.4.2",
+    "jquery-placeholder": "2.0.8"
+  },
+  "resolutions": {
+    "jquery": "1.11.1"
+  }
 }
-
