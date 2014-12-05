@@ -1,14 +1,14 @@
 {
   "name": "generator-bootstrap-kickstart",
   "version": "0.0.0",
-  "description": "Yeoman generator",
+  "description": "Yeoman Generator for »Bootstrap Kickstart«",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "mischah/generator-bootstrap-kickstart",
+  "repository": "micromata/generator-bootstrap-kickstart",
   "author": {
     "name": "Michael Kühnel",
-    "email": "mail@michael-kuehnel.de",
-    "url": "https://github.com/mischah"
+    "email": "m.kuehnel@micromata.de",
+    "url": "http://www.micromata.de"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -20,7 +20,18 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "bootstrap",
+    "boilerplate",
+    "skeleton",
+    "scaffolding",
+    "scaffold",
+    "theme",
+    "themes",
+    "kickstart",
+    "kickstarter",
+    "micromata",
+    "workflow"
   ],
   "dependencies": {
     "yeoman-generator": "^0.18.0",
