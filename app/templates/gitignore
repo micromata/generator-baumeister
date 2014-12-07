@@ -1,0 +1,24 @@
+### Bower ###
+/libs
+
+### npm ###
+/node_modules
+
+### System ###
+*.DS_Store
+*Thumbs.db
+
+### Build ###
+/*.zip
+/dist
+/docs
+/server
+/reports
+/assets/css
+/assets/js/*.min.js
+/assets/js/*.map
+
+### Dev ###
+config.codekit
+*.sublime-project
+*.sublime-workspace
