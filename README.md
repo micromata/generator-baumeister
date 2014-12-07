@@ -17,7 +17,7 @@
 This generator will give you some neat options for using [Bootstrap Kickstart](https://github.com/micromata/bootstrap-kickstart).
 
 ## Work in progress
-I guess this is not ready to use :grimacing: 
+No options so far. The generator works but is pretty stupid for now :grimacing: 
 
 ---
 
