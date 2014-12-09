@@ -1,7 +1,7 @@
 {
-  "name": "bootstrap-kickstart",
-  "title": "Bootstrap Kickstart",
-  "description": "This is a boilerplate for scaffolding Bootstrap themes.",
+  "name": "<%= _.slugify(projectName) %>",
+  "title": "<%= _.titleize(projectName) %>",
+  "description": "<%= projectDescription %>",
   "homepage": "https://github.com/micromata/bootstrap-kickstart",
   "author": {
     "name": "Michael Kühnel",

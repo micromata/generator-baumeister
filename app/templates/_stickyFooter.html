@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="author" content="Micromata GmbH" />
-	<title>Bootstrap Kickstart - Sticky footer example</title>
+	<title><%= _.slugify(projectName) %> - Sticky footer example</title>
 
 	<!-- Our compiled and merged LESS files -->
 	<!-- build:css:dist assets/css/index.min.css -->
@@ -26,12 +26,11 @@
 	-->
 	<script>(function(h){h.className = h.className.replace('no-js', 'js')})(document.documentElement)</script>
 
-	<!-- HTML5 shim and Respond.js IE8 support for HTML5 elements and media queries. -->
+<% if (oldIeSupport) { %>	<!-- HTML5 shim and Respond.js IE8 support for HTML5 elements and media queries. -->
 	<!--[if lt IE 9]>
         <script src="libs/html5shiv/dist/html5shiv-printshiv.min.js"></script>
         <script src="libs/respondJs/dest/respond.min.js"></script>
-        <![endif]-->
-
+        <![endif]--><% } %>
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory. -->
 
 	<!-- Place anything custom after this. But put JS to the end of body. -->
@@ -106,8 +105,7 @@
 	Placed at the end of the document. Performance reasons.
 	-->
 	<script src="libs/jquery/dist/jquery.min.js"></script>
-	<script src="libs/jquery-placeholder/jquery.placeholder.js"></script>
-
+<% if (oldIeSupport) { %>	<script src="libs/jquery-placeholder/jquery.placeholder.js"></script><% } %>
 	<!--
 	Bootstrap core JavaScript
 	Non minified/merged versions for debugging purposes.

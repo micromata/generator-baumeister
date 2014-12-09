@@ -1,8 +1,6 @@
-[![devDependency Status](https://david-dm.org/micromata/bootstrap-kickstart/dev-status.svg)](https://david-dm.org/micromata/bootstrap-kickstart#info=devDependencies)
+#<%= _.titleize(projectName) %>
 
-#Kickstarter for Bootstrap themes
-
-![Logo](assets/img/bootstrap-kickstart-logo.png)
+[![Logo](assets/img/bootstrap-kickstart-logo.png)](https://github.com/micromata/bootstrap-kickstart)
 
 The aim of this repository is to help you with the creation of Bootstrap themes and sites by providing:
 

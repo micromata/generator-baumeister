@@ -16,15 +16,36 @@ module.exports = yeoman.generators.Base.extend({
 			'Welcome to the epic ' + chalk.red('Bootstrap Kickstart') + ' generator!'
 		));
 
-		var prompts = [{
-			type: 'confirm',
-			name: 'someOption',
-			message: 'I Can Has Cheezburger?',
-			default: true
-		}];
+		var prompts = [
+			{
+				type: 'input',
+				name: 'projectName',
+				message: 'Whats the name of your project?',
+				default : this.appname // Default to current folder name
+			},
+			{
+				type: 'input',
+				name: 'projectDescription',
+				message: 'A short description of your project?'
+			},
+			{
+				type: 'confirm',
+				name: 'oldIeSupport',
+				message: 'Do you need to support Internet Explorer below IE9?',
+				default: false
+			}
+		];
 
 		this.prompt(prompts, function (props) {
-			this.someOption = props.someOption;
+			this.projectName = props.projectName;
+			// this.projectName = this._.titleize(props.projectName);
+			this.projectDescription = props.projectDescription;
+			this.oldIeSupport = props.oldIeSupport;
+
+			// this.log(this.projectName);
+			// this.log(this.projectDescription);
+			// this.log(this.oldIeSupport);
+
 
 			done();
 		}.bind(this));
@@ -32,14 +53,8 @@ module.exports = yeoman.generators.Base.extend({
 
 	writing: {
 		dependencies: function () {
-			this.fs.copyTpl(
-				this.templatePath('package.json'),
-				this.destinationPath('package.json')
-			);
-			this.fs.copyTpl(
-				this.templatePath('bower.json'),
-				this.destinationPath('bower.json')
-			);
+			this.template('_package.json', 'package.json');
+			this.template('_bower.json', 'bower.json');
 		},
 
 		dotfiles: function () {
@@ -62,18 +77,12 @@ module.exports = yeoman.generators.Base.extend({
 		},
 
 		projectfiles: function () {
-			this.fs.copyTpl(
-				this.templatePath('index.html'),
-				this.destinationPath('index.html')
-			);
-			this.fs.copyTpl(
-				this.templatePath('stickyFooter.html'),
-				this.destinationPath('stickyFooter.html')
-			);
-			this.fs.copyTpl(
-				this.templatePath('demoElements.html'),
-				this.destinationPath('demoElements.html')
-			);
+			this.template('_index.html', 'index.html');
+			this.template('_stickyFooter.html', 'stickyFooter.html');
+			this.template('_demoElements.html', 'demoElements.html');
+
+			this.template('_README.md', 'README.md');
+
 			// this.fs.copyTpl(
 			// 	this.templatePath('Gruntfile.js'),
 			// 	this.destinationPath('Gruntfile.js')
@@ -91,10 +100,6 @@ module.exports = yeoman.generators.Base.extend({
 				this.destinationPath('LICENSE')
 			);
 			this.fs.copyTpl(
-				this.templatePath('README.md'),
-				this.destinationPath('README.md')
-			);
-			this.fs.copyTpl(
 				this.templatePath('CONTRIBUTING.md'),
 				this.destinationPath('CONTRIBUTING.md')
 			);
@@ -110,9 +115,18 @@ module.exports = yeoman.generators.Base.extend({
 	},
 
 	install: function () {
+		// this.log('install-1');
 		this.installDependencies({
 			skipInstall: this.options['skip-install']
 			// skipInstall: true
 		});
+		// this.log('install');
+	},
+
+	end: function () {
+		// this.log('end');
+		// this.log(this.projectName);
+		// this.log(this.projectNameDashed);
+		// this.log(this.oldIeSupport);
 	}
 });
