@@ -1,6 +1,5 @@
 #Yeoman Generator for »Bootstrap Kickstart«
 
-[![Build Status](https://secure.travis-ci.org/mischah/generator-bootstrap-kickstart.png?branch=master)](https://travis-ci.org/mischah/generator-bootstrap-kickstart)
 
     	 _-----_
 	    |       |    .--------------------------.
@@ -15,9 +14,6 @@
 
 
 This generator will give you some neat options for using [Bootstrap Kickstart](https://github.com/micromata/bootstrap-kickstart).
-
-## Work in progress
-No options so far. The generator works but is pretty stupid for now :grimacing: 
 
 ---
 
@@ -59,6 +55,22 @@ Yeoman has a heart of gold. He's a person with feelings and opinions, but he's v
 
 If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
 
+---
+
+## Work in progress
+
+There are just a few options for now:
+
+- oldIeSupport 
+	- Whether to make use of »html5shiv«, »respondJs« and »jquery-placeholder«
+- projectName
+	- Used in Readme.md, package.json and bower.json
+- projectDescription
+	- Used in package.json and bower.json	
+
+… more to come :octocat:
+
+---
 
 ## License
 
