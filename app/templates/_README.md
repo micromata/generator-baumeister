@@ -1,5 +1,7 @@
 #<%= _.titleize(projectName) %>
 
+<%= projectDescription %>
+
 [![Logo](assets/img/bootstrap-kickstart-logo.png)](https://github.com/micromata/bootstrap-kickstart)
 
 The aim of this repository is to help you with the creation of Bootstrap themes and sites by providing:
