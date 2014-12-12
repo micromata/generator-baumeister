@@ -17,6 +17,15 @@ This generator will give you some neat options for using [Bootstrap Kickstart](h
 
 ---
 
+## Quick install guide
+
+For those already using Yeoman.
+
+```bash
+npm install -g generator-bootstrap-kickstart
+yo bootstrap-kickstart
+```
+
 ## Getting Started
 
 ### What is Yeoman?
@@ -64,9 +73,9 @@ There are just a few options for now:
 - oldIeSupport 
 	- Whether to make use of »html5shiv«, »respondJs« and »jquery-placeholder«
 - projectName
-	- Used in Readme.md, package.json and bower.json
+	- Used in generated Readme.md, package.json and bower.json
 - projectDescription
-	- Used in package.json and bower.json	
+	- Used in generated Readme.md, package.json and bower.json	
 
 … more to come :octocat:
 
