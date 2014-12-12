@@ -193,6 +193,11 @@ module.exports = yeoman.generators.Base.extend({
 
 	end: function () {
 		// this.log('end');
+		this.log(yosay(
+			chalk.red('That’s it!') + ' You’re all set to begin working with Bootstrap ✌(-‿-)✌\n' +
+			'Enter `grunt tasks` to see the available Grunt tasks.'
+		));
+		//
 		// this.log(this.projectName);
 		// this.log(this.projectNameDashed);
 		// this.log(this.oldIeSupport);
