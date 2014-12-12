@@ -141,41 +141,23 @@ module.exports = yeoman.generators.Base.extend({
 				this.templatePath('assets/less/base.less'),
 				this.destinationPath('assets/less/base.less')
 			);
-			this.fs.copyTpl(
-				this.templatePath('assets/less/index.less'),
-				this.destinationPath('assets/less/index.less')
-			);
+
+			this.template('assets/less/_index.less', 'assets/less/index.less');
+
 			this.fs.copyTpl(
 				this.templatePath('assets/less/print.less'),
 				this.destinationPath('assets/less/print.less')
 			);
-			this.fs.copyTpl(
-				this.templatePath('assets/less/_customerName.less'),
-				this.destinationPath('assets/less/' + this.customerName + '.less')
-			);
-			this.fs.copyTpl(
-				this.templatePath('assets/less/_customerName/alerts.less'),
-				this.destinationPath('assets/less/' + this.customerName + '/alerts.less')
-			);
 
-			this.fs.copyTpl(
-				this.templatePath('assets/less/_customerName/demoElements.less'),
-				this.destinationPath('assets/less/' + this.customerName + '/demoElements.less')
-			);
-
-			this.fs.copyTpl(
-				this.templatePath('assets/less/_customerName/footer.less'),
-				this.destinationPath('assets/less/' + this.customerName + '/footer.less')
-			);
+			this.template('assets/less/_customerName.less', 'assets/less/' + this.customerName + '.less');
+			this.template('assets/less/_customerName/_alerts.less', 'assets/less/' + this.customerName + '/alerts.less');
+			this.template('assets/less/_customerName/_demoElements.less', 'assets/less/' + this.customerName + '/demoElements.less');
+			this.template('assets/less/_customerName/_footer.less', 'assets/less/' + this.customerName + '/footer.less');
+			this.template('assets/less/_customerName/_ribbon.less', 'assets/less/' + this.customerName + '/ribbon.less');
 
 			this.fs.copyTpl(
 				this.templatePath('assets/less/_customerName/mixins.less'),
 				this.destinationPath('assets/less/' + this.customerName + '/mixins.less')
-			);
-
-			this.fs.copyTpl(
-				this.templatePath('assets/less/_customerName/ribbon.less'),
-				this.destinationPath('assets/less/' + this.customerName + '/ribbon.less')
 			);
 
 			this.fs.copyTpl(
