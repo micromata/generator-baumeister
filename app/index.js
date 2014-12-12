@@ -1,7 +1,9 @@
 'use strict';
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
+
+var yeoman = require('yeoman-generator'),
+	chalk = require('chalk'),
+	yosay = require('yosay'),
+	superb = require('superb');
 
 // Define error style
 var error = chalk.red;
@@ -16,7 +18,7 @@ module.exports = yeoman.generators.Base.extend({
 
 		// Have Yeoman greet the user.
 		this.log(yosay(
-			'Welcome to the epic ' + chalk.yellow('Bootstrap Kickstart') + ' generator!'
+			'Welcome to the ' + superb() + ' ' + chalk.yellow('Bootstrap Kickstart') + ' generator!'
 		));
 
 		var prompts = [
