@@ -3,6 +3,9 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 
+// Define error style
+var error = chalk.red;
+
 module.exports = yeoman.generators.Base.extend({
 	initializing: function () {
 		this.pkg = require('../package.json');
@@ -13,7 +16,7 @@ module.exports = yeoman.generators.Base.extend({
 
 		// Have Yeoman greet the user.
 		this.log(yosay(
-			'Welcome to the epic ' + chalk.red('Bootstrap Kickstart') + ' generator!'
+			'Welcome to the epic ' + chalk.yellow('Bootstrap Kickstart') + ' generator!'
 		));
 
 		var prompts = [
@@ -26,7 +29,22 @@ module.exports = yeoman.generators.Base.extend({
 			{
 				type: 'input',
 				name: 'projectDescription',
-				message: 'A short description of your project?'
+				message: 'A short description of your project:'
+			},
+			{
+				type: 'input',
+				name: 'customerName',
+				message: 'What would you like to name your »customer-theme« in the less-files?',
+				// default : this._.slugify(this.appname),
+				// default : 'customerName',
+				validate: function(value) {
+
+					if (value === '') {
+						return error('Oops. This is used to name a file and a directory and can’t left blank.');
+					} else {
+						return true;
+					}
+				}
 			},
 			{
 				type: 'confirm',
