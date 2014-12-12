@@ -59,6 +59,7 @@ module.exports = yeoman.generators.Base.extend({
 			// this.projectName = this._.titleize(props.projectName);
 			this.projectDescription = props.projectDescription;
 			this.oldIeSupport = props.oldIeSupport;
+			this.customerName = this._.slugify(props.customerName);
 
 			// this.log(this.projectName);
 			// this.log(this.projectDescription);
@@ -123,11 +124,76 @@ module.exports = yeoman.generators.Base.extend({
 			);
 		},
 
-		assets: function () {
+		assets: function (props) {
 			this.directory(
-				this.templatePath('assets'),
-				this.destinationPath('assets')
+				this.templatePath('assets/fonts'),
+				this.destinationPath('assets/fonts')
 			);
+			this.directory(
+				this.templatePath('assets/img'),
+				this.destinationPath('assets/img')
+			);
+			this.directory(
+				this.templatePath('assets/js'),
+				this.destinationPath('assets/js')
+			);
+			this.fs.copyTpl(
+				this.templatePath('assets/less/base.less'),
+				this.destinationPath('assets/less/base.less')
+			);
+			this.fs.copyTpl(
+				this.templatePath('assets/less/index.less'),
+				this.destinationPath('assets/less/index.less')
+			);
+			this.fs.copyTpl(
+				this.templatePath('assets/less/print.less'),
+				this.destinationPath('assets/less/print.less')
+			);
+			this.fs.copyTpl(
+				this.templatePath('assets/less/_customerName.less'),
+				this.destinationPath('assets/less/' + this.customerName + '.less')
+			);
+			this.fs.copyTpl(
+				this.templatePath('assets/less/_customerName/alerts.less'),
+				this.destinationPath('assets/less/' + this.customerName + '/alerts.less')
+			);
+
+			this.fs.copyTpl(
+				this.templatePath('assets/less/_customerName/demoElements.less'),
+				this.destinationPath('assets/less/' + this.customerName + '/demoElements.less')
+			);
+
+			this.fs.copyTpl(
+				this.templatePath('assets/less/_customerName/footer.less'),
+				this.destinationPath('assets/less/' + this.customerName + '/footer.less')
+			);
+
+			this.fs.copyTpl(
+				this.templatePath('assets/less/_customerName/mixins.less'),
+				this.destinationPath('assets/less/' + this.customerName + '/mixins.less')
+			);
+
+			this.fs.copyTpl(
+				this.templatePath('assets/less/_customerName/ribbon.less'),
+				this.destinationPath('assets/less/' + this.customerName + '/ribbon.less')
+			);
+
+			this.fs.copyTpl(
+				this.templatePath('assets/less/_customerName/scaffolding.less'),
+				this.destinationPath('assets/less/' + this.customerName + '/scaffolding.less')
+			);
+
+			this.fs.copyTpl(
+				this.templatePath('assets/less/_customerName/testResponsiveHelpers.less'),
+				this.destinationPath('assets/less/' + this.customerName + '/testResponsiveHelpers.less')
+			);
+
+			this.fs.copyTpl(
+				this.templatePath('assets/less/_customerName/variables.less'),
+				this.destinationPath('assets/less/' + this.customerName + '/variables.less')
+			);
+
+			// this.log('Done with the assets');
 		}
 
 	},
@@ -135,8 +201,8 @@ module.exports = yeoman.generators.Base.extend({
 	install: function () {
 		// this.log('install-1');
 		this.installDependencies({
-			skipInstall: this.options['skip-install']
-			// skipInstall: true
+			// skipInstall: this.options['skip-install']
+			skipInstall: true
 		});
 		// this.log('install');
 	},
