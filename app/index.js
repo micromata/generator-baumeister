@@ -20,8 +20,8 @@ module.exports = yeoman.generators.Base.extend({
 			{
 				type: 'input',
 				name: 'projectName',
-				message: 'Whats the name of your project?',
-				default : this.appname // Default to current folder name
+				message: 'What’s the name of your project?',
+				default : this._.titleize(this.appname)  // Default to current folder name
 			},
 			{
 				type: 'input',
