@@ -73,12 +73,12 @@ module.exports = yeoman.generators.Base.extend({
 	},
 
 	writing: {
-		dependencies: function () {
+		packageManagerFiles: function () {
 			this.template('_package.json', 'package.json');
 			this.template('_bower.json', 'bower.json');
 		},
 
-		dotfiles: function () {
+		dotFiles: function () {
 			this.fs.copyTpl(
 				this.templatePath('editorconfig'),
 				this.destinationPath('.editorconfig')
@@ -97,17 +97,13 @@ module.exports = yeoman.generators.Base.extend({
 			);
 		},
 
-		projectfiles: function () {
+		projectFiles: function () {
 			this.template('_index.html', 'index.html');
 			this.template('_stickyFooter.html', 'stickyFooter.html');
 			this.template('_demoElements.html', 'demoElements.html');
 
 			this.template('_README.md', 'README.md');
 
-			// this.fs.copyTpl(
-			// 	this.templatePath('Gruntfile.js'),
-			// 	this.destinationPath('Gruntfile.js')
-			// );
 			this.fs.copy(
 				this.templatePath('Gruntfile.js'),
 				this.destinationPath('Gruntfile.js')
