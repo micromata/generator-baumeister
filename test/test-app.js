@@ -6,68 +6,70 @@ var helpers = require('yeoman-generator').test;
 var os = require('os');
 var _s = require('underscore.string');
 
-describe('bootstrap-kickstart:default', function () {
-  var prompts = {
-    projectName: 'Test this Thingy',
-    projectDescription: 'Just a test.',
-    customerName: 'My customer',
-    oldIeSupport: false
-  };
+describe('bootstrap-kickstart:default', function() {
+	var prompts = {
+		projectName: 'Test this Thingy',
+		projectDescription: 'Just a test.',
+		customerName: 'My customer',
+		oldIeSupport: false
+	};
 
-  before(function (done) {
-    helpers.run(path.join(__dirname, '../app'))
+	before(function(done) {
+		helpers.run(path.join(__dirname, '../app'))
 
-      // Clear the directory and set it as the CWD
-      .inDir(path.join(os.tmpdir(), './temp-test'))
+		// Clear the directory and set it as the CWD
+		.inDir(path.join(os.tmpdir(), './temp-test'))
 
-      // Mock options passed in
-      .withOptions({ 'skip-install': true })
+		// Mock options passed in
+		.withOptions({
+			'skip-install': true
+		})
 
-      // Mock the prompt answers
-      .withPrompt(prompts)
+		// Mock the prompt answers
+		.withPrompt(prompts)
 
-      .on('end', done);
-  });
+		.on('end', done);
+	});
 
-  it('creates package manager files', function () {
-    assert.file([
-      'bower.json',
-      'package.json'
-    ]);
-  });
+	it('creates package manager files', function() {
+		assert.file([
+			'bower.json',
+			'package.json'
+		]);
+	});
 
-  it('creates dot files', function () {
-    assert.file([
-      '.bowerrc',
-      '.editorconfig',
-      '.gitignore',
-      '.jshintrc'
-    ]);
-  });
+	it('creates dot files', function() {
+		assert.file([
+			'.bowerrc',
+			'.editorconfig',
+			'.gitignore',
+			'.jshintrc'
+		]);
+	});
 
-  it('creates project files', function () {
-    assert.file([
-      'index.html',
-      'stickyFooter.html',
-      'demoElements.html',
-      'README.md',
-      'Gruntfile.js',
-      'humans.txt',
-      'LICENSE',
-      'CONTRIBUTING.md'
-    ]);
-  });
+	it('creates project files', function() {
+		assert.file([
+			'index.html',
+			'stickyFooter.html',
+			'demoElements.html',
+			'README.md',
+			'Gruntfile.js',
+			'humans.txt',
+			'LICENSE',
+			'CONTRIBUTING.md'
+		]);
+	});
 
-  it('creates assets', function () {
-    assert.file([
-      'assets',
-      'assets/fonts',
-      'assets/img',
-      'assets/js',
-      'assets/less/base.less',
-      'assets/less/index.less',
-      'assets/less/print.less',
-      'assets/less/' + _s.slugify(prompts.customerName) + '.less',
+	it('creates assets', function() {
+		assert.file([
+			'assets',
+			'assets/fonts',
+			'assets/img',
+			'assets/js',
+			'assets/less/base.less',
+			'assets/less/index.less',
+			'assets/less/print.less',
+			'assets/less/' + _s.slugify(prompts.customerName) + '.less',
 			'assets/less/' + _s.slugify(prompts.customerName) + '.less',
 			'assets/less/' + _s.slugify(prompts.customerName) + '/alerts.less',
 			'assets/less/' + _s.slugify(prompts.customerName) + '/demoElements.less',
@@ -78,7 +80,7 @@ describe('bootstrap-kickstart:default', function () {
 			'assets/less/' + _s.slugify(prompts.customerName) + '/testResponsiveHelpers.less',
 			'assets/less/' + _s.slugify(prompts.customerName) + '/variables.less',
 
-    ]);
-  });
+		]);
+	});
 
 });
