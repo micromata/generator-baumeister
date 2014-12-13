@@ -126,7 +126,7 @@ module.exports = yeoman.generators.Base.extend({
 			);
 		},
 
-		assets: function (props) {
+		assets: function () {
 			this.directory(
 				this.templatePath('assets/fonts'),
 				this.destinationPath('assets/fonts')

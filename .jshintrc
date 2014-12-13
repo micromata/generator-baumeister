@@ -13,5 +13,7 @@
   "quotmark": "single",
   "undef": true,
   "unused": true,
-  "strict": true
+  "strict": true,
+  "browser": true,
+  "jquery": true
 }
