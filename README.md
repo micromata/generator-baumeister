@@ -13,9 +13,27 @@
 
 
 
-This generator will give you some neat options for using [Bootstrap Kickstart](https://github.com/micromata/bootstrap-kickstart).
+Using this generator will give you a solid base for your Bootstrap based project in a matter of minutes. It will offer you some neat options for using »Bootstrap Kickstart« which will help you with the creation of Bootstrap themes and sites by providing a file structure with focus on maintainibilty and upgradability and a set of useful Grunt Tasks. 
+
+Please check the epic [README](https://github.com/micromata/bootstrap-kickstart) of »Bootstrap Kickstart« to get detailed information about what it’s all about.
+
+## Features of this generator
+
+There are just a few options for now:
+
+- `OldIE support`
+	- Whether to make use of »html5shiv«, »respondJs« and »jquery-placeholder«
+- `Project name`
+	- Used in the generated README, package.json and bower.json
+- `Project description`
+	- Used in the generated Readme.md, package.json and bower.json
+- `Customer theme`
+	- Used to name things within your LESS files
+
+… more to come :octocat:
 
 ---
+
 
 ## Quick install guide
 
@@ -25,6 +43,15 @@ For those already using Yeoman.
 npm install -g generator-bootstrap-kickstart
 yo bootstrap-kickstart
 ```
+---
+
+## Dependencies
+
+- Node.js
+- Bower
+- Grunt
+
+See detailed installation instructions [over here](https://github.com/micromata/bootstrap-kickstart#dependencies) if you are new to this.
 
 ## Getting Started
 
@@ -32,7 +59,7 @@ yo bootstrap-kickstart
 
 Trick question. It's not a thing. It's this guy:
 
-[![Yeoman Logo](https://raw.githubusercontent.com/yeoman/yeoman.io/master/media/optimized/yeoman-300x200-opaque.png "Yeoman Logo")](http://yeoman.io/)
+[![Yeoman Logo](yeoman.png "Yeoman Logo")](http://yeoman.io/)
 
 Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
 
@@ -64,22 +91,15 @@ Yeoman has a heart of gold. He's a person with feelings and opinions, but he's v
 
 If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
 
----
 
-## Work in progress
+## Contributing to this project
 
-There are just a few options for now:
+Anyone and everyone is welcome to contribute. Please take a moment to
+review the [guidelines for contributing](CONTRIBUTING.md).
 
-- oldIeSupport 
-	- Whether to make use of »html5shiv«, »respondJs« and »jquery-placeholder«
-- projectName
-	- Used in generated Readme.md, package.json and bower.json
-- projectDescription
-	- Used in generated Readme.md, package.json and bower.json	
-
-… more to come :octocat:
-
----
+* [Bug reports](CONTRIBUTING.md#bugs)
+* [Feature requests](CONTRIBUTING.md#features)
+* [Pull requests](CONTRIBUTING.md#pull-requests)
 
 ## License
 
