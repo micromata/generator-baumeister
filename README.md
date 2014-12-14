@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/micromata/generator-bootstrap-kickstart.svg)](https://travis-ci.org/micromata/generator-bootstrap-kickstart) [![devDependency Status](https://david-dm.org/micromata/generator-bootstrap-kickstart/dev-status.svg)](https://david-dm.org/micromata/generator-bootstrap-kickstart#info=devDependencies)  [![Dependency Status](https://david-dm.org/micromata/generator-bootstrap-kickstart/status.svg)](https://david-dm.org/micromata/generator-bootstrap-kickstart#info=Dependencies) [![peerDependency Status](https://david-dm.org/micromata/generator-bootstrap-kickstart/peer-status.svg)](https://david-dm.org/micromata/generator-bootstrap-kickstart#info=peerDependencies)
+
+
 #Yeoman Generator for »Bootstrap Kickstart«
 
 
