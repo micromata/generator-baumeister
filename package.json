@@ -34,10 +34,10 @@
     "workflow"
   ],
   "dependencies": {
-    "chalk": "^0.5.0",
+    "chalk": "^0.5.1",
     "superb": "^1.0.5",
-    "yeoman-generator": "^0.18.0",
-    "yosay": "^0.3.0"
+    "yeoman-generator": "^0.18.4",
+    "yosay": "^1.0.0"
   },
   "devDependencies": {
     "escape-string-regexp": "^1.0.2",
