@@ -40,6 +40,7 @@
     "yosay": "^0.3.0"
   },
   "devDependencies": {
+    "escape-string-regexp": "^1.0.2",
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
@@ -49,6 +50,7 @@
     "jshint-stylish": "^1.0.0",
     "load-grunt-tasks": "^1.0.0",
     "mocha": "^2.0.1",
+    "should": "^4.4.1",
     "time-grunt": "^1.0.0",
     "underscore.string": "^2.4.0"
   },
