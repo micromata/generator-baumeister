@@ -1,3 +1,12 @@
+## Version 1.0.1 (2014-12-14)
+
+- Enable install
+- Update dependencies
+- A dd badges
+- Tweak travis build
+- Release v1.0.0
+
+
 ## Version 1.0.0 (2014-12-14)
 
 - Add changelog
