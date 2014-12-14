@@ -181,8 +181,8 @@ module.exports = yeoman.generators.Base.extend({
 	install: function () {
 		// this.log('install-1');
 		this.installDependencies({
-			// skipInstall: this.options['skip-install']
-			skipInstall: true
+			skipInstall: this.options['skip-install']
+			// skipInstall: true
 		});
 		// this.log('install');
 	},
