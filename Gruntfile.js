@@ -13,6 +13,7 @@ module.exports = function(grunt) {
 	// Config
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		pkpCopy: grunt.file.readJSON('package.json'),
 
 		// jsHint
 		jshint: {
@@ -33,6 +34,38 @@ module.exports = function(grunt) {
 					reporter: 'spec'
 				},
 				src: ['test/**/*.js']
+			}
+		},
+
+		bump: {
+			options: {
+				files: ['package.json'],
+				updateConfigs: ['pkg'],
+				// commit: false,
+				commitMessage: 'Release v%VERSION%',
+				commitFiles: ['package.json', 'CHANGELOG.md'],
+				// createTag: false,
+				tagName: '%VERSION%',
+				tagMessage: 'Version v%VERSION%',
+				push: false,
+				// pushTo: 'origin',
+				// gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d'
+			}
+		},
+
+		changelog: {
+			release: {
+				options: {
+					after: '<%= pkpCopy.version %>',
+					dest : 'CHANGELOG.md',
+					insertType: 'prepend',
+					template: '## Version <%= pkg.version %> ({{date}})\n\n{{> features}}',
+					featureRegex: /^(.*)$/gim,
+					partials: {
+						features: '{{#if features}}{{#each features}}{{> feature}}{{/each}}{{else}}{{> empty}}{{/if}}\n',
+						feature: '- {{{this}}}\n'
+					}
+				}
 			}
 		},
 
@@ -66,6 +99,20 @@ module.exports = function(grunt) {
 			'lint',
 			'test'
 		]
+	);
+
+	// Relase tasks
+	grunt.registerTask('releasePatch',
+		'`grunt releasePatch` builds the current sources, bumps version number (0.0.1) and creates zip.files.',
+		['bump-only:patch', 'changelog', 'bump-commit']
+	);
+	grunt.registerTask('releaseMinor',
+		'`grunt releaseMinor` builds the current sources, bumps version number (0.1.0) and creates zip.files.',
+		['bump-only:minor', 'changelog', 'bump-commit']
+	);
+	grunt.registerTask('releaseMajor',
+		'`grunt releaseMajor` builds the current sources, bumps version number (1.0.0) and creates zip.files.',
+		['bump-only:major', 'changelog', 'bump-commit']
 	);
 
 };
