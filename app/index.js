@@ -101,13 +101,9 @@ module.exports = yeoman.generators.Base.extend({
 			this.template('_index.html', 'index.html');
 			this.template('_stickyFooter.html', 'stickyFooter.html');
 			this.template('_demoElements.html', 'demoElements.html');
-
 			this.template('_README.md', 'README.md');
+			this.template('_Gruntfile.js', 'Gruntfile.js');
 
-			this.fs.copy(
-				this.templatePath('Gruntfile.js'),
-				this.destinationPath('Gruntfile.js')
-			);
 			this.fs.copyTpl(
 				this.templatePath('humans.txt'),
 				this.destinationPath('humans.txt')
