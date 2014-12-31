@@ -111,6 +111,28 @@ describe('bootstrap-kickstart → default', function() {
 		bowerJson.should.not.have.propertyByPath('dependencies', 'jquery-placeholder');
 	});
 
+	it('should not handle oldIE related files within Grunt tasks', function() {
+		assert.noFileContent([
+			['Gruntfile.js', /html5shiv/],
+			['Gruntfile.js', /respondJs/],
+			['Gruntfile.js', /jquery-placeholder/]
+		]);
+	});
+
+	it('should not reference oldIE related files within HTML files', function() {
+		assert.noFileContent([
+			['index.html', /html5shiv/],
+			['index.html', /respondJs/],
+			['index.html', /jquery-placeholder/],
+			['stickyFooter.html', /html5shiv/],
+			['stickyFooter.html', /respondJs/],
+			['stickyFooter.html', /jquery-placeholder/],
+			['demoElements.html', /html5shiv/],
+			['demoElements.html', /respondJs/],
+			['demoElements.html', /jquery-placeholder/]
+		]);
+	});
+
 	it('should render project name and description in bower.json', function() {
 		var bowerJson = JSON.parse(fs.readFileSync('bower.json'));
 		bowerJson.should.have.property('name', _s.slugify(prompts.projectName));
@@ -179,6 +201,28 @@ describe('bootstrap-kickstart → oldIeSupport', function() {
 		bowerJson.should.have.propertyByPath('dependencies', 'html5shiv');
 		bowerJson.should.have.propertyByPath('dependencies', 'respondJs');
 		bowerJson.should.have.propertyByPath('dependencies', 'jquery-placeholder');
+	});
+
+	it('should handle oldIE related files within Grunt tasks', function() {
+		assert.fileContent([
+			['Gruntfile.js', /html5shiv/],
+			['Gruntfile.js', /respondJs/],
+			['Gruntfile.js', /jquery-placeholder/]
+		]);
+	});
+
+	it('should reference oldIE related files within HTML files', function() {
+		assert.fileContent([
+			['index.html', /html5shiv/],
+			['index.html', /respondJs/],
+			['index.html', /jquery-placeholder/],
+			['stickyFooter.html', /html5shiv/],
+			['stickyFooter.html', /respondJs/],
+			['stickyFooter.html', /jquery-placeholder/],
+			['demoElements.html', /html5shiv/],
+			['demoElements.html', /respondJs/],
+			['demoElements.html', /jquery-placeholder/]
+		]);
 	});
 
 });

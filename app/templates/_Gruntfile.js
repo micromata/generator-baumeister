@@ -83,38 +83,46 @@ module.exports = function(grunt) {
 		// uglify
 		uglify: {
 			options: {
-				banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
+				banner: '/*! <%%= pkg.title %> - v<%%= pkg.version %>\n' +
 						' * m.kuehnel@micromata.de\n' +
 						' * Copyright ©2014 Micromata GmbH\n' +
-						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-						' */'
+						' * <%%= grunt.template.today("yyyy-mm-dd") %>\n' +
+						' */',
+				sourceMap: true,
+				sourceMapIncludeSources: true,
+				compress: {
+					drop_console: true,
+					drop_debugger: true
+				}
 			},
-			dev : {
-				options: {
-					sourceMap: true,
-				},
+			minify: {
 				files: [{
 					expand: true,
 					cwd: 'assets/js',
-					src: ['**/*.js', '!**/*min.js'],
-					dest: 'assets/js',
-					ext: '.min.js',
-					extDot: 'last'
-				}]
-			},
-			dist : {
-				options: {
-					banner: '<%= uglify.options.banner %>\n',
-					compress: { drop_console: true },
-				},
-				files: [{
-					expand: true,
-					cwd: 'assets/js',
-					src: ['**/*.js', '!**/*min.js'],
+					src: ['**/*.js'],
 					dest: 'dist/assets/js',
 					ext: '.min.js',
 					extDot: 'last'
 				}]
+			},
+			concatenate: {
+				files: {
+					'dist/assets/js/built.min.js': ['assets/js/**/*.js']
+				}
+			},
+			bower: {
+				options: {
+					sourceMap: false,
+					banner: '/*! <%%= pkg.title %> - v<%%= pkg.version %>\n' +
+						' * m.kuehnel@micromata.de\n' +
+						' * – Contatenated libs –  \n' +
+						' * Copyright ©2014 Micromata GmbH\n' +
+						' * <%%= grunt.template.today("yyyy-mm-dd") %>\n' +
+						' */',
+				},
+				files: {
+					'dist/libs/libs.js': ['dist/libs/libs.js']
+				}
 			}
 		},
 
@@ -156,7 +164,6 @@ module.exports = function(grunt) {
 			less: ['assets/css/index_raw.*'],
 			js: ['assets/js/**/*min.js*'],
 			dist: ['dist', 'server'],
-			server: ['server'],
 			temp: ['temp'],
 		},
 
@@ -166,10 +173,9 @@ module.exports = function(grunt) {
 				options: {
 					port: 9001,
 					hostname: 'localhost',
-					base: 'server',
 					open: {
-						 target: 'http://<%= connect.dev.options.hostname %>:' +
-						 '<%= connect.dev.options.port %>',
+						 target: 'http://<%%= connect.dev.options.hostname %>:' +
+						 '<%%= connect.dev.options.port %>',
 					},
 				}
 			},
@@ -177,7 +183,6 @@ module.exports = function(grunt) {
 				options: {
 					port: 9001,
 					hostname: 'localhost',
-					base: 'server'
 				}
 			},
 			dist: {
@@ -187,8 +192,8 @@ module.exports = function(grunt) {
 					base: 'dist',
 					keepalive: true,
 					open: {
-						 target: 'http://<%= connect.dev.options.hostname %>:' +
-						 '<%= connect.dist.options.port %>',
+						 target: 'http://<%%= connect.dev.options.hostname %>:' +
+						 '<%%= connect.dist.options.port %>',
 					},
 				}
 			}
@@ -205,18 +210,52 @@ module.exports = function(grunt) {
 		},
 
 		cssmin: {
-			dist: {
+			assets: {
 				options: {
-					keepSpecialComments: 0,
-					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-						' * m.kuehnel@micromata.de\n' +
-						' * Copyright ©2014 Micromata GmbH\n' +
-						' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-						' */'
+					keepSpecialComments: 0
 				},
 				files: {
 					'dist/assets/css/index.uncss.min.css': ['temp/index.css'],
 					'dist/assets/css/index.min.css': ['assets/css/index.css'],
+				}
+			},
+			bower: {
+				options: {
+					keepSpecialComments: 0
+				},
+				files: {
+					'dist/libs/libs.css': ['dist/libs/libs.css']
+				}
+			}
+		},
+
+		usebanner: {
+			assets: {
+				options: {
+					banner: '/*! <%%= pkg.title %> - v<%%= pkg.version %>\n' +
+						' * m.kuehnel@micromata.de\n' +
+						' * Copyright ©2014 Micromata GmbH\n' +
+						' * <%%= grunt.template.today("yyyy-mm-dd") %>\n' +
+						' */'
+				},
+				files: {
+					src: [
+						'dist/assets/css/index.uncss.min.css',
+						'dist/assets/css/index.min.css'
+					]
+				}
+			},
+			bower: {
+				options: {
+					banner: '/*! <%%= pkg.title %> - v<%%= pkg.version %>\n' +
+						' * m.kuehnel@micromata.de\n' +
+						' * – Contatenated libs –  \n' +
+						' * Copyright ©2014 Micromata GmbH\n' +
+						' * <%%= grunt.template.today("yyyy-mm-dd") %>\n' +
+						' */'
+				},
+				files: {
+					src: ['dist/libs/libs.css']
 				}
 			}
 		},
@@ -248,25 +287,36 @@ module.exports = function(grunt) {
 		},
 
 		copy: {
-			server: {
+			assets: {
 				expand: true,
 				src: [
-					'*.html',
-					'assets/**/*',
-					'libs/**/*',
-				],
-				dest: 'server/'
-			},
-			dist: {
-				expand: true,
-				src: [
-					'*.html',
-					'assets/css/*.css',
+					'assets/css/*.min.css',
 					'assets/fonts/**/*',
-					'assets/img/**/*',
-					'libs/**/*',
+					'assets/img/**/*'<% if (oldIeSupport) { %>,
+					// Bower libs needed for oldIEs. The rest is concatenated via the bower_concat task.
+					'libs/html5shiv/dist/html5shiv-printshiv.min.js',
+					'libs/respondJs/dest/respond.min.js'<% } %>
 				],
 				dest: 'dist/'
+			},
+		},
+
+		bower_concat: {
+			dist: {
+				// These are minified afterwards with `cssmin:bower` and `uglify:bower`.
+				// Because Chrome Dev Tools will throw an 404 regarding the missing sourcemaps if
+				// we use the already minified versions. Yep, that’s ugly.
+				dest: 'dist/libs/libs.js',
+				cssDest: 'dist/libs/libs.css',
+				include: [
+					'jquery',
+					'bootstrap'<% if (oldIeSupport) { %>,
+					'jquery-placeholder'<% } %>
+				],
+				mainFiles: {
+					'jquery': ['dist/jquery.js'],
+					'bootstrap': ['dist/js/bootstrap.js']
+				}
 			}
 		},
 
@@ -298,15 +348,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		cacheBust: {
-			options: {
-				rename: false
-			},
-			files: {
-				src: ['server/*.html']
-			}
-		},
-
 		browserSync: {
 			dev: {
 				bsFiles: {
@@ -320,8 +361,8 @@ module.exports = function(grunt) {
 					]
 				},
 				options: {
-					proxy:	'<%= connect.dev.options.hostname %>:' +
-							'<%= connect.dev.options.port %>',
+					proxy:	'<%%= connect.dev.options.hostname %>:' +
+							'<%%= connect.dev.options.port %>',
 					watchTask: true,
 				}
 			}
@@ -330,7 +371,7 @@ module.exports = function(grunt) {
 		compress: {
 			dist: {
 				options: {
-					archive: 'dist-v<%= pkg.version %>.zip'
+					archive: 'dist-v<%%= pkg.version %>.zip'
 				},
 				files: [{
 					src: ['dist/**'],
@@ -339,7 +380,7 @@ module.exports = function(grunt) {
 			},
 			src: {
 				options: {
-					archive: 'src-v<%= pkg.version %>.zip'
+					archive: 'src-v<%%= pkg.version %>.zip'
 				},
 				files: [
 					{src: ['./*', '!./*.zip', '!./*.sublime*',], dest: './', filter: 'isFile'}, // includes files in path
@@ -367,10 +408,10 @@ module.exports = function(grunt) {
 		changelog: {
 			release: {
 				options: {
-					after: '<%= pkpCopy.version %>',
+					after: '<%%= pkpCopy.version %>',
 					dest : 'CHANGELOG.md',
 					insertType: 'prepend',
-					template: '## Version <%= pkg.version %> ({{date}})\n\n{{> features}}',
+					template: '## Version <%%= pkg.version %> ({{date}})\n\n{{> features}}',
 					featureRegex: /^(.*)$/gim,
 					partials: {
 						features: '{{#if features}}{{#each features}}{{> feature}}{{/each}}{{else}}{{> empty}}{{/if}}\n',
@@ -404,7 +445,7 @@ module.exports = function(grunt) {
 				args: '--no-color'
 			},
 			install: {
-				'pre-commit': 'shell:bowerinstall'
+				'post-merge': 'shell:bowerinstall'
 			}
 		},
 
@@ -421,7 +462,7 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: ['assets/js/**/*.js'],
-				tasks: ['newer:jshint', 'newer:uglify:dev', 'newer:copy:server'],
+				tasks: ['newer:jshint'],
 				options: {
 					spawn: false
 				}
@@ -435,21 +476,14 @@ module.exports = function(grunt) {
 			},
 			css: {
 				files: ['assets/less/**/*.less'],
-				tasks: ['newer:less:dev', 'newer:autoprefixer', 'clean:less', 'newer:copy:server'],
+				tasks: ['less:dev', 'autoprefixer', 'clean:less'],
 				options: {
 					spawn: false
 				}
 			},
 			html: {
 				files: ['*.html'],
-				tasks: ['newer:htmllint', 'newer:bootlint', 'newer:copy:server'],
-				options: {
-					spawn: false,
-				}
-			},
-			images: {
-				files: ['assets/img/**/*.{png,jpg,gif}'],
-				tasks: ['newer:copy:server'],
+				tasks: ['newer:htmllint', 'newer:bootlint'],
 				options: {
 					spawn: false,
 				}
@@ -482,7 +516,6 @@ module.exports = function(grunt) {
 		'assets directory and generating docs / reports.',
 		[
 			'lint',
-			'uglify:dev',
 			'less:dev',
 			'autoprefixer',
 			'clean:less',
@@ -495,9 +528,6 @@ module.exports = function(grunt) {
 	grunt.registerTask('server',
 		'`grunt server` starts a local dev server and runs `grunt watch`',
 		[
-			'clean:server',
-			'copy:server',
-			'cacheBust',
 			'connect:dev',
 			'watch'
 		]
@@ -508,9 +538,6 @@ module.exports = function(grunt) {
 		'`grunt sync` starts a local dev server, sync browsers and runs `grunt watch`',
 		[
 			'dev',
-			'clean:server',
-			'copy:server',
-			'cacheBust',
 			'connect:sync',
 			'browserSync',
 			'watch'
@@ -535,15 +562,20 @@ module.exports = function(grunt) {
 		'`grunt build` builds production ready sources to dist directory.', [
 		'clean:dist',
 		'lint',
-		'uglify:dist',
+		'uglify:minify',
+		'uglify:concatenate',
 		'less:dev',
 		'autoprefixer',
 		'clean:less',
 		'uncss',
-		'cssmin',
+		'cssmin:assets',
 		'imagemin',
 		'processhtml',
-		'copy:dist',
+		'copy',
+		'bower_concat',
+		'uglify:bower',
+		'cssmin:bower',
+		'usebanner',
 		'clean:temp',
 		'plato',
 		'jsdoc'
@@ -569,6 +601,5 @@ module.exports = function(grunt) {
 		'`grunt releaseMajor` builds the current sources, bumps version number (1.0.0) and creates zip.files.',
 		['bump-only:major', 'build', 'clean:js', 'changelog', 'bump-commit', 'compress']
 	);
-
 
 };
