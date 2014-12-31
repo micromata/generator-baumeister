@@ -1,3 +1,17 @@
+## Version 1.1.0 (2014-12-31)
+
+- Change description of release tasks
+- Add missing linebreak between banner and code
+- Make output paths configurable
+- Update jquery-placeholder
+- Get rid of hardcoded © year
+- Get rid of hardcoded © year
+- Remove `app/templates/_Gruntfile.js from JSHint …
+- Add .npmignore
+- Add tests
+- Adapt changes from Bootstrap Kickstart v1.2.0
+
+
 ## Version 1.0.1 (2014-12-14)
 
 - Enable install
