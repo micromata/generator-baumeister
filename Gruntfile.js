@@ -104,15 +104,15 @@ module.exports = function(grunt) {
 
 	// Relase tasks
 	grunt.registerTask('releasePatch',
-		'`grunt releasePatch` builds the current sources, bumps version number (0.0.1) and creates zip.files.',
+		'`grunt releasePatch` bumps version number (0.0.1), creates changelog, commit these changes and tags release.',
 		['bump-only:patch', 'changelog', 'bump-commit']
 	);
 	grunt.registerTask('releaseMinor',
-		'`grunt releaseMinor` builds the current sources, bumps version number (0.1.0) and creates zip.files.',
+		'`grunt releaseMinor` bumps version number (0.1.0), creates changelog, commit these changes and tags release.',
 		['bump-only:minor', 'changelog', 'bump-commit']
 	);
 	grunt.registerTask('releaseMajor',
-		'`grunt releaseMajor` builds the current sources, bumps version number (1.0.0) and creates zip.files.',
+		'`grunt releaseMajor` bumps version number (1.0.0), creates changelog, commit these changes and tags release.',
 		['bump-only:major', 'changelog', 'bump-commit']
 	);
 
