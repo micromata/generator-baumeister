@@ -134,6 +134,14 @@ describe('bootstrap-kickstart → default', function() {
 		]);
 	});
 
+	it('should not include »browsehappy« message', function() {
+		assert.noFileContent([
+			['index.html', /browsehappy/],
+			['stickyFooter.html', /browsehappy/],
+			['demoElements.html', /browsehappy/]
+		]);
+	});
+
 	it('should render project name and description in bower.json', function() {
 		var bowerJson = JSON.parse(fs.readFileSync('bower.json'));
 		bowerJson.should.have.property('name', _s.slugify(prompts.projectName));
@@ -224,6 +232,14 @@ describe('bootstrap-kickstart → oldIeSupport', function() {
 			['demoElements.html', /html5shiv/],
 			['demoElements.html', /respondJs/],
 			['demoElements.html', /jquery-placeholder/]
+		]);
+	});
+
+	it('should include »browsehappy« message', function() {
+		assert.fileContent([
+			['index.html', /browsehappy/],
+			['stickyFooter.html', /browsehappy/],
+			['demoElements.html', /browsehappy/]
 		]);
 	});
 
