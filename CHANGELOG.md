@@ -1,3 +1,11 @@
+## Version 1.1.1 (2015-01-05)
+
+- Update dependencies
+- Render `browsehappy` message only with option `oldIeSupport`
+- Test jQuery version
+- Use jQuery 1.x only with option `oldIeSupport`
+- Release v1.1.0
+
 ## Version 1.1.0 (2014-12-31)
 
 - Change description of release tasks
