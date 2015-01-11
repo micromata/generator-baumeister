@@ -26,7 +26,7 @@ module.exports = yeoman.generators.Base.extend({
 				type: 'input',
 				name: 'projectName',
 				message: 'What’s the name of your project?',
-				default : this._.titleize(this.appname)  // Default to current folder name
+				default: this._.titleize(this.appname)  // Default to current folder name
 			},
 			{
 				type: 'input',
@@ -53,6 +53,39 @@ module.exports = yeoman.generators.Base.extend({
 				name: 'oldIeSupport',
 				message: 'Do you need to support Internet Explorer below IE9?',
 				default: false
+			},
+			{
+				type: 'confirm',
+				name: 'customPaths',
+				message: 'Do you like change the default output paths `dist`, `docs`, `reports`?',
+				default: false
+			},
+			{
+				type: 'input',
+				name: 'distDirectory',
+				message: 'Target directory for building production ready files',
+				default: 'dist',
+				when: function(answers) {
+					return answers.customPaths ;
+				}
+			},
+			{
+				type: 'input',
+				name: 'docsDirectory',
+				message: 'Target directory for generating the docs',
+				default: 'docs',
+				when: function(answers) {
+					return answers.customPaths ;
+				}
+			},
+			{
+				type: 'input',
+				name: 'reportsDirectory',
+				message: 'Target directory for generating the reports',
+				default: 'reports',
+				when: function(answers) {
+					return answers.customPaths ;
+				}
 			}
 		];
 
@@ -60,8 +93,11 @@ module.exports = yeoman.generators.Base.extend({
 			this.projectName = props.projectName;
 			// this.projectName = this._.titleize(props.projectName);
 			this.projectDescription = props.projectDescription;
-			this.oldIeSupport = props.oldIeSupport;
 			this.customerName = this._.slugify(props.customerName);
+			this.oldIeSupport = props.oldIeSupport;
+			this.distDirectory = props.distDirectory || 'dist';
+			this.docsDirectory = props.docsDirectory || 'docs';
+			this.reportsDirectory = props.reportsDirectory || 'reports';
 
 			// this.log(this.projectName);
 			// this.log(this.projectDescription);

@@ -20,9 +20,9 @@ module.exports = function(grunt) {
 
 		// Configurable paths
 		config: {
-			dist: 'dist',
-			reports: 'reports',
-			docs: 'docs'
+			dist: '<%= distDirectory %>',
+			reports: '<%= reportsDirectory %>',
+			docs: '<%= docsDirectory %>'
 		},
 
 		// List available tasks

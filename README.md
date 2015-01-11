@@ -24,16 +24,24 @@ Please check the epic [README](https://github.com/micromata/bootstrap-kickstart)
 
 There are just a few options for now:
 
-- `OldIE support`
+- [x] **OldIE support**
 	- Whether to make use of »html5shiv«, »respondJs« and »jquery-placeholder«
-- `Project name`
+- [x] **Project name**
 	- Used in the generated README, package.json and bower.json
-- `Project description`
+- [x] **Project description**
 	- Used in the generated Readme.md, package.json and bower.json
-- `Customer theme`
+- [x] **Customer theme**
 	- Used to name things within your LESS files
+- [x] **Output paths**
+	- Option to define the output paths `dist`, `docs`, `reports`
 
-… more to come :octocat:
+The following will we added later:
+
+- [ ] Option to choose the amount of boilerplate code [#4](https://github.com/micromata/generator-bootstrap-kickstart/issues/4)
+- [ ] Option to define the initial version number [#6](https://github.com/micromata/generator-bootstrap-kickstart/issues/6)
+- [ ] option to define the author [#7](https://github.com/micromata/generator-bootstrap-kickstart/issues/7)
+- [ ] option to define homepage and repository [#8](https://github.com/micromata/generator-bootstrap-kickstart/issues/8)
+- [ ] option to define the license type [#9](https://github.com/micromata/generator-bootstrap-kickstart/issues/9)
 
 ---
 

@@ -16,7 +16,8 @@ describe('bootstrap-kickstart → default', function() {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
 		customerName: 'My customer',
-		oldIeSupport: false
+		oldIeSupport: false,
+		customPaths: false
 	};
 
 	before(function(done) {
@@ -172,6 +173,15 @@ describe('bootstrap-kickstart → default', function() {
 		assert.fileContent(arg);
 	});
 
+	it('should have the default output paths within the Gruntfile', function() {
+		var arg = [
+			['Gruntfile.js', /dist/],
+			['Gruntfile.js', /docs/],
+			['Gruntfile.js', /reports/]
+		];
+		assert.fileContent(arg);
+	});
+
 });
 
 describe('bootstrap-kickstart → oldIeSupport', function() {
@@ -181,7 +191,8 @@ describe('bootstrap-kickstart → oldIeSupport', function() {
 		projectName: '',
 		projectDescription: '',
 		customerName: 'My customer',
-		oldIeSupport: true
+		oldIeSupport: true,
+		customPaths: false
 	};
 
 	before(function(done) {
@@ -241,6 +252,48 @@ describe('bootstrap-kickstart → oldIeSupport', function() {
 			['stickyFooter.html', /browsehappy/],
 			['demoElements.html', /browsehappy/]
 		]);
+	});
+
+});
+
+describe('bootstrap-kickstart → customPaths', function() {
+
+	// Define prompt answers
+	var prompts = {
+		projectName: '',
+		projectDescription: '',
+		customerName: 'My customer',
+		oldIeSupport: true,
+		customPaths: true,
+		distDirectory: 'disty',
+		docsDirectory: 'docsy',
+		reportsDirectory: 'reportsy',
+	};
+
+	before(function(done) {
+		helpers.run(path.join(__dirname, '../app'))
+
+		// Clear the directory and set it as the CWD
+		.inDir(path.join(os.tmpdir(), './temp-test'))
+
+		// Mock options passed in
+		.withOptions({
+			'skip-install': true
+		})
+
+		// Mock the prompt answers
+		.withPrompt(prompts)
+
+		.on('end', done);
+	});
+
+	it('should have the prompted output paths within the Gruntfile', function() {
+		var arg = [
+			['Gruntfile.js', new RegExp(escapeStringRegexp(prompts.distDirectory),'')],
+			['Gruntfile.js', new RegExp(escapeStringRegexp(prompts.docsDirectory),'')],
+			['Gruntfile.js', new RegExp(escapeStringRegexp(prompts.reportsDirectory),'')]
+		];
+		assert.fileContent(arg);
 	});
 
 });
