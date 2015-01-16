@@ -143,6 +143,14 @@ describe('bootstrap-kickstart → default', function() {
 		]);
 	});
 
+	it('should not include conditional classes to address oldIEs', function() {
+		assert.noFileContent([
+			['index.html', /<html class="(.+)ie(\d+)">/g],
+			['stickyFooter.html', /<html class="(.+)ie(\d+)">/g],
+			['demoElements.html', /<html class="(.+)ie(\d+)">/g]
+		]);
+	});
+
 	it('should render project name and description in bower.json', function() {
 		var bowerJson = JSON.parse(fs.readFileSync('bower.json'));
 		bowerJson.should.have.property('name', _s.slugify(prompts.projectName));
@@ -251,6 +259,14 @@ describe('bootstrap-kickstart → oldIeSupport', function() {
 			['index.html', /browsehappy/],
 			['stickyFooter.html', /browsehappy/],
 			['demoElements.html', /browsehappy/]
+		]);
+	});
+
+		it('should include conditional classes to address oldIEs', function() {
+		assert.fileContent([
+			['index.html', /<html class="(.+)ie(\d+)">/g],
+			['stickyFooter.html', /<html class="(.+)ie(\d+)">/g],
+			['demoElements.html', /<html class="(.+)ie(\d+)">/g]
 		]);
 	});
 

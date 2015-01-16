@@ -25,7 +25,7 @@ Please check the epic [README](https://github.com/micromata/bootstrap-kickstart)
 There are just a few options for now:
 
 - [x] **OldIE support**
-	- Whether to make use of »html5shiv«, »respondJs« and »jquery-placeholder«
+	- Whether to make use of »html5shiv«, »respondJs« and »jquery-placeholder« and conditional classes.
 - [x] **Project name**
 	- Used in the generated README, package.json and bower.json
 - [x] **Project description**
