@@ -86,23 +86,35 @@ module.exports = yeoman.generators.Base.extend({
 				when: function(answers) {
 					return answers.customPaths ;
 				}
+			},
+			{
+				type: 'input',
+				name: 'authorName',
+				message: 'What’s your Name? ' + chalk.gray.reset('(used in package.json, bower.json and License)')
+			},
+			{
+				type: 'input',
+				name: 'authorMail',
+				message: 'What’s your email address? ' + chalk.gray.reset('(used in package.json and bower.json)')
+			},
+			{
+				type: 'input',
+				name: 'authorUrl',
+				message: 'What’s the the URL of your website? ' + chalk.gray.reset('(used in package.json and License)')
 			}
 		];
 
 		this.prompt(prompts, function (props) {
 			this.projectName = props.projectName;
-			// this.projectName = this._.titleize(props.projectName);
 			this.projectDescription = props.projectDescription;
 			this.customerName = this._.slugify(props.customerName);
 			this.oldIeSupport = props.oldIeSupport;
 			this.distDirectory = props.distDirectory || 'dist';
 			this.docsDirectory = props.docsDirectory || 'docs';
 			this.reportsDirectory = props.reportsDirectory || 'reports';
-
-			// this.log(this.projectName);
-			// this.log(this.projectDescription);
-			// this.log(this.oldIeSupport);
-
+			this.authorName = props.authorName;
+			this.authorMail = props.authorMail;
+			this.authorUrl = props.authorUrl;
 
 			done();
 		}.bind(this));
@@ -139,14 +151,11 @@ module.exports = yeoman.generators.Base.extend({
 			this.template('_demoElements.html', 'demoElements.html');
 			this.template('_README.md', 'README.md');
 			this.template('_Gruntfile.js', 'Gruntfile.js');
+			this.template('_LICENSE', 'LICENSE');
 
 			this.fs.copyTpl(
 				this.templatePath('humans.txt'),
 				this.destinationPath('humans.txt')
-			);
-			this.fs.copyTpl(
-				this.templatePath('LICENSE'),
-				this.destinationPath('LICENSE')
 			);
 			this.fs.copyTpl(
 				this.templatePath('CONTRIBUTING.md'),

@@ -17,7 +17,10 @@ describe('bootstrap-kickstart → default', function() {
 		projectDescription: 'Just a test.',
 		customerName: 'My customer',
 		oldIeSupport: false,
-		customPaths: false
+		customPaths: false,
+		authorName: 'My Name',
+		authorMail: 'name@domain.com',
+		authorUrl: 'http://www.foo.com'
 	};
 
 	before(function(done) {
@@ -190,6 +193,33 @@ describe('bootstrap-kickstart → default', function() {
 		assert.fileContent(arg);
 	});
 
+	it('should have authors name in bower.json, package.json and LICENSE', function() {
+		var bowerJson = JSON.parse(fs.readFileSync('bower.json')),
+			packageJson = JSON.parse(fs.readFileSync('package.json')),
+			regex = new RegExp(escapeStringRegexp(prompts.authorName),'');
+
+		bowerJson.should.have.property('authors').match(regex);
+		packageJson.should.have.propertyByPath('author', 'name').eql(prompts.authorName);
+		assert.fileContent('LICENSE', regex);
+	});
+
+	it('should have authors email in bower.json and package.json', function() {
+		var bowerJson = JSON.parse(fs.readFileSync('bower.json')),
+			packageJson = JSON.parse(fs.readFileSync('package.json')),
+			regex = new RegExp(escapeStringRegexp(prompts.authorMail),'');;
+
+		bowerJson.should.have.property('authors').match(regex);
+		packageJson.should.have.propertyByPath('author', 'email').eql(prompts.authorMail);
+	});
+
+	it('should have authors URL in package.json and LICENSE', function() {
+		var packageJson = JSON.parse(fs.readFileSync('package.json')),
+			regex = new RegExp(escapeStringRegexp(prompts.authorUrl),'');
+
+		packageJson.should.have.propertyByPath('author', 'url').eql(prompts.authorUrl);
+		assert.fileContent('LICENSE', regex);
+	});
+
 });
 
 describe('bootstrap-kickstart → oldIeSupport', function() {
@@ -262,7 +292,7 @@ describe('bootstrap-kickstart → oldIeSupport', function() {
 		]);
 	});
 
-		it('should include conditional classes to address oldIEs', function() {
+	it('should include conditional classes to address oldIEs', function() {
 		assert.fileContent([
 			['index.html', /<html class="(.+)ie(\d+)">/g],
 			['stickyFooter.html', /<html class="(.+)ie(\d+)">/g],
