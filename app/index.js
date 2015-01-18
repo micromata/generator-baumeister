@@ -115,6 +115,7 @@ module.exports = yeoman.generators.Base.extend({
 			this.authorName = props.authorName;
 			this.authorMail = props.authorMail;
 			this.authorUrl = props.authorUrl;
+			this.year = new Date().getFullYear();
 
 			done();
 		}.bind(this));

@@ -220,6 +220,11 @@ describe('bootstrap-kickstart → default', function() {
 		assert.fileContent('LICENSE', regex);
 	});
 
+	it('should have the current year within the LICENSE', function() {
+		var regex = new RegExp(escapeStringRegexp(new Date().getFullYear() + ''),'');
+		assert.fileContent('LICENSE', regex);
+	});
+
 });
 
 describe('bootstrap-kickstart → oldIeSupport', function() {
