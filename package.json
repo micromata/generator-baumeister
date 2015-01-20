@@ -4,7 +4,14 @@
   "description": "Yeoman Generator for »Bootstrap Kickstart«",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "micromata/generator-bootstrap-kickstart",
+  "homepage": "https://github.com/micromata/generator-bootstrap-kickstart",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/micromata/generator-bootstrap-kickstart.git"
+  },
+  "bugs": {
+    "url": "https://github.com/micromata/generator-bootstrap-kickstart/issues"
+  },
   "author": {
     "name": "Michael Kühnel",
     "email": "m.kuehnel@micromata.de",
