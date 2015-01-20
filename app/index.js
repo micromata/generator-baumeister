@@ -125,7 +125,53 @@ module.exports = yeoman.generators.Base.extend({
 					'Apache License, Version 2.0',
 					'GNU General Public License, version 3 (GPL-3.0)'
 				]
-			}
+			},
+			{
+				type: 'confirm',
+				name: 'additionalInfo',
+				message: 'Do you like to add your projects homepage and repository to bower.json and package.json?',
+				default: true
+			},
+			{
+				type: 'input',
+				name: 'projectHomepage',
+				message: 'What’s URL of your projects homepage?',
+				when: function(answers) {
+					return answers.additionalInfo;
+				}
+			},
+			{
+				type: 'input',
+				name: 'projectRepositoryType',
+				message: 'What’s the type of your projects repository?',
+				default : 'git',
+				when: function(answers) {
+					return answers.additionalInfo;
+				}
+			},
+			{
+				type: 'input',
+				name: 'projectRepository',
+				message: 'What’s the clone URL of your projects repository?',
+				when: function(answers) {
+					return answers.additionalInfo;
+				}
+			},
+			{
+				type: 'input',
+				name: 'issueTracker',
+				message: 'What’s the URL of your projects issue tracker?',
+				default: function (answers) {
+					var regex = /(?:git@|https:\/\/)(github.com)(?::|\/{1})(.+).git/ig;
+
+					if (answers.projectRepository.match(regex) !== null) {
+						return answers.projectRepository.replace(regex, 'https://$1/$2/issues');
+					}
+				},
+				when: function(answers) {
+					return answers.additionalInfo;
+				}
+			},
 		];
 
 		this.prompt(prompts, function (props) {
@@ -142,6 +188,11 @@ module.exports = yeoman.generators.Base.extend({
 			this.year = new Date().getFullYear();
 			this.license = props.license;
 			this.initialVersion = props.initialVersion;
+			this.additionalInfo = props.additionalInfo;
+			this.projectHomepage = props.projectHomepage;
+			this.projectRepositoryType = props.projectRepositoryType;
+			this.projectRepository = props.projectRepository;
+			this.issueTracker = props.issueTracker;
 
 			done();
 		}.bind(this));

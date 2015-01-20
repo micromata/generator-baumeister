@@ -2,7 +2,7 @@
   "name": "<%= _.slugify(projectName) %>",
   "title": "<%= _.titleize(projectName) %>",
   "description": "<%= projectDescription %>",
-  "homepage": "https://github.com/micromata/bootstrap-kickstart",
+  "homepage": "<%= projectHomepage %>",
   "author": {
     "name": "<%= authorName %>",
     "email": "<%= authorMail %>",
@@ -11,11 +11,11 @@
   "license": "MIT",
   "version": "<%= initialVersion %>",
   "repository": {
-    "type": "git",
-    "url": "git@github.com:micromata/bootstrap-kickstart.git"
+    "type": "<%= projectRepositoryType %>",
+    "url": "<%= projectRepository %>"
   },
   "bugs": {
-    "url": "https://github.com/micromata/bootstrap-kickstart/issues"
+    "url": "<%= issueTracker %>"
   },
   "private": true,
   "dependencies": {},

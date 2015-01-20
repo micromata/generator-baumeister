@@ -22,7 +22,11 @@ describe('bootstrap-kickstart → default', function() {
 		authorMail: 'name@domain.com',
 		authorUrl: 'http://www.foo.com',
 		license: 'The MIT License (MIT)',
-		initialVersion: '0.0.0'
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		issueTracker: 'https://github.com/userName/repository/issues'
 	};
 
 	before(function(done) {
@@ -238,6 +242,25 @@ describe('bootstrap-kickstart → default', function() {
 		packageJson.should.have.property('version', prompts.initialVersion);
 	});
 
+	it('should have the homepage and repository in bower.json and package.json', function() {
+		var bowerJson = JSON.parse(fs.readFileSync('bower.json')),
+			packageJson = JSON.parse(fs.readFileSync('package.json'));
+
+		bowerJson.should.have.property('homepage', prompts.projectHomepage);
+		bowerJson.should.have.propertyByPath('repository', 'type').eql(prompts.projectRepositoryType);
+		bowerJson.should.have.propertyByPath('repository', 'url').eql(prompts.projectRepository);
+
+		packageJson.should.have.property('homepage', prompts.projectHomepage);
+		packageJson.should.have.propertyByPath('repository', 'type').eql(prompts.projectRepositoryType);
+		packageJson.should.have.propertyByPath('repository', 'url').eql(prompts.projectRepository);
+
+	});
+
+	it('should have the issue tracker url in package.json', function() {
+		var packageJson = JSON.parse(fs.readFileSync('package.json'));
+		packageJson.should.have.propertyByPath('bugs', 'url').eql(prompts.issueTracker);
+	});
+
 });
 
 describe('bootstrap-kickstart → oldIeSupport', function() {
@@ -248,7 +271,16 @@ describe('bootstrap-kickstart → oldIeSupport', function() {
 		projectDescription: '',
 		customerName: 'My customer',
 		oldIeSupport: true,
-		customPaths: false
+		customPaths: false,
+		authorName: 'My Name',
+		authorMail: 'name@domain.com',
+		authorUrl: 'http://www.foo.com',
+		license: 'The MIT License (MIT)',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		issueTracker: 'https://github.com/userName/repository/issues'
 	};
 
 	before(function(done) {
@@ -332,6 +364,15 @@ describe('bootstrap-kickstart → customPaths', function() {
 		distDirectory: 'disty',
 		docsDirectory: 'docsy',
 		reportsDirectory: 'reportsy',
+		authorName: 'My Name',
+		authorMail: 'name@domain.com',
+		authorUrl: 'http://www.foo.com',
+		license: 'The MIT License (MIT)',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		issueTracker: 'https://github.com/userName/repository/issues'
 	};
 
 	before(function(done) {
@@ -374,7 +415,12 @@ describe('bootstrap-kickstart → No open source license', function() {
 		authorName: '',
 		authorMail: '',
 		authorUrl: '',
-		license: 'No open source license – All rights reserved'
+		license: 'No open source license – All rights reserved',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		issueTracker: 'https://github.com/userName/repository/issues'
 	};
 
 	before(function(done) {
@@ -427,7 +473,12 @@ describe('bootstrap-kickstart → Apache License, Version 2.0', function() {
 		authorName: '',
 		authorMail: '',
 		authorUrl: '',
-		license: 'Apache License, Version 2.0'
+		license: 'Apache License, Version 2.0',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		issueTracker: 'https://github.com/userName/repository/issues'
 	};
 
 	before(function(done) {
@@ -480,7 +531,12 @@ describe('bootstrap-kickstart → GNU General Public License', function() {
 		authorName: '',
 		authorMail: '',
 		authorUrl: '',
-		license: 'GNU General Public License, version 3 (GPL-3.0)'
+		license: 'GNU General Public License, version 3 (GPL-3.0)',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		issueTracker: 'https://github.com/userName/repository/issues'
 	};
 
 	before(function(done) {
