@@ -3,7 +3,8 @@
 var yeoman = require('yeoman-generator'),
 	chalk = require('chalk'),
 	yosay = require('yosay'),
-	superb = require('superb');
+	superb = require('superb'),
+	semver = require('semver');
 
 // Define error style
 var error = chalk.red;
@@ -37,8 +38,6 @@ module.exports = yeoman.generators.Base.extend({
 				type: 'input',
 				name: 'customerName',
 				message: 'What would you like to name your »customer-theme« in the less-files?',
-				// default : this._.slugify(this.appname),
-				// default : 'customerName',
 				validate: function(value) {
 
 					if (value === '') {
@@ -89,6 +88,20 @@ module.exports = yeoman.generators.Base.extend({
 			},
 			{
 				type: 'input',
+				name: 'initialVersion',
+				message: 'What initial version should we put in the bower.json and package.json files?',
+				default : '0.0.0',
+				validate: function(value) {
+
+					if (!semver.valid(value)) {
+						return error('Please enter a correct semver version, i.e. MAJOR.MINOR.PATCH. See → http://semver-ftw.org');
+					} else {
+						return true;
+					}
+				}
+			},
+			{
+				type: 'input',
 				name: 'authorName',
 				message: 'What’s your Name? ' + chalk.gray.reset('(used in package.json, bower.json and License)')
 			},
@@ -128,6 +141,7 @@ module.exports = yeoman.generators.Base.extend({
 			this.authorUrl = props.authorUrl;
 			this.year = new Date().getFullYear();
 			this.license = props.license;
+			this.initialVersion = props.initialVersion;
 
 			done();
 		}.bind(this));

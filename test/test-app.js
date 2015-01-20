@@ -21,7 +21,8 @@ describe('bootstrap-kickstart → default', function() {
 		authorName: 'My Name',
 		authorMail: 'name@domain.com',
 		authorUrl: 'http://www.foo.com',
-		license: 'The MIT License (MIT)'
+		license: 'The MIT License (MIT)',
+		initialVersion: '0.0.0'
 	};
 
 	before(function(done) {
@@ -230,6 +231,12 @@ describe('bootstrap-kickstart → default', function() {
 		assert.fileContent('LICENSE', /copy, modify, merge, publish, distribute, sublicense, and\/or sell/);
 	});
 
+	it('should have the initial version number in bower.json and package.json', function() {
+		var bowerJson = JSON.parse(fs.readFileSync('bower.json')),
+			packageJson = JSON.parse(fs.readFileSync('package.json'));
+		bowerJson.should.have.property('version', prompts.initialVersion);
+		packageJson.should.have.property('version', prompts.initialVersion);
+	});
 
 });
 
