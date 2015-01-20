@@ -20,7 +20,8 @@ describe('bootstrap-kickstart → default', function() {
 		customPaths: false,
 		authorName: 'My Name',
 		authorMail: 'name@domain.com',
-		authorUrl: 'http://www.foo.com'
+		authorUrl: 'http://www.foo.com',
+		license: 'The MIT License (MIT)'
 	};
 
 	before(function(done) {
@@ -225,6 +226,11 @@ describe('bootstrap-kickstart → default', function() {
 		assert.fileContent('LICENSE', regex);
 	});
 
+	it('should have a MIT LICENSE', function() {
+		assert.fileContent('LICENSE', /copy, modify, merge, publish, distribute, sublicense, and\/or sell/);
+	});
+
+
 });
 
 describe('bootstrap-kickstart → oldIeSupport', function() {
@@ -345,6 +351,165 @@ describe('bootstrap-kickstart → customPaths', function() {
 			['Gruntfile.js', new RegExp(escapeStringRegexp(prompts.reportsDirectory),'')]
 		];
 		assert.fileContent(arg);
+	});
+
+});
+
+describe('bootstrap-kickstart → No open source license', function() {
+
+	// Define prompt answers
+	var prompts = {
+		projectName: 'Test this Thingy',
+		projectDescription: 'Just a test.',
+		customerName: 'My customer',
+		oldIeSupport: false,
+		customPaths: false,
+		authorName: '',
+		authorMail: '',
+		authorUrl: '',
+		license: 'No open source license – All rights reserved'
+	};
+
+	before(function(done) {
+		helpers.run(path.join(__dirname, '../app'))
+
+		// Clear the directory and set it as the CWD
+		.inDir(path.join(os.tmpdir(), './temp-test'))
+
+		// Mock options passed in
+		.withOptions({
+			'skip-install': true
+		})
+
+		// Mock the prompt answers
+		.withPrompt(prompts)
+
+		.on('end', done);
+	});
+
+	it('should have authors name in LICENSE', function() {
+		var regex = new RegExp(escapeStringRegexp(prompts.authorName),'');
+		assert.fileContent('LICENSE', regex);
+	});
+
+	it('should have authors URL in LICENSE', function() {
+		var regex = new RegExp(escapeStringRegexp(prompts.authorUrl),'');
+		assert.fileContent('LICENSE', regex);
+	});
+
+	it('should have the current year within the LICENSE', function() {
+		var regex = new RegExp(escapeStringRegexp(new Date().getFullYear() + ''),'');
+		assert.fileContent('LICENSE', regex);
+	});
+
+	it('should not have a open source license', function() {
+		assert.fileContent('LICENSE', /All rights reserved. It is strictly prohibited to copy, redistribute, republish/);
+	});
+
+});
+
+describe('bootstrap-kickstart → Apache License, Version 2.0', function() {
+
+	// Define prompt answers
+	var prompts = {
+		projectName: 'Test this Thingy',
+		projectDescription: 'Just a test.',
+		customerName: 'My customer',
+		oldIeSupport: false,
+		customPaths: false,
+		authorName: '',
+		authorMail: '',
+		authorUrl: '',
+		license: 'Apache License, Version 2.0'
+	};
+
+	before(function(done) {
+		helpers.run(path.join(__dirname, '../app'))
+
+		// Clear the directory and set it as the CWD
+		.inDir(path.join(os.tmpdir(), './temp-test'))
+
+		// Mock options passed in
+		.withOptions({
+			'skip-install': true
+		})
+
+		// Mock the prompt answers
+		.withPrompt(prompts)
+
+		.on('end', done);
+	});
+
+	it('should have authors name in LICENSE', function() {
+		var regex = new RegExp(escapeStringRegexp(prompts.authorName),'');
+		assert.fileContent('LICENSE', regex);
+	});
+
+	it('should have authors URL in LICENSE', function() {
+		var regex = new RegExp(escapeStringRegexp(prompts.authorUrl),'');
+		assert.fileContent('LICENSE', regex);
+	});
+
+	it('should have the current year within the LICENSE', function() {
+		var regex = new RegExp(escapeStringRegexp(new Date().getFullYear() + ''),'');
+		assert.fileContent('LICENSE', regex);
+	});
+
+	it('should have a Apache license', function() {
+		assert.fileContent('LICENSE', /Licensed under the Apache License, Version 2.0/);
+	});
+
+});
+
+describe('bootstrap-kickstart → GNU General Public License', function() {
+
+	// Define prompt answers
+	var prompts = {
+		projectName: 'Test this Thingy',
+		projectDescription: 'Just a test.',
+		customerName: 'My customer',
+		oldIeSupport: false,
+		customPaths: false,
+		authorName: '',
+		authorMail: '',
+		authorUrl: '',
+		license: 'GNU General Public License, version 3 (GPL-3.0)'
+	};
+
+	before(function(done) {
+		helpers.run(path.join(__dirname, '../app'))
+
+		// Clear the directory and set it as the CWD
+		.inDir(path.join(os.tmpdir(), './temp-test'))
+
+		// Mock options passed in
+		.withOptions({
+			'skip-install': true
+		})
+
+		// Mock the prompt answers
+		.withPrompt(prompts)
+
+		.on('end', done);
+	});
+
+	it('should have authors name in LICENSE', function() {
+		var regex = new RegExp(escapeStringRegexp(prompts.authorName),'');
+		assert.fileContent('LICENSE', regex);
+	});
+
+	it('should have authors URL in LICENSE', function() {
+		var regex = new RegExp(escapeStringRegexp(prompts.authorUrl),'');
+		assert.fileContent('LICENSE', regex);
+	});
+
+	it('should have the current year within the LICENSE', function() {
+		var regex = new RegExp(escapeStringRegexp(new Date().getFullYear() + ''),'');
+		assert.fileContent('LICENSE', regex);
+	});
+
+	it('should have a GNU General Public License', function() {
+		assert.fileContent('LICENSE', /GNU General Public License/);
 	});
 
 });

@@ -1,0 +1,3 @@
+Copyright (c) <%= year %> <%= authorName %>, <%= authorUrl %>
+
+All rights reserved. It is strictly prohibited to copy, redistribute, republish or modify any materials or software without the prior written consent of <%= authorName %>.

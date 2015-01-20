@@ -101,6 +101,17 @@ module.exports = yeoman.generators.Base.extend({
 				type: 'input',
 				name: 'authorUrl',
 				message: 'What’s the the URL of your website? ' + chalk.gray.reset('(used in package.json and License)')
+			},
+			{
+				type: 'list',
+				name: 'license',
+				message: 'Choose a license for you project',
+				choices: [
+					'The MIT License (MIT)',
+					'No open source license – All rights reserved',
+					'Apache License, Version 2.0',
+					'GNU General Public License, version 3 (GPL-3.0)'
+				]
 			}
 		];
 
@@ -116,6 +127,7 @@ module.exports = yeoman.generators.Base.extend({
 			this.authorMail = props.authorMail;
 			this.authorUrl = props.authorUrl;
 			this.year = new Date().getFullYear();
+			this.license = props.license;
 
 			done();
 		}.bind(this));
@@ -152,7 +164,22 @@ module.exports = yeoman.generators.Base.extend({
 			this.template('_demoElements.html', 'demoElements.html');
 			this.template('_README.md', 'README.md');
 			this.template('_Gruntfile.js', 'Gruntfile.js');
-			this.template('_LICENSE', 'LICENSE');
+
+
+			switch (this.license) {
+				case 'The MIT License (MIT)':
+					this.template('_LICENSE-MIT', 'LICENSE');
+					break;
+				case 'Apache License, Version 2.0':
+					this.template('_LICENSE-APACHE-2.0', 'LICENSE');
+					break;
+				case 'GNU General Public License, version 3 (GPL-3.0)':
+					this.template('_LICENSE-GNU', 'LICENSE');
+					break;
+				case 'No open source license – All rights reserved':
+					this.template('_LICENSE-ALL-RIGHTS-RESERVED', 'LICENSE');
+					break;
+			}
 
 			this.fs.copyTpl(
 				this.templatePath('humans.txt'),
