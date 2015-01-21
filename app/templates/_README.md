@@ -1,4 +1,4 @@
-#<%= _.titleize(projectName) %>
+# <%= _.titleize(projectName) %>
 
 <%= projectDescription %>
 

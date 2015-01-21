@@ -26,7 +26,8 @@ describe('bootstrap-kickstart → default', function() {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		issueTracker: 'https://github.com/userName/repository/issues'
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
 	before(function(done) {
@@ -80,7 +81,8 @@ describe('bootstrap-kickstart → default', function() {
 			'assets',
 			'assets/fonts',
 			'assets/img',
-			'assets/js',
+			'assets/js/base.js',
+			'assets/js/module.js',
 			'assets/less/base.less',
 			'assets/less/index.less',
 			'assets/less/print.less',
@@ -290,7 +292,8 @@ describe('bootstrap-kickstart → oldIeSupport', function() {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		issueTracker: 'https://github.com/userName/repository/issues'
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
 	before(function(done) {
@@ -382,7 +385,8 @@ describe('bootstrap-kickstart → customPaths', function() {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		issueTracker: 'https://github.com/userName/repository/issues'
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
 	before(function(done) {
@@ -430,7 +434,8 @@ describe('bootstrap-kickstart → No open source license', function() {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		issueTracker: 'https://github.com/userName/repository/issues'
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
 	before(function(done) {
@@ -488,7 +493,8 @@ describe('bootstrap-kickstart → Apache License, Version 2.0', function() {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		issueTracker: 'https://github.com/userName/repository/issues'
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
 	before(function(done) {
@@ -546,7 +552,8 @@ describe('bootstrap-kickstart → GNU General Public License', function() {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		issueTracker: 'https://github.com/userName/repository/issues'
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
 	before(function(done) {
@@ -583,6 +590,89 @@ describe('bootstrap-kickstart → GNU General Public License', function() {
 
 	it('should have a GNU General Public License', function() {
 		assert.fileContent('LICENSE', /GNU General Public License/);
+	});
+
+});
+
+describe('bootstrap-kickstart → No boilerplate – minimum files and folders', function() {
+
+	// Define prompt answers
+	var prompts = {
+		projectName: 'Test this Thingy',
+		projectDescription: 'Just a test.',
+		customerName: 'My customer',
+		oldIeSupport: false,
+		customPaths: false,
+		authorName: 'My Name',
+		authorMail: 'name@domain.com',
+		authorUrl: 'http://www.foo.com',
+		license: 'The MIT License (MIT)',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Almost nothing - Just the minimum files and folders'
+	};
+
+	before(function(done) {
+		helpers.run(path.join(__dirname, '../app'))
+
+		// Clear the directory and set it as the CWD
+		.inDir(path.join(os.tmpdir(), './temp-test'))
+
+		// Mock options passed in
+		.withOptions({
+			'skip-install': true
+		})
+
+		// Mock the prompt answers
+		.withPrompt(prompts)
+
+		.on('end', done);
+	});
+
+	it('should create just a single html file (index.html)', function() {
+		assert.file(['index.html']);
+		assert.noFile([
+			'stickyFooter.html',
+			'demoElements.html'
+		]);
+	});
+
+	it('should not include navigation and content in index.html', function() {
+		assert.noFileContent([
+			['index.html', /navbar|<p/g]
+		]);
+	});
+
+	it('should create just a single JavaScript file (base.js)', function() {
+		assert.file(['assets/js/base.js']);
+		assert.noFile([
+			'assets/js/module.js'
+		]);
+	});
+
+	it('should create just the essential LESS files', function() {
+		assert.noFile([
+			'assets/less/' + _s.slugify(prompts.customerName) + '/alerts.less',
+			'assets/less/' + _s.slugify(prompts.customerName) + '/demoElements.less',
+			'assets/less/' + _s.slugify(prompts.customerName) + '/footer.less',
+			'assets/less/' + _s.slugify(prompts.customerName) + '/ribbon.less',
+			'assets/less/' + _s.slugify(prompts.customerName) + '/mixins.less',
+			'assets/less/' + _s.slugify(prompts.customerName) + '/scaffolding.less'
+		]);
+	});
+
+	it('should only import the essential LESS files within ' + _s.slugify(prompts.customerName) + '.less file', function() {
+		assert.noFileContent([
+			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /alerts.less/],
+			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /demoElements.less/],
+			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /footer.less/],
+			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /ribbon.less/],
+			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /mixins.less/],
+			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /scaffolding.less/],
+		]);
 	});
 
 });

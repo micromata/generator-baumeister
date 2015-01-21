@@ -54,6 +54,15 @@ module.exports = yeoman.generators.Base.extend({
 				default: false
 			},
 			{
+				type: 'list',
+				name: 'boilerplateAmount',
+				message: 'With how many boilerplate code you like to get started with?',
+				choices: [
+					'Just a little – Get started with a few example files',
+					'Almost nothing - Just the minimum files and folders'
+				]
+			},
+			{
 				type: 'confirm',
 				name: 'customPaths',
 				message: 'Do you like change the default output paths `dist`, `docs`, `reports`?',
@@ -193,6 +202,7 @@ module.exports = yeoman.generators.Base.extend({
 			this.projectRepositoryType = props.projectRepositoryType;
 			this.projectRepository = props.projectRepository;
 			this.issueTracker = props.issueTracker;
+			this.boilerplateAmount = props.boilerplateAmount;
 
 			done();
 		}.bind(this));
@@ -224,9 +234,20 @@ module.exports = yeoman.generators.Base.extend({
 		},
 
 		projectFiles: function () {
-			this.template('_index.html', 'index.html');
-			this.template('_stickyFooter.html', 'stickyFooter.html');
-			this.template('_demoElements.html', 'demoElements.html');
+			switch (this.boilerplateAmount) {
+				case 'Just a little – Get started with a few example files':
+					this.template('_index-little-boilerplate.html', 'index.html');
+					this.template('_demoElements.html', 'demoElements.html');
+					this.template('_stickyFooter.html', 'stickyFooter.html');
+					break;
+				case 'Almost nothing - Just the minimum files and folders':
+					this.template('_index-no-boilerplate.html', 'index.html');
+					break;
+			}
+
+			// 'Just a little – Get started with a few example files',
+			// 'Almost nothing - Just the minimum files and folders'
+
 			this.template('_README.md', 'README.md');
 			this.template('_Gruntfile.js', 'Gruntfile.js');
 
@@ -265,10 +286,22 @@ module.exports = yeoman.generators.Base.extend({
 				this.templatePath('assets/img'),
 				this.destinationPath('assets/img')
 			);
-			this.directory(
-				this.templatePath('assets/js'),
-				this.destinationPath('assets/js')
-			);
+
+			switch (this.boilerplateAmount) {
+				case 'Just a little – Get started with a few example files':
+					this.directory(
+						this.templatePath('assets/js'),
+						this.destinationPath('assets/js')
+					);
+					break;
+				case 'Almost nothing - Just the minimum files and folders':
+					this.fs.copyTpl(
+						this.templatePath('assets/js/base.js'),
+						this.destinationPath('assets/js/base.js')
+					);
+					break;
+			}
+
 			this.fs.copyTpl(
 				this.templatePath('assets/less/base.less'),
 				this.destinationPath('assets/less/base.less')
@@ -282,20 +315,24 @@ module.exports = yeoman.generators.Base.extend({
 			);
 
 			this.template('assets/less/_customerName.less', 'assets/less/' + this.customerName + '.less');
-			this.template('assets/less/_customerName/_alerts.less', 'assets/less/' + this.customerName + '/alerts.less');
-			this.template('assets/less/_customerName/_demoElements.less', 'assets/less/' + this.customerName + '/demoElements.less');
-			this.template('assets/less/_customerName/_footer.less', 'assets/less/' + this.customerName + '/footer.less');
-			this.template('assets/less/_customerName/_ribbon.less', 'assets/less/' + this.customerName + '/ribbon.less');
 
-			this.fs.copyTpl(
-				this.templatePath('assets/less/_customerName/mixins.less'),
-				this.destinationPath('assets/less/' + this.customerName + '/mixins.less')
-			);
+			if (this.boilerplateAmount === 'Just a little – Get started with a few example files') {
 
-			this.fs.copyTpl(
-				this.templatePath('assets/less/_customerName/scaffolding.less'),
-				this.destinationPath('assets/less/' + this.customerName + '/scaffolding.less')
-			);
+				this.template('assets/less/_customerName/_alerts.less', 'assets/less/' + this.customerName + '/alerts.less');
+				this.template('assets/less/_customerName/_demoElements.less', 'assets/less/' + this.customerName + '/demoElements.less');
+				this.template('assets/less/_customerName/_footer.less', 'assets/less/' + this.customerName + '/footer.less');
+				this.template('assets/less/_customerName/_ribbon.less', 'assets/less/' + this.customerName + '/ribbon.less');
+
+				this.fs.copyTpl(
+					this.templatePath('assets/less/_customerName/mixins.less'),
+					this.destinationPath('assets/less/' + this.customerName + '/mixins.less')
+				);
+
+				this.fs.copyTpl(
+					this.templatePath('assets/less/_customerName/scaffolding.less'),
+					this.destinationPath('assets/less/' + this.customerName + '/scaffolding.less')
+				);
+			}
 
 			this.fs.copyTpl(
 				this.templatePath('assets/less/_customerName/testResponsiveHelpers.less'),

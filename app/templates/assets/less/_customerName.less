@@ -2,16 +2,16 @@
 // --------------------------------------------------
 // Files, classes, mixins etc.
 @import "<%= customerName %>/variables.less";
-@import "<%= customerName %>/mixins.less";
+<% if (oldIeSupport === 'Just a little – Get started with a few example files') { %>@import "<%= customerName %>/mixins.less";
 @import "<%= customerName %>/scaffolding.less";
-@import "<%= customerName %>/alerts.less";
+@import "<%= customerName %>/alerts.less";<% } %>
 
 // Own modules
 // --------------------------------------------------
 // @import "<%= customerName %>/testResponsiveHelpers.less"; // debug
-@import "<%= customerName %>/demoElements.less";
+<% if (oldIeSupport === 'Just a little – Get started with a few example files') { %>@import "<%= customerName %>/demoElements.less";
 @import "<%= customerName %>/footer.less";
-@import "<%= customerName %>/ribbon.less";
+@import "<%= customerName %>/ribbon.less";<% } %>
 
 // Important note //
 // You could also use this file to insert customer related style definitions
