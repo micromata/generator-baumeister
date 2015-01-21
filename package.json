@@ -45,13 +45,13 @@
     "semver": "^4.2.0",
     "superb": "^1.1.1",
     "yeoman-generator": "^0.18.6",
-    "yosay": "^1.0.1"
+    "yosay": "^1.0.2"
   },
   "devDependencies": {
     "escape-string-regexp": "^1.0.2",
     "grunt": "^0.4.5",
     "grunt-bump": "0.0.16",
-    "grunt-changelog": "^0.2.2",
+    "grunt-changelog": "^0.3.0",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-mocha-test": "^0.12.7",
@@ -62,7 +62,7 @@
     "mocha": "^2.1.0",
     "should": "^4.6.1",
     "time-grunt": "^1.0.0",
-    "underscore.string": "^3.0.0"
+    "underscore.string": "^3.0.1"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"

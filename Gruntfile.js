@@ -41,21 +41,23 @@ module.exports = function(grunt) {
 			options: {
 				files: ['package.json'],
 				updateConfigs: ['pkg'],
-				// commit: false,
 				commitMessage: 'Release v%VERSION%',
 				commitFiles: ['package.json', 'CHANGELOG.md'],
-				// createTag: false,
 				tagName: '%VERSION%',
 				tagMessage: 'Version v%VERSION%',
-				push: false,
-				// pushTo: 'origin',
-				// gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d'
+				push: false
 			}
 		},
 
 		changelog: {
 			release: {
 				options: {
+					fileHeader: '# Changelog',
+					logArguments: [
+						'--pretty=%h - %ad: %s',
+						'--no-merges',
+						'--date=short'
+					],
 					after: '<%= pkpCopy.version %>',
 					dest : 'CHANGELOG.md',
 					insertType: 'prepend',
