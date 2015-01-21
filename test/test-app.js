@@ -190,6 +190,16 @@ describe('bootstrap-kickstart → default', function() {
 		assert.fileContent(arg);
 	});
 
+	it('should render author name within the meta tags of HTML files', function() {
+		var regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '" />'),''),
+			arg = [
+				['index.html', regex],
+				['stickyFooter.html', regex],
+				['demoElements.html', regex]
+			];
+		assert.fileContent(arg);
+	});
+
 	it('should have the default output paths within the Gruntfile', function() {
 		var arg = [
 			['Gruntfile.js', /dist/],
