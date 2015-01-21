@@ -100,6 +100,31 @@ describe('bootstrap-kickstart → default', function() {
 		]);
 	});
 
+	it('should render author name and email within the comments of JavaScript files', function() {
+		var regex = new RegExp(escapeStringRegexp('@author ' + prompts.authorName + ' <' + prompts.authorMail + '>'),''),
+			arg = [
+				['assets/js/base.js', regex],
+				['assets/js/module.js', regex]
+			];
+		assert.fileContent(arg);
+	});
+
+	it('should set the namespace within JavaScript files according to prompted project name', function() {
+		var regexShould = new RegExp(escapeStringRegexp('@namespace ' + _s.camelize(_s.slugify(prompts.projectName))),''),
+			argShould = [
+				['assets/js/base.js', regexShould],
+				['assets/js/module.js', regexShould]
+			],
+			regexShouldNot = /kickstarter/,
+			argShouldNot = [
+				['assets/js/base.js', regexShouldNot],
+				['assets/js/module.js', regexShouldNot]
+			];
+
+		assert.fileContent(argShould);
+		assert.noFileContent(argShouldNot);
+	});
+
 	it('should have a valid bower.json file', function() {
 		JSON.parse(fs.readFileSync('bower.json'));
 	});

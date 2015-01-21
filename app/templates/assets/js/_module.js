@@ -2,38 +2,34 @@
  * @file An example module extending the the functionality of Bootstraps »Foo«
  * module or an own module which has nothing to do with Bootstraps JavaScript
  * code.
- * @author Michael Kühnel <m.kuehnel@micromata.de>
+ * @author <%= authorName %> <<%= authorMail %>>
  */
 
 /**
  * Make sure our global object is available.
- * @namespace kickstarter
- * @todo Rename the global variable throughout the whole file according to your needs.
- * @example
- * yourAppName = window.yourAppName || {};
- * @todo Update documentation after renaming.
+ * @namespace <%= _.camelize(_.slugify(projectName)) %>
  * @ignore
  */
-var kickstarter = window.kickstarter || {};
+var <%= _.camelize(_.slugify(projectName)) %> = window.<%= _.camelize(_.slugify(projectName)) %> || {};
 
 /**
  * Namespace of the module.
  * Aliasing the jQuery Namespace via Self Invoking Anonymous Function.
  * @namespace modulName
- * @memberof kickstarter
+ * @memberof <%= _.camelize(_.slugify(projectName)) %>
  * @param 	{jQuery} $	passing the jQuery object to make $ available even when
  *                    	using jQuery.noConflict()
  */
-kickstarter.modulName = (function($) {
+<%= _.camelize(_.slugify(projectName)) %>.modulName = (function($) {
 	'use strict';
 
 	/**
 	 * Just an example public method that you could call from the global scope.
-	 * @memberof kickstarter.modulName
+	 * @memberof <%= _.camelize(_.slugify(projectName)) %>.modulName
 	 * @public
 	 * @param {string} message Message to write into the console.
 	 * @example
-	 * kickstarter.modulName.yourPublicMethod('Hi Public.');
+	 * <%= _.camelize(_.slugify(projectName)) %>.modulName.yourPublicMethod('Hi Public.');
 	 */
 	var yourPublicMethod = function(message) {
 		console.info(message);
@@ -42,7 +38,7 @@ kickstarter.modulName = (function($) {
 	/**
 	 * Just an example private method that you only can call from within this
 	 * module.
-	 * @memberof kickstarter.modulName
+	 * @memberof <%= _.camelize(_.slugify(projectName)) %>.modulName
 	 * @private
 	 * @param {string} message Message to write into the console.
 	 */
@@ -72,7 +68,7 @@ kickstarter.modulName = (function($) {
 $(function() {
 	'use strict';
 
-	kickstarter.modulName.yourPublicMethod('Hi public.');
+	<%= _.camelize(_.slugify(projectName)) %>.modulName.yourPublicMethod('Hi public.');
 });
 
 

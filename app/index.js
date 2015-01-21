@@ -289,16 +289,11 @@ module.exports = yeoman.generators.Base.extend({
 
 			switch (this.boilerplateAmount) {
 				case 'Just a little – Get started with a few example files':
-					this.directory(
-						this.templatePath('assets/js'),
-						this.destinationPath('assets/js')
-					);
+					this.template('assets/js/_base.js', 'assets/js/base.js');
+					this.template('assets/js/_module.js', 'assets/js/module.js');
 					break;
 				case 'Almost nothing - Just the minimum files and folders':
-					this.fs.copyTpl(
-						this.templatePath('assets/js/base.js'),
-						this.destinationPath('assets/js/base.js')
-					);
+					this.template('assets/js/_base.js', 'assets/js/base.js');
 					break;
 			}
 

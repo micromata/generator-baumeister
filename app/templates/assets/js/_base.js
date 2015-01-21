@@ -1,6 +1,6 @@
 /**
  * @file  Base JavaScript needed independent of the project
- * @author Michael Kühnel <m.kuehnel@micromata.de>
+ * @author <%= authorName %> <<%= authorMail %>>
  */
 
 // JSHint settings
@@ -14,27 +14,23 @@
 /**
  * Namespace of the app.
  * This should be only variable the app should store in the global scope.
- * @namespace kickstarter
- * @todo Rename the global variable throughout the whole file according to your needs.
- * @example
- * yourAppName = window.yourAppName || {};
- * @todo Update documentation after renaming.
+ * @namespace <%= _.camelize(_.slugify(projectName)) %>
  */
-var kickstarter = window.kickstarter || {};
+var <%= _.camelize(_.slugify(projectName)) %> = window.<%= _.camelize(_.slugify(projectName)) %> || {};
 
 /**
  * Namespace of the base module. Contains JavaScript needed independent of the
  * project or other modules.
  * @namespace base
- * @memberof kickstarter
+ * @memberof <%= _.camelize(_.slugify(projectName)) %>
  */
-kickstarter.base = (function() {
+<%= _.camelize(_.slugify(projectName)) %>.base = (function() {
 	'use strict';
 
 	/**
 	 * Fix viewport issues with IE 10.
 	 * @see {@link http://getbootstrap.com/getting-started/#support-ie10-width}
-	 * @memberof kickstarter.base
+	 * @memberof <%= _.camelize(_.slugify(projectName)) %>.base
 	 * @private
 	 */
 	var _fixViewportIssues = (function() {
@@ -52,7 +48,7 @@ kickstarter.base = (function() {
 	/**
 	 * Avoid `console` errors in browsers that lack a console.
 	 * @see {@link https://github.com/h5bp/html5-boilerplate/blob/master/js/plugins.js}
-	 * @memberof kickstarter.base
+	 * @memberof <%= _.camelize(_.slugify(projectName)) %>.base
 	 * @private
 	 */
 	var _addConsoleMethods = (function() {

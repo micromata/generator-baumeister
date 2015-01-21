@@ -24,7 +24,6 @@ module.exports = function(grunt) {
 			all: [
 				'Gruntfile.js',
 				'app/*.js',
-				'app/templates/assets/js/*.js',
 			]
 		},
 
