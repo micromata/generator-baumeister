@@ -22,26 +22,29 @@ Please check the epic [README](https://github.com/micromata/bootstrap-kickstart)
 
 ## Features of this generator
 
-There are just a few options for now:
+There are tons of options for now :scream:  
+… but dont be afraid – most of them are optional and you even get to see them all because some are depending on others.
 
-- [x] **OldIE support**
-	- Whether to make use of »html5shiv«, »respondJs« and »jquery-placeholder« and conditional classes.
-- [x] **Project name**
-	- Used in the generated README, package.json and bower.json
-- [x] **Project description**
-	- Used in the generated Readme.md, package.json and bower.json
-- [x] **Customer theme**
-	- Used to name things within your LESS files
-- [x] **Output paths**
-	- Option to define the output paths `dist`, `docs`, `reports`
+| Option  | Description |
+| ------------- | ------------- |
+| `oldIeSupport`  | Whether to make use of »html5shiv«, »respondJs« and »jquery-placeholder« and conditional classes  |
+| `projectName` | Used in the generated README, package.json and bower.json  |
+| `projectDescription`  | Used in the generated Readme.md, package.json and bower.json  |
+| `customerName`  | Used to name a file and a folder within the LESS directory  |
+| `customPaths`  | Option to define the output paths `dist`, `docs`, `reports`  |
+| `boilerplateAmount`  | Option to choose the amount of boilerplate code (HTML, LESS and JS examples)  |
+| `license`  | Option to define the license type. Defaults to MIT  |
+| `initialVersion`  | Option to define the initial version number used in generated package.json and bower.json. Defaults to 0.0.0  |
+| `authorName`  | Option to define the author for use in the generated package.json, bower.json and JavaScript files  |
+| `authorMail`  | Option to define the author for use in the generated package.json, bower.json and JavaScript files  |
+| `authorUrl`  | Option to define the author for use in the generated package.json and bower.json files |
+| `projectHomepage`, `projectRepositoryType`, `projectRepository`  | option to define homepage and repository for use in the generated package.json and bower.json files  |
+| `issueTracker`  | option to define the URL to your issue tracker for use in the generated package.json and bower.json files  |
 
-The following will we added later:
+The following might be added later:
 
-- [ ] Option to choose the amount of boilerplate code [#4](https://github.com/micromata/generator-bootstrap-kickstart/issues/4)
-- [ ] Option to define the initial version number [#6](https://github.com/micromata/generator-bootstrap-kickstart/issues/6)
-- [ ] option to define the author [#7](https://github.com/micromata/generator-bootstrap-kickstart/issues/7)
-- [ ] option to define homepage and repository [#8](https://github.com/micromata/generator-bootstrap-kickstart/issues/8)
-- [ ] option to define the license type [#9](https://github.com/micromata/generator-bootstrap-kickstart/issues/9)
+- [ ] Options to include additional files from HTML5 Boilerplate [#13](https://github.com/micromata/generator-bootstrap-kickstart/issues/13)
+	- Feedback appreciated.
 
 ---
 
