@@ -6,10 +6,10 @@
     "<%= authorName %> <<%= authorMail %>>"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/micromata/bootstrap-kickstart",
+  "homepage": "<%= projectHomepage %>",
   "repository": {
-    "type": "git",
-    "url": "git@github.com:micromata/bootstrap-kickstart.git"
+    "type": "<%= projectRepositoryType %>",
+    "url": "<%= projectRepository %>"
   },
   "keywords": [
     "bootstrap",
