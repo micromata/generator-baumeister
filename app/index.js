@@ -6,8 +6,9 @@ var yeoman = require('yeoman-generator'),
 	superb = require('superb'),
 	semver = require('semver');
 
-// Define error style
-var error = chalk.red;
+// Define chalk styles
+var error = chalk.red,
+	info = chalk.yellow.reset;
 
 module.exports = yeoman.generators.Base.extend({
 	initializing: function () {
@@ -96,6 +97,27 @@ module.exports = yeoman.generators.Base.extend({
 				}
 			},
 			{
+				type: 'list',
+				name: 'license',
+				message: 'Choose a license for you project',
+				choices: [
+					'MIT',
+					'Apache License, Version 2.0',
+					'GNU GPLv3',
+					'All rights reserved'
+				]
+			},
+			{
+				type: 'input',
+				name: 'authorName',
+				message: 'What’s your Name? ' + info('(used in package.json, bower.json and license)')
+			},
+			{
+				type: 'input',
+				name: 'authorUrl',
+				message: 'What’s the the URL of your website? ' + info('(not the projects website if they differ – used in package.json and License)')
+			},
+			{
 				type: 'input',
 				name: 'initialVersion',
 				message: 'What initial version should we put in the bower.json and package.json files?',
@@ -110,36 +132,18 @@ module.exports = yeoman.generators.Base.extend({
 				}
 			},
 			{
-				type: 'input',
-				name: 'authorName',
-				message: 'What’s your Name? ' + chalk.gray.reset('(used in package.json, bower.json and License)')
+				type: 'confirm',
+				name: 'additionalInfo',
+				message: 'Do you like to add additional info to bower.json and package.json? ' + info('(email address, projects homepage, repository etc.)'),
+				default: true
 			},
 			{
 				type: 'input',
 				name: 'authorMail',
-				message: 'What’s your email address? ' + chalk.gray.reset('(used in package.json and bower.json)')
-			},
-			{
-				type: 'input',
-				name: 'authorUrl',
-				message: 'What’s the the URL of your website? ' + chalk.gray.reset('(used in package.json and License)')
-			},
-			{
-				type: 'list',
-				name: 'license',
-				message: 'Choose a license for you project',
-				choices: [
-					'MIT',
-					'Apache License, Version 2.0',
-					'GNU GPLv3',
-					'All rights reserved'
-				]
-			},
-			{
-				type: 'confirm',
-				name: 'additionalInfo',
-				message: 'Do you like to add your projects homepage and repository to bower.json and package.json?',
-				default: true
+				message: 'What’s your email address?',
+				when: function(answers) {
+					return answers.additionalInfo;
+				}
 			},
 			{
 				type: 'input',
