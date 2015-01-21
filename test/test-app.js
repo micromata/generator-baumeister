@@ -100,6 +100,19 @@ describe('bootstrap-kickstart → default', function() {
 		]);
 	});
 
+	it('should import all LESS files within ' + _s.slugify(prompts.customerName) + '.less file', function() {
+		assert.fileContent([
+			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /variables.less/],
+			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /testResponsiveHelpers.less/],
+			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /alerts.less/],
+			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /demoElements.less/],
+			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /footer.less/],
+			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /ribbon.less/],
+			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /mixins.less/],
+			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /scaffolding.less/],
+		]);
+	});
+
 	it('should render author name and email within the comments of JavaScript files', function() {
 		var regex = new RegExp(escapeStringRegexp('@author ' + prompts.authorName + ' <' + prompts.authorMail + '>'),''),
 			arg = [
