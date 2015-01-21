@@ -9,7 +9,7 @@ var path = require('path'),
 	fs = require('fs'),
 	escapeStringRegexp = require('escape-string-regexp');
 
-describe('bootstrap-kickstart → default', function() {
+describe('bootstrap-kickstart with default options', function() {
 
 	// Define prompt answers
 	var prompts = {
@@ -318,7 +318,7 @@ describe('bootstrap-kickstart → default', function() {
 
 });
 
-describe('bootstrap-kickstart → oldIeSupport', function() {
+describe('bootstrap-kickstart with oldIE support', function() {
 
 	// Define prompt answers
 	var prompts = {
@@ -408,7 +408,7 @@ describe('bootstrap-kickstart → oldIeSupport', function() {
 
 });
 
-describe('bootstrap-kickstart → customPaths', function() {
+describe('bootstrap-kickstart with custom output paths', function() {
 
 	// Define prompt answers
 	var prompts = {
@@ -460,7 +460,7 @@ describe('bootstrap-kickstart → customPaths', function() {
 
 });
 
-describe('bootstrap-kickstart → No open source license', function() {
+describe('bootstrap-kickstart without an open source license', function() {
 
 	// Define prompt answers
 	var prompts = {
@@ -524,7 +524,7 @@ describe('bootstrap-kickstart → No open source license', function() {
 
 });
 
-describe('bootstrap-kickstart → Apache License, Version 2.0', function() {
+describe('bootstrap-kickstart with Apache License, Version 2.0', function() {
 
 	// Define prompt answers
 	var prompts = {
@@ -588,7 +588,7 @@ describe('bootstrap-kickstart → Apache License, Version 2.0', function() {
 
 });
 
-describe('bootstrap-kickstart → GNU General Public License', function() {
+describe('bootstrap-kickstart with GNU General Public License', function() {
 
 	// Define prompt answers
 	var prompts = {
@@ -652,7 +652,7 @@ describe('bootstrap-kickstart → GNU General Public License', function() {
 
 });
 
-describe('bootstrap-kickstart → No boilerplate – minimum files and folders', function() {
+describe('bootstrap-kickstart with less boilerplate code', function() {
 
 	// Define prompt answers
 	var prompts = {
