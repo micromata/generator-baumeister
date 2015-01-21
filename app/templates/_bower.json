@@ -5,7 +5,7 @@
   "authors": [
     "<%= authorName %> <<%= authorMail %>>"
   ],
-  "license": "MIT",
+  "license": "<%= license %>",
   "homepage": "<%= projectHomepage %>",
   "repository": {
     "type": "<%= projectRepositoryType %>",

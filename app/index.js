@@ -129,10 +129,10 @@ module.exports = yeoman.generators.Base.extend({
 				name: 'license',
 				message: 'Choose a license for you project',
 				choices: [
-					'The MIT License (MIT)',
-					'No open source license – All rights reserved',
+					'MIT',
 					'Apache License, Version 2.0',
-					'GNU General Public License, version 3 (GPL-3.0)'
+					'GNU GPLv3',
+					'All rights reserved'
 				]
 			},
 			{
@@ -253,16 +253,16 @@ module.exports = yeoman.generators.Base.extend({
 
 
 			switch (this.license) {
-				case 'The MIT License (MIT)':
+				case 'MIT':
 					this.template('_LICENSE-MIT', 'LICENSE');
 					break;
 				case 'Apache License, Version 2.0':
 					this.template('_LICENSE-APACHE-2.0', 'LICENSE');
 					break;
-				case 'GNU General Public License, version 3 (GPL-3.0)':
+				case 'GNU GPLv3':
 					this.template('_LICENSE-GNU', 'LICENSE');
 					break;
-				case 'No open source license – All rights reserved':
+				case 'All rights reserved':
 					this.template('_LICENSE-ALL-RIGHTS-RESERVED', 'LICENSE');
 					break;
 			}

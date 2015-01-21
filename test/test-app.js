@@ -21,7 +21,7 @@ describe('bootstrap-kickstart → default', function() {
 		authorName: 'My Name',
 		authorMail: 'name@domain.com',
 		authorUrl: 'http://www.foo.com',
-		license: 'The MIT License (MIT)',
+		license: 'MIT',
 		initialVersion: '0.0.0',
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
@@ -282,7 +282,12 @@ describe('bootstrap-kickstart → default', function() {
 	});
 
 	it('should have a MIT LICENSE', function() {
+		var bowerJson = JSON.parse(fs.readFileSync('bower.json')),
+			packageJson = JSON.parse(fs.readFileSync('package.json'));
+
 		assert.fileContent('LICENSE', /copy, modify, merge, publish, distribute, sublicense, and\/or sell/);
+		bowerJson.should.have.property('license', prompts.license);
+		packageJson.should.have.property('license', prompts.license);
 	});
 
 	it('should have the initial version number in bower.json and package.json', function() {
@@ -325,7 +330,7 @@ describe('bootstrap-kickstart → oldIeSupport', function() {
 		authorName: 'My Name',
 		authorMail: 'name@domain.com',
 		authorUrl: 'http://www.foo.com',
-		license: 'The MIT License (MIT)',
+		license: 'MIT',
 		initialVersion: '0.0.0',
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
@@ -418,7 +423,7 @@ describe('bootstrap-kickstart → customPaths', function() {
 		authorName: 'My Name',
 		authorMail: 'name@domain.com',
 		authorUrl: 'http://www.foo.com',
-		license: 'The MIT License (MIT)',
+		license: 'MIT',
 		initialVersion: '0.0.0',
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
@@ -467,7 +472,7 @@ describe('bootstrap-kickstart → No open source license', function() {
 		authorName: '',
 		authorMail: '',
 		authorUrl: '',
-		license: 'No open source license – All rights reserved',
+		license: 'All rights reserved',
 		initialVersion: '0.0.0',
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
@@ -509,7 +514,12 @@ describe('bootstrap-kickstart → No open source license', function() {
 	});
 
 	it('should not have a open source license', function() {
+		var bowerJson = JSON.parse(fs.readFileSync('bower.json')),
+			packageJson = JSON.parse(fs.readFileSync('package.json'));
+
 		assert.fileContent('LICENSE', /All rights reserved. It is strictly prohibited to copy, redistribute, republish/);
+		bowerJson.should.have.property('license', prompts.license);
+		packageJson.should.have.property('license', prompts.license);
 	});
 
 });
@@ -568,7 +578,12 @@ describe('bootstrap-kickstart → Apache License, Version 2.0', function() {
 	});
 
 	it('should have a Apache license', function() {
+		var bowerJson = JSON.parse(fs.readFileSync('bower.json')),
+			packageJson = JSON.parse(fs.readFileSync('package.json'));
+
 		assert.fileContent('LICENSE', /Licensed under the Apache License, Version 2.0/);
+		bowerJson.should.have.property('license', prompts.license);
+		packageJson.should.have.property('license', prompts.license);
 	});
 
 });
@@ -585,7 +600,7 @@ describe('bootstrap-kickstart → GNU General Public License', function() {
 		authorName: '',
 		authorMail: '',
 		authorUrl: '',
-		license: 'GNU General Public License, version 3 (GPL-3.0)',
+		license: 'GNU GPLv3',
 		initialVersion: '0.0.0',
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
@@ -627,7 +642,12 @@ describe('bootstrap-kickstart → GNU General Public License', function() {
 	});
 
 	it('should have a GNU General Public License', function() {
+		var bowerJson = JSON.parse(fs.readFileSync('bower.json')),
+			packageJson = JSON.parse(fs.readFileSync('package.json'));
+
 		assert.fileContent('LICENSE', /GNU General Public License/);
+		bowerJson.should.have.property('license', prompts.license);
+		packageJson.should.have.property('license', prompts.license);
 	});
 
 });
@@ -644,7 +664,7 @@ describe('bootstrap-kickstart → No boilerplate – minimum files and folders',
 		authorName: 'My Name',
 		authorMail: 'name@domain.com',
 		authorUrl: 'http://www.foo.com',
-		license: 'The MIT License (MIT)',
+		license: 'MIT',
 		initialVersion: '0.0.0',
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',

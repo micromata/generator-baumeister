@@ -8,7 +8,7 @@
     "email": "<%= authorMail %>",
     "url": "<%= authorUrl %>"
   },
-  "license": "MIT",
+  "license": "<%= license %>",
   "version": "<%= initialVersion %>",
   "repository": {
     "type": "<%= projectRepositoryType %>",
