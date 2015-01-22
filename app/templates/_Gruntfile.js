@@ -417,6 +417,12 @@ module.exports = function(grunt) {
 		changelog: {
 			release: {
 				options: {
+					fileHeader: '# Changelog',
+					logArguments: [
+						'--pretty=%h - %ad: %s',
+						'--no-merges',
+						'--date=short'
+					],
 					after: '<%%= pkpCopy.version %>',
 					dest : 'CHANGELOG.md',
 					insertType: 'prepend',
