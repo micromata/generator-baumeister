@@ -41,7 +41,7 @@
     "workflow"
   ],
   "dependencies": {
-    "chalk": "^0.5.1",
+    "chalk": "^1.0.0",
     "semver": "^4.2.0",
     "superb": "^1.1.1",
     "yeoman-generator": "^0.18.6",
