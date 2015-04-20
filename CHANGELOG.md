@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 1.2.1 (2015-04-20)
+
+- 7bed166 - 2015-04-20: Downgrade yeoman-generator for now
+- cee8f69 - 2015-04-18: Update dependencies
+- 9ab7aa9 - 2015-04-18: Update dev dependencies of Bootstrap Kickstart
+- 31d050a - 2015-04-18: Prevent minifying of minified sources :persevere:
+- 40dc943 - 2015-04-18: Fix typo
+- 8e466cd - 2015-01-22: Release v1.2.0
+
 ## Version 1.2.0 (2015-01-22)
 
 - 6e971fb - 2015-01-22: Update dependencies of Bootstrap Kickstart
