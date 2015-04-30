@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.2.2 (2015-04-30)
+
+- e3656b4 - 2015-04-30: Replace static copyright notice with variables from package.json
+- 04f05b7 - 2015-04-20: Release v1.2.1
+
 ## Version 1.2.1 (2015-04-20)
 
 - 7bed166 - 2015-04-20: Downgrade yeoman-generator for now
