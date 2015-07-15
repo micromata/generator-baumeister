@@ -1,5 +1,10 @@
 # Created by https://www.gitignore.io
 
+### Operating System Stuff ###
+.DS_Store
+thumbs.db
+desktop.ini
+
 ### SublimeText ###
 # cache files for sublime text
 *.tmlanguage.cache
