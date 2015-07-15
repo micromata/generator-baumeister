@@ -1,5 +1,8 @@
 # Changelog
 
+- 994d380 - 2015-07-15: Fixed dead link in CONTRIBUTING.md
+- 371ca0e - 2015-07-15: Updated .gitignore to contain OS stuff
+
 ## Version 1.2.2 (2015-04-30)
 
 - e3656b4 - 2015-04-30: Replace static copyright notice with variables from package.json
