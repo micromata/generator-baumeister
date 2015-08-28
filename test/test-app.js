@@ -82,7 +82,7 @@ describe('bootstrap-kickstart with default options', function() {
 			'assets/fonts',
 			'assets/img',
 			'assets/js/base.js',
-			'assets/js/module.js',
+			'assets/js/moduleSkeleton.js',
 			'assets/less/base.less',
 			'assets/less/index.less',
 			'assets/less/print.less',
@@ -117,7 +117,7 @@ describe('bootstrap-kickstart with default options', function() {
 		var regex = new RegExp(escapeStringRegexp('@author ' + prompts.authorName + ' <' + prompts.authorMail + '>'),''),
 			arg = [
 				['assets/js/base.js', regex],
-				['assets/js/module.js', regex]
+				['assets/js/moduleSkeleton.js', regex]
 			];
 		assert.fileContent(arg);
 	});
@@ -126,12 +126,12 @@ describe('bootstrap-kickstart with default options', function() {
 		var regexShould = new RegExp(escapeStringRegexp('@namespace ' + _s.camelize(_s.slugify(prompts.projectName))),''),
 			argShould = [
 				['assets/js/base.js', regexShould],
-				['assets/js/module.js', regexShould]
+				['assets/js/moduleSkeleton.js', regexShould]
 			],
 			regexShouldNot = /kickstarter/,
 			argShouldNot = [
 				['assets/js/base.js', regexShouldNot],
-				['assets/js/module.js', regexShouldNot]
+				['assets/js/moduleSkeleton.js', regexShouldNot]
 			];
 
 		assert.fileContent(argShould);
@@ -707,7 +707,7 @@ describe('bootstrap-kickstart with less boilerplate code', function() {
 	it('should create just a single JavaScript file (base.js)', function() {
 		assert.file(['assets/js/base.js']);
 		assert.noFile([
-			'assets/js/module.js'
+			'assets/js/moduleSkeleton.js'
 		]);
 	});
 
