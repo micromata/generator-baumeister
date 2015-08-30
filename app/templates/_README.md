@@ -2,7 +2,7 @@
 
 <%= projectDescription %>
 
-[![Logo](assets/img/bootstrap-kickstart-logo.png)](https://github.com/micromata/bootstrap-kickstart)
+![Logo](assets/img/bootstrap-kickstart-logo.png)
 
 The aim of this repository is to help you with the creation of Bootstrap themes and sites by providing:
 
@@ -21,11 +21,20 @@ The aim of this repository is to help you with the creation of Bootstrap themes 
 
 ## Quick install guide 
 
-For those already using Node, Grunt and stuff.
+For those already using Node, Grunt, Bower and stuff.
+
+### via Yeoman
+
+	$ npm install -g yo
+	$ npm install -g generator-bootstrap-kickstart
+	$ yo bootstrap-kickstart
+	
+See: <https://github.com/micromata/generator-bootstrap-kickstart>
 
 ### via Git
 
-	$ git clone git@github.com:micromata/bootstrap-kickstart.git
+	$ git clone https://github.com/micromata/bootstrap-kickstart.git
+	$ cd bootstrap-kickstart
 	$ npm install
 	$ grunt tasks
 
@@ -86,18 +95,18 @@ Like Bootstrap itself this project uses [Grunt](http://gruntjs.com/) for its bui
 
 Thanks do Node.js and npm installing the Grunt command line tools globally is just this simple one-liner:
 
-		npm install -g grunt-cli
+	npm install -g grunt-cli
 		
 <a name="setup"></a>
 ## Setting up the project
 
 Navigate to the root of your checkout:
 
-		cd path/to/your/checkout/of/bootstrap-kickstart
+	cd path/to/your/checkout/of/bootstrap-kickstart
 
 and call:
 
-		npm install
+	npm install
 		
 npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our grunt workflow to `\node_modules`.
 
@@ -111,7 +120,7 @@ When completed the setup, you'll be able to run the various Grunt tasks provided
 
 Just type the following to get an overview about the available Tasks:
  
-		grunt tasks
+	grunt tasks
 
 This will give you the main Grunt tasks which are ready for you to be fired from the terminal (grouped into »Dev« and »Production« Tasks):
 
@@ -167,30 +176,30 @@ I recommend setting up a project within in your editor if you don’t want to se
 
 ```json
 {
-	"folders": [{
-		"path": "path/to/your/checkout/of/bootstrap-kickstart",
-		"folder_exclude_patterns": [
-			"node_modules",
-			"server",
-			"dist",
-			"reports",
-			"docs",
-			"assets/css",
-			"libs"
-		],
-		"file_exclude_patterns": [
-			"assets/js/*.min.js",
-			"assets/js/*.min.js.map",
-			".*rc",
-			".editorconfig",
-			".gitignore",
-			"*.zip",
-			"*.md",
-			"LICENSE",
-			"*.json",
-			"Gruntfile.js"
-		]
-	}]
+  "folders": [{
+    "path": "path/to/your/checkout/of/bootstrap-kickstart",
+    "folder_exclude_patterns": [
+      "node_modules",
+      "server",
+      "dist",
+      "reports",
+      "docs",
+      "assets/css",
+      "libs"
+    ],
+    "file_exclude_patterns": [
+      "assets/js/*.min.js",
+      "assets/js/*.min.js.map",
+      ".*rc",
+      ".editorconfig",
+      ".gitignore",
+      "*.zip",
+      "*.md",
+      "LICENSE",
+      "*.json",
+      "Gruntfile.js"
+    ]
+  }]
 }
 ``` 
 
@@ -213,13 +222,13 @@ It might be needed to call `bower install` after dependencies are added and used
 
 You can change the version of the external resources by editing the `bower.json` file within the root directory of the project.
 
-		"dependencies": {
-				"bootstrap": "~3.2.0",
-				"jquery": "^1.11.1",
-				"html5shiv": "^3.7.2",
-				"respondJs": "~1.4.2",
-				"jquery-placeholder": "2.0.8"
-		}
+	"dependencies": {
+	  "bootstrap": "~3.2.0",
+	  "jquery": "^1.11.1",
+	  "html5shiv": "^3.7.2",
+	  "respondJs": "~1.4.2",
+	  "jquery-placeholder": "2.0.8"
+	}
 
 The tilde `~` means: Install the latest version including patch-releases.
 The caret `^` means: Install the latest version including minor-releases.
@@ -236,25 +245,25 @@ Let’s assume you like to add even more responsiveness to your tables as provid
 
 This is how you get the files into your `/libs` directory and define the dependency  in the `bower.json` file. 
 
-		cd path/to/your/checkout/of/bootstrap-kickstart
-		bower search tablesaw
+	cd path/to/your/checkout/of/bootstrap-kickstart
+	bower search tablesaw
 		
-This leads to omething like:
+This leads to something like:
 
 ````
 Search results:
 
-		overthrow git://github.com/filamentgroup/Overthrow
-		filament-fixed git://github.com/filamentgroup/fixed-fixed.git
-		filament-sticky git://github.com/filamentgroup/fixed-sticky.git
-		filament-dialog git://github.com/filamentgroup/dialog.git
-		tablesaw git://github.com/filamentgroup/tablesaw.git
-		social-count git://github.com/filamentgroup/SocialCount.git
+overthrow git://github.com/filamentgroup/Overthrow
+filament-fixed git://github.com/filamentgroup/fixed-fixed.git
+filament-sticky git://github.com/filamentgroup/fixed-sticky.git
+filament-dialog git://github.com/filamentgroup/dialog.git
+tablesaw git://github.com/filamentgroup/tablesaw.git
+social-count git://github.com/filamentgroup/SocialCount.git
 ````
 
 where the string before the url (`tablesaw `) is your key for installation. In our use case you would the do:
 
-		bower install tablesaw --save
+	bower install tablesaw --save
 
 which will:
 
@@ -265,7 +274,7 @@ which will:
 
 This is s short version of our conventions when it comes to create bootstrap themes.  Below you’ll find a screenshot from `/assets/less`
 
-![Screenshot](http://f.cl.ly/items/1e2B2v0P1Z0U2E2A3q2g/screenshot-less.png)
+![Screenshot](http://f.cl.ly/items/3y3V1z0n3S182A2P0I3Q/Bildschirmfoto%202015-08-30%20um%2021.04.33.png)
 
 Seems to be a pretty huge amount of files for such a little project. So here we go with an explanation.
 
