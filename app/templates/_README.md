@@ -2,9 +2,7 @@
 
 <%= projectDescription %>
 
-![Logo](assets/img/bootstrap-kickstart-logo.png)
-
-The aim of this repository is to help you with the creation of Bootstrap themes and sites by providing:
+This project provides:
 
 - a file structure with focus on maintainibilty and upgradability
 - a Grunt workflow with the following »features«
@@ -21,28 +19,10 @@ The aim of this repository is to help you with the creation of Bootstrap themes 
 
 ## Quick install guide 
 
-For those already using Node, Grunt, Bower and stuff.
-
-### via Yeoman
-
-	$ npm install -g yo
-	$ npm install -g generator-bootstrap-kickstart
-	$ yo bootstrap-kickstart
-	
-See: <https://github.com/micromata/generator-bootstrap-kickstart>
-
 ### via Git
 
-	$ git clone https://github.com/micromata/bootstrap-kickstart.git
-	$ cd bootstrap-kickstart
-	$ npm install
-	$ grunt tasks
-
-### via Bower
-	
-	$ bower install bootstrap-kickstart
-	$ mv bower_components/bootstrap-kickstart/* ./
-	$ rm -rf bower_components
+	$ git clone <%= projectRepository %>
+	$ cd [subdir]
 	$ npm install
 	$ grunt tasks
 
@@ -102,7 +82,7 @@ Thanks do Node.js and npm installing the Grunt command line tools globally is ju
 
 Navigate to the root of your checkout:
 
-	cd path/to/your/checkout/of/bootstrap-kickstart
+	cd path/to/your/checkout/of/<%= _.slugify(projectName) %>
 
 and call:
 
@@ -144,7 +124,7 @@ releaseMajor => `grunt releaseMajor` builds the current sources, bumps version n
 Running those tasks will create a bunch of directories and files which aren’t under version control. So don’t wonder when the following ressources are created after setting up the project:
 
 ````
-bootstrap-kickstart/
+<%= _.slugify(projectName) %>/
 ├── assets/ 
 │   ├── css/
 │   │   ├── index.css          → Compiled and autoprefixed from LESS files
@@ -177,7 +157,7 @@ I recommend setting up a project within in your editor if you don’t want to se
 ```json
 {
   "folders": [{
-    "path": "path/to/your/checkout/of/bootstrap-kickstart",
+    "path": ".",
     "folder_exclude_patterns": [
       "node_modules",
       "server",
@@ -411,4 +391,4 @@ review the [guidelines for contributing](CONTRIBUTING.md).
 ## License
 
 Please be aware of the licenses of the components we use in this project.
-Everything else that has been developed by the contributions to this project is under [MIT License](LICENSE).
+Everything else that has been developed by the contributions to this project is under [<%= license %>](LICENSE).
