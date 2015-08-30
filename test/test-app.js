@@ -154,6 +154,10 @@ describe('bootstrap-kickstart with default options', function() {
 		JSON.parse(fs.readFileSync('.bowerrc'));
 	});
 
+	it('should have a .postinstall.js file', function() {
+		assert.file(['.postinstall.js']);
+	});
+
 	it('should not have dependencies to support oldIEs', function() {
 		var bowerJson = JSON.parse(fs.readFileSync('bower.json'));
 		bowerJson.should.not.have.propertyByPath('dependencies', 'html5shiv');

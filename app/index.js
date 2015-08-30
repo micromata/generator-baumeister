@@ -235,6 +235,10 @@ module.exports = yeoman.generators.Base.extend({
 				this.templatePath('gitignore'),
 				this.destinationPath('.gitignore')
 			);
+			this.fs.copyTpl(
+				this.templatePath('postinstall.js'),
+				this.destinationPath('.postinstall.js')
+			);
 		},
 
 		projectFiles: function () {
