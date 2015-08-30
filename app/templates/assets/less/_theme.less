@@ -1,0 +1,21 @@
+// Override and extend Bootstrap stuff
+// --------------------------------------------------
+// Files, classes, mixins etc.
+@import "<%= theme %>/variables.less";
+<% if (boilerplateAmount === 'Just a little – Get started with a few example files') { %>@import "<%= theme %>/mixins.less";
+@import "<%= theme %>/scaffolding.less";
+@import "<%= theme %>/alerts.less";<% } %>
+
+// Own modules
+// --------------------------------------------------
+// @import "<%= theme %>/testResponsiveHelpers.less"; // debug
+<% if (boilerplateAmount === 'Just a little – Get started with a few example files') { %>@import "<%= theme %>/demoElements.less";
+@import "<%= theme %>/footer.less";
+@import "<%= theme %>/ribbon.less";<% } %>
+
+// Important note //
+// You could also use this file to insert customer related style definitions
+// directly within this file. But we recommend to exclude your Less code to
+// seperate files like the examples above when you exceed a few hundred lines
+// of code. Otherwise it will definitely have a negative impact on
+// maintainabilty.

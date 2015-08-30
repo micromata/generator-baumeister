@@ -37,8 +37,8 @@ module.exports = yeoman.generators.Base.extend({
 			},
 			{
 				type: 'input',
-				name: 'customerName',
-				message: 'What would you like to name your »customer-theme« in the less-files?',
+				name: 'theme',
+				message: 'What would you like to name your Bootstrap theme in the less-files?',
 				validate: function(value) {
 
 					if (value === '') {
@@ -190,7 +190,7 @@ module.exports = yeoman.generators.Base.extend({
 		this.prompt(prompts, function (props) {
 			this.projectName = props.projectName;
 			this.projectDescription = props.projectDescription;
-			this.customerName = this._.slugify(props.customerName);
+			this.theme = this._.slugify(props.theme);
 			this.oldIeSupport = props.oldIeSupport;
 			this.distDirectory = props.distDirectory || 'dist';
 			this.docsDirectory = props.docsDirectory || 'docs';
@@ -317,34 +317,34 @@ module.exports = yeoman.generators.Base.extend({
 				this.destinationPath('assets/less/print.less')
 			);
 
-			this.template('assets/less/_customerName.less', 'assets/less/' + this.customerName + '.less');
+			this.template('assets/less/_theme.less', 'assets/less/' + this.theme + '.less');
 
 			if (this.boilerplateAmount === 'Just a little – Get started with a few example files') {
 
-				this.template('assets/less/_customerName/_alerts.less', 'assets/less/' + this.customerName + '/alerts.less');
-				this.template('assets/less/_customerName/_demoElements.less', 'assets/less/' + this.customerName + '/demoElements.less');
-				this.template('assets/less/_customerName/_footer.less', 'assets/less/' + this.customerName + '/footer.less');
-				this.template('assets/less/_customerName/_ribbon.less', 'assets/less/' + this.customerName + '/ribbon.less');
+				this.template('assets/less/_theme/_alerts.less', 'assets/less/' + this.theme + '/alerts.less');
+				this.template('assets/less/_theme/_demoElements.less', 'assets/less/' + this.theme + '/demoElements.less');
+				this.template('assets/less/_theme/_footer.less', 'assets/less/' + this.theme + '/footer.less');
+				this.template('assets/less/_theme/_ribbon.less', 'assets/less/' + this.theme + '/ribbon.less');
 
 				this.fs.copyTpl(
-					this.templatePath('assets/less/_customerName/mixins.less'),
-					this.destinationPath('assets/less/' + this.customerName + '/mixins.less')
+					this.templatePath('assets/less/_theme/mixins.less'),
+					this.destinationPath('assets/less/' + this.theme + '/mixins.less')
 				);
 
 				this.fs.copyTpl(
-					this.templatePath('assets/less/_customerName/scaffolding.less'),
-					this.destinationPath('assets/less/' + this.customerName + '/scaffolding.less')
+					this.templatePath('assets/less/_theme/scaffolding.less'),
+					this.destinationPath('assets/less/' + this.theme + '/scaffolding.less')
 				);
 			}
 
 			this.fs.copyTpl(
-				this.templatePath('assets/less/_customerName/testResponsiveHelpers.less'),
-				this.destinationPath('assets/less/' + this.customerName + '/testResponsiveHelpers.less')
+				this.templatePath('assets/less/_theme/testResponsiveHelpers.less'),
+				this.destinationPath('assets/less/' + this.theme + '/testResponsiveHelpers.less')
 			);
 
 			this.fs.copyTpl(
-				this.templatePath('assets/less/_customerName/variables.less'),
-				this.destinationPath('assets/less/' + this.customerName + '/variables.less')
+				this.templatePath('assets/less/_theme/variables.less'),
+				this.destinationPath('assets/less/' + this.theme + '/variables.less')
 			);
 
 			// this.log('Done with the assets');

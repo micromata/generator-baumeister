@@ -32,7 +32,7 @@ There are tons of options for now :scream:
 | `oldIeSupport`  | Whether to make use of »html5shiv«, »respondJs« and »jquery-placeholder« and conditional classes  |
 | `projectName` | Used in the generated README, package.json and bower.json  |
 | `projectDescription`  | Used in the generated Readme.md, package.json and bower.json  |
-| `customerName`  | Used to name a file and a folder within the LESS directory  |
+| `theme`  | Name of your Bootstrap theme. Used to name a file and a folder within the LESS directory  |
 | `customPaths`  | Option to define the output paths `dist`, `docs`, `reports`  |
 | `boilerplateAmount`  | Option to choose the amount of boilerplate code (HTML, LESS and JS examples)  |
 | `license`  | Option to define the license type. Defaults to MIT  |

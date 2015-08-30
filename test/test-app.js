@@ -15,7 +15,7 @@ describe('bootstrap-kickstart with default options', function() {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		customerName: 'My customer',
+		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
 		authorName: 'My Name',
@@ -86,30 +86,30 @@ describe('bootstrap-kickstart with default options', function() {
 			'assets/less/base.less',
 			'assets/less/index.less',
 			'assets/less/print.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '/alerts.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '/demoElements.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '/footer.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '/ribbon.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '/mixins.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '/scaffolding.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '/testResponsiveHelpers.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '/variables.less',
+			'assets/less/' + _s.slugify(prompts.theme) + '.less',
+			'assets/less/' + _s.slugify(prompts.theme) + '.less',
+			'assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
+			'assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
+			'assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
+			'assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
+			'assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
+			'assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less',
+			'assets/less/' + _s.slugify(prompts.theme) + '/testResponsiveHelpers.less',
+			'assets/less/' + _s.slugify(prompts.theme) + '/variables.less',
 
 		]);
 	});
 
-	it('should import all LESS files within ' + _s.slugify(prompts.customerName) + '.less file', function() {
+	it('should import all LESS files within ' + _s.slugify(prompts.theme) + '.less file', function() {
 		assert.fileContent([
-			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /variables.less/],
-			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /testResponsiveHelpers.less/],
-			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /alerts.less/],
-			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /demoElements.less/],
-			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /footer.less/],
-			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /ribbon.less/],
-			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /mixins.less/],
-			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /scaffolding.less/],
+			['assets/less/' + _s.slugify(prompts.theme) + '.less', /variables.less/],
+			['assets/less/' + _s.slugify(prompts.theme) + '.less', /testResponsiveHelpers.less/],
+			['assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
+			['assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
+			['assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
+			['assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
+			['assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
+			['assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/],
 		]);
 	});
 
@@ -328,7 +328,7 @@ describe('bootstrap-kickstart with oldIE support', function() {
 	var prompts = {
 		projectName: '',
 		projectDescription: '',
-		customerName: 'My customer',
+		theme: 'My theme',
 		oldIeSupport: true,
 		customPaths: false,
 		authorName: 'My Name',
@@ -418,7 +418,7 @@ describe('bootstrap-kickstart with custom output paths', function() {
 	var prompts = {
 		projectName: '',
 		projectDescription: '',
-		customerName: 'My customer',
+		theme: 'My theme',
 		oldIeSupport: true,
 		customPaths: true,
 		distDirectory: 'disty',
@@ -470,7 +470,7 @@ describe('bootstrap-kickstart without an open source license', function() {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		customerName: 'My customer',
+		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
 		authorName: '',
@@ -534,7 +534,7 @@ describe('bootstrap-kickstart with Apache License, Version 2.0', function() {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		customerName: 'My customer',
+		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
 		authorName: '',
@@ -598,7 +598,7 @@ describe('bootstrap-kickstart with GNU General Public License', function() {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		customerName: 'My customer',
+		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
 		authorName: '',
@@ -662,7 +662,7 @@ describe('bootstrap-kickstart with less boilerplate code', function() {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		customerName: 'My customer',
+		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
 		authorName: 'My Name',
@@ -717,23 +717,23 @@ describe('bootstrap-kickstart with less boilerplate code', function() {
 
 	it('should create just the essential LESS files', function() {
 		assert.noFile([
-			'assets/less/' + _s.slugify(prompts.customerName) + '/alerts.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '/demoElements.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '/footer.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '/ribbon.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '/mixins.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '/scaffolding.less'
+			'assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
+			'assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
+			'assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
+			'assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
+			'assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
+			'assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less'
 		]);
 	});
 
-	it('should only import the essential LESS files within ' + _s.slugify(prompts.customerName) + '.less file', function() {
+	it('should only import the essential LESS files within ' + _s.slugify(prompts.theme) + '.less file', function() {
 		assert.noFileContent([
-			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /alerts.less/],
-			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /demoElements.less/],
-			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /footer.less/],
-			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /ribbon.less/],
-			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /mixins.less/],
-			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /scaffolding.less/],
+			['assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
+			['assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
+			['assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
+			['assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
+			['assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
+			['assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/],
 		]);
 	});
 
