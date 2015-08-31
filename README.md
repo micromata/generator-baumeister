@@ -43,11 +43,6 @@ There are tons of options for now :scream:
 | `projectHomepage`, `projectRepositoryType`, `projectRepository`  | option to define homepage and repository for use in the generated package.json and bower.json files  |
 | `issueTracker`  | option to define the URL to your issue tracker for use in the generated package.json and bower.json files  |
 
-The following might be added later:
-
-- [ ] Options to include additional files from HTML5 Boilerplate [#13](https://github.com/micromata/generator-bootstrap-kickstart/issues/13)
-	- Feedback appreciated.
-
 ---
 
 
