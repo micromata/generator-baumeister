@@ -1,5 +1,27 @@
 # Changelog
 
+## Version 1.2.3 (2015-08-31)
+
+- 8ea9426 - 2015-08-31: Update .travis.yml
+- 9fa1bc9 - 2015-08-31: Refactor templating because of deprecated/removed stuff
+- 5fac55a - 2015-08-30: Update dependencies
+- ef8bfa5 - 2015-08-30: Remove bootstrap kickstart logo from generated project
+- 3cc294f - 2015-08-30: Update readme template
+- 18e1d52 - 2015-08-30: Fix tests.
+- 06a885f - 2015-08-30: Update dev dependencies
+- 3d68ef4 - 2015-08-30: Rename `customerName` with `theme`
+- 97ed02d - 2015-08-30: Update variables from Bootstrap 3.3.5
+- 922ca06 - 2015-08-30: Update bower components
+- 3d620da - 2015-08-30: Make sure release tasks run properly via npm `postinstall`
+- 4ca5d32 - 2015-08-28: Release tasks now commit all changed files
+- 2d77952 - 2015-08-28: Exclude moduleSkeleton.js from build
+- ca41825 - 2015-08-28: Give module.js a more appropriate name
+- d914b72 - 2015-08-28: Copy Glyphicon fonts from Bootstrap to `dist` directory
+- aa63957 - 2015-08-28: Fix copy paste error in LESS modules comment
+- 2163757 - 2015-07-15: fixed dead link
+- 1a8b94a - 2015-07-15: updated gitignore
+
+
 ## Version 1.2.2 (2015-04-30)
 
 - e3656b4 - 2015-04-30: Replace static copyright notice with variables from package.json
