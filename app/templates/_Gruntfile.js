@@ -20,9 +20,9 @@ module.exports = function(grunt) {
 
 		// Configurable paths
 		config: {
-			dist: '<%= distDirectory %>',
-			reports: '<%= reportsDirectory %>',
-			docs: '<%= docsDirectory %>'
+			dist: '<%= templateProps.distDirectory %>',
+			reports: '<%= templateProps.reportsDirectory %>',
+			docs: '<%= templateProps.docsDirectory %>'
 		},
 
 		// List available tasks
@@ -93,8 +93,8 @@ module.exports = function(grunt) {
 		uglify: {
 			options: {
 				banner: '/*! <%%= pkg.title %> - v<%%= pkg.version %>\n' +
-						' * <%= pkg.author.email %>\n' +
-						' * Copyright ©<%%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
+						' * <%%= pkg.author.email %>\n' +
+						' * Copyright ©<%%= grunt.template.today("yyyy") %> <%%= pkg.author.name %>\n' +
 						' * <%%= grunt.template.today("yyyy-mm-dd") %>\n' +
 						' */',
 				sourceMap: true,
@@ -131,9 +131,9 @@ module.exports = function(grunt) {
 				options: {
 					sourceMap: false,
 					banner: '/*! <%%= pkg.title %> - v<%%= pkg.version %>\n' +
-						' * <%= pkg.author.email %>\n' +
+						' * <%%= pkg.author.email %>\n' +
 						' * – Concatenated libs –  \n' +
-						' * Copyright ©<%%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
+						' * Copyright ©<%%= grunt.template.today("yyyy") %> <%%= pkg.author.name %>\n' +
 						' * <%%= grunt.template.today("yyyy-mm-dd") %>\n' +
 						' */\n',
 				},
@@ -250,8 +250,8 @@ module.exports = function(grunt) {
 			assets: {
 				options: {
 					banner: '/*! <%%= pkg.title %> - v<%%= pkg.version %>\n' +
-						' * <%= pkg.author.email %>\n' +
-						' * Copyright ©<%%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
+						' * <%%= pkg.author.email %>\n' +
+						' * Copyright ©<%%= grunt.template.today("yyyy") %> <%%= pkg.author.name %>\n' +
 						' * <%%= grunt.template.today("yyyy-mm-dd") %>\n' +
 						' */'
 				},
@@ -265,9 +265,9 @@ module.exports = function(grunt) {
 			bower: {
 				options: {
 					banner: '/*! <%%= pkg.title %> - v<%%= pkg.version %>\n' +
-						' * <%= pkg.author.email %>\n' +
+						' * <%%= pkg.author.email %>\n' +
 						' * – Concatenated libs –  \n' +
-						' * Copyright ©<%%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
+						' * Copyright ©<%%= grunt.template.today("yyyy") %> <%%= pkg.author.name %>\n' +
 						' * <%%= grunt.template.today("yyyy-mm-dd") %>\n' +
 						' */'
 				},
@@ -311,7 +311,7 @@ module.exports = function(grunt) {
 					'assets/fonts/**/*',
 					'assets/img/**/*',
 					// Bootstrap fonts
-					'libs/bootstrap/fonts/*'<% if (oldIeSupport) { %>,
+					'libs/bootstrap/fonts/*'<% if (templateProps.oldIeSupport) { %>,
 					// Bower libs needed for oldIEs. The rest is concatenated via the bower_concat task.
 					'libs/html5shiv/dist/html5shiv-printshiv.min.js',
 					'libs/respondJs/dest/respond.min.js'<% } %>
@@ -329,7 +329,7 @@ module.exports = function(grunt) {
 				cssDest: '<%%= config.dist %>/libs/libs.css',
 				include: [
 					'jquery',
-					'bootstrap'<% if (oldIeSupport) { %>,
+					'bootstrap'<% if (templateProps.oldIeSupport) { %>,
 					'jquery-placeholder'<% } %>
 				],
 				mainFiles: {

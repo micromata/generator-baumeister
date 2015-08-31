@@ -1,21 +1,21 @@
 {
-  "name": "<%= _.slugify(projectName) %>",
-  "title": "<%= _.titleize(projectName) %>",
-  "description": "<%= projectDescription %>",
-  "homepage": "<%= projectHomepage %>",
+  "name": "<%= templateProps.name %>",
+  "title": "<%= templateProps.title %>",
+  "description": "<%= templateProps.projectDescription %>",
+  "homepage": "<%= templateProps.projectHomepage %>",
   "author": {
-    "name": "<%= authorName %>",
-    "email": "<%= authorMail %>",
-    "url": "<%= authorUrl %>"
+    "name": "<%= templateProps.authorName %>",
+    "email": "<%= templateProps.authorMail %>",
+    "url": "<%= templateProps.authorUrl %>"
   },
-  "license": "<%= license %>",
-  "version": "<%= initialVersion %>",
+  "license": "<%= templateProps.license %>",
+  "version": "<%= templateProps.initialVersion %>",
   "repository": {
-    "type": "<%= projectRepositoryType %>",
-    "url": "<%= projectRepository %>"
+    "type": "<%= templateProps.projectRepositoryType %>",
+    "url": "<%= templateProps.projectRepository %>"
   },
   "bugs": {
-    "url": "<%= issueTracker %>"
+    "url": "<%= templateProps.issueTracker %>"
   },
   "private": true,
   "dependencies": {},

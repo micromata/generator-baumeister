@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<% if (oldIeSupport) { %><!--[if lt IE 7]>      <html class="no-js ie lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<% if (templateProps.oldIeSupport) { %><!--[if lt IE 7]>      <html class="no-js ie lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js ie lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js ie lt-ie10 lt-ie9"> <![endif]-->
 <!--[if IE 9]>         <html class="no-js ie lt-ie10"> <![endif]-->
@@ -11,8 +11,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
-	<meta name="author" content="<%= authorName %>" />
-	<title><%= _.titleize(projectName) %> - Demo Elements</title>
+	<meta name="author" content="<%= templateProps.authorName %>" />
+	<title><%= templateProps.title %> - Demo Elements</title>
 
 	<!-- Our compiled and merged LESS files -->
 	<!-- build:css:dist assets/css/index.min.css -->
@@ -26,7 +26,7 @@
 	-->
 	<script>(function(h){h.className = h.className.replace('no-js', 'js')})(document.documentElement)</script>
 
-<% if (oldIeSupport) { %>	<!-- HTML5 shim and Respond.js IE8 support for HTML5 elements and media queries. -->
+<% if (templateProps.oldIeSupport) { %>	<!-- HTML5 shim and Respond.js IE8 support for HTML5 elements and media queries. -->
 	<!--[if lt IE 9]>
         <script src="libs/html5shiv/dist/html5shiv-printshiv.min.js"></script>
         <script src="libs/respondJs/dest/respond.min.js"></script>
@@ -37,7 +37,7 @@
 </head>
 
 <body>
-<% if (oldIeSupport) { %>	<!--[if lt IE 8>
+<% if (templateProps.oldIeSupport) { %>	<!--[if lt IE 8>
 		<p class="browsehappy">
 			You are using an <strong>outdated</strong> browser.
 			Please <a href="http://browsehappy.com/">upgrade your browser</a>
@@ -721,7 +721,7 @@
 	<!-- Libs -->
 	<!-- build:js:dist libs/libs.js -->
 	<script src="libs/jquery/dist/jquery.js"></script>
-<% if (oldIeSupport) { %>	<script src="libs/jquery-placeholder/jquery.placeholder.js"></script><% } %>
+<% if (templateProps.oldIeSupport) { %>	<script src="libs/jquery-placeholder/jquery.placeholder.js"></script><% } %>
 	<script src="libs/bootstrap/js/affix.js"></script>
 	<script src="libs/bootstrap/js/alert.js"></script>
 	<script src="libs/bootstrap/js/button.js"></script>

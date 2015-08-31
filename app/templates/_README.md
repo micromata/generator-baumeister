@@ -1,6 +1,6 @@
-# <%= _.titleize(projectName) %>
+# <%= templateProps.title %>
 
-<%= projectDescription %>
+<%= templateProps.projectDescription %>
 
 This project provides:
 
@@ -21,7 +21,7 @@ This project provides:
 
 ### via Git
 
-	$ git clone <%= projectRepository %>
+	$ git clone <%= templateProps.projectRepository %>
 	$ cd [subdir]
 	$ npm install
 	$ grunt tasks
@@ -82,7 +82,7 @@ Thanks do Node.js and npm installing the Grunt command line tools globally is ju
 
 Navigate to the root of your checkout:
 
-	cd path/to/your/checkout/of/<%= _.slugify(projectName) %>
+	cd path/to/your/checkout/of/<%= templateProps.name %>
 
 and call:
 
@@ -124,7 +124,7 @@ releaseMajor => `grunt releaseMajor` builds the current sources, bumps version n
 Running those tasks will create a bunch of directories and files which aren’t under version control. So don’t wonder when the following ressources are created after setting up the project:
 
 ````
-<%= _.slugify(projectName) %>/
+<%= templateProps.name %>/
 ├── assets/ 
 │   ├── css/
 │   │   ├── index.css          → Compiled and autoprefixed from LESS files
@@ -391,4 +391,4 @@ review the [guidelines for contributing](CONTRIBUTING.md).
 ## License
 
 Please be aware of the licenses of the components we use in this project.
-Everything else that has been developed by the contributions to this project is under [<%= license %>](LICENSE).
+Everything else that has been developed by the contributions to this project is under [<%= templateProps.license %>](LICENSE).

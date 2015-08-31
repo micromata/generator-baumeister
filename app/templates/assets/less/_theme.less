@@ -1,17 +1,17 @@
 // Override and extend Bootstrap stuff
 // --------------------------------------------------
 // Files, classes, mixins etc.
-@import "<%= theme %>/variables.less";
-<% if (boilerplateAmount === 'Just a little – Get started with a few example files') { %>@import "<%= theme %>/mixins.less";
-@import "<%= theme %>/scaffolding.less";
-@import "<%= theme %>/alerts.less";<% } %>
+@import "<%= templateProps.theme %>/variables.less";
+<% if (templateProps.boilerplateAmount === 'Just a little – Get started with a few example files') { %>@import "<%= templateProps.theme %>/mixins.less";
+@import "<%= templateProps.theme %>/scaffolding.less";
+@import "<%= templateProps.theme %>/alerts.less";<% } %>
 
 // Own modules
 // --------------------------------------------------
-// @import "<%= theme %>/testResponsiveHelpers.less"; // debug
-<% if (boilerplateAmount === 'Just a little – Get started with a few example files') { %>@import "<%= theme %>/demoElements.less";
-@import "<%= theme %>/footer.less";
-@import "<%= theme %>/ribbon.less";<% } %>
+// @import "<%= templateProps.theme %>/testResponsiveHelpers.less"; // debug
+<% if (templateProps.boilerplateAmount === 'Just a little – Get started with a few example files') { %>@import "<%= templateProps.theme %>/demoElements.less";
+@import "<%= templateProps.theme %>/footer.less";
+@import "<%= templateProps.theme %>/ribbon.less";<% } %>
 
 // Important note //
 // You could also use this file to insert customer related style definitions

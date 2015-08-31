@@ -1,6 +1,6 @@
 /**
  * @file  Base JavaScript needed independent of the project
- * @author <%= authorName %> <<%= authorMail %>>
+ * @author <%= templateProps.authorName %> <<%= templateProps.authorMail %>>
  */
 
 // JSHint settings
@@ -14,23 +14,23 @@
 /**
  * Namespace of the app.
  * This should be only variable the app should store in the global scope.
- * @namespace <%= _.camelize(_.slugify(projectName)) %>
+ * @namespace <%= templateProps.namespace %>
  */
-var <%= _.camelize(_.slugify(projectName)) %> = window.<%= _.camelize(_.slugify(projectName)) %> || {};
+var <%= templateProps.namespace %> = window.<%= templateProps.namespace %> || {};
 
 /**
  * Namespace of the base module. Contains JavaScript needed independent of the
  * project or other modules.
  * @namespace base
- * @memberof <%= _.camelize(_.slugify(projectName)) %>
+ * @memberof <%= templateProps.namespace %>
  */
-<%= _.camelize(_.slugify(projectName)) %>.base = (function() {
+<%= templateProps.namespace %>.base = (function() {
 	'use strict';
 
 	/**
 	 * Fix viewport issues with IE 10.
 	 * @see {@link http://getbootstrap.com/getting-started/#support-ie10-width}
-	 * @memberof <%= _.camelize(_.slugify(projectName)) %>.base
+	 * @memberof <%= templateProps.namespace %>.base
 	 * @private
 	 */
 	var _fixViewportIssues = (function() {
@@ -48,7 +48,7 @@ var <%= _.camelize(_.slugify(projectName)) %> = window.<%= _.camelize(_.slugify(
 	/**
 	 * Avoid `console` errors in browsers that lack a console.
 	 * @see {@link https://github.com/h5bp/html5-boilerplate/blob/master/js/plugins.js}
-	 * @memberof <%= _.camelize(_.slugify(projectName)) %>.base
+	 * @memberof <%= templateProps.namespace %>.base
 	 * @private
 	 */
 	var _addConsoleMethods = (function() {

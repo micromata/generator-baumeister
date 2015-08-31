@@ -42,7 +42,7 @@ describe('bootstrap-kickstart with default options', function() {
 		})
 
 		// Mock the prompt answers
-		.withPrompt(prompts)
+		.withPrompts(prompts)
 
 		.on('end', done);
 	});
@@ -355,7 +355,7 @@ describe('bootstrap-kickstart with oldIE support', function() {
 		})
 
 		// Mock the prompt answers
-		.withPrompt(prompts)
+		.withPrompts(prompts)
 
 		.on('end', done);
 	});
@@ -448,7 +448,7 @@ describe('bootstrap-kickstart with custom output paths', function() {
 		})
 
 		// Mock the prompt answers
-		.withPrompt(prompts)
+		.withPrompts(prompts)
 
 		.on('end', done);
 	});
@@ -497,7 +497,7 @@ describe('bootstrap-kickstart without an open source license', function() {
 		})
 
 		// Mock the prompt answers
-		.withPrompt(prompts)
+		.withPrompts(prompts)
 
 		.on('end', done);
 	});
@@ -561,7 +561,7 @@ describe('bootstrap-kickstart with Apache License, Version 2.0', function() {
 		})
 
 		// Mock the prompt answers
-		.withPrompt(prompts)
+		.withPrompts(prompts)
 
 		.on('end', done);
 	});
@@ -625,7 +625,7 @@ describe('bootstrap-kickstart with GNU General Public License', function() {
 		})
 
 		// Mock the prompt answers
-		.withPrompt(prompts)
+		.withPrompts(prompts)
 
 		.on('end', done);
 	});
@@ -689,7 +689,7 @@ describe('bootstrap-kickstart with less boilerplate code', function() {
 		})
 
 		// Mock the prompt answers
-		.withPrompt(prompts)
+		.withPrompts(prompts)
 
 		.on('end', done);
 	});

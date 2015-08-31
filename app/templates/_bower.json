@@ -1,15 +1,15 @@
 {
-  "name": "<%= _.slugify(projectName) %>",
-  "description": "<%= projectDescription %>",
-  "version": "<%= initialVersion %>",
+  "name": "<%= templateProps.name %>",
+  "description": "<%= templateProps.projectDescription %>",
+  "version": "<%= templateProps.initialVersion %>",
   "authors": [
-    "<%= authorName %> <<%= authorMail %>>"
+    "<%= templateProps.authorName %> <<%= templateProps.authorMail %>>"
   ],
-  "license": "<%= license %>",
-  "homepage": "<%= projectHomepage %>",
+  "license": "<%= templateProps.license %>",
+  "homepage": "<%= templateProps.projectHomepage %>",
   "repository": {
-    "type": "<%= projectRepositoryType %>",
-    "url": "<%= projectRepository %>"
+    "type": "<%= templateProps.projectRepositoryType %>",
+    "url": "<%= templateProps.projectRepository %>"
   },
   "keywords": [
     "bootstrap",
@@ -25,14 +25,14 @@
     "workflow"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.5"<% if (oldIeSupport) { %>,
+    "bootstrap": "~3.3.5"<% if (templateProps.oldIeSupport) { %>,
     "jquery": "^1.11.3",
     "html5shiv": "^3.7.3",
     "respondJs": "~1.4.2",
     "jquery-placeholder": "~2.1.2"<% } else { %>,
     "jquery": "^2.1.4"<% } %>
 
-  }<% if (oldIeSupport) { %>,
+  }<% if (templateProps.oldIeSupport) { %>,
   "resolutions": {
     "jquery": "1.11.3"
   }<% } %>
