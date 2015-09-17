@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.2.4 (2015-09-17)
+
+- 1b16658 - 2015-09-17: Move `underscore.string` from devDependencies to dependencies
+- e4d677e - 2015-08-31: Cleanup Readme
+
+
 ## Version 1.2.3 (2015-08-31)
 
 - 8ea9426 - 2015-08-31: Update .travis.yml

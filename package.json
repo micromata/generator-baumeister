@@ -1,6 +1,6 @@
 {
   "name": "generator-bootstrap-kickstart",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Yeoman Generator for »Bootstrap Kickstart«",
   "license": "MIT",
   "main": "app/index.js",
