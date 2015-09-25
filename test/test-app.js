@@ -26,6 +26,7 @@ describe('bootstrap-kickstart with default options', function() {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
@@ -60,6 +61,12 @@ describe('bootstrap-kickstart with default options', function() {
 			'.editorconfig',
 			'.gitignore',
 			'.jshintrc'
+		]);
+	});
+
+	it('should have `/dist` directory in .gitignore', function() {
+		assert.fileContent([
+			['.gitignore', /dist/]
 		]);
 	});
 
@@ -253,6 +260,18 @@ describe('bootstrap-kickstart with default options', function() {
 		assert.fileContent(arg);
 	});
 
+	it('should not have a `gitadd` task within the Gruntfile', function() {
+		var arg = [
+			['Gruntfile.js', /gitadd/]
+		];
+		assert.noFileContent(arg);
+	});
+
+	it('should not have dev dependency `grunt-git` in package.json', function() {
+		var packageJson = JSON.parse(fs.readFileSync('package.json'));
+		packageJson.should.not.have.propertyByPath('devDependencies', 'grunt-git');
+	});
+
 	it('should have authors name in bower.json, package.json and LICENSE', function() {
 		var bowerJson = JSON.parse(fs.readFileSync('bower.json')),
 			packageJson = JSON.parse(fs.readFileSync('package.json')),
@@ -339,6 +358,7 @@ describe('bootstrap-kickstart with oldIE support', function() {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
@@ -432,6 +452,7 @@ describe('bootstrap-kickstart with custom output paths', function() {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
@@ -481,6 +502,7 @@ describe('bootstrap-kickstart without an open source license', function() {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
@@ -546,6 +568,7 @@ describe('bootstrap-kickstart with Apache License, Version 2.0', function() {
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
 		issueTracker: 'https://github.com/userName/repository/issues',
+		addDistToVersionControl: false,
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
@@ -609,6 +632,7 @@ describe('bootstrap-kickstart with GNU General Public License', function() {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
@@ -673,6 +697,7 @@ describe('bootstrap-kickstart with less boilerplate code', function() {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Almost nothing - Just the minimum files and folders'
 	};
@@ -735,6 +760,65 @@ describe('bootstrap-kickstart with less boilerplate code', function() {
 			['assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
 			['assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/],
 		]);
+	});
+
+});
+
+describe('bootstrap-kickstart with added to version control', function() {
+
+	// Define prompt answers
+	var prompts = {
+		projectName: 'Test this Thingy',
+		projectDescription: 'Just a test.',
+		theme: 'My theme',
+		oldIeSupport: false,
+		customPaths: false,
+		authorName: '',
+		authorMail: '',
+		authorUrl: '',
+		license: 'All rights reserved',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		addDistToVersionControl: true,
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Just a little – Get started with a few example files'
+	};
+
+	before(function(done) {
+		helpers.run(path.join(__dirname, '../app'))
+
+		// Clear the directory and set it as the CWD
+		.inDir(path.join(os.tmpdir(), './temp-test'))
+
+		// Mock options passed in
+		.withOptions({
+			'skip-install': true
+		})
+
+		// Mock the prompt answers
+		.withPrompts(prompts)
+
+		.on('end', done);
+	});
+
+	it('should not have `/dist` directory in .gitignore', function() {
+		assert.noFileContent([
+			['.gitignore', /dist/]
+		]);
+	});
+
+	it('should have dev dependency `grunt-git` in package.json', function() {
+		var packageJson = JSON.parse(fs.readFileSync('package.json'));
+		packageJson.should.have.propertyByPath('devDependencies', 'grunt-git');
+	});
+
+	it('should have a `gitadd` task within the Gruntfile', function() {
+		var arg = [
+			['Gruntfile.js', /gitadd/]
+		];
+		assert.fileContent(arg);
 	});
 
 });
