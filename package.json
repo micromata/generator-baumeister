@@ -41,28 +41,28 @@
     "workflow"
   ],
   "dependencies": {
-    "chalk": "^1.1.1",
-    "semver": "^5.0.1",
-    "superb": "^1.2.0",
-    "yeoman-generator": "^0.20.3",
-    "yosay": "^1.0.5",
-    "underscore.string": "^3.2.0"
+    "chalk": "1.1.1",
+    "semver": "5.0.3",
+    "superb": "1.2.0",
+    "yeoman-generator": "0.20.3",
+    "yosay": "1.0.5",
+    "underscore.string": "3.2.2"
   },
   "devDependencies": {
-    "escape-string-regexp": "^1.0.3",
-    "grunt": "^0.4.5",
+    "escape-string-regexp": "1.0.3",
+    "grunt": "0.4.5",
     "grunt-bump": "0.5.0",
-    "grunt-changelog": "^0.3.1",
-    "grunt-contrib-jshint": "^0.11.2",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-mocha-test": "^0.12.7",
-    "grunt-newer": "^1.1.1",
-    "grunt-notify": "^0.4.1",
-    "jshint-stylish": "^2.0.1",
-    "load-grunt-tasks": "^3.2.0",
-    "mocha": "^2.2.5",
-    "should": "^7.1.0",
-    "time-grunt": "^1.2.1"
+    "grunt-changelog": "0.3.1",
+    "grunt-contrib-jshint": "0.11.3",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-mocha-test": "0.12.7",
+    "grunt-newer": "1.1.1",
+    "grunt-notify": "0.4.1",
+    "jshint-stylish": "2.0.1",
+    "load-grunt-tasks": "3.3.0",
+    "mocha": "2.3.3",
+    "should": "7.1.0",
+    "time-grunt": "1.2.1"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"
