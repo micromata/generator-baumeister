@@ -764,7 +764,7 @@ describe('bootstrap-kickstart with less boilerplate code', function() {
 
 });
 
-describe('bootstrap-kickstart with added to version control', function() {
+describe('bootstrap-kickstart with `dist` added to version control', function() {
 
 	// Define prompt answers
 	var prompts = {
