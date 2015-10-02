@@ -60,7 +60,8 @@ describe('bootstrap-kickstart with default options', function() {
 			'.bowerrc',
 			'.editorconfig',
 			'.gitignore',
-			'.jshintrc'
+			'.jshintrc',
+			'.eslintrc'
 		]);
 	});
 
