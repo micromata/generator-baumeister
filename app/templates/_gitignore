@@ -9,8 +9,8 @@
 *Thumbs.db
 
 ### Build ###
-/*.zip
-/dist
+/*.zip<% if (!templateProps.addDistToVersionControl) { %>
+/dist<% } %>
 /docs
 /server
 /reports

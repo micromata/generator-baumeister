@@ -21,7 +21,7 @@ module.exports = yeoman.generators.Base.extend({
 
 		// Have Yeoman greet the user.
 		this.log(yosay(
-			'Welcome to the ' + superb() + ' ' + chalk.yellow('Bootstrap Kickstart') + ' generator!'
+			'Yo, welcome to the ' + superb() + ' ' + chalk.yellow('Bootstrap Kickstart') + ' generator!'
 		));
 
 		var prompts = [
@@ -172,6 +172,12 @@ module.exports = yeoman.generators.Base.extend({
 				}
 			},
 			{
+				type: 'confirm',
+				name: 'addDistToVersionControl',
+				message: 'Do you like to add your production ready files (`dist` directory) to version control?',
+				default: false
+			},
+			{
 				type: 'input',
 				name: 'issueTracker',
 				message: 'What’s the URL of your projects issue tracker?',
@@ -210,6 +216,7 @@ module.exports = yeoman.generators.Base.extend({
 				projectHomepage: props.projectHomepage,
 				projectRepositoryType: props.projectRepositoryType,
 				projectRepository: props.projectRepository,
+				addDistToVersionControl: props.addDistToVersionControl,
 				issueTracker: props.issueTracker,
 				boilerplateAmount: props.boilerplateAmount,
 			};
@@ -248,8 +255,10 @@ module.exports = yeoman.generators.Base.extend({
 				this.destinationPath('.bowerrc')
 			);
 			this.fs.copyTpl(
-				this.templatePath('gitignore'),
-				this.destinationPath('.gitignore')
+				this.templatePath('_gitignore'),
+				this.destinationPath('.gitignore'), {
+					templateProps: this.templateProps
+				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('postinstall.js'),
