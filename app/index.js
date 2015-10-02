@@ -166,7 +166,7 @@ module.exports = yeoman.generators.Base.extend({
 			{
 				type: 'input',
 				name: 'projectRepository',
-				message: 'What’s the clone URL of your projects repository?',
+				message: 'What’s the remote URL of your projects repository?',
 				when: function(answers) {
 					return answers.additionalInfo;
 				}
