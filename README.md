@@ -42,6 +42,7 @@ There are tons of options for now :scream:
 | `authorUrl`  | Option to define the author for use in the generated package.json and bower.json files |
 | `projectHomepage`, `projectRepositoryType`, `projectRepository`  | option to define homepage and repository for use in the generated package.json and bower.json files  |
 | `issueTracker`  | option to define the URL to your issue tracker for use in the generated package.json and bower.json files  |
+| `addDistToVersionControl`  | option to decide whether to add the `dist` directory to version control or include it in `.gitignore` |
 
 ---
 
