@@ -46,7 +46,7 @@
     "superb": "^1.2.0",
     "yeoman-generator": "^0.20.3",
     "yosay": "^1.0.5",
-    "underscore.string": "^3.2.0"
+    "underscore.string": "^3.2.2"
   },
   "devDependencies": {
     "escape-string-regexp": "^1.0.3",
