@@ -61,7 +61,8 @@ describe('bootstrap-kickstart with default options', function() {
 			'.editorconfig',
 			'.gitignore',
 			'.jshintrc',
-			'.eslintrc'
+			'.eslintrc',
+			'assets/js/.eslintrc'
 		]);
 	});
 
