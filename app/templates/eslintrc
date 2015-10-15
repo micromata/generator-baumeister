@@ -1,5 +1,10 @@
 {
   "extends": "xo",
+  "env": {
+    "browser": true,
+    "jquery": true,
+    "node": true
+  },
   "rules": {
     "padded-blocks": 0
   }

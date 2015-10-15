@@ -3,9 +3,6 @@
  * @author <%= templateProps.authorName %> <<%= templateProps.authorMail %>>
  */
 
-// JSHint settings
-/* jshint unused: false */
-
 /**
  * The jQuery object or a jQuery set containing on or more DOM elements.
  * @typedef {Object} jQuery
@@ -24,7 +21,7 @@ var <%= templateProps.namespace %> = window.<%= templateProps.namespace %> || {}
  * @namespace base
  * @memberof <%= templateProps.namespace %>
  */
-<%= templateProps.namespace %>.base = (function() {
+<%= templateProps.namespace %>.base = (function () {
 	'use strict';
 
 	/**
@@ -33,7 +30,7 @@ var <%= templateProps.namespace %> = window.<%= templateProps.namespace %> || {}
 	 * @memberof <%= templateProps.namespace %>.base
 	 * @private
 	 */
-	var _fixViewportIssues = (function() {
+	(function () {
 		if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
 			var msViewportStyle = document.createElement('style');
 			msViewportStyle.appendChild(
@@ -43,7 +40,7 @@ var <%= templateProps.namespace %> = window.<%= templateProps.namespace %> || {}
 			);
 			document.querySelector('head').appendChild(msViewportStyle);
 		}
-	}());
+	})();
 
 	/**
 	 * Avoid `console` errors in browsers that lack a console.
@@ -51,9 +48,9 @@ var <%= templateProps.namespace %> = window.<%= templateProps.namespace %> || {}
 	 * @memberof <%= templateProps.namespace %>.base
 	 * @private
 	 */
-	var _addConsoleMethods = (function() {
+	(function () {
 		var method;
-		var noop = function() {};
+		var noop = function () {};
 		var methods = [
 			'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
 			'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
@@ -71,6 +68,6 @@ var <%= templateProps.namespace %> = window.<%= templateProps.namespace %> || {}
 				console[method] = noop;
 			}
 		}
-	}());
+	})();
 
-}());
+})();
