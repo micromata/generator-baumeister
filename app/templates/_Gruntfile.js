@@ -81,6 +81,7 @@ module.exports = function (grunt) {
 		// ESLint
 		eslint: {
 			target: [
+				'.postinstall.js',
 				'Gruntfile.js',
 				'assets/js/*.js'
 			]
