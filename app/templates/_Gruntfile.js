@@ -1,12 +1,14 @@
-// JSHint settings
-/* jshint camelcase: false, es3: false */
+// ESLint settings
+/* eslint camelcase:1 */
 
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
 	// Get devDependencies
-	require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
+	require('load-grunt-tasks')(grunt, {
+		scope: 'devDependencies'
+	});
 
 	// Displays the execution time of grunt tasks
 	require('time-grunt')(grunt);
@@ -46,17 +48,17 @@ module.exports = function(grunt) {
 						'lint'
 					],
 					descriptions: {
-						'watch':
+						watch:
 							'`grunt watch` run dev tasks whenever watched files change and ' +
 							'Reloads the browser with »LiveReload« plugin.',
-						'jsdoc':
+						jsdoc:
 							'`grunt jsdoc` generates source documentation using jsdoc.',
-						'plato':
+						plato:
 							'`grunt plato` generates static code analysis charts with plato.'
 					},
 					groups: {
-						'Dev': ['default', 'dev', 'sync', 'serve', 'watch','plato', 'jsdoc', 'lint'],
-						'Production': ['build', 'checkBuild', 'releasePatch', 'releaseMinor', 'releaseMajor'],
+						Dev: ['default', 'dev', 'sync', 'serve', 'watch', 'plato', 'jsdoc', 'lint'],
+						Production: ['build', 'checkBuild', 'releasePatch', 'releaseMinor', 'releaseMajor']
 					},
 					sort: [
 						'default',
@@ -76,14 +78,10 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// jsHint
-		jshint: {
-			options: {
-				reporter: require('jshint-stylish'),
-				jshintrc: '.jshintrc',
-				ignores: ['assets/js/*.min.js']
-			},
-			all: [
+		// ESLint
+		eslint: {
+			target: [
+				'.postinstall.js',
 				'Gruntfile.js',
 				'assets/js/*.js'
 			]
@@ -121,7 +119,7 @@ module.exports = function(grunt) {
 						' * – Concatenated libs –  \n' +
 						' * Copyright ©<%%= grunt.template.today("yyyy") %> <%%= pkg.author.name %>\n' +
 						' * <%%= grunt.template.today("yyyy-mm-dd") %>\n' +
-						' */\n',
+						' */\n'
 				},
 				files: {
 					'<%%= config.dist %>/libs/libs.js': ['<%%= config.dist %>/libs/libs.js']
@@ -167,7 +165,7 @@ module.exports = function(grunt) {
 			less: ['assets/css/index_raw.*'],
 			js: ['assets/js/**/*min.js*'],
 			dist: ['<%%= config.dist %>'],
-			temp: ['temp'],
+			temp: ['temp']
 		},
 
 		// Local dev server
@@ -177,15 +175,15 @@ module.exports = function(grunt) {
 					port: 9001,
 					hostname: 'localhost',
 					open: {
-						 target: 'http://<%%= connect.dev.options.hostname %>:' +
-						 '<%%= connect.dev.options.port %>',
-					},
+						target: 'http://<%%= connect.dev.options.hostname %>:' +
+						'<%%= connect.dev.options.port %>'
+					}
 				}
 			},
 			sync: {
 				options: {
 					port: 9001,
-					hostname: 'localhost',
+					hostname: 'localhost'
 				}
 			},
 			dist: {
@@ -195,16 +193,16 @@ module.exports = function(grunt) {
 					base: '<%%= config.dist %>',
 					keepalive: true,
 					open: {
-						 target: 'http://<%%= connect.dev.options.hostname %>:' +
-						 '<%%= connect.dist.options.port %>',
-					},
+						target: 'http://<%%= connect.dev.options.hostname %>:' +
+						'<%%= connect.dist.options.port %>'
+					}
 				}
 			}
 		},
 
 		uncss: {
 			options: {
-				ignoreSheets: [/fonts.googleapis/],
+				ignoreSheets: [/fonts.googleapis/]
 			},
 			dist: {
 				src: '*.html',
@@ -219,7 +217,7 @@ module.exports = function(grunt) {
 				},
 				files: {
 					'<%%= config.dist %>/assets/css/index.uncss.min.css': ['temp/index.css'],
-					'<%%= config.dist %>/assets/css/index.min.css': ['assets/css/index.css'],
+					'<%%= config.dist %>/assets/css/index.min.css': ['assets/css/index.css']
 				}
 			},
 			bower: {
@@ -267,10 +265,10 @@ module.exports = function(grunt) {
 			dist: {
 				options: {},
 				files: [{
-					expand: true, // Enable dynamic expansion
-					cwd: 'assets/img', // Src matches are relative to this path
-					src: ['**/*.{png,jpg,gif}'], // Actual patterns to match
-					dest: '<%%= config.dist %>/assets/img' // Destination path prefix
+					expand: true,
+					cwd: 'assets/img',
+					src: ['**/*.{png,jpg,gif}'],
+					dest: '<%%= config.dist %>/assets/img'
 				}]
 			}
 		},
@@ -284,7 +282,7 @@ module.exports = function(grunt) {
 							'*.html'
 						],
 						dest: '<%%= config.dist %>/'
-					},
+					}
 				]
 			}
 		},
@@ -303,7 +301,7 @@ module.exports = function(grunt) {
 					'libs/respondJs/dest/respond.min.js'<% } %>
 				],
 				dest: '<%%= config.dist %>/'
-			},
+			}
 		},
 
 		bower_concat: {
@@ -319,8 +317,8 @@ module.exports = function(grunt) {
 					'jquery-placeholder'<% } %>
 				],
 				mainFiles: {
-					'jquery': ['dist/jquery.js'],
-					'bootstrap': ['dist/js/bootstrap.js']
+					jquery: ['dist/jquery.js'],
+					bootstrap: ['dist/js/bootstrap.js']
 				}
 			}
 		},
@@ -340,7 +338,7 @@ module.exports = function(grunt) {
 
 		plato: {
 			options: {
-				 jshint: grunt.file.readJSON('.jshintrc')
+				jshint: grunt.file.readJSON('.jshintrc')
 			},
 			dist: {
 				files: {
@@ -368,7 +366,7 @@ module.exports = function(grunt) {
 				options: {
 					proxy:	'<%%= connect.dev.options.hostname %>:' +
 							'<%%= connect.dev.options.port %>',
-					watchTask: true,
+					watchTask: true
 				}
 			}
 		},
@@ -388,8 +386,10 @@ module.exports = function(grunt) {
 					archive: 'src-v<%%= pkg.version %>.zip'
 				},
 				files: [
-					{src: ['./*', '!./*.zip', '!./*.sublime*',], dest: './', filter: 'isFile'}, // includes files in path
-					{src: ['assets/**', '!assets/css/**'], dest: './'}, // includes files in path and its subdirs
+					// includes files in path
+					{src: ['./*', '!./*.zip', '!./*.sublime*'], dest: './', filter: 'isFile'},
+					// includes files in path and its subdirs
+					{src: ['assets/**', '!assets/css/**'], dest: './'}
 				]
 			}
 		},
@@ -427,7 +427,7 @@ module.exports = function(grunt) {
 						'--date=short'
 					],
 					after: '<%%= pkpCopy.version %>',
-					dest : 'CHANGELOG.md',
+					dest: 'CHANGELOG.md',
 					insertType: 'prepend',
 					template: '## Version <%%= pkg.version %> ({{date}})\n\n{{> features}}',
 					featureRegex: /^(.*)$/gim,
@@ -480,14 +480,14 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: ['assets/js/**/*.js'],
-				tasks: ['newer:jshint'],
+				tasks: ['newer:eslint'],
 				options: {
 					spawn: false
 				}
 			},
 			gruntfile: {
 				files: ['Gruntfile.js'],
-				tasks: ['jshint'],
+				tasks: ['eslint'],
 				options: {
 					spawn: false
 				}
@@ -503,7 +503,7 @@ module.exports = function(grunt) {
 				files: ['*.html'],
 				tasks: ['newer:htmllint', 'newer:bootlint'],
 				options: {
-					spawn: false,
+					spawn: false
 				}
 			}
 		}
@@ -518,11 +518,11 @@ module.exports = function(grunt) {
 
 	// Lint files
 	grunt.registerTask('lint',
-		'`grunt lint` lints JavasScript (JSHint) and HTML files (validate and Bootlint)',
+		'`grunt lint` lints JavaScript (ESLint) and HTML files (validate and Bootlint)',
 		[
 			'htmllint',
 			'bootlint',
-			'jshint'
+			'eslint'
 		]
 	);
 
@@ -530,7 +530,7 @@ module.exports = function(grunt) {
 	 * A task for development
 	 */
 	grunt.registerTask('dev',
-		'`grunt dev` will hint your files, build sources within the ' +
+		'`grunt dev` will lint your files, build sources within the ' +
 		'assets directory and generating docs / reports.',
 		[
 			'lint',
@@ -538,7 +538,7 @@ module.exports = function(grunt) {
 			'autoprefixer',
 			'clean:less',
 			'plato',
-			'jsdoc',
+			'jsdoc'
 		]
 	);
 
@@ -568,7 +568,7 @@ module.exports = function(grunt) {
 	// Default task
 	grunt.registerTask(
 		'default',
-		'Default Task. Just type `grunt` for this one. Calls `grunt dev` first '+
+		'Default Task. Just type `grunt` for this one. Calls `grunt dev` first ' +
 		'and `grunt serve` afterwards.',
 		[
 			'dev',
@@ -581,29 +581,30 @@ module.exports = function(grunt) {
 	 */
 	grunt.registerTask('build',
 		'`grunt build` builds production ready sources to dist directory.', [
-		'clean:dist',
-		'lint',
-		'uglify:concatenate',
-		'less:dev',
-		'autoprefixer',
-		'clean:less',
-		'uncss',
-		'cssmin:assets',
-		'imagemin',
-		'processhtml',
-		'copy',
-		'bower_concat',
-		'uglify:bower',
-		'cssmin:bower',
-		'usebanner',
-		'clean:temp',
-		'plato',
-		'jsdoc'
-	]);
+			'clean:dist',
+			'lint',
+			'uglify:concatenate',
+			'less:dev',
+			'autoprefixer',
+			'clean:less',
+			'uncss',
+			'cssmin:assets',
+			'imagemin',
+			'processhtml',
+			'copy',
+			'bower_concat',
+			'uglify:bower',
+			'cssmin:bower',
+			'usebanner',
+			'clean:temp',
+			'plato',
+			'jsdoc'
+		]
+	);
 
 	// Start server to check production build
 	grunt.registerTask('checkBuild',
-		'`grunt checkBuild` starts a local server to make it possible to check '+
+		'`grunt checkBuild` starts a local server to make it possible to check ' +
 		'the build in the browser.',
 		['connect:dist']
 	);

@@ -20,7 +20,7 @@ var <%= templateProps.namespace %> = window.<%= templateProps.namespace %> || {}
  * @param 	{jQuery} $	passing the jQuery object to make $ available even when
  *                    	using jQuery.noConflict()
  */
-<%= templateProps.namespace %>.modulName = (function($) {
+<%= templateProps.namespace %>.modulName = (function ($) {
 	'use strict';
 
 	/**
@@ -31,7 +31,7 @@ var <%= templateProps.namespace %> = window.<%= templateProps.namespace %> || {}
 	 * @example
 	 * <%= templateProps.namespace %>.modulName.yourPublicMethod('Hi Public.');
 	 */
-	var yourPublicMethod = function(message) {
+	var yourPublicMethod = function (message) {
 		console.info(message);
 	};
 
@@ -42,7 +42,7 @@ var <%= templateProps.namespace %> = window.<%= templateProps.namespace %> || {}
 	 * @private
 	 * @param {string} message Message to write into the console.
 	 */
-	var _yourPrivateMethod = function(message) {
+	var _yourPrivateMethod = function (message) {
 		console.info(message);
 	};
 
@@ -50,7 +50,7 @@ var <%= templateProps.namespace %> = window.<%= templateProps.namespace %> || {}
 	 * Executed on DOM ready within the scope of this module.
 	 * @event
 	 */
-	$(function() {
+	$(function () {
 		_yourPrivateMethod('Hi Private.');
 	});
 
@@ -59,16 +59,14 @@ var <%= templateProps.namespace %> = window.<%= templateProps.namespace %> || {}
 		yourPublicMethod: yourPublicMethod
 	};
 
-}(jQuery));
+})(jQuery);
 
 /**
  * Executed on DOM ready within the global scope.
  * @event
  */
-$(function() {
+$(function () {
 	'use strict';
 
 	<%= templateProps.namespace %>.modulName.yourPublicMethod('Hi public.');
 });
-
-
