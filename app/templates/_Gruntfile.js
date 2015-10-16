@@ -28,7 +28,7 @@ module.exports = function (grunt) {
 			dist: '<%= templateProps.distDirectory %>',
 			reports: '<%= templateProps.reportsDirectory %>',
 			docs: '<%= templateProps.docsDirectory %>',
-			server: '<%= templateProps.serverDirectory %>'
+			server: 'server'
 		},
 
 		// List available tasks

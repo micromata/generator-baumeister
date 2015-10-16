@@ -274,39 +274,56 @@ module.exports = yeoman.generators.Base.extend({
 			);
 		},
 
-		projectFiles: function () {
+		handlebarsFiles: function () {
+			this.fs.copyTpl(
+				this.templatePath('templates/default.hbs'),
+				this.destinationPath('templates/default.hbs'), {
+					templateProps: this.templateProps
+				}
+			);
+			this.fs.copyTpl(
+				this.templatePath('templates/helpers/helpers.js'),
+				this.destinationPath('templates/helpers/helpers.js')
+			);
+
 			switch (this.templateProps.boilerplateAmount) {
 				case 'Just a little – Get started with a few example files':
 					this.fs.copyTpl(
-						this.templatePath('_index-little-boilerplate.html'),
-						this.destinationPath('index.html'), {
-							templateProps: this.templateProps
-						}
+						this.templatePath('partials/footer.hbs'),
+						this.destinationPath('partials/footer.hbs')
 					);
 					this.fs.copyTpl(
-						this.templatePath('_demoElements.html'),
-						this.destinationPath('demoElements.html'), {
-							templateProps: this.templateProps
-						}
+						this.templatePath('partials/navbar.hbs'),
+						this.destinationPath('partials/navbar.hbs')
 					);
 					this.fs.copyTpl(
-						this.templatePath('_stickyFooter.html'),
-						this.destinationPath('stickyFooter.html'), {
-							templateProps: this.templateProps
-						}
+						this.templatePath('_index-little-boilerplate.hbs'),
+						this.destinationPath('index.hbs')
+					);
+					this.fs.copyTpl(
+						this.templatePath('_demoElements.hbs'),
+						this.destinationPath('demoElements.hbs')
+					);
+					this.fs.copyTpl(
+						this.templatePath('_stickyFooter.hbs'),
+						this.destinationPath('stickyFooter.hbs')
 					);
 					break;
 				case 'Almost nothing - Just the minimum files and folders':
-					this.template('_index-no-boilerplate.html', 'index.html');
 					this.fs.copyTpl(
-						this.templatePath('_index-no-boilerplate.html'),
-						this.destinationPath('index.html'), {
-							templateProps: this.templateProps
-						}
+						this.templatePath('partials/gitkeep'),
+						this.destinationPath('partials/.gitkeep')
+					);
+					this.fs.copyTpl(
+						this.templatePath('_index-no-boilerplate.hbs'),
+						this.destinationPath('index.hbs')
 					);
 					break;
 			}
 
+		},
+
+		projectFiles: function () {
 			this.fs.copyTpl(
 				this.templatePath('_README.md'),
 				this.destinationPath('README.md'), {
