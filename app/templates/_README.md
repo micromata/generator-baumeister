@@ -17,6 +17,20 @@ This project provides:
 	- release new versions
 	- and more.
 
+## Table of Contents
+
+- [Quick install guide](#quick-install-guide)
+- [Dependencies](#dependencies)
+- [Setting up the project](#setting-up-the-project)
+- [Grunt Workflow and tasks](#grunt-workflow-and-tasks)
+- [Setting up your Editor (optional)](#setting-up-your-editor-optional)
+- [Writing Markup (using pages, templates and partials)](#writing-markup-using-pages-templates-and-partials)
+- [File and folder structure of LESS files](#file-and-folder-structure-of-less-files)
+- [Installing and updating external resources with Bower](#installing-and-updating-external-resources-with-bower)
+- [Browser support](#browser-support)
+- [Contributing to this project](#contributing-to-this-project)
+- [License](#license)
+
 ## Quick install guide 
 
 ### via Git
