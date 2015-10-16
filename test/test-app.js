@@ -72,11 +72,20 @@ describe('bootstrap-kickstart with default options', function() {
 		]);
 	});
 
-	it('should create project files', function() {
+	it('should create handlebars files', function() {
 		assert.file([
-			'index.html',
-			'stickyFooter.html',
-			'demoElements.html',
+			'index.hbs',
+			'stickyFooter.hbs',
+			'demoElements.hbs',
+			'templates/default.hbs',
+			'templates/helpers/helpers.js',
+			'partials/footer.hbs',
+			'partials/navbar.hbs'
+		]);
+	});
+
+	it('should create other project files', function() {
+		assert.file([
 			'README.md',
 			'Gruntfile.js',
 			'humans.txt',
@@ -185,31 +194,21 @@ describe('bootstrap-kickstart with default options', function() {
 
 	it('should not reference oldIE related files within HTML files', function() {
 		assert.noFileContent([
-			['index.html', /html5shiv/],
-			['index.html', /respondJs/],
-			['index.html', /jquery-placeholder/],
-			['stickyFooter.html', /html5shiv/],
-			['stickyFooter.html', /respondJs/],
-			['stickyFooter.html', /jquery-placeholder/],
-			['demoElements.html', /html5shiv/],
-			['demoElements.html', /respondJs/],
-			['demoElements.html', /jquery-placeholder/]
+			['templates/default.hbs', /html5shiv/],
+			['templates/default.hbs', /respondJs/],
+			['templates/default.hbs', /jquery-placeholder/]
 		]);
 	});
 
 	it('should not include »browsehappy« message', function() {
 		assert.noFileContent([
-			['index.html', /browsehappy/],
-			['stickyFooter.html', /browsehappy/],
-			['demoElements.html', /browsehappy/]
+			['templates/default.hbs', /browsehappy/]
 		]);
 	});
 
 	it('should not include conditional classes to address oldIEs', function() {
 		assert.noFileContent([
-			['index.html', /<html class="(.+)ie(\d+)">/g],
-			['stickyFooter.html', /<html class="(.+)ie(\d+)">/g],
-			['demoElements.html', /<html class="(.+)ie(\d+)">/g]
+			['templates/default.hbs', /<html class="(.+)ie(\d+)">/g]
 		]);
 	});
 
@@ -234,23 +233,13 @@ describe('bootstrap-kickstart with default options', function() {
 	});
 
 	it('should render project name in HTML files', function() {
-		var regex = new RegExp(escapeStringRegexp(_s.titleize(prompts.projectName)),''),
-			arg = [
-				['index.html', regex],
-				['stickyFooter.html', regex],
-				['demoElements.html', regex]
-			];
-		assert.fileContent(arg);
+		var regex = new RegExp(escapeStringRegexp(_s.titleize(prompts.projectName)),'');
+		assert.fileContent('templates/default.hbs', regex);
 	});
 
 	it('should render author name within the meta tags of HTML files', function() {
-		var regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '" />'),''),
-			arg = [
-				['index.html', regex],
-				['stickyFooter.html', regex],
-				['demoElements.html', regex]
-			];
-		assert.fileContent(arg);
+		var regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '" />'),'');
+		assert.fileContent('templates/default.hbs', regex);
 	});
 
 	it('should have the default output paths within the Gruntfile', function() {
@@ -404,32 +393,18 @@ describe('bootstrap-kickstart with oldIE support', function() {
 
 	it('should reference oldIE related files within HTML files', function() {
 		assert.fileContent([
-			['index.html', /html5shiv/],
-			['index.html', /respondJs/],
-			['index.html', /jquery-placeholder/],
-			['stickyFooter.html', /html5shiv/],
-			['stickyFooter.html', /respondJs/],
-			['stickyFooter.html', /jquery-placeholder/],
-			['demoElements.html', /html5shiv/],
-			['demoElements.html', /respondJs/],
-			['demoElements.html', /jquery-placeholder/]
+			['templates/default.hbs', /html5shiv/],
+			['templates/default.hbs', /respondJs/],
+			['templates/default.hbs', /jquery-placeholder/]
 		]);
 	});
 
 	it('should include »browsehappy« message', function() {
-		assert.fileContent([
-			['index.html', /browsehappy/],
-			['stickyFooter.html', /browsehappy/],
-			['demoElements.html', /browsehappy/]
-		]);
+		assert.fileContent('templates/default.hbs', /browsehappy/);
 	});
 
 	it('should include conditional classes to address oldIEs', function() {
-		assert.fileContent([
-			['index.html', /<html class="(.+)ie(\d+)">/g],
-			['stickyFooter.html', /<html class="(.+)ie(\d+)">/g],
-			['demoElements.html', /<html class="(.+)ie(\d+)">/g]
-		]);
+		assert.fileContent('templates/default.hbs', /<html class="(.+)ie(\d+)">/g);
 	});
 
 });
@@ -721,17 +696,24 @@ describe('bootstrap-kickstart with less boilerplate code', function() {
 		.on('end', done);
 	});
 
-	it('should create just a single html file (index.html)', function() {
-		assert.file(['index.html']);
+	it('should create just the essential handlebars files', function() {
+		assert.file([
+			'index.hbs',
+			'templates/default.hbs',
+			'templates/helpers/helpers.js',
+			'partials/.gitkeep'
+		]);
 		assert.noFile([
-			'stickyFooter.html',
-			'demoElements.html'
+			'stickyFooter.hbs',
+			'demoElements.hbs',
+			'partials/footer.hbs',
+			'partials/navbar.hbs'
 		]);
 	});
 
-	it('should not include navigation and content in index.html', function() {
+	it('should not include navigation and content in index.hbs', function() {
 		assert.noFileContent([
-			['index.html', /navbar|<p/g]
+			['index.hbs', /navbar|<p/g]
 		]);
 	});
 
