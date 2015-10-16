@@ -13,6 +13,9 @@ module.exports = function (grunt) {
 	// Displays the execution time of grunt tasks
 	require('time-grunt')(grunt);
 
+	// Import helpers for the generator task
+	var templateHelpers = require('./templates/helpers/helpers.js');
+
 	// Config
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -24,7 +27,8 @@ module.exports = function (grunt) {
 		config: {
 			dist: '<%= templateProps.distDirectory %>',
 			reports: '<%= templateProps.reportsDirectory %>',
-			docs: '<%= templateProps.docsDirectory %>'
+			docs: '<%= templateProps.docsDirectory %>',
+			server: '<%= templateProps.serverDirectory %>'
 		},
 
 		// List available tasks
@@ -82,6 +86,7 @@ module.exports = function (grunt) {
 		eslint: {
 			target: [
 				'.postinstall.js',
+				'templates/helpers/helpers.js',
 				'Gruntfile.js',
 				'assets/js/*.js'
 			]
@@ -165,6 +170,7 @@ module.exports = function (grunt) {
 			less: ['assets/css/index_raw.*'],
 			js: ['assets/js/**/*min.js*'],
 			dist: ['<%%= config.dist %>'],
+			server: ['<%%= config.server %>'],
 			temp: ['temp']
 		},
 
@@ -174,6 +180,7 @@ module.exports = function (grunt) {
 				options: {
 					port: 9001,
 					hostname: 'localhost',
+					base: '<%%= config.server %>',
 					open: {
 						target: 'http://<%%= connect.dev.options.hostname %>:' +
 						'<%%= connect.dev.options.port %>'
@@ -205,7 +212,7 @@ module.exports = function (grunt) {
 				ignoreSheets: [/fonts.googleapis/]
 			},
 			dist: {
-				src: '*.html',
+				src: '<%%= config.server %>/*.html',
 				dest: 'temp/index.css'
 			}
 		},
@@ -278,8 +285,9 @@ module.exports = function (grunt) {
 				files: [
 					{
 						expand: true,
+						flatten: true,
 						src: [
-							'*.html'
+							'<%%= config.server %>/*.html'
 						],
 						dest: '<%%= config.dist %>/'
 					}
@@ -301,6 +309,19 @@ module.exports = function (grunt) {
 					'libs/respondJs/dest/respond.min.js'<% } %>
 				],
 				dest: '<%%= config.dist %>/'
+			},
+			server: {
+				expand: true,
+				src: [
+					'assets/css/**/*',
+					'assets/js/**/*',
+					'assets/fonts/**/*',
+					'assets/img/**/*',
+					'libs/**/*.js',
+					'libs/**/*.css',
+					'libs/bootstrap/fonts/*'
+				],
+				dest: '<%%= config.server %>/'
 			}
 		},
 
@@ -443,14 +464,14 @@ module.exports = function (grunt) {
 			options: {
 				ignore: ['Bad value “X-UA-Compatible” for attribute “http-equiv” on XHTML element “meta”.']
 			},
-			all: ['*.html']
+			all: ['<%%= config.server %>/*.html']
 		},
 
 		bootlint: {
 			options: {
 				stoponerror: true
 			},
-			files: ['*.html']
+			files: ['<%%= config.server %>/*.html']
 		},
 
 		githooks: {
@@ -473,6 +494,24 @@ module.exports = function (grunt) {
 			}
 		},
 
+		generator: {
+			dev: {
+				files: [{
+					cwd: '.',
+					src: ['*.hbs'],
+					dest: '<%%= config.server %>'
+				}],
+				options: {
+					helpers: templateHelpers,
+					partialsGlob: 'partials/*.hbs',
+					templates: 'templates',
+					templateExt: 'hbs',
+					defaultTemplate: 'default',
+					frontmatterType: 'yaml'
+				}
+			}
+		},
+
 		// watch
 		watch: {
 			options: {
@@ -480,13 +519,13 @@ module.exports = function (grunt) {
 			},
 			scripts: {
 				files: ['assets/js/**/*.js'],
-				tasks: ['newer:eslint'],
+				tasks: ['newer:eslint', 'newer:copy:server'],
 				options: {
 					spawn: false
 				}
 			},
-			gruntfile: {
-				files: ['Gruntfile.js'],
+			otherJsFiles: {
+				files: ['Gruntfile.js', '.postinstall.js', 'templates/helpers/helpers.js'],
 				tasks: ['eslint'],
 				options: {
 					spawn: false
@@ -494,14 +533,14 @@ module.exports = function (grunt) {
 			},
 			css: {
 				files: ['assets/less/**/*.less'],
-				tasks: ['less:dev', 'autoprefixer', 'clean:less'],
+				tasks: ['less:dev', 'autoprefixer', 'clean:less', 'newer:copy:server'],
 				options: {
 					spawn: false
 				}
 			},
 			html: {
-				files: ['*.html'],
-				tasks: ['newer:htmllint', 'newer:bootlint'],
+				files: ['*.hbs', 'templates/*.hbs', 'partials/*.hbs', 'templates/helpers/helpers.js'],
+				tasks: ['generator', 'newer:htmllint', 'newer:bootlint'],
 				options: {
 					spawn: false
 				}
@@ -533,12 +572,15 @@ module.exports = function (grunt) {
 		'`grunt dev` will lint your files, build sources within the ' +
 		'assets directory and generating docs / reports.',
 		[
-			'lint',
+			'clean:server',
 			'less:dev',
 			'autoprefixer',
 			'clean:less',
 			'plato',
-			'jsdoc'
+			'jsdoc',
+			'copy:server',
+			'generator',
+			'lint'
 		]
 	);
 
@@ -590,6 +632,7 @@ module.exports = function (grunt) {
 			'uncss',
 			'cssmin:assets',
 			'imagemin',
+			'generator',
 			'processhtml',
 			'copy',
 			'bower_concat',
