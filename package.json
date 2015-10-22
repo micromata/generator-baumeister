@@ -44,7 +44,7 @@
     "chalk": "^1.1.1",
     "semver": "^5.0.1",
     "superb": "^1.2.0",
-    "yeoman-generator": "^0.20.3",
+    "yeoman-generator": "^0.21.0",
     "yosay": "^1.0.5",
     "underscore.string": "^3.2.0"
   },
