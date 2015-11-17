@@ -190,7 +190,8 @@ module.exports = function (grunt) {
 			sync: {
 				options: {
 					port: 9001,
-					hostname: 'localhost'
+					hostname: 'localhost',
+					base: '<%= config.server %>'
 				}
 			},
 			dist: {
