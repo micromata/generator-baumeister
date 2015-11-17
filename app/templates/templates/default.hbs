@@ -33,9 +33,10 @@
 
 <% if (templateProps.oldIeSupport) { %>	<!-- HTML5 shim and Respond.js IE8 support for HTML5 elements and media queries. -->
 	<!--[if lt IE 9]>
-        <script src="libs/html5shiv/dist/html5shiv-printshiv.min.js"></script>
-        <script src="libs/respondJs/dest/respond.min.js"></script>
-        <![endif]--><% } %>
+		<script src="libs/html5shiv/dist/html5shiv-printshiv.min.js"></script>
+		<script src="libs/respondJs/dest/respond.min.js"></script>
+	<![endif]--><% } %>
+
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory. -->
 
 	<!-- Place anything custom after this. But put JS to the end of body. -->
@@ -43,12 +44,12 @@
 
 <body>
 <% if (templateProps.oldIeSupport) { %>	<!--[if lt IE 8>
-		<p class="browsehappy">
-			You are using an <strong>outdated</strong> browser.
-			Please <a href="http://browsehappy.com/">upgrade your browser</a>
-			to improve your experience.
-		</p>
-	<![endif]--><% } %>
+	<p class="browsehappy">
+		You are using an <strong>outdated</strong> browser.
+		Please <a href="http://browsehappy.com/">upgrade your browser</a>
+		to improve your experience.
+	</p>
+<![endif]--><% } %>
 
 	{{{body}}}
 
