@@ -191,7 +191,7 @@ module.exports = function (grunt) {
 				options: {
 					port: 9001,
 					hostname: 'localhost',
-					base: '<%= config.server %>'
+					base: '<%%= config.server %>'
 				}
 			},
 			dist: {
