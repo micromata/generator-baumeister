@@ -276,7 +276,7 @@ module.exports = yeoman.generators.Base.extend({
 
 		handlebarsFiles: function () {
 			this.fs.copyTpl(
-				this.templatePath('templates/default.hbs'),
+				this.templatePath('templates/_default.hbs'),
 				this.destinationPath('templates/default.hbs'), {
 					templateProps: this.templateProps
 				}
