@@ -10,7 +10,7 @@
 
 /**
  * Namespace of the app.
- * This should be only variable the app should store in the global scope.
+ * This should be the only variable the app stores in the global scope.
  * @namespace <%= templateProps.namespace %>
  */
 var <%= templateProps.namespace %> = window.<%= templateProps.namespace %> || {};
