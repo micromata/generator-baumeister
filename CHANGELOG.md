@@ -1,5 +1,53 @@
 # Changelog
 
+## Version 2.0.0 (2015-11-18)
+
+- b03ed8c - 2015-11-18: Fix linting errors
+- 15df1d5 - 2015-11-17: Fix underscore template
+- c20498f - 2015-11-17: Bye bye peer dependencies 🤗
+- ab5c629 - 2015-11-17: Fix path to server for browser sync task
+- 71148dd - 2015-11-17: Fix linting errors
+- c1adeb3 - 2015-11-17: Pin and update Bower dependencies
+- 66e142a - 2015-11-17: Update dev dependencies
+- dc2df26 - 2015-11-17: fix typo
+- 394d0c1 - 2015-11-17: Use conventional prefix for default.hbs
+- 237ecf5 - 2015-11-17: Tweak readme
+- d26749c - 2015-11-17: Update package.json
+- 4ec8723 - 2015-11-17: Update config for Travis CI
+- 75a94e3 - 2015-11-17: Fix whitespace »issue«
+- 1f2866e - 2015-11-17: Update dependencies of the generator
+- 7d60681 - 2015-11-17: Update dev dependencies
+- b113fd3 - 2015-11-17: chore(package): pin dependencies
+- d6d109e - 2015-11-17: Fixed typographical error, changed accross to across in README.
+- 865dd5e - 2015-11-17: Minor tweaks in README
+- 328f1de - 2015-11-17: Make use of libs/libs.min.css in default template
+- 1bda9a2 - 2015-11-17: Rename libs.js/libs.css to libs.min.js/libs.min.css
+- e1012ee - 2015-10-16: Prevent horizontal scrollbar for markup example tree
+- 39587f9 - 2015-10-16: Add »Table of Contents« to README
+- 1fec6b0 - 2015-10-16: Update section »Setting up your Editor« in README
+- 42f3281 - 2015-10-16: Move up »File and folder structure of LESS files« in README
+- 4813215 - 2015-10-16: Remove unneeded `template: default` from Frontmatters
+- 5416290 - 2015-10-16: Add info about pages, templates and partials to README
+- fcaeb5d - 2015-10-16: DocBlock comment for our example helper
+- c57e4a7 - 2015-10-16: Remove plato and jsdoc tasks from dev task
+- f583c07 - 2015-10-16: Create handlebars files
+- 794e6f5 - 2015-10-16: Update tests
+- c6de253 - 2015-10-16: Create and update templates …
+- 3b4e450 - 2015-10-15: Improve use of variables in footer example
+- 0df2935 - 2015-10-15: Lint .postinstall.js and fix linting errors
+- 5b841da - 2015-10-15: Split up .eslintrc into two files to get more specific
+- b109813 - 2015-10-15: Fix ESLint errors.
+- ab19064 - 2015-10-03: Replace JSHint wit ESLint
+- a755f02 - 2015-10-02: chore(package): pin dependencies
+- 0c478c3 - 2015-10-02: Add info about new option to README
+- 8c34c24 - 2015-10-02: Implement new option `addDistToVersionControl`
+- 703420d - 2015-10-02: Fix test description
+- e64210d - 2015-10-02: Replace »clone URL« with »remote URL« within prompt
+- 9f9ff15 - 2015-09-25: Tests for new option `addDistToVersionControl`
+- d00ba0f - 2015-09-23: Get rid of separate minified JS files in dist
+- bf41270 - 2015-09-22: Rename `grunt server` to `grunt serve`
+
+
 ## Version 1.2.4 (2015-09-17)
 
 - 1b16658 - 2015-09-17: Move `underscore.string` from devDependencies to dependencies
