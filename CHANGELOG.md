@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 2.0.1 (2015-11-19)
+
+- 2356ace - 2015-11-19: Add coveralls
+- 535a723 - 2015-11-19: Add coverage
+
+
 ## Version 2.0.0 (2015-11-18)
 
 - b03ed8c - 2015-11-18: Fix linting errors
