@@ -6,3 +6,5 @@ node_js:
 before_install:
   - currentfolder=${PWD##*/}
   - if [ "$currentfolder" != 'generator-bootstrap-kickstart' ]; then cd .. && eval "mv $currentfolder generator-bootstrap-kickstart" && cd generator-bootstrap-kickstart; fi
+script:
+  npm run coverage

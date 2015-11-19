@@ -67,3 +67,4 @@ bower_components/
 
 build/
 dist/
+/coverage

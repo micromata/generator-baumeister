@@ -1,5 +1,6 @@
 [![npm version](https://badge.fury.io/js/generator-bootstrap-kickstart.svg)](http://badge.fury.io/js/generator-bootstrap-kickstart)
 [![Build Status](https://travis-ci.org/micromata/generator-bootstrap-kickstart.svg?branch=master)](https://travis-ci.org/micromata/generator-bootstrap-kickstart)
+[![Coverage Status](https://coveralls.io/repos/micromata/generator-bootstrap-kickstart/badge.svg?branch=master&service=github)](https://coveralls.io/github/micromata/generator-bootstrap-kickstart?branch=master)
 [![devDependency Status](https://david-dm.org/micromata/generator-bootstrap-kickstart/dev-status.svg)](https://david-dm.org/micromata/generator-bootstrap-kickstart#info=devDependencies)
 [![Dependency Status](https://david-dm.org/micromata/generator-bootstrap-kickstart/status.svg)](https://david-dm.org/micromata/generator-bootstrap-kickstart#info=Dependencies)
 [![peerDependency Status](https://david-dm.org/micromata/generator-bootstrap-kickstart/peer-status.svg)](https://david-dm.org/micromata/generator-bootstrap-kickstart#info=peerDependencies)

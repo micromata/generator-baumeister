@@ -15,7 +15,8 @@
     "node": ">=0.12.7"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "coverage": "istanbul cover _mocha -- -R spec"
   },
   "files": [
     "app"
@@ -52,6 +53,7 @@
     "grunt-mocha-test": "0.12.7",
     "grunt-newer": "1.1.1",
     "grunt-notify": "0.4.3",
+    "istanbul": "^0.4.0",
     "jshint-stylish": "2.1.0",
     "load-grunt-tasks": "3.3.0",
     "mocha": "2.3.4",
