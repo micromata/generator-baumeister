@@ -29,7 +29,8 @@ module.exports = yeoman.generators.Base.extend({
 				type: 'input',
 				name: 'projectName',
 				message: 'What’s the name of your project?',
-				default: _s.titleize(this.appname)  // Default to current folder name
+				// Default to current folder name
+				default: _s.titleize(this.appname)
 			},
 			{
 				type: 'input',
@@ -53,7 +54,8 @@ module.exports = yeoman.generators.Base.extend({
 				type: 'confirm',
 				name: 'oldIeSupport',
 				message: 'Do you need to support Internet Explorer below IE9?',
-				default: false
+				default: false,
+				store: true
 			},
 			{
 				type: 'list',
@@ -62,13 +64,15 @@ module.exports = yeoman.generators.Base.extend({
 				choices: [
 					'Just a little – Get started with a few example files',
 					'Almost nothing - Just the minimum files and folders'
-				]
+				],
+				store: true
 			},
 			{
 				type: 'confirm',
 				name: 'customPaths',
 				message: 'Do you like change the default output paths `dist`, `docs`, `reports`?',
-				default: false
+				default: false,
+				store: true
 			},
 			{
 				type: 'input',
@@ -77,7 +81,8 @@ module.exports = yeoman.generators.Base.extend({
 				default: 'dist',
 				when: function(answers) {
 					return answers.customPaths ;
-				}
+				},
+				store: true
 			},
 			{
 				type: 'input',
@@ -86,7 +91,8 @@ module.exports = yeoman.generators.Base.extend({
 				default: 'docs',
 				when: function(answers) {
 					return answers.customPaths ;
-				}
+				},
+				store: true
 			},
 			{
 				type: 'input',
@@ -95,7 +101,8 @@ module.exports = yeoman.generators.Base.extend({
 				default: 'reports',
 				when: function(answers) {
 					return answers.customPaths ;
-				}
+				},
+				store: true
 			},
 			{
 				type: 'list',
@@ -106,17 +113,20 @@ module.exports = yeoman.generators.Base.extend({
 					'Apache License, Version 2.0',
 					'GNU GPLv3',
 					'All rights reserved'
-				]
+				],
+				store: true
 			},
 			{
 				type: 'input',
 				name: 'authorName',
-				message: 'What’s your Name? ' + info('(used in package.json, bower.json and license)')
+				message: 'What’s your Name? ' + info('(used in package.json, bower.json and license)'),
+				store: true
 			},
 			{
 				type: 'input',
 				name: 'authorUrl',
-				message: 'What’s the the URL of your website? ' + info('(not the projects website if they differ – used in package.json and License)')
+				message: 'What’s the the URL of your website? ' + info('(not the projects website if they differ – used in package.json and License)'),
+				store: true
 			},
 			{
 				type: 'input',
@@ -130,13 +140,15 @@ module.exports = yeoman.generators.Base.extend({
 					} else {
 						return true;
 					}
-				}
+				},
+				store: true
 			},
 			{
 				type: 'confirm',
 				name: 'additionalInfo',
 				message: 'Do you like to add additional info to bower.json and package.json? ' + info('(email address, projects homepage, repository etc.)'),
-				default: true
+				default: true,
+				store: true
 			},
 			{
 				type: 'input',
@@ -144,7 +156,8 @@ module.exports = yeoman.generators.Base.extend({
 				message: 'What’s your email address?',
 				when: function(answers) {
 					return answers.additionalInfo;
-				}
+				},
+				store: true
 			},
 			{
 				type: 'input',
@@ -175,7 +188,8 @@ module.exports = yeoman.generators.Base.extend({
 				type: 'confirm',
 				name: 'addDistToVersionControl',
 				message: 'Do you like to add your production ready files (`dist` directory) to version control?',
-				default: false
+				default: false,
+				store: true
 			},
 			{
 				type: 'input',
