@@ -12,231 +12,277 @@ var error = chalk.red,
 	info = chalk.yellow.reset;
 
 module.exports = yeoman.generators.Base.extend({
+
+	constructor: function() {
+		yeoman.generators.Base.apply(this, arguments);
+
+		// This method adds support for a `--yo-rc` flag
+		this.option('yo-rc');
+	},
+
 	initializing: function () {
 		this.pkg = require('../package.json');
+		this.skipPrompts = false;
+
+		if (this.options['yo-rc']) {
+			var config = this.config.getAll();
+
+			this.log('Read and applied the following config from ' + chalk.yellow('.yo-rc:\n'));
+			this.log(config);
+			this.log('\n');
+
+			this.templateProps = {
+				projectName: config.projectName,
+				name: _s.slugify(config.projectName),
+				title: _s.titleize(config.projectName),
+				namespace: _s.camelize(_s.slugify(config.projectName)),
+				projectDescription: config.projectDescription,
+				theme: _s.slugify(config.theme),
+				oldIeSupport: config.oldIeSupport,
+				distDirectory: config.distDirectory || 'dist',
+				docsDirectory: config.docsDirectory || 'docs',
+				reportsDirectory: config.reportsDirectory || 'reports',
+				authorName: config.authorName,
+				authorMail: config.authorMail,
+				authorUrl: config.authorUrl,
+				year: new Date().getFullYear(),
+				license: config.license,
+				initialVersion: config.initialVersion,
+				additionalInfo: config.additionalInfo,
+				projectHomepage: config.projectHomepage,
+				projectRepositoryType: config.projectRepositoryType,
+				projectRepository: config.projectRepository,
+				addDistToVersionControl: config.addDistToVersionControl,
+				issueTracker: config.issueTracker,
+				boilerplateAmount: config.boilerplateAmount,
+			};
+			this.skipPrompts = true;
+		}
 	},
 
 	prompting: function () {
-		var done = this.async();
+		if (!this.skipPrompts) {
+			var done = this.async();
 
-		// Have Yeoman greet the user.
-		this.log(yosay(
-			'Yo, welcome to the ' + superb() + ' ' + chalk.yellow('Bootstrap Kickstart') + ' generator!'
-		));
+			// Have Yeoman greet the user.
+			this.log(yosay(
+				'Yozen, welcome to the ' + superb() + ' ' + chalk.yellow('Bootstrap Kickstart') + ' generator!'
+			));
 
-		var prompts = [
-			{
-				type: 'input',
-				name: 'projectName',
-				message: 'What’s the name of your project?',
-				// Default to current folder name
-				default: _s.titleize(this.appname)
-			},
-			{
-				type: 'input',
-				name: 'projectDescription',
-				message: 'A short description of your project:'
-			},
-			{
-				type: 'input',
-				name: 'theme',
-				message: 'What would you like to name your Bootstrap theme in the less-files?',
-				validate: function(value) {
-
-					if (value === '') {
-						return error('Oops. This is used to name a file and a directory and can’t left blank.');
-					} else {
-						return true;
-					}
-				}
-			},
-			{
-				type: 'confirm',
-				name: 'oldIeSupport',
-				message: 'Do you need to support Internet Explorer below IE9?',
-				default: false,
-				store: true
-			},
-			{
-				type: 'list',
-				name: 'boilerplateAmount',
-				message: 'With how many boilerplate code you like to get started with?',
-				choices: [
-					'Just a little – Get started with a few example files',
-					'Almost nothing - Just the minimum files and folders'
-				],
-				store: true
-			},
-			{
-				type: 'confirm',
-				name: 'customPaths',
-				message: 'Do you like change the default output paths `dist`, `docs`, `reports`?',
-				default: false,
-				store: true
-			},
-			{
-				type: 'input',
-				name: 'distDirectory',
-				message: 'Target directory for building production ready files',
-				default: 'dist',
-				when: function(answers) {
-					return answers.customPaths ;
+			var prompts = [
+				{
+					type: 'input',
+					name: 'projectName',
+					message: 'What’s the name of your project?',
+					// Default to current folder name
+					default: _s.titleize(this.appname)
 				},
-				store: true
-			},
-			{
-				type: 'input',
-				name: 'docsDirectory',
-				message: 'Target directory for generating the docs',
-				default: 'docs',
-				when: function(answers) {
-					return answers.customPaths ;
+				{
+					type: 'input',
+					name: 'projectDescription',
+					message: 'A short description of your project:'
 				},
-				store: true
-			},
-			{
-				type: 'input',
-				name: 'reportsDirectory',
-				message: 'Target directory for generating the reports',
-				default: 'reports',
-				when: function(answers) {
-					return answers.customPaths ;
-				},
-				store: true
-			},
-			{
-				type: 'list',
-				name: 'license',
-				message: 'Choose a license for you project',
-				choices: [
-					'MIT',
-					'Apache License, Version 2.0',
-					'GNU GPLv3',
-					'All rights reserved'
-				],
-				store: true
-			},
-			{
-				type: 'input',
-				name: 'authorName',
-				message: 'What’s your Name? ' + info('(used in package.json, bower.json and license)'),
-				store: true
-			},
-			{
-				type: 'input',
-				name: 'authorUrl',
-				message: 'What’s the the URL of your website? ' + info('(not the projects website if they differ – used in package.json and License)'),
-				store: true
-			},
-			{
-				type: 'input',
-				name: 'initialVersion',
-				message: 'What initial version should we put in the bower.json and package.json files?',
-				default : '0.0.0',
-				validate: function(value) {
+				{
+					type: 'input',
+					name: 'theme',
+					message: 'What would you like to name your Bootstrap theme in the less-files?',
+					validate: function(value) {
 
-					if (!semver.valid(value)) {
-						return error('Please enter a correct semver version, i.e. MAJOR.MINOR.PATCH. See → http://semver-ftw.org');
-					} else {
-						return true;
+						if (value === '') {
+							return error('Oops. This is used to name a file and a directory and can’t left blank.');
+						} else {
+							return true;
+						}
 					}
 				},
-				store: true
-			},
-			{
-				type: 'confirm',
-				name: 'additionalInfo',
-				message: 'Do you like to add additional info to bower.json and package.json? ' + info('(email address, projects homepage, repository etc.)'),
-				default: true,
-				store: true
-			},
-			{
-				type: 'input',
-				name: 'authorMail',
-				message: 'What’s your email address?',
-				when: function(answers) {
-					return answers.additionalInfo;
+				{
+					type: 'confirm',
+					name: 'oldIeSupport',
+					message: 'Do you need to support Internet Explorer below IE9?',
+					default: false,
+					store: true
 				},
-				store: true
-			},
-			{
-				type: 'input',
-				name: 'projectHomepage',
-				message: 'What’s URL of your projects homepage?',
-				when: function(answers) {
-					return answers.additionalInfo;
-				}
-			},
-			{
-				type: 'input',
-				name: 'projectRepositoryType',
-				message: 'What’s the type of your projects repository?',
-				default : 'git',
-				when: function(answers) {
-					return answers.additionalInfo;
-				}
-			},
-			{
-				type: 'input',
-				name: 'projectRepository',
-				message: 'What’s the remote URL of your projects repository?',
-				when: function(answers) {
-					return answers.additionalInfo;
-				}
-			},
-			{
-				type: 'confirm',
-				name: 'addDistToVersionControl',
-				message: 'Do you like to add your production ready files (`dist` directory) to version control?',
-				default: false,
-				store: true
-			},
-			{
-				type: 'input',
-				name: 'issueTracker',
-				message: 'What’s the URL of your projects issue tracker?',
-				default: function (answers) {
-					var regex = /(?:git@|https:\/\/)(github.com)(?::|\/{1})(.+).git/ig;
+				{
+					type: 'list',
+					name: 'boilerplateAmount',
+					message: 'With how many boilerplate code you like to get started with?',
+					choices: [
+						'Just a little – Get started with a few example files',
+						'Almost nothing - Just the minimum files and folders'
+					],
+					store: true
+				},
+				{
+					type: 'confirm',
+					name: 'customPaths',
+					message: 'Do you like change the default output paths `dist`, `docs`, `reports`?',
+					default: false,
+					store: true
+				},
+				{
+					type: 'input',
+					name: 'distDirectory',
+					message: 'Target directory for building production ready files',
+					default: 'dist',
+					when: function(answers) {
+						return answers.customPaths ;
+					},
+					store: true
+				},
+				{
+					type: 'input',
+					name: 'docsDirectory',
+					message: 'Target directory for generating the docs',
+					default: 'docs',
+					when: function(answers) {
+						return answers.customPaths ;
+					},
+					store: true
+				},
+				{
+					type: 'input',
+					name: 'reportsDirectory',
+					message: 'Target directory for generating the reports',
+					default: 'reports',
+					when: function(answers) {
+						return answers.customPaths ;
+					},
+					store: true
+				},
+				{
+					type: 'list',
+					name: 'license',
+					message: 'Choose a license for you project',
+					choices: [
+						'MIT',
+						'Apache License, Version 2.0',
+						'GNU GPLv3',
+						'All rights reserved'
+					],
+					store: true
+				},
+				{
+					type: 'input',
+					name: 'authorName',
+					message: 'What’s your Name? ' + info('(used in package.json, bower.json and license)'),
+					store: true
+				},
+				{
+					type: 'input',
+					name: 'authorUrl',
+					message: 'What’s the the URL of your website? ' + info('(not the projects website if they differ – used in package.json and License)'),
+					store: true
+				},
+				{
+					type: 'input',
+					name: 'initialVersion',
+					message: 'What initial version should we put in the bower.json and package.json files?',
+					default : '0.0.0',
+					validate: function(value) {
 
-					if (answers.projectRepository.match(regex) !== null) {
-						return answers.projectRepository.replace(regex, 'https://$1/$2/issues');
+						if (!semver.valid(value)) {
+							return error('Please enter a correct semver version, i.e. MAJOR.MINOR.PATCH. See → http://semver-ftw.org');
+						} else {
+							return true;
+						}
+					},
+					store: true
+				},
+				{
+					type: 'confirm',
+					name: 'additionalInfo',
+					message: 'Do you like to add additional info to bower.json and package.json? ' + info('(email address, projects homepage, repository etc.)'),
+					default: true,
+					store: true
+				},
+				{
+					type: 'input',
+					name: 'authorMail',
+					message: 'What’s your email address?',
+					when: function(answers) {
+						return answers.additionalInfo;
+					},
+					store: true
+				},
+				{
+					type: 'input',
+					name: 'projectHomepage',
+					message: 'What’s URL of your projects homepage?',
+					when: function(answers) {
+						return answers.additionalInfo;
 					}
 				},
-				when: function(answers) {
-					return answers.additionalInfo;
-				}
-			},
-		];
+				{
+					type: 'input',
+					name: 'projectRepositoryType',
+					message: 'What’s the type of your projects repository?',
+					default : 'git',
+					when: function(answers) {
+						return answers.additionalInfo;
+					}
+				},
+				{
+					type: 'input',
+					name: 'projectRepository',
+					message: 'What’s the remote URL of your projects repository?',
+					when: function(answers) {
+						return answers.additionalInfo;
+					}
+				},
+				{
+					type: 'confirm',
+					name: 'addDistToVersionControl',
+					message: 'Do you like to add your production ready files (`dist` directory) to version control?',
+					default: false,
+					store: true
+				},
+				{
+					type: 'input',
+					name: 'issueTracker',
+					message: 'What’s the URL of your projects issue tracker?',
+					default: function (answers) {
+						var regex = /(?:git@|https:\/\/)(github.com)(?::|\/{1})(.+).git/ig;
 
-		this.prompt(prompts, function (props) {
-			this.templateProps = {
-				projectName: props.projectName,
-				name: _s.slugify(props.projectName),
-				title: _s.titleize(props.projectName),
-				namespace: _s.camelize(_s.slugify(props.projectName)),
-				projectDescription: props.projectDescription,
-				theme: _s.slugify(props.theme),
-				oldIeSupport: props.oldIeSupport,
-				distDirectory: props.distDirectory || 'dist',
-				docsDirectory: props.docsDirectory || 'docs',
-				reportsDirectory: props.reportsDirectory || 'reports',
-				authorName: props.authorName,
-				authorMail: props.authorMail,
-				authorUrl: props.authorUrl,
-				year: new Date().getFullYear(),
-				license: props.license,
-				initialVersion: props.initialVersion,
-				additionalInfo: props.additionalInfo,
-				projectHomepage: props.projectHomepage,
-				projectRepositoryType: props.projectRepositoryType,
-				projectRepository: props.projectRepository,
-				addDistToVersionControl: props.addDistToVersionControl,
-				issueTracker: props.issueTracker,
-				boilerplateAmount: props.boilerplateAmount,
-			};
+						if (answers.projectRepository.match(regex) !== null) {
+							return answers.projectRepository.replace(regex, 'https://$1/$2/issues');
+						}
+					},
+					when: function(answers) {
+						return answers.additionalInfo;
+					}
+				},
+			];
 
-			done();
-		}.bind(this));
+			this.prompt(prompts, function (props) {
+				this.templateProps = {
+					projectName: props.projectName,
+					name: _s.slugify(props.projectName),
+					title: _s.titleize(props.projectName),
+					namespace: _s.camelize(_s.slugify(props.projectName)),
+					projectDescription: props.projectDescription,
+					theme: _s.slugify(props.theme),
+					oldIeSupport: props.oldIeSupport,
+					distDirectory: props.distDirectory || 'dist',
+					docsDirectory: props.docsDirectory || 'docs',
+					reportsDirectory: props.reportsDirectory || 'reports',
+					authorName: props.authorName,
+					authorMail: props.authorMail,
+					authorUrl: props.authorUrl,
+					year: new Date().getFullYear(),
+					license: props.license,
+					initialVersion: props.initialVersion,
+					additionalInfo: props.additionalInfo,
+					projectHomepage: props.projectHomepage,
+					projectRepositoryType: props.projectRepositoryType,
+					projectRepository: props.projectRepository,
+					addDistToVersionControl: props.addDistToVersionControl,
+					issueTracker: props.issueTracker,
+					boilerplateAmount: props.boilerplateAmount,
+				};
+
+				done();
+			}.bind(this));
+		}
 	},
 
 	writing: {
