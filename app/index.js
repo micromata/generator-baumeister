@@ -17,7 +17,11 @@ module.exports = yeoman.generators.Base.extend({
 		yeoman.generators.Base.apply(this, arguments);
 
 		// This method adds support for a `--yo-rc` flag
-		this.option('yo-rc', { hide: true });
+		this.option('yo-rc', {
+			desc: 'Read and apply options from .yo-rc.json and skip prompting',
+			type: 'Boolean',
+			defaults: false
+		});
 	},
 
 	initializing: function () {
@@ -27,7 +31,7 @@ module.exports = yeoman.generators.Base.extend({
 		if (this.options['yo-rc']) {
 			var config = this.config.getAll();
 
-			this.log('Read and applied the following config from ' + chalk.yellow('.yo-rc:\n'));
+			this.log('Read and applied the following config from ' + chalk.yellow('.yo-rc.json:\n'));
 			this.log(config);
 			this.log('\n');
 
