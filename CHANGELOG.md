@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 2.1.0 (2015-11-23)
+
+- 0cf5753 - 2015-11-23: Add tests for `--yo-rc` flag
+- 05227b0 - 2015-11-22: Make `--yo-rc` public :gift_heart:
+- d254f41 - 2015-11-22: Hide `--yo-rc` from help
+- bbd850e - 2015-11-22: Run generator and grunt tasks on Travis CI
+- 62b1898 - 2015-11-22: Make it possible to read config from .yo-rc …
+- 06659d3 - 2015-11-21: Store inputs for next use where it makes sense
+
+
 ## Version 2.0.1 (2015-11-19)
 
 - 2356ace - 2015-11-19: Add coveralls
