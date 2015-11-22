@@ -17,7 +17,7 @@ module.exports = yeoman.generators.Base.extend({
 		yeoman.generators.Base.apply(this, arguments);
 
 		// This method adds support for a `--yo-rc` flag
-		this.option('yo-rc');
+		this.option('yo-rc', { hide: true });
 	},
 
 	initializing: function () {
