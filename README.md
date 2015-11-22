@@ -32,7 +32,7 @@ Please check the epic [README](https://github.com/micromata/bootstrap-kickstart)
 ## Features of this generator
 
 There are tons of options for now :scream:  
-… but dont be afraid – most of them are optional and you even get to see them all because some are depending on others.
+… but dont be afraid – most of them are optional and you even get to see them all because some are depending on others. Plus the ones that probably don’t change from one project to the other are stored for your convenience.
 
 | Option  | Description |
 | ------------- | ------------- |
@@ -50,6 +50,8 @@ There are tons of options for now :scream:
 | `projectHomepage`, `projectRepositoryType`, `projectRepository`  | option to define homepage and repository for use in the generated package.json and bower.json files  |
 | `issueTracker`  | option to define the URL to your issue tracker for use in the generated package.json and bower.json files  |
 | `addDistToVersionControl`  | option to decide whether to add the `dist` directory to version control or include it in `.gitignore` |
+
+Frequent Users, who are tired beeing asked the same questions again and again might use a config file called `.yo-rc.json` like described [here](#--yo-rc).
 
 ---
 
@@ -103,6 +105,69 @@ Finally, initiate the generator:
 ```bash
 yo bootstrap-kickstart
 ```
+
+### Options via command line flags
+
+#### --skip-cache 
+
+> Do not remember prompt answers for next run of the generator
+
+Default: false
+
+```bash
+yo bootstrap-kickstart --skip-cache
+```
+
+#### --skip-install
+
+> Do not automatically install dependencies
+
+Default: false
+
+```bash
+yo bootstrap-kickstart --skip-install
+```
+
+#### --yo-rc
+
+> Read and apply options from .yo-rc.json and skip prompting
+
+Default: false
+
+```bash
+yo bootstrap-kickstart --yo-rc
+```
+
+You could place a  `.yo-rc.json` in the directory you are going to run the generator or in any parent directory up to your user directory (`~/.yo-rc.json`)
+
+This file should contain the options which are otherwise prompted by Yeoman. See the follwoing example `.yo-rc.json`:
+
+```json
+{
+  "generator-bootstrap-kickstart": {
+    "projectName": "foozy",
+    "projectDescription": "boozy",
+    "theme": "foozel",
+    "boilerplateAmount": "Almost nothing - Just the minimum files and folders",
+    "license": "MIT",
+    "authorName": "Michael Kühnel",
+    "authorUrl": "http://micromata.de",
+    "authorMail": "me@foobar.com",
+    "projectHomepage": "",
+    "projectRepository": "",
+    "issueTracker": "",
+    "oldIeSupport": false,
+    "customPaths": true,
+    "distDirectory": "myDist",
+    "docsDirectory": "myDocs",
+    "reportsDirectory": "myReports",
+    "initialVersion": "1.0.0",
+    "addDistToVersionControl": true
+  }
+}
+```
+
+See [Features of this generator](#features-of-this-generator).
 
 ### Getting To Know Yeoman
 

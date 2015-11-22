@@ -1,3 +1,4 @@
+sudo: false
 language: node_js
 node_js:
   - '0.12'
@@ -6,5 +7,38 @@ node_js:
 before_install:
   - currentfolder=${PWD##*/}
   - if [ "$currentfolder" != 'generator-bootstrap-kickstart' ]; then cd .. && eval "mv $currentfolder generator-bootstrap-kickstart" && cd generator-bootstrap-kickstart; fi
+install:
+  - npm install -g bower
+  - npm install -g grunt-cli
+  - npm install -g yo
+  - npm install
+before_script:
+- npm run coveralls
 script:
-  npm run coveralls
+  - npm link
+  - mkdir run-generator
+  - cd run-generator
+  - touch .yo-rc.json
+  - echo '{' > .yo-rc.json
+  - echo '"generator-bootstrap-kickstart":{' >> .yo-rc.json
+  - echo '"projectName":"Test this Thingy",' >> .yo-rc.json
+  - echo '"projectDescription":"Just a test.",' >> .yo-rc.json
+  - echo '"theme":"My theme",' >> .yo-rc.json
+  - echo '"oldIeSupport":false,' >> .yo-rc.json
+  - echo '"customPaths":false,' >> .yo-rc.json
+  - echo '"authorName":"My Name",' >> .yo-rc.json
+  - echo '"authorMail":"name@domain.com",' >> .yo-rc.json
+  - echo '"authorUrl":"http://www.foo.com",' >> .yo-rc.json
+  - echo '"license":"MIT",' >> .yo-rc.json
+  - echo '"initialVersion":"0.0.0",' >> .yo-rc.json
+  - echo '"projectHomepage":"https://github.com/userName/repository",' >> .yo-rc.json
+  - echo '"projectRepositoryType":"git",' >> .yo-rc.json
+  - echo '"projectRepository":"git@github.com:userName/repository.git",' >> .yo-rc.json
+  - echo '"addDistToVersionControl":false,' >> .yo-rc.json
+  - echo '"issueTracker":"https://github.com/userName/repository/issues",' >> .yo-rc.json
+  - echo '"boilerplateAmount":"Just a little – Get started with a few example files"' >> .yo-rc.json
+  - echo '}' >> .yo-rc.json
+  - echo '}' >> .yo-rc.json
+  - yo bootstrap-kickstart --yo-rc
+  - grunt dev
+  - grunt build
