@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 2.1.1 (2015-11-30)
+
+- 1eafc6d - 2015-11-30: Prevent errors on travis build
+- a6a3835 - 2015-11-30: Fix updating html files for browser sync
+- 35485a8 - 2015-11-30: Fix referencing own JS files in default template
+
+
 ## Version 2.1.0 (2015-11-23)
 
 - 0cf5753 - 2015-11-23: Add tests for `--yo-rc` flag
