@@ -5,6 +5,8 @@ node_js:
   - '4'
   - 'stable'
 before_install:
+  - git config --global user.email "you@example.com"
+  - git config --global user.name "Your Name"
   - currentfolder=${PWD##*/}
   - if [ "$currentfolder" != 'generator-bootstrap-kickstart' ]; then cd .. && eval "mv $currentfolder generator-bootstrap-kickstart" && cd generator-bootstrap-kickstart; fi
 install:
