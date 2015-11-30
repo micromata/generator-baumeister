@@ -200,6 +200,12 @@ describe('bootstrap-kickstart with default options', function() {
 		]);
 	});
 
+	it('should reference module skeleton in default template', function() {
+		assert.fileContent([
+			['templates/default.hbs', /moduleSkeleton.js/]
+		]);
+	});
+
 	it('should not include »browsehappy« message', function() {
 		assert.noFileContent([
 			['templates/default.hbs', /browsehappy/]
@@ -717,6 +723,12 @@ describe('bootstrap-kickstart with less boilerplate code', function() {
 		]);
 	});
 
+	it('should not reference module skeleton in default template', function() {
+		assert.noFileContent([
+			['templates/default.hbs', /moduleSkeleton.js/]
+		]);
+	});
+
 	it('should create just a single JavaScript file (base.js)', function() {
 		assert.file(['assets/js/base.js']);
 		assert.noFile([
@@ -978,6 +990,12 @@ describe('bootstrap-kickstart using --yo-rc flag', function() {
 			['templates/default.hbs', /html5shiv/],
 			['templates/default.hbs', /respondJs/],
 			['templates/default.hbs', /jquery-placeholder/]
+		]);
+	});
+
+	it('should reference module skeleton in default template', function() {
+		assert.fileContent([
+			['templates/default.hbs', /moduleSkeleton.js/]
 		]);
 	});
 
