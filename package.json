@@ -16,6 +16,7 @@
   },
   "scripts": {
     "test": "mocha",
+    "posttest": "grunt lint",
     "coverage": "istanbul cover _mocha -- -R spec",
     "coveralls": "node ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha test --report lcovonly && cat ./coverage/lcov.info | coveralls "
   },
