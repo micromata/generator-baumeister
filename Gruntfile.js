@@ -2,7 +2,7 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
 	// Get devDependencies
 	require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
@@ -15,15 +15,12 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		pkpCopy: grunt.file.readJSON('package.json'),
 
-		// jsHint
-		jshint: {
-			options: {
-				reporter: require('jshint-stylish'),
-				jshintrc: '.jshintrc',
-			},
-			all: [
+		// ESLint
+		eslint: {
+			target: [
 				'Gruntfile.js',
 				'app/*.js',
+				'test/*.js'
 			]
 		},
 

@@ -18,7 +18,6 @@
     "test": "mocha",
     "coverage": "istanbul cover _mocha -- -R spec",
     "coveralls": "node ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha test --report lcovonly && cat ./coverage/lcov.info | coveralls "
-
   },
   "files": [
     "app"
@@ -48,16 +47,16 @@
   "devDependencies": {
     "coveralls": "^2.11.4",
     "escape-string-regexp": "1.0.3",
+    "eslint-config-xo": "^0.9.0",
     "grunt": "0.4.5",
     "grunt-bump": "0.6.0",
     "grunt-changelog": "0.3.1",
-    "grunt-contrib-jshint": "0.11.3",
     "grunt-contrib-watch": "0.6.1",
+    "grunt-eslint": "^17.3.1",
     "grunt-mocha-test": "0.12.7",
     "grunt-newer": "1.1.1",
     "grunt-notify": "0.4.3",
     "istanbul": "^0.4.0",
-    "jshint-stylish": "2.1.0",
     "load-grunt-tasks": "3.3.0",
     "mocha": "2.3.4",
     "mocha-lcov-reporter": "^1.0.0",
