@@ -1,5 +1,20 @@
 # Changelog
 
+## Version 2.2.0 (2015-12-19)
+
+- 41b57a8 - 2015-12-19: Lint JavaScript after runing npm test
+- d254b7b - 2015-12-19: Fix default und watch task
+- f4ada2c - 2015-12-19: Fix linting errors
+- 77053ac - 2015-12-19: Install and configure ESLint
+- 66d3323 - 2015-12-19: Remove comments from html files in dist directory
+- f41414e - 2015-12-19: Fix imagemin task
+- 5a9adf6 - 2015-12-19: Add SVG files to imagemin task
+- 6ecc161 - 2015-12-19: Extend default options of uncss task
+- 4c55bce - 2015-12-11: No peer dependencies no more
+- 699039a - 2015-12-11: Add Gitter badge
+- d41ced1 - 2015-12-11: Add gitter webhook to travis config
+
+
 ## Version 2.1.1 (2015-11-30)
 
 - 1eafc6d - 2015-11-30: Prevent errors on travis build
