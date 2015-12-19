@@ -1,19 +1,19 @@
 'use strict';
 
-var yeoman = require('yeoman-generator'),
-	chalk = require('chalk'),
-	yosay = require('yosay'),
-	superb = require('superb'),
-	semver = require('semver'),
-	_s = require('underscore.string');
+var yeoman = require('yeoman-generator');
+var chalk = require('chalk');
+var yosay = require('yosay');
+var superb = require('superb');
+var semver = require('semver');
+var _s = require('underscore.string');
 
 // Define chalk styles
-var error = chalk.red,
-	info = chalk.yellow.reset;
+var error = chalk.red;
+var info = chalk.yellow.reset;
 
 module.exports = yeoman.generators.Base.extend({
 
-	constructor: function() {
+	constructor: function () {
 		yeoman.generators.Base.apply(this, arguments);
 
 		// This method adds support for a `--yo-rc` flag
@@ -58,7 +58,7 @@ module.exports = yeoman.generators.Base.extend({
 				projectRepository: config.projectRepository,
 				addDistToVersionControl: config.addDistToVersionControl,
 				issueTracker: config.issueTracker,
-				boilerplateAmount: config.boilerplateAmount,
+				boilerplateAmount: config.boilerplateAmount
 			};
 			this.skipPrompts = true;
 		}
@@ -90,13 +90,15 @@ module.exports = yeoman.generators.Base.extend({
 					type: 'input',
 					name: 'theme',
 					message: 'What would you like to name your Bootstrap theme in the less-files?',
-					validate: function(value) {
+					validate: function (value) {
+						var returnValue;
 
 						if (value === '') {
-							return error('Oops. This is used to name a file and a directory and can’t left blank.');
+							returnValue = error('Oops. This is used to name a file and a directory and can’t left blank.');
 						} else {
-							return true;
+							returnValue = true;
 						}
+						return returnValue;
 					}
 				},
 				{
@@ -128,8 +130,8 @@ module.exports = yeoman.generators.Base.extend({
 					name: 'distDirectory',
 					message: 'Target directory for building production ready files',
 					default: 'dist',
-					when: function(answers) {
-						return answers.customPaths ;
+					when: function (answers) {
+						return answers.customPaths;
 					},
 					store: true
 				},
@@ -138,8 +140,8 @@ module.exports = yeoman.generators.Base.extend({
 					name: 'docsDirectory',
 					message: 'Target directory for generating the docs',
 					default: 'docs',
-					when: function(answers) {
-						return answers.customPaths ;
+					when: function (answers) {
+						return answers.customPaths;
 					},
 					store: true
 				},
@@ -148,8 +150,8 @@ module.exports = yeoman.generators.Base.extend({
 					name: 'reportsDirectory',
 					message: 'Target directory for generating the reports',
 					default: 'reports',
-					when: function(answers) {
-						return answers.customPaths ;
+					when: function (answers) {
+						return answers.customPaths;
 					},
 					store: true
 				},
@@ -181,14 +183,16 @@ module.exports = yeoman.generators.Base.extend({
 					type: 'input',
 					name: 'initialVersion',
 					message: 'What initial version should we put in the bower.json and package.json files?',
-					default : '0.0.0',
-					validate: function(value) {
+					default: '0.0.0',
+					validate: function (value) {
+						var returnValue;
 
-						if (!semver.valid(value)) {
-							return error('Please enter a correct semver version, i.e. MAJOR.MINOR.PATCH. See → http://semver-ftw.org');
+						if (semver.valid(value)) {
+							returnValue = true;
 						} else {
-							return true;
+							returnValue = error('Please enter a correct semver version, i.e. MAJOR.MINOR.PATCH. See → http://semver-ftw.org');
 						}
+						return returnValue;
 					},
 					store: true
 				},
@@ -203,7 +207,7 @@ module.exports = yeoman.generators.Base.extend({
 					type: 'input',
 					name: 'authorMail',
 					message: 'What’s your email address?',
-					when: function(answers) {
+					when: function (answers) {
 						return answers.additionalInfo;
 					},
 					store: true
@@ -212,7 +216,7 @@ module.exports = yeoman.generators.Base.extend({
 					type: 'input',
 					name: 'projectHomepage',
 					message: 'What’s URL of your projects homepage?',
-					when: function(answers) {
+					when: function (answers) {
 						return answers.additionalInfo;
 					}
 				},
@@ -220,8 +224,8 @@ module.exports = yeoman.generators.Base.extend({
 					type: 'input',
 					name: 'projectRepositoryType',
 					message: 'What’s the type of your projects repository?',
-					default : 'git',
-					when: function(answers) {
+					default: 'git',
+					when: function (answers) {
 						return answers.additionalInfo;
 					}
 				},
@@ -229,7 +233,7 @@ module.exports = yeoman.generators.Base.extend({
 					type: 'input',
 					name: 'projectRepository',
 					message: 'What’s the remote URL of your projects repository?',
-					when: function(answers) {
+					when: function (answers) {
 						return answers.additionalInfo;
 					}
 				},
@@ -251,10 +255,10 @@ module.exports = yeoman.generators.Base.extend({
 							return answers.projectRepository.replace(regex, 'https://$1/$2/issues');
 						}
 					},
-					when: function(answers) {
+					when: function (answers) {
 						return answers.additionalInfo;
 					}
-				},
+				}
 			];
 
 			this.prompt(prompts, function (props) {
@@ -281,7 +285,7 @@ module.exports = yeoman.generators.Base.extend({
 					projectRepository: props.projectRepository,
 					addDistToVersionControl: props.addDistToVersionControl,
 					issueTracker: props.issueTracker,
-					boilerplateAmount: props.boilerplateAmount,
+					boilerplateAmount: props.boilerplateAmount
 				};
 
 				done();
@@ -383,6 +387,8 @@ module.exports = yeoman.generators.Base.extend({
 						this.destinationPath('index.hbs')
 					);
 					break;
+				default:
+					break;
 			}
 
 		},
@@ -400,7 +406,6 @@ module.exports = yeoman.generators.Base.extend({
 					templateProps: this.templateProps
 				}
 			);
-
 
 			switch (this.templateProps.license) {
 				case 'MIT':
@@ -428,12 +433,14 @@ module.exports = yeoman.generators.Base.extend({
 					);
 					break;
 				case 'All rights reserved':
-				this.fs.copyTpl(
+					this.fs.copyTpl(
 						this.templatePath('_LICENSE-ALL-RIGHTS-RESERVED'),
 						this.destinationPath('LICENSE'), {
 							templateProps: this.templateProps
 						}
 					);
+					break;
+				default:
 					break;
 			}
 
@@ -473,12 +480,14 @@ module.exports = yeoman.generators.Base.extend({
 					);
 					break;
 				case 'Almost nothing - Just the minimum files and folders':
-				this.fs.copyTpl(
+					this.fs.copyTpl(
 						this.templatePath('assets/js/_base.js'),
 						this.destinationPath('assets/js/base.js'), {
 							templateProps: this.templateProps
 						}
 					);
+					break;
+				default:
 					break;
 			}
 

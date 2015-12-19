@@ -56,7 +56,7 @@ module.exports = function (grunt) {
 						'--date=short'
 					],
 					after: '<%= pkpCopy.version %>',
-					dest : 'CHANGELOG.md',
+					dest: 'CHANGELOG.md',
 					insertType: 'prepend',
 					template: '## Version <%= pkg.version %> ({{date}})\n\n{{> features}}',
 					featureRegex: /^(.*)$/gim,
