@@ -1,5 +1,3 @@
-// JSHint settings
-
 'use strict';
 
 module.exports = function (grunt) {
@@ -72,7 +70,7 @@ module.exports = function (grunt) {
 		watch: {
 			scripts: {
 				files: ['app/**/*.js', 'Gruntfile.js'],
-				tasks: ['newer:jshint'],
+				tasks: ['newer:eslint'],
 				options: {
 					spawn: false
 				}
@@ -86,7 +84,7 @@ module.exports = function (grunt) {
 	 */
 
 	// Lint files
-	grunt.registerTask('lint', ['jshint']
+	grunt.registerTask('lint', ['eslint']
 	);
 
 	// Fire tests

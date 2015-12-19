@@ -70,7 +70,7 @@ module.exports = yeoman.generators.Base.extend({
 
 			// Have Yeoman greet the user.
 			this.log(yosay(
-				'Yozen, welcome to the ' + superb() + ' ' + chalk.yellow('Bootstrap Kickstart') + ' generator!'
+				'Yo, welcome to the ' + superb() + ' ' + chalk.yellow('Bootstrap Kickstart') + ' generator!'
 			));
 
 			var prompts = [
