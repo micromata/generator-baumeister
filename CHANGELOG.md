@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 2.2.1 (2015-12-20)
+
+- 0cf2051 - 2015-12-20: Ignore tooltip css in uncss
+- e1f85c1 - 2015-12-19: Remove .jshintrc
+
+
 ## Version 2.2.0 (2015-12-19)
 
 - 41b57a8 - 2015-12-19: Lint JavaScript after runing npm test
