@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 2.2.2 (2016-03-05)
+
+- 6275233 - 2016-03-05: fix for running postinstall script on windows systems
+
+
 ## Version 2.2.1 (2015-12-20)
 
 - 0cf2051 - 2015-12-20: Ignore tooltip css in uncss
