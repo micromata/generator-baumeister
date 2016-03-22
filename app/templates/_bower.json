@@ -25,15 +25,15 @@
     "workflow"
   ],
   "dependencies": {
-    "bootstrap": "3.3.5"<% if (templateProps.oldIeSupport) { %>,
-    "jquery": "1.11.3",
+    "bootstrap": "3.3.6"<% if (templateProps.oldIeSupport) { %>,
+    "jquery": "1.12.2",
     "html5shiv": "3.7.3",
     "respondJs": "1.4.2",
-    "jquery-placeholder": "2.3.0"<% } else { %>,
-    "jquery": "2.1.4"<% } %>
+    "jquery-placeholder": "2.3.1"<% } else { %>,
+    "jquery": "2.2.2"<% } %>
 
   }<% if (templateProps.oldIeSupport) { %>,
   "resolutions": {
-    "jquery": "1.11.3"
+    "jquery": "1.12.2"
   }<% } %>
 }
