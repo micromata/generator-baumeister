@@ -11,10 +11,10 @@ var _s = require('underscore.string');
 var error = chalk.red;
 var info = chalk.yellow.reset;
 
-module.exports = yeoman.generators.Base.extend({
+module.exports = yeoman.Base.extend({
 
 	constructor: function () {
-		yeoman.generators.Base.apply(this, arguments);
+		yeoman.Base.apply(this, arguments);
 
 		// This method adds support for a `--yo-rc` flag
 		this.option('yo-rc', {
