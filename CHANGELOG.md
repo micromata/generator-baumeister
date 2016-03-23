@@ -1,5 +1,18 @@
 # Changelog
 
+## Version 2.2.2 (2016-03-23)
+
+- 0db9e0e - 2016-03-23: Add `yeoman-assert` to package.json
+- 0a19e5f - 2016-03-22: Get rid of deprecated msg.
+- 66a3fcd - 2016-03-22: Fix tests
+- bcc70c8 - 2016-03-22: Upgrade dependencies of the generator
+- bfd48d3 - 2016-03-22: Fix travis error regarding Java version
+- 256fae5 - 2016-03-22: Add René Viering
+- 9a2b03d - 2016-03-22: Upgrade dev dependencies
+- 234ea7c - 2016-03-22: Update Bower dependencies
+- 9bb8f88 - 2016-03-05: Fix for running postinstall script on windows systems
+
+
 ## Version 2.2.1 (2015-12-20)
 
 - 0cf2051 - 2015-12-20: Ignore tooltip css in uncss
