@@ -181,7 +181,7 @@ describe('bootstrap-kickstart with default options', function () {
 		bowerJson.should.not.have.propertyByPath('dependencies', 'html5shiv');
 		bowerJson.should.not.have.propertyByPath('dependencies', 'respondJs');
 		bowerJson.should.not.have.propertyByPath('dependencies', 'jquery-placeholder');
-		bowerJson.should.have.propertyByPath('dependencies', 'jquery').containEql('2.2.2');
+		bowerJson.should.have.propertyByPath('dependencies', 'jquery').containEql('2.2.3');
 	});
 
 	it('should not handle oldIE related files within Grunt tasks', function () {
@@ -386,7 +386,7 @@ describe('bootstrap-kickstart with oldIE support', function () {
 		bowerJson.should.have.propertyByPath('dependencies', 'html5shiv');
 		bowerJson.should.have.propertyByPath('dependencies', 'respondJs');
 		bowerJson.should.have.propertyByPath('dependencies', 'jquery-placeholder');
-		bowerJson.should.have.propertyByPath('dependencies', 'jquery').containEql('1.12.2');
+		bowerJson.should.have.propertyByPath('dependencies', 'jquery').containEql('1.12.3');
 	});
 
 	it('should handle oldIE related files within Grunt tasks', function () {
@@ -973,7 +973,7 @@ describe('bootstrap-kickstart using --yo-rc flag', function () {
 		bowerJson.should.not.have.propertyByPath('dependencies', 'html5shiv');
 		bowerJson.should.not.have.propertyByPath('dependencies', 'respondJs');
 		bowerJson.should.not.have.propertyByPath('dependencies', 'jquery-placeholder');
-		bowerJson.should.have.propertyByPath('dependencies', 'jquery').containEql('2.2.2');
+		bowerJson.should.have.propertyByPath('dependencies', 'jquery').containEql('2.2.3');
 	});
 
 	it('should not handle oldIE related files within Grunt tasks', function () {
