@@ -1,5 +1,17 @@
 # Changelog
 
+## Version 2.3.0 (2016-04-18)
+
+- 7266d73 - 2016-04-18: Fix tests
+- 228b709 - 2016-04-18: Add eslint:fix task and use it in watch tasks
+- 235ce9e - 2016-04-18: Update bower dependencies
+- 0a548fa - 2016-04-18: Add tolerance option for grunt newer
+- c86c733 - 2016-04-18: Fix broken travis node v0.12 and v4 builds
+- 801087e - 2016-04-18: Update dev dependencies
+- ac76233 - 2016-04-18: Update ESLint config
+- 01c34b0 - 2016-04-18: Update dependencies of the generator
+
+
 ## Version 2.2.2 (2016-03-23)
 
 - 0db9e0e - 2016-03-23: Add `yeoman-assert` to package.json
