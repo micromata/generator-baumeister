@@ -26,14 +26,14 @@
   ],
   "dependencies": {
     "bootstrap": "3.3.6"<% if (templateProps.oldIeSupport) { %>,
-    "jquery": "1.12.2",
+    "jquery": "1.12.3",
     "html5shiv": "3.7.3",
     "respondJs": "1.4.2",
     "jquery-placeholder": "2.3.1"<% } else { %>,
-    "jquery": "2.2.2"<% } %>
+    "jquery": "2.2.3"<% } %>
 
   }<% if (templateProps.oldIeSupport) { %>,
   "resolutions": {
-    "jquery": "1.12.2"
+    "jquery": "1.12.3"
   }<% } %>
 }
