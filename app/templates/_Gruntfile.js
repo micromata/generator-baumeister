@@ -361,7 +361,7 @@ module.exports = function (grunt) {
 				// we use the already minified versions. Yep, that’s ugly.
 				dest: {
 					js: '<%%= config.dist %>/libs/libs.min.js',
-					css: '<%%= config.dist %>/libs/libs.min.css',
+					css: '<%%= config.dist %>/libs/libs.min.css'
 				},
 				include: [
 					'jquery',
