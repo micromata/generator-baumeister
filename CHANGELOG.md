@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 2.3.2 (2016-09-18)
+
+- e230ce4 - 2016-09-18: Fix prompting. `prompt` now returns a promise.
+- bb82716 - 2016-09-18: Update dependency `yeoman-generator
+
+
 ## Version 2.3.1 (2016-09-18)
 
 - 59462e8 - 2016-09-18: Update dependencies of the generator
