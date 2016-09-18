@@ -66,7 +66,6 @@ module.exports = yeoman.Base.extend({
 
 	prompting: function () {
 		if (!this.skipPrompts) {
-			var done = this.async();
 
 			// Have Yeoman greet the user.
 			this.log(yosay(
@@ -261,7 +260,7 @@ module.exports = yeoman.Base.extend({
 				}
 			];
 
-			this.prompt(prompts, function (props) {
+			return this.prompt(prompts).then(function (props) {
 				this.templateProps = {
 					projectName: props.projectName,
 					name: _s.slugify(props.projectName),
@@ -288,7 +287,6 @@ module.exports = yeoman.Base.extend({
 					boilerplateAmount: props.boilerplateAmount
 				};
 
-				done();
 			}.bind(this));
 		}
 	},

@@ -31,8 +31,8 @@ describe('bootstrap-kickstart with default options', function () {
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
-	before(function (done) {
-		helpers.run(path.join(__dirname, '../app'))
+	before(function () {
+		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
 		.inDir(path.join(os.tmpdir(), './temp-test'))
@@ -45,7 +45,7 @@ describe('bootstrap-kickstart with default options', function () {
 		// Mock the prompt answers
 		.withPrompts(prompts)
 
-		.on('end', done);
+		.toPromise();
 	});
 
 	it('should create package manager files', function () {
@@ -360,8 +360,8 @@ describe('bootstrap-kickstart with oldIE support', function () {
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
-	before(function (done) {
-		helpers.run(path.join(__dirname, '../app'))
+	before(function () {
+		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
 		.inDir(path.join(os.tmpdir(), './temp-test'))
@@ -374,7 +374,7 @@ describe('bootstrap-kickstart with oldIE support', function () {
 		// Mock the prompt answers
 		.withPrompts(prompts)
 
-		.on('end', done);
+		.toPromise();
 	});
 
 	it('should have a valid bower.json file', function () {
@@ -440,8 +440,8 @@ describe('bootstrap-kickstart with custom output paths', function () {
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
-	before(function (done) {
-		helpers.run(path.join(__dirname, '../app'))
+	before(function () {
+		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
 		.inDir(path.join(os.tmpdir(), './temp-test'))
@@ -454,7 +454,7 @@ describe('bootstrap-kickstart with custom output paths', function () {
 		// Mock the prompt answers
 		.withPrompts(prompts)
 
-		.on('end', done);
+		.toPromise();
 	});
 
 	it('should have the prompted output paths within the Gruntfile', function () {
@@ -490,8 +490,8 @@ describe('bootstrap-kickstart without an open source license', function () {
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
-	before(function (done) {
-		helpers.run(path.join(__dirname, '../app'))
+	before(function () {
+		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
 		.inDir(path.join(os.tmpdir(), './temp-test'))
@@ -504,7 +504,7 @@ describe('bootstrap-kickstart without an open source license', function () {
 		// Mock the prompt answers
 		.withPrompts(prompts)
 
-		.on('end', done);
+		.toPromise();
 	});
 
 	it('should have authors name in LICENSE', function () {
@@ -555,8 +555,8 @@ describe('bootstrap-kickstart with Apache License, Version 2.0', function () {
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
-	before(function (done) {
-		helpers.run(path.join(__dirname, '../app'))
+	before(function () {
+		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
 		.inDir(path.join(os.tmpdir(), './temp-test'))
@@ -569,7 +569,7 @@ describe('bootstrap-kickstart with Apache License, Version 2.0', function () {
 		// Mock the prompt answers
 		.withPrompts(prompts)
 
-		.on('end', done);
+		.toPromise();
 	});
 
 	it('should have authors name in LICENSE', function () {
@@ -620,8 +620,8 @@ describe('bootstrap-kickstart with GNU General Public License', function () {
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
-	before(function (done) {
-		helpers.run(path.join(__dirname, '../app'))
+	before(function () {
+		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
 		.inDir(path.join(os.tmpdir(), './temp-test'))
@@ -634,7 +634,7 @@ describe('bootstrap-kickstart with GNU General Public License', function () {
 		// Mock the prompt answers
 		.withPrompts(prompts)
 
-		.on('end', done);
+		.toPromise();
 	});
 
 	it('should have authors name in LICENSE', function () {
@@ -685,8 +685,8 @@ describe('bootstrap-kickstart with less boilerplate code', function () {
 		boilerplateAmount: 'Almost nothing - Just the minimum files and folders'
 	};
 
-	before(function (done) {
-		helpers.run(path.join(__dirname, '../app'))
+	before(function () {
+		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
 		.inDir(path.join(os.tmpdir(), './temp-test'))
@@ -699,7 +699,7 @@ describe('bootstrap-kickstart with less boilerplate code', function () {
 		// Mock the prompt answers
 		.withPrompts(prompts)
 
-		.on('end', done);
+		.toPromise();
 	});
 
 	it('should create just the essential handlebars files', function () {
@@ -782,8 +782,8 @@ describe('bootstrap-kickstart with `dist` added to version control', function ()
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
-	before(function (done) {
-		helpers.run(path.join(__dirname, '../app'))
+	before(function () {
+		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
 		.inDir(path.join(os.tmpdir(), './temp-test'))
@@ -796,7 +796,7 @@ describe('bootstrap-kickstart with `dist` added to version control', function ()
 		// Mock the prompt answers
 		.withPrompts(prompts)
 
-		.on('end', done);
+		.toPromise();
 	});
 
 	it('should not have `/dist` directory in .gitignore', function () {
@@ -824,8 +824,8 @@ describe('bootstrap-kickstart using --yo-rc flag', function () {
 	// load prompt answers from yo-rc.json
 	var prompts = JSON.parse(fs.readFileSync(path.join(__dirname, 'yo-rc.json')))['generator-bootstrap-kickstart'];
 
-	before(function (done) {
-		helpers.run(path.join(__dirname, '../app'))
+	before(function () {
+		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
 		.inDir(path.join(os.tmpdir(), './temp-test'), function () {
@@ -837,7 +837,7 @@ describe('bootstrap-kickstart using --yo-rc flag', function () {
 			'yo-rc': true
 		})
 
-		.on('end', done);
+		.toPromise();
 	});
 
 	it('should create package manager files', function () {
