@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 2.3.1 (2016-09-18)
+
+- 59462e8 - 2016-09-18: Update dependencies of the generator
+- af89c9f - 2016-09-18: Fix linting error
+- f27ff05 - 2016-09-17: Update travis config
+- 7557d4c - 2016-09-17: Update bower dependencies
+- a0e8404 - 2016-09-17: Lint .postinstall.js
+- 959fddd - 2016-09-17: Update dev dependenencies
+- da4146c - 2016-09-17: Fix bundling vendor css
+
+
 ## Version 2.3.0 (2016-04-18)
 
 - 7266d73 - 2016-04-18: Fix tests
