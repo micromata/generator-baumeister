@@ -41,6 +41,7 @@ module.exports = yeoman.Base.extend({
 				title: _s.titleize(config.projectName),
 				namespace: _s.camelize(_s.slugify(config.projectName)),
 				projectDescription: config.projectDescription,
+				banner: config.banner,
 				theme: _s.slugify(config.theme),
 				oldIeSupport: config.oldIeSupport,
 				distDirectory: config.distDirectory || 'dist',
@@ -84,6 +85,12 @@ module.exports = yeoman.Base.extend({
 					type: 'input',
 					name: 'projectDescription',
 					message: 'A short description of your project:'
+				},
+				{
+					type: 'confirm',
+					name: 'banner',
+					message: 'Do you like to use a banner in your production files?',
+					default: false
 				},
 				{
 					type: 'input',
@@ -267,6 +274,7 @@ module.exports = yeoman.Base.extend({
 					title: _s.titleize(props.projectName),
 					namespace: _s.camelize(_s.slugify(props.projectName)),
 					projectDescription: props.projectDescription,
+					banner: props.banner,
 					theme: _s.slugify(props.theme),
 					oldIeSupport: props.oldIeSupport,
 					distDirectory: props.distDirectory || 'dist',
