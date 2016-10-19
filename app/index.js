@@ -90,7 +90,8 @@ module.exports = yeoman.Base.extend({
 					type: 'confirm',
 					name: 'banner',
 					message: 'Do you like to use a banner in your production files?',
-					default: false
+					default: false,
+					store: true
 				},
 				{
 					type: 'input',

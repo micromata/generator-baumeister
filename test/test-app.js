@@ -15,6 +15,7 @@ describe('bootstrap-kickstart with default options', function () {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
+		banner: false,
 		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
@@ -53,6 +54,10 @@ describe('bootstrap-kickstart with default options', function () {
 			'bower.json',
 			'package.json'
 		]);
+	});
+
+	it('should have an empty string as banner within the Gruntfile', function () {
+		assert.fileContent('Gruntfile.js', /banner: ''/);
 	});
 
 	it('should create dot files', function () {
@@ -338,12 +343,58 @@ describe('bootstrap-kickstart with default options', function () {
 
 });
 
+describe('bootstrap-kickstart with banner', function () {
+
+// Define prompt answers
+	var prompts = {
+		projectName: 'Test this Thingy',
+		projectDescription: 'Just a test.',
+		banner: true,
+		theme: 'My theme',
+		oldIeSupport: false,
+		customPaths: false,
+		authorName: 'My Name',
+		authorMail: 'name@domain.com',
+		authorUrl: 'http://www.foo.com',
+		license: 'MIT',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		addDistToVersionControl: false,
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Just a little – Get started with a few example files'
+	};
+
+	before(function () {
+		return helpers.run(path.join(__dirname, '../app'))
+
+		// Clear the directory and set it as the CWD
+		.inDir(path.join(os.tmpdir(), './temp-test'))
+
+		// Mock options passed in
+		.withOptions({
+			'skip-install': true
+		})
+
+		// Mock the prompt answers
+		.withPrompts(prompts)
+
+		.toPromise();
+	});
+
+	it('should not have an empty string as banner within the Gruntfile', function () {
+		assert.fileContent('Gruntfile.js', /banner: '\/\*! <%= pkg\.title %> - v<%= pkg\.version %>\\n' \+/);
+	});
+});
+
 describe('bootstrap-kickstart with oldIE support', function () {
 
 	// Define prompt answers
 	var prompts = {
 		projectName: '',
 		projectDescription: '',
+		banner: false,
 		theme: 'My theme',
 		oldIeSupport: true,
 		customPaths: false,
@@ -421,6 +472,7 @@ describe('bootstrap-kickstart with custom output paths', function () {
 	var prompts = {
 		projectName: '',
 		projectDescription: '',
+		banner: false,
 		theme: 'My theme',
 		oldIeSupport: true,
 		customPaths: true,
@@ -474,6 +526,7 @@ describe('bootstrap-kickstart without an open source license', function () {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
+		banner: false,
 		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
@@ -539,6 +592,7 @@ describe('bootstrap-kickstart with Apache License, Version 2.0', function () {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
+		banner: false,
 		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
@@ -604,6 +658,7 @@ describe('bootstrap-kickstart with GNU General Public License', function () {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
+		banner: false,
 		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
@@ -669,6 +724,7 @@ describe('bootstrap-kickstart with less boilerplate code', function () {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
+		banner: false,
 		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
@@ -766,6 +822,7 @@ describe('bootstrap-kickstart with `dist` added to version control', function ()
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
+		banner: false,
 		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
