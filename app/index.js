@@ -275,7 +275,6 @@ module.exports = yeoman.Base.extend({
 					title: _s.titleize(props.projectName),
 					namespace: _s.camelize(_s.slugify(props.projectName)),
 					projectDescription: props.projectDescription,
-					banner: props.banner,
 					theme: _s.slugify(props.theme),
 					oldIeSupport: props.oldIeSupport,
 					distDirectory: props.distDirectory || 'dist',
