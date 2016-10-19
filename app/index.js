@@ -41,7 +41,6 @@ module.exports = yeoman.Base.extend({
 				title: _s.titleize(config.projectName),
 				namespace: _s.camelize(_s.slugify(config.projectName)),
 				projectDescription: config.projectDescription,
-				banner: config.banner,
 				theme: _s.slugify(config.theme),
 				oldIeSupport: config.oldIeSupport,
 				distDirectory: config.distDirectory || 'dist',
@@ -57,6 +56,7 @@ module.exports = yeoman.Base.extend({
 				projectHomepage: config.projectHomepage,
 				projectRepositoryType: config.projectRepositoryType,
 				projectRepository: config.projectRepository,
+				banner: config.banner,
 				addDistToVersionControl: config.addDistToVersionControl,
 				issueTracker: config.issueTracker,
 				boilerplateAmount: config.boilerplateAmount
@@ -85,13 +85,6 @@ module.exports = yeoman.Base.extend({
 					type: 'input',
 					name: 'projectDescription',
 					message: 'A short description of your project:'
-				},
-				{
-					type: 'confirm',
-					name: 'banner',
-					message: 'Do you like to add comment headers containing meta information to your production files?',
-					default: false,
-					store: true
 				},
 				{
 					type: 'input',
@@ -246,6 +239,13 @@ module.exports = yeoman.Base.extend({
 				},
 				{
 					type: 'confirm',
+					name: 'banner',
+					message: 'Do you like to add comment headers containing meta information to your production files?',
+					default: false,
+					store: true
+				},
+				{
+					type: 'confirm',
 					name: 'addDistToVersionControl',
 					message: 'Do you like to add your production ready files (`dist` directory) to version control?',
 					default: false,
@@ -291,6 +291,7 @@ module.exports = yeoman.Base.extend({
 					projectHomepage: props.projectHomepage,
 					projectRepositoryType: props.projectRepositoryType,
 					projectRepository: props.projectRepository,
+					banner: config.banner,
 					addDistToVersionControl: props.addDistToVersionControl,
 					issueTracker: props.issueTracker,
 					boilerplateAmount: props.boilerplateAmount

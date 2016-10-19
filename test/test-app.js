@@ -15,7 +15,6 @@ describe('bootstrap-kickstart with default options', function () {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		banner: false,
 		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
@@ -27,6 +26,7 @@ describe('bootstrap-kickstart with default options', function () {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -349,7 +349,6 @@ describe('bootstrap-kickstart with banner', function () {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		banner: true,
 		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
@@ -361,6 +360,7 @@ describe('bootstrap-kickstart with banner', function () {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		banner: true,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -394,7 +394,6 @@ describe('bootstrap-kickstart with oldIE support', function () {
 	var prompts = {
 		projectName: '',
 		projectDescription: '',
-		banner: false,
 		theme: 'My theme',
 		oldIeSupport: true,
 		customPaths: false,
@@ -406,6 +405,7 @@ describe('bootstrap-kickstart with oldIE support', function () {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -472,7 +472,6 @@ describe('bootstrap-kickstart with custom output paths', function () {
 	var prompts = {
 		projectName: '',
 		projectDescription: '',
-		banner: false,
 		theme: 'My theme',
 		oldIeSupport: true,
 		customPaths: true,
@@ -487,6 +486,7 @@ describe('bootstrap-kickstart with custom output paths', function () {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -526,7 +526,6 @@ describe('bootstrap-kickstart without an open source license', function () {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		banner: false,
 		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
@@ -538,6 +537,7 @@ describe('bootstrap-kickstart without an open source license', function () {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -592,7 +592,6 @@ describe('bootstrap-kickstart with Apache License, Version 2.0', function () {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		banner: false,
 		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
@@ -604,8 +603,9 @@ describe('bootstrap-kickstart with Apache License, Version 2.0', function () {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		issueTracker: 'https://github.com/userName/repository/issues',
+		banner: false,
 		addDistToVersionControl: false,
+		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
@@ -658,7 +658,6 @@ describe('bootstrap-kickstart with GNU General Public License', function () {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		banner: false,
 		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
@@ -670,6 +669,7 @@ describe('bootstrap-kickstart with GNU General Public License', function () {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -724,7 +724,6 @@ describe('bootstrap-kickstart with less boilerplate code', function () {
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		banner: false,
 		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
@@ -736,6 +735,7 @@ describe('bootstrap-kickstart with less boilerplate code', function () {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Almost nothing - Just the minimum files and folders'
@@ -822,7 +822,6 @@ describe('bootstrap-kickstart with `dist` added to version control', function ()
 	var prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		banner: false,
 		theme: 'My theme',
 		oldIeSupport: false,
 		customPaths: false,
@@ -834,6 +833,7 @@ describe('bootstrap-kickstart with `dist` added to version control', function ()
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
 		addDistToVersionControl: true,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
