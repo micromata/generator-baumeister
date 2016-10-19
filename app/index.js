@@ -290,7 +290,7 @@ module.exports = yeoman.Base.extend({
 					projectHomepage: props.projectHomepage,
 					projectRepositoryType: props.projectRepositoryType,
 					projectRepository: props.projectRepository,
-					banner: config.banner,
+					banner: props.banner,
 					addDistToVersionControl: props.addDistToVersionControl,
 					issueTracker: props.issueTracker,
 					boilerplateAmount: props.boilerplateAmount
