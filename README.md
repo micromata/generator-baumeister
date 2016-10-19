@@ -39,6 +39,7 @@ There are tons of options for now :scream:
 | `oldIeSupport`  | Whether to make use of »html5shiv«, »respondJs« and »jquery-placeholder« and conditional classes  |
 | `projectName` | Used in the generated README, package.json and bower.json  |
 | `projectDescription`  | Used in the generated Readme.md, package.json and bower.json  |
+| `banner`  | Optionally adds a comment banner containing author name, version and build date to your production files  |
 | `theme`  | Name of your Bootstrap theme. Used to name a file and a folder within the LESS directory  |
 | `customPaths`  | Option to define the output paths `dist`, `docs`, `reports`  |
 | `boilerplateAmount`  | Option to choose the amount of boilerplate code (HTML, LESS and JS examples)  |
@@ -48,8 +49,8 @@ There are tons of options for now :scream:
 | `authorMail`  | Option to define the author for use in the generated package.json, bower.json and JavaScript files  |
 | `authorUrl`  | Option to define the author for use in the generated package.json and bower.json files |
 | `projectHomepage`, `projectRepositoryType`, `projectRepository`  | option to define homepage and repository for use in the generated package.json and bower.json files  |
-| `issueTracker`  | option to define the URL to your issue tracker for use in the generated package.json and bower.json files  |
-| `addDistToVersionControl`  | option to decide whether to add the `dist` directory to version control or include it in `.gitignore` |
+| `issueTracker`  | Option to define the URL to your issue tracker for use in the generated package.json and bower.json files  |
+| `addDistToVersionControl`  | Option to decide whether to add the `dist` directory to version control or include it in `.gitignore` |
 
 Frequent Users, who are tired beeing asked the same questions again and again might use a config file called `.yo-rc.json` like described [here](#--yo-rc).
 
@@ -147,6 +148,7 @@ This file should contain the options which are otherwise prompted by Yeoman. See
   "generator-bootstrap-kickstart": {
     "projectName": "foozy",
     "projectDescription": "boozy",
+    "banner": false,
     "theme": "foozel",
     "boilerplateAmount": "Almost nothing - Just the minimum files and folders",
     "license": "MIT",
