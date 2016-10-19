@@ -45,6 +45,7 @@ script:
   - echo '"projectHomepage":"https://github.com/userName/repository",' >> .yo-rc.json
   - echo '"projectRepositoryType":"git",' >> .yo-rc.json
   - echo '"projectRepository":"git@github.com:userName/repository.git",' >> .yo-rc.json
+  - echo '"banner":false,' >> .yo-rc.json
   - echo '"addDistToVersionControl":false,' >> .yo-rc.json
   - echo '"issueTracker":"https://github.com/userName/repository/issues",' >> .yo-rc.json
   - echo '"boilerplateAmount":"Just a little – Get started with a few example files"' >> .yo-rc.json

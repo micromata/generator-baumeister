@@ -26,6 +26,7 @@ describe('bootstrap-kickstart with default options', function () {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -53,6 +54,10 @@ describe('bootstrap-kickstart with default options', function () {
 			'bower.json',
 			'package.json'
 		]);
+	});
+
+	it('should have an empty string as banner within the Gruntfile', function () {
+		assert.fileContent('Gruntfile.js', /banner: ''/);
 	});
 
 	it('should create dot files', function () {
@@ -338,6 +343,51 @@ describe('bootstrap-kickstart with default options', function () {
 
 });
 
+describe('bootstrap-kickstart with banner', function () {
+
+// Define prompt answers
+	var prompts = {
+		projectName: 'Test this Thingy',
+		projectDescription: 'Just a test.',
+		theme: 'My theme',
+		oldIeSupport: false,
+		customPaths: false,
+		authorName: 'My Name',
+		authorMail: 'name@domain.com',
+		authorUrl: 'http://www.foo.com',
+		license: 'MIT',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		banner: true,
+		addDistToVersionControl: false,
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Just a little – Get started with a few example files'
+	};
+
+	before(function () {
+		return helpers.run(path.join(__dirname, '../app'))
+
+		// Clear the directory and set it as the CWD
+		.inDir(path.join(os.tmpdir(), './temp-test'))
+
+		// Mock options passed in
+		.withOptions({
+			'skip-install': true
+		})
+
+		// Mock the prompt answers
+		.withPrompts(prompts)
+
+		.toPromise();
+	});
+
+	it('should have the message like defined in the template of the Gruntfile', function () {
+		assert.fileContent('Gruntfile.js', /banner: '\/\*! <%= pkg\.title %> - v<%= pkg\.version %>\\n' \+/);
+	});
+});
+
 describe('bootstrap-kickstart with oldIE support', function () {
 
 	// Define prompt answers
@@ -355,6 +405,7 @@ describe('bootstrap-kickstart with oldIE support', function () {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -435,6 +486,7 @@ describe('bootstrap-kickstart with custom output paths', function () {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -485,6 +537,7 @@ describe('bootstrap-kickstart without an open source license', function () {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -550,8 +603,9 @@ describe('bootstrap-kickstart with Apache License, Version 2.0', function () {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		issueTracker: 'https://github.com/userName/repository/issues',
+		banner: false,
 		addDistToVersionControl: false,
+		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
@@ -615,6 +669,7 @@ describe('bootstrap-kickstart with GNU General Public License', function () {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -680,6 +735,7 @@ describe('bootstrap-kickstart with less boilerplate code', function () {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Almost nothing - Just the minimum files and folders'
@@ -777,6 +833,7 @@ describe('bootstrap-kickstart with `dist` added to version control', function ()
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
 		addDistToVersionControl: true,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
