@@ -383,7 +383,7 @@ describe('bootstrap-kickstart with banner', function () {
 		.toPromise();
 	});
 
-	it('should not have an empty string as banner within the Gruntfile', function () {
+	it('should have the message like defined in the template of the Gruntfile', function () {
 		assert.fileContent('Gruntfile.js', /banner: '\/\*! <%= pkg\.title %> - v<%= pkg\.version %>\\n' \+/);
 	});
 });
