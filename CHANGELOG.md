@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 2.4.0 (2016-10-23)
+
+- eef8ec1 - 2016-10-23: Update Travis config
+- e02ab27 - 2016-10-23: Update dependencies of the generator
+- 476ad4b - 2016-10-23: Update _Gruntfile.js to the latest bootstrap kickstart release (#41)
+- c8273d9 - 2016-10-19: Adding an option to get rid of banners in your production files (#39)
+
+
 ## Version 2.3.2 (2016-09-18)
 
 - e230ce4 - 2016-09-18: Fix prompting. `prompt` now returns a promise.
