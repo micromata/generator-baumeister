@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 2.4.1 (2016-10-26)
+
+- a0f33e4 - 2016-10-26: Update the banner
+- 286f95f - 2016-10-23: Move description of banner prompt in README
+
+
 ## Version 2.4.0 (2016-10-23)
 
 - eef8ec1 - 2016-10-23: Update Travis config
