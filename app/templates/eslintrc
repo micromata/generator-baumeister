@@ -1,5 +1,6 @@
 {
-  "extends": "xo",
+  "root": true,
+	"extends": "xo",
   "rules": {
     "padded-blocks": ["off"],
     "operator-assignment": ["off"],
