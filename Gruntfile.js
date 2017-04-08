@@ -22,7 +22,7 @@ module.exports = function (grunt) {
 			]
 		},
 
-		// mocha
+		// Mocha
 		mochaTest: {
 			test: {
 				options: {
@@ -66,7 +66,7 @@ module.exports = function (grunt) {
 			}
 		},
 
-		// watch
+		// Watch
 		watch: {
 			scripts: {
 				files: ['app/**/*.js', 'Gruntfile.js'],

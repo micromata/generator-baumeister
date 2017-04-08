@@ -1,35 +1,35 @@
 'use strict';
 
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
-var superb = require('superb');
-var semver = require('semver');
-var _s = require('underscore.string');
+const Generator = require('yeoman-generator');
+const chalk = require('chalk');
+const yosay = require('yosay');
+const superb = require('superb');
+const semver = require('semver');
+const _s = require('underscore.string');
 
 // Define chalk styles
-var error = chalk.red;
-var info = chalk.yellow.reset;
+const error = chalk.red;
+const info = chalk.yellow.reset;
 
-module.exports = yeoman.Base.extend({
+module.exports = class extends Generator {
 
-	constructor: function () {
-		yeoman.Base.apply(this, arguments);
+	constructor(args, opts) {
+		super(args, opts);
 
 		// This method adds support for a `--yo-rc` flag
 		this.option('yo-rc', {
 			desc: 'Read and apply options from .yo-rc.json and skip prompting',
-			type: 'Boolean',
+			type: Boolean,
 			defaults: false
 		});
-	},
+	}
 
-	initializing: function () {
+	initializing() {
 		this.pkg = require('../package.json');
 		this.skipPrompts = false;
 
 		if (this.options['yo-rc']) {
-			var config = this.config.getAll();
+			const config = this.config.getAll();
 
 			this.log('Read and applied the following config from ' + chalk.yellow('.yo-rc.json:\n'));
 			this.log(config);
@@ -63,9 +63,9 @@ module.exports = yeoman.Base.extend({
 			};
 			this.skipPrompts = true;
 		}
-	},
+	}
 
-	prompting: function () {
+	prompting() {
 		if (!this.skipPrompts) {
 
 			// Have Yeoman greet the user.
@@ -73,7 +73,7 @@ module.exports = yeoman.Base.extend({
 				'Yo, welcome to the ' + superb() + ' ' + chalk.yellow('Bootstrap Kickstart') + ' generator!'
 			));
 
-			var prompts = [
+			const prompts = [
 				{
 					type: 'input',
 					name: 'projectName',
@@ -90,8 +90,8 @@ module.exports = yeoman.Base.extend({
 					type: 'input',
 					name: 'theme',
 					message: 'What would you like to name your Bootstrap theme in the less-files?',
-					validate: function (value) {
-						var returnValue;
+					validate(value) {
+						let returnValue;
 
 						if (value === '') {
 							returnValue = error('Oops. This is used to name a file and a directory and can’t left blank.');
@@ -130,7 +130,7 @@ module.exports = yeoman.Base.extend({
 					name: 'distDirectory',
 					message: 'Target directory for building production ready files',
 					default: 'dist',
-					when: function (answers) {
+					when(answers) {
 						return answers.customPaths;
 					},
 					store: true
@@ -140,7 +140,7 @@ module.exports = yeoman.Base.extend({
 					name: 'docsDirectory',
 					message: 'Target directory for generating the docs',
 					default: 'docs',
-					when: function (answers) {
+					when(answers) {
 						return answers.customPaths;
 					},
 					store: true
@@ -150,7 +150,7 @@ module.exports = yeoman.Base.extend({
 					name: 'reportsDirectory',
 					message: 'Target directory for generating the reports',
 					default: 'reports',
-					when: function (answers) {
+					when(answers) {
 						return answers.customPaths;
 					},
 					store: true
@@ -184,8 +184,8 @@ module.exports = yeoman.Base.extend({
 					name: 'initialVersion',
 					message: 'What initial version should we put in the bower.json and package.json files?',
 					default: '0.0.0',
-					validate: function (value) {
-						var returnValue;
+					validate(value) {
+						let returnValue;
 
 						if (semver.valid(value)) {
 							returnValue = true;
@@ -207,7 +207,7 @@ module.exports = yeoman.Base.extend({
 					type: 'input',
 					name: 'authorMail',
 					message: 'What’s your email address?',
-					when: function (answers) {
+					when(answers) {
 						return answers.additionalInfo;
 					},
 					store: true
@@ -216,7 +216,7 @@ module.exports = yeoman.Base.extend({
 					type: 'input',
 					name: 'projectHomepage',
 					message: 'What’s URL of your projects homepage?',
-					when: function (answers) {
+					when(answers) {
 						return answers.additionalInfo;
 					}
 				},
@@ -225,7 +225,7 @@ module.exports = yeoman.Base.extend({
 					name: 'projectRepositoryType',
 					message: 'What’s the type of your projects repository?',
 					default: 'git',
-					when: function (answers) {
+					when(answers) {
 						return answers.additionalInfo;
 					}
 				},
@@ -233,7 +233,7 @@ module.exports = yeoman.Base.extend({
 					type: 'input',
 					name: 'projectRepository',
 					message: 'What’s the remote URL of your projects repository?',
-					when: function (answers) {
+					when(answers) {
 						return answers.additionalInfo;
 					}
 				},
@@ -255,20 +255,20 @@ module.exports = yeoman.Base.extend({
 					type: 'input',
 					name: 'issueTracker',
 					message: 'What’s the URL of your projects issue tracker?',
-					default: function (answers) {
-						var regex = /(?:git@|https:\/\/)(github.com)(?::|\/{1})(.+).git/ig;
+					default(answers) {
+						const regex = /(?:git@|https:\/\/)(github.com)(?::|\/{1})(.+).git/ig;
 
 						if (answers.projectRepository.match(regex) !== null) {
 							return answers.projectRepository.replace(regex, 'https://$1/$2/issues');
 						}
 					},
-					when: function (answers) {
+					when(answers) {
 						return answers.additionalInfo;
 					}
 				}
 			];
 
-			return this.prompt(prompts).then(function (props) {
+			return this.prompt(prompts).then(props => {
 				this.templateProps = {
 					projectName: props.projectName,
 					name: _s.slugify(props.projectName),
@@ -296,303 +296,288 @@ module.exports = yeoman.Base.extend({
 					boilerplateAmount: props.boilerplateAmount
 				};
 
-			}.bind(this));
+			});
 		}
-	},
+	}
 
-	writing: {
-		packageManagerFiles: function () {
-			this.fs.copyTpl(
-				this.templatePath('_package.json'),
-				this.destinationPath('package.json'), {
-					templateProps: this.templateProps
-				}
-			);
-			this.fs.copyTpl(
-				this.templatePath('_bower.json'),
-				this.destinationPath('bower.json'), {
-					templateProps: this.templateProps
-				}
-			);
-		},
-
-		dotFiles: function () {
-			this.fs.copyTpl(
-				this.templatePath('editorconfig'),
-				this.destinationPath('.editorconfig')
-			);
-			this.fs.copyTpl(
-				this.templatePath('jshintrc'),
-				this.destinationPath('.jshintrc')
-			);
-			this.fs.copyTpl(
-				this.templatePath('eslintrc'),
-				this.destinationPath('.eslintrc')
-			);
-			this.fs.copyTpl(
-				this.templatePath('assets/js/eslintrc'),
-				this.destinationPath('assets/js/.eslintrc')
-			);
-			this.fs.copyTpl(
-				this.templatePath('bowerrc'),
-				this.destinationPath('.bowerrc')
-			);
-			this.fs.copyTpl(
-				this.templatePath('_gitignore'),
-				this.destinationPath('.gitignore'), {
-					templateProps: this.templateProps
-				}
-			);
-			this.fs.copyTpl(
-				this.templatePath('postinstall.js'),
-				this.destinationPath('.postinstall.js')
-			);
-		},
-
-		handlebarsFiles: function () {
-			this.fs.copyTpl(
-				this.templatePath('templates/_default.hbs'),
-				this.destinationPath('templates/default.hbs'), {
-					templateProps: this.templateProps
-				}
-			);
-			this.fs.copyTpl(
-				this.templatePath('templates/helpers/helpers.js'),
-				this.destinationPath('templates/helpers/helpers.js')
-			);
-
-			switch (this.templateProps.boilerplateAmount) {
-				case 'Just a little – Get started with a few example files':
-					this.fs.copyTpl(
-						this.templatePath('partials/footer.hbs'),
-						this.destinationPath('partials/footer.hbs')
-					);
-					this.fs.copyTpl(
-						this.templatePath('partials/navbar.hbs'),
-						this.destinationPath('partials/navbar.hbs')
-					);
-					this.fs.copyTpl(
-						this.templatePath('_index-little-boilerplate.hbs'),
-						this.destinationPath('index.hbs')
-					);
-					this.fs.copyTpl(
-						this.templatePath('_demoElements.hbs'),
-						this.destinationPath('demoElements.hbs')
-					);
-					this.fs.copyTpl(
-						this.templatePath('_stickyFooter.hbs'),
-						this.destinationPath('stickyFooter.hbs')
-					);
-					break;
-				case 'Almost nothing - Just the minimum files and folders':
-					this.fs.copyTpl(
-						this.templatePath('partials/gitkeep'),
-						this.destinationPath('partials/.gitkeep')
-					);
-					this.fs.copyTpl(
-						this.templatePath('_index-no-boilerplate.hbs'),
-						this.destinationPath('index.hbs')
-					);
-					break;
-				default:
-					break;
+	writing() {
+		// Packagemanager files
+		this.fs.copyTpl(
+			this.templatePath('_package.json'),
+			this.destinationPath('package.json'), {
+				templateProps: this.templateProps
 			}
-
-		},
-
-		projectFiles: function () {
-			this.fs.copyTpl(
-				this.templatePath('_README.md'),
-				this.destinationPath('README.md'), {
-					templateProps: this.templateProps
-				}
-			);
-			this.fs.copyTpl(
-				this.templatePath('_Gruntfile.js'),
-				this.destinationPath('Gruntfile.js'), {
-					templateProps: this.templateProps
-				}
-			);
-
-			switch (this.templateProps.license) {
-				case 'MIT':
-					this.fs.copyTpl(
-						this.templatePath('_LICENSE-MIT'),
-						this.destinationPath('LICENSE'), {
-							templateProps: this.templateProps
-						}
-					);
-					break;
-				case 'Apache License, Version 2.0':
-					this.fs.copyTpl(
-						this.templatePath('_LICENSE-APACHE-2.0'),
-						this.destinationPath('LICENSE'), {
-							templateProps: this.templateProps
-						}
-					);
-					break;
-				case 'GNU GPLv3':
-					this.fs.copyTpl(
-						this.templatePath('_LICENSE-GNU'),
-						this.destinationPath('LICENSE'), {
-							templateProps: this.templateProps
-						}
-					);
-					break;
-				case 'All rights reserved':
-					this.fs.copyTpl(
-						this.templatePath('_LICENSE-ALL-RIGHTS-RESERVED'),
-						this.destinationPath('LICENSE'), {
-							templateProps: this.templateProps
-						}
-					);
-					break;
-				default:
-					break;
+		);
+		this.fs.copyTpl(
+			this.templatePath('_bower.json'),
+			this.destinationPath('bower.json'), {
+				templateProps: this.templateProps
 			}
+		);
 
-			this.fs.copyTpl(
-				this.templatePath('humans.txt'),
-				this.destinationPath('humans.txt')
-			);
-			this.fs.copyTpl(
-				this.templatePath('CONTRIBUTING.md'),
-				this.destinationPath('CONTRIBUTING.md')
-			);
-		},
-
-		assets: function () {
-			this.directory(
-				this.templatePath('assets/fonts'),
-				this.destinationPath('assets/fonts')
-			);
-			this.directory(
-				this.templatePath('assets/img'),
-				this.destinationPath('assets/img')
-			);
-
-			switch (this.templateProps.boilerplateAmount) {
-				case 'Just a little – Get started with a few example files':
-					this.fs.copyTpl(
-						this.templatePath('assets/js/_base.js'),
-						this.destinationPath('assets/js/base.js'), {
-							templateProps: this.templateProps
-						}
-					);
-					this.fs.copyTpl(
-						this.templatePath('assets/js/_moduleSkeleton.js'),
-						this.destinationPath('assets/js/moduleSkeleton.js'), {
-							templateProps: this.templateProps
-						}
-					);
-					break;
-				case 'Almost nothing - Just the minimum files and folders':
-					this.fs.copyTpl(
-						this.templatePath('assets/js/_base.js'),
-						this.destinationPath('assets/js/base.js'), {
-							templateProps: this.templateProps
-						}
-					);
-					break;
-				default:
-					break;
+		// Dotfiles
+		this.fs.copyTpl(
+			this.templatePath('editorconfig'),
+			this.destinationPath('.editorconfig')
+		);
+		this.fs.copyTpl(
+			this.templatePath('jshintrc'),
+			this.destinationPath('.jshintrc')
+		);
+		this.fs.copyTpl(
+			this.templatePath('eslintrc'),
+			this.destinationPath('.eslintrc')
+		);
+		this.fs.copyTpl(
+			this.templatePath('assets/js/eslintrc'),
+			this.destinationPath('assets/js/.eslintrc')
+		);
+		this.fs.copyTpl(
+			this.templatePath('bowerrc'),
+			this.destinationPath('.bowerrc')
+		);
+		this.fs.copyTpl(
+			this.templatePath('_gitignore'),
+			this.destinationPath('.gitignore'), {
+				templateProps: this.templateProps
 			}
+		);
+		this.fs.copyTpl(
+			this.templatePath('postinstall.js'),
+			this.destinationPath('.postinstall.js')
+		);
 
-			this.fs.copyTpl(
-				this.templatePath('assets/less/base.less'),
-				this.destinationPath('assets/less/base.less')
-			);
-
-			this.fs.copyTpl(
-				this.templatePath('assets/less/_index.less'),
-				this.destinationPath('assets/less/index.less'), {
-					templateProps: this.templateProps
-				}
-			);
-
-			this.fs.copyTpl(
-				this.templatePath('assets/less/print.less'),
-				this.destinationPath('assets/less/print.less')
-			);
-
-			this.fs.copyTpl(
-				this.templatePath('assets/less/_theme.less'),
-				this.destinationPath('assets/less/' + this.templateProps.theme + '.less'), {
-					templateProps: this.templateProps
-				}
-			);
-
-			if (this.templateProps.boilerplateAmount === 'Just a little – Get started with a few example files') {
-
-				this.fs.copyTpl(
-					this.templatePath('assets/less/_theme/_alerts.less'),
-					this.destinationPath('assets/less/' + this.templateProps.theme + '/alerts.less'), {
-						templateProps: this.templateProps
-					}
-				);
-				this.fs.copyTpl(
-					this.templatePath('assets/less/_theme/_demoElements.less'),
-					this.destinationPath('assets/less/' + this.templateProps.theme + '/demoElements.less'), {
-						templateProps: this.templateProps
-					}
-				);
-				this.fs.copyTpl(
-					this.templatePath('assets/less/_theme/_footer.less'),
-					this.destinationPath('assets/less/' + this.templateProps.theme + '/footer.less'), {
-						templateProps: this.templateProps
-					}
-				);
-				this.fs.copyTpl(
-					this.templatePath('assets/less/_theme/_ribbon.less'),
-					this.destinationPath('assets/less/' + this.templateProps.theme + '/ribbon.less'), {
-						templateProps: this.templateProps
-					}
-				);
-
-				this.fs.copyTpl(
-					this.templatePath('assets/less/_theme/mixins.less'),
-					this.destinationPath('assets/less/' + this.templateProps.theme + '/mixins.less')
-				);
-
-				this.fs.copyTpl(
-					this.templatePath('assets/less/_theme/scaffolding.less'),
-					this.destinationPath('assets/less/' + this.templateProps.theme + '/scaffolding.less')
-				);
+		// Handlebars files
+		this.fs.copyTpl(
+			this.templatePath('templates/_default.hbs'),
+			this.destinationPath('templates/default.hbs'), {
+				templateProps: this.templateProps
 			}
+		);
+		this.fs.copyTpl(
+			this.templatePath('templates/helpers/helpers.js'),
+			this.destinationPath('templates/helpers/helpers.js')
+		);
 
-			this.fs.copyTpl(
-				this.templatePath('assets/less/_theme/testResponsiveHelpers.less'),
-				this.destinationPath('assets/less/' + this.templateProps.theme + '/testResponsiveHelpers.less')
-			);
-
-			this.fs.copyTpl(
-				this.templatePath('assets/less/_theme/variables.less'),
-				this.destinationPath('assets/less/' + this.templateProps.theme + '/variables.less')
-			);
-
-			// this.log('Done with the assets');
+		switch (this.templateProps.boilerplateAmount) {
+			case 'Just a little – Get started with a few example files':
+				this.fs.copyTpl(
+					this.templatePath('partials/footer.hbs'),
+					this.destinationPath('partials/footer.hbs')
+				);
+				this.fs.copyTpl(
+					this.templatePath('partials/navbar.hbs'),
+					this.destinationPath('partials/navbar.hbs')
+				);
+				this.fs.copyTpl(
+					this.templatePath('_index-little-boilerplate.hbs'),
+					this.destinationPath('index.hbs')
+				);
+				this.fs.copyTpl(
+					this.templatePath('_demoElements.hbs'),
+					this.destinationPath('demoElements.hbs')
+				);
+				this.fs.copyTpl(
+					this.templatePath('_stickyFooter.hbs'),
+					this.destinationPath('stickyFooter.hbs')
+				);
+				break;
+			case 'Almost nothing - Just the minimum files and folders':
+				this.fs.copyTpl(
+					this.templatePath('partials/gitkeep'),
+					this.destinationPath('partials/.gitkeep')
+				);
+				this.fs.copyTpl(
+					this.templatePath('_index-no-boilerplate.hbs'),
+					this.destinationPath('index.hbs')
+				);
+				break;
+			default:
+				break;
 		}
 
-	},
+		// Project files
+		this.fs.copyTpl(
+			this.templatePath('_README.md'),
+			this.destinationPath('README.md'), {
+				templateProps: this.templateProps
+			}
+		);
+		this.fs.copyTpl(
+			this.templatePath('_Gruntfile.js'),
+			this.destinationPath('Gruntfile.js'), {
+				templateProps: this.templateProps
+			}
+		);
 
-	install: function () {
-		// this.log('install-1');
+		switch (this.templateProps.license) {
+			case 'MIT':
+				this.fs.copyTpl(
+					this.templatePath('_LICENSE-MIT'),
+					this.destinationPath('LICENSE'), {
+						templateProps: this.templateProps
+					}
+				);
+				break;
+			case 'Apache License, Version 2.0':
+				this.fs.copyTpl(
+					this.templatePath('_LICENSE-APACHE-2.0'),
+					this.destinationPath('LICENSE'), {
+						templateProps: this.templateProps
+					}
+				);
+				break;
+			case 'GNU GPLv3':
+				this.fs.copyTpl(
+					this.templatePath('_LICENSE-GNU'),
+					this.destinationPath('LICENSE'), {
+						templateProps: this.templateProps
+					}
+				);
+				break;
+			case 'All rights reserved':
+				this.fs.copyTpl(
+					this.templatePath('_LICENSE-ALL-RIGHTS-RESERVED'),
+					this.destinationPath('LICENSE'), {
+						templateProps: this.templateProps
+					}
+				);
+				break;
+			default:
+				break;
+		}
+
+		this.fs.copyTpl(
+			this.templatePath('humans.txt'),
+			this.destinationPath('humans.txt')
+		);
+		this.fs.copyTpl(
+			this.templatePath('CONTRIBUTING.md'),
+			this.destinationPath('CONTRIBUTING.md')
+		);
+
+		// Assets
+		this.fs.copy(
+			this.templatePath('assets/fonts'),
+			this.destinationPath('assets/fonts')
+		);
+		this.fs.copy(
+			this.templatePath('assets/img'),
+			this.destinationPath('assets/img')
+		);
+
+		switch (this.templateProps.boilerplateAmount) {
+			case 'Just a little – Get started with a few example files':
+				this.fs.copyTpl(
+					this.templatePath('assets/js/_base.js'),
+					this.destinationPath('assets/js/base.js'), {
+						templateProps: this.templateProps
+					}
+				);
+				this.fs.copyTpl(
+					this.templatePath('assets/js/_moduleSkeleton.js'),
+					this.destinationPath('assets/js/moduleSkeleton.js'), {
+						templateProps: this.templateProps
+					}
+				);
+				break;
+			case 'Almost nothing - Just the minimum files and folders':
+				this.fs.copyTpl(
+					this.templatePath('assets/js/_base.js'),
+					this.destinationPath('assets/js/base.js'), {
+						templateProps: this.templateProps
+					}
+				);
+				break;
+			default:
+				break;
+		}
+
+		this.fs.copyTpl(
+			this.templatePath('assets/less/base.less'),
+			this.destinationPath('assets/less/base.less')
+		);
+
+		this.fs.copyTpl(
+			this.templatePath('assets/less/_index.less'),
+			this.destinationPath('assets/less/index.less'), {
+				templateProps: this.templateProps
+			}
+		);
+
+		this.fs.copyTpl(
+			this.templatePath('assets/less/print.less'),
+			this.destinationPath('assets/less/print.less')
+		);
+
+		this.fs.copyTpl(
+			this.templatePath('assets/less/_theme.less'),
+			this.destinationPath('assets/less/' + this.templateProps.theme + '.less'), {
+				templateProps: this.templateProps
+			}
+		);
+
+		if (this.templateProps.boilerplateAmount === 'Just a little – Get started with a few example files') {
+
+			this.fs.copyTpl(
+				this.templatePath('assets/less/_theme/_alerts.less'),
+				this.destinationPath('assets/less/' + this.templateProps.theme + '/alerts.less'), {
+					templateProps: this.templateProps
+				}
+			);
+			this.fs.copyTpl(
+				this.templatePath('assets/less/_theme/_demoElements.less'),
+				this.destinationPath('assets/less/' + this.templateProps.theme + '/demoElements.less'), {
+					templateProps: this.templateProps
+				}
+			);
+			this.fs.copyTpl(
+				this.templatePath('assets/less/_theme/_footer.less'),
+				this.destinationPath('assets/less/' + this.templateProps.theme + '/footer.less'), {
+					templateProps: this.templateProps
+				}
+			);
+			this.fs.copyTpl(
+				this.templatePath('assets/less/_theme/_ribbon.less'),
+				this.destinationPath('assets/less/' + this.templateProps.theme + '/ribbon.less'), {
+					templateProps: this.templateProps
+				}
+			);
+
+			this.fs.copyTpl(
+				this.templatePath('assets/less/_theme/mixins.less'),
+				this.destinationPath('assets/less/' + this.templateProps.theme + '/mixins.less')
+			);
+
+			this.fs.copyTpl(
+				this.templatePath('assets/less/_theme/scaffolding.less'),
+				this.destinationPath('assets/less/' + this.templateProps.theme + '/scaffolding.less')
+			);
+		}
+
+		this.fs.copyTpl(
+			this.templatePath('assets/less/_theme/testResponsiveHelpers.less'),
+			this.destinationPath('assets/less/' + this.templateProps.theme + '/testResponsiveHelpers.less')
+		);
+
+		this.fs.copyTpl(
+			this.templatePath('assets/less/_theme/variables.less'),
+			this.destinationPath('assets/less/' + this.templateProps.theme + '/variables.less')
+		);
+
+	}
+
+	install() {
 		this.installDependencies({
 			skipInstall: this.options['skip-install']
-			// skipInstall: true
 		});
-		// this.log('install');
-	},
+	}
 
-	end: function () {
-		// this.log('end');
+	end() {
 		this.log(yosay(
 			chalk.red('That’s it!') + ' You’re all set to begin working with Bootstrap ✌(-‿-)✌\n' +
 			'Enter `grunt tasks` to see the available Grunt tasks.'
 		));
-		//
-		// this.log(this.projectName);
-		// this.log(this.projectNameDashed);
-		// this.log(this.oldIeSupport);
+
 	}
-});
+};
