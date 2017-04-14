@@ -51,7 +51,6 @@ describe('bootstrap-kickstart with default options', () => {
 
 	it('should create package manager files', () => {
 		assert.file([
-			'bower.json',
 			'package.json'
 		]);
 	});
@@ -62,7 +61,6 @@ describe('bootstrap-kickstart with default options', () => {
 
 	it('should create dot files', () => {
 		assert.file([
-			'.bowerrc',
 			'.editorconfig',
 			'.gitignore',
 			'.jshintrc',
@@ -161,10 +159,6 @@ describe('bootstrap-kickstart with default options', () => {
 		assert.noFileContent(argShouldNot);
 	});
 
-	it('should have a valid bower.json file', () => {
-		JSON.parse(fs.readFileSync('bower.json'));
-	});
-
 	it('should have a valid package.json file', () => {
 		JSON.parse(fs.readFileSync('package.json'));
 	});
@@ -173,20 +167,16 @@ describe('bootstrap-kickstart with default options', () => {
 		JSON.parse(fs.readFileSync('.jshintrc'));
 	});
 
-	it('should have a valid .bowerrc file', () => {
-		JSON.parse(fs.readFileSync('.bowerrc'));
-	});
-
 	it('should have a .postinstall.js file', () => {
 		assert.file(['.postinstall.js']);
 	});
 
 	it('should not have dependencies to support oldIEs', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
-		bowerJson.should.not.have.propertyByPath('dependencies', 'html5shiv');
-		bowerJson.should.not.have.propertyByPath('dependencies', 'respondJs');
-		bowerJson.should.not.have.propertyByPath('dependencies', 'jquery-placeholder');
-		bowerJson.should.have.propertyByPath('dependencies', 'jquery').containEql('2.2.4');
+		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
+		pkgJson.should.not.have.propertyByPath('dependencies', 'html5shiv');
+		pkgJson.should.not.have.propertyByPath('dependencies', 'respondJs');
+		pkgJson.should.not.have.propertyByPath('dependencies', 'jquery-placeholder');
+		pkgJson.should.have.propertyByPath('dependencies', 'jquery').containEql('2.2.4');
 	});
 
 	it('should not handle oldIE related files within Grunt tasks', () => {
@@ -221,12 +211,6 @@ describe('bootstrap-kickstart with default options', () => {
 		assert.noFileContent([
 			['templates/default.hbs', /<html class="(.+)ie(\d+)">/g]
 		]);
-	});
-
-	it('should render project name and description in bower.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
-		bowerJson.should.have.property('name', _s.slugify(prompts.projectName));
-		bowerJson.should.have.property('description', prompts.projectDescription);
 	});
 
 	it('should render project name and description in package.json', () => {
@@ -274,22 +258,18 @@ describe('bootstrap-kickstart with default options', () => {
 		packageJson.should.not.have.propertyByPath('devDependencies', 'grunt-git');
 	});
 
-	it('should have authors name in bower.json, package.json and LICENSE', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have authors name in package.json and LICENSE', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 		const regex = new RegExp(escapeStringRegexp(prompts.authorName), '');
 
-		bowerJson.should.have.property('authors').match(regex);
 		packageJson.should.have.propertyByPath('author', 'name').eql(prompts.authorName);
 		assert.fileContent('LICENSE', regex);
 	});
 
-	it('should have authors email in bower.json and package.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have authors email in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 		const regex = new RegExp(escapeStringRegexp(prompts.authorMail), '');
 
-		bowerJson.should.have.property('authors').match(regex);
 		packageJson.should.have.propertyByPath('author', 'email').eql(prompts.authorMail);
 	});
 
@@ -307,28 +287,19 @@ describe('bootstrap-kickstart with default options', () => {
 	});
 
 	it('should have a MIT LICENSE', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
 		assert.fileContent('LICENSE', /copy, modify, merge, publish, distribute, sublicense, and\/or sell/);
-		bowerJson.should.have.property('license', prompts.license);
 		packageJson.should.have.property('license', prompts.license);
 	});
 
-	it('should have the initial version number in bower.json and package.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have the initial version number in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
-		bowerJson.should.have.property('version', prompts.initialVersion);
 		packageJson.should.have.property('version', prompts.initialVersion);
 	});
 
-	it('should have the homepage and repository in bower.json and package.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have the homepage and repository in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
-
-		bowerJson.should.have.property('homepage', prompts.projectHomepage);
-		bowerJson.should.have.propertyByPath('repository', 'type').eql(prompts.projectRepositoryType);
-		bowerJson.should.have.propertyByPath('repository', 'url').eql(prompts.projectRepository);
 
 		packageJson.should.have.property('homepage', prompts.projectHomepage);
 		packageJson.should.have.propertyByPath('repository', 'type').eql(prompts.projectRepositoryType);
@@ -428,16 +399,12 @@ describe('bootstrap-kickstart with oldIE support', () => {
 		.toPromise();
 	});
 
-	it('should have a valid bower.json file', () => {
-		JSON.parse(fs.readFileSync('bower.json'));
-	});
-
 	it('should have dependencies to support oldIEs', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
-		bowerJson.should.have.propertyByPath('dependencies', 'html5shiv');
-		bowerJson.should.have.propertyByPath('dependencies', 'respondJs');
-		bowerJson.should.have.propertyByPath('dependencies', 'jquery-placeholder');
-		bowerJson.should.have.propertyByPath('dependencies', 'jquery').containEql('1.12.4');
+		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
+		pkgJson.should.have.propertyByPath('dependencies', 'html5shiv');
+		pkgJson.should.have.propertyByPath('dependencies', 'respondJs');
+		pkgJson.should.have.propertyByPath('dependencies', 'jquery-placeholder');
+		pkgJson.should.have.propertyByPath('dependencies', 'jquery').containEql('1.12.4');
 	});
 
 	it('should handle oldIE related files within Grunt tasks', () => {
@@ -576,11 +543,9 @@ describe('bootstrap-kickstart without an open source license', () => {
 	});
 
 	it('should not have a open source license', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
 		assert.fileContent('LICENSE', /All rights reserved. It is strictly prohibited to copy, redistribute, republish/);
-		bowerJson.should.have.property('license', prompts.license);
 		packageJson.should.have.property('license', prompts.license);
 	});
 
@@ -642,11 +607,9 @@ describe('bootstrap-kickstart with Apache License, Version 2.0', () => {
 	});
 
 	it('should have a Apache license', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
 		assert.fileContent('LICENSE', /Licensed under the Apache License, Version 2.0/);
-		bowerJson.should.have.property('license', prompts.license);
 		packageJson.should.have.property('license', prompts.license);
 	});
 
@@ -708,11 +671,9 @@ describe('bootstrap-kickstart with GNU General Public License', () => {
 	});
 
 	it('should have a GNU General Public License', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
 		assert.fileContent('LICENSE', /GNU General Public License/);
-		bowerJson.should.have.property('license', prompts.license);
 		packageJson.should.have.property('license', prompts.license);
 	});
 
@@ -899,14 +860,12 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 
 	it('should create package manager files', () => {
 		assert.file([
-			'bower.json',
 			'package.json'
 		]);
 	});
 
 	it('should create dot files', () => {
 		assert.file([
-			'.bowerrc',
 			'.editorconfig',
 			'.gitignore',
 			'.jshintrc',
@@ -1005,10 +964,6 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 		assert.noFileContent(argShouldNot);
 	});
 
-	it('should have a valid bower.json file', () => {
-		JSON.parse(fs.readFileSync('bower.json'));
-	});
-
 	it('should have a valid package.json file', () => {
 		JSON.parse(fs.readFileSync('package.json'));
 	});
@@ -1017,20 +972,16 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 		JSON.parse(fs.readFileSync('.jshintrc'));
 	});
 
-	it('should have a valid .bowerrc file', () => {
-		JSON.parse(fs.readFileSync('.bowerrc'));
-	});
-
 	it('should have a .postinstall.js file', () => {
 		assert.file(['.postinstall.js']);
 	});
 
 	it('should not have dependencies to support oldIEs', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
-		bowerJson.should.not.have.propertyByPath('dependencies', 'html5shiv');
-		bowerJson.should.not.have.propertyByPath('dependencies', 'respondJs');
-		bowerJson.should.not.have.propertyByPath('dependencies', 'jquery-placeholder');
-		bowerJson.should.have.propertyByPath('dependencies', 'jquery').containEql('2.2.4');
+		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
+		pkgJson.should.not.have.propertyByPath('dependencies', 'html5shiv');
+		pkgJson.should.not.have.propertyByPath('dependencies', 'respondJs');
+		pkgJson.should.not.have.propertyByPath('dependencies', 'jquery-placeholder');
+		pkgJson.should.have.propertyByPath('dependencies', 'jquery').containEql('2.2.4');
 	});
 
 	it('should not handle oldIE related files within Grunt tasks', () => {
@@ -1065,12 +1016,6 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 		assert.noFileContent([
 			['templates/default.hbs', /<html class="(.+)ie(\d+)">/g]
 		]);
-	});
-
-	it('should render project name and description in bower.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
-		bowerJson.should.have.property('name', _s.slugify(prompts.projectName));
-		bowerJson.should.have.property('description', prompts.projectDescription);
 	});
 
 	it('should render project name and description in package.json', () => {
@@ -1118,22 +1063,18 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 		packageJson.should.not.have.propertyByPath('devDependencies', 'grunt-git');
 	});
 
-	it('should have authors name in bower.json, package.json and LICENSE', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have authors name in package.json and LICENSE', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 		const regex = new RegExp(escapeStringRegexp(prompts.authorName), '');
 
-		bowerJson.should.have.property('authors').match(regex);
 		packageJson.should.have.propertyByPath('author', 'name').eql(prompts.authorName);
 		assert.fileContent('LICENSE', regex);
 	});
 
-	it('should have authors email in bower.json and package.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have authors email in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 		const regex = new RegExp(escapeStringRegexp(prompts.authorMail), '');
 
-		bowerJson.should.have.property('authors').match(regex);
 		packageJson.should.have.propertyByPath('author', 'email').eql(prompts.authorMail);
 	});
 
@@ -1151,28 +1092,19 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 	});
 
 	it('should have a MIT LICENSE', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
 		assert.fileContent('LICENSE', /copy, modify, merge, publish, distribute, sublicense, and\/or sell/);
-		bowerJson.should.have.property('license', prompts.license);
 		packageJson.should.have.property('license', prompts.license);
 	});
 
-	it('should have the initial version number in bower.json and package.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have the initial version number in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
-		bowerJson.should.have.property('version', prompts.initialVersion);
 		packageJson.should.have.property('version', prompts.initialVersion);
 	});
 
-	it('should have the homepage and repository in bower.json and package.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have the homepage and repository in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
-
-		bowerJson.should.have.property('homepage', prompts.projectHomepage);
-		bowerJson.should.have.propertyByPath('repository', 'type').eql(prompts.projectRepositoryType);
-		bowerJson.should.have.propertyByPath('repository', 'url').eql(prompts.projectRepository);
 
 		packageJson.should.have.property('homepage', prompts.projectHomepage);
 		packageJson.should.have.propertyByPath('repository', 'type').eql(prompts.projectRepositoryType);
@@ -1184,5 +1116,4 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 		packageJson.should.have.propertyByPath('bugs', 'url').eql(prompts.issueTracker);
 	});
-
 });

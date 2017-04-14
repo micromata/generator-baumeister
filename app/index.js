@@ -170,7 +170,7 @@ module.exports = class extends Generator {
 				{
 					type: 'input',
 					name: 'authorName',
-					message: 'What’s your Name? ' + info('(used in package.json, bower.json and license)'),
+					message: 'What’s your Name? ' + info('(used in package.json and license)'),
 					store: true
 				},
 				{
@@ -182,7 +182,7 @@ module.exports = class extends Generator {
 				{
 					type: 'input',
 					name: 'initialVersion',
-					message: 'What initial version should we put in the bower.json and package.json files?',
+					message: 'What initial version should we put in the package.json?',
 					default: '0.0.0',
 					validate(value) {
 						let returnValue;
@@ -199,7 +199,7 @@ module.exports = class extends Generator {
 				{
 					type: 'confirm',
 					name: 'additionalInfo',
-					message: 'Do you like to add additional info to bower.json and package.json? ' + info('(email address, projects homepage, repository etc.)'),
+					message: 'Do you like to add additional info to package.json? ' + info('(email address, projects homepage, repository etc.)'),
 					default: true,
 					store: true
 				},
@@ -308,12 +308,6 @@ module.exports = class extends Generator {
 				templateProps: this.templateProps
 			}
 		);
-		this.fs.copyTpl(
-			this.templatePath('_bower.json'),
-			this.destinationPath('bower.json'), {
-				templateProps: this.templateProps
-			}
-		);
 
 		// Dotfiles
 		this.fs.copyTpl(
@@ -331,10 +325,6 @@ module.exports = class extends Generator {
 		this.fs.copyTpl(
 			this.templatePath('assets/js/eslintrc'),
 			this.destinationPath('assets/js/.eslintrc')
-		);
-		this.fs.copyTpl(
-			this.templatePath('bowerrc'),
-			this.destinationPath('.bowerrc')
 		);
 		this.fs.copyTpl(
 			this.templatePath('_gitignore'),

@@ -26,7 +26,7 @@ This project provides:
 - [Setting up your Editor (optional)](#setting-up-your-editor-optional)
 - [Writing Markup (using pages, templates and partials)](#writing-markup-using-pages-templates-and-partials)
 - [File and folder structure of LESS files](#file-and-folder-structure-of-less-files)
-- [Installing and updating external resources with Bower](#installing-and-updating-external-resources-with-bower)
+- [Installing and updating external resources with npm](#installing-and-updating-external-resources-with-npm)
 - [Browser support](#browser-support)
 - [Contributing to this project](#contributing-to-this-project)
 - [License](#license)
@@ -43,12 +43,11 @@ This project provides:
 ## Dependencies
 
 - Node.js
-- Bower
 - Grunt
 
 ### Node.js
 
-The major dependency is [Node.js](http://nodejs.org/) including the Node.js package manager called »npm«. The other depencies can be installed with npm.
+The major dependency is [Node.js](http://nodejs.org/) including the Node.js package manager called »npm«. The other dependencies, like Bootstrap, jQuery and other good stuff, can be installed with npm.
 
 Please enter the following in your terminal if your aren’t sure about the availability of Node.js and npm on your machine:
 
@@ -59,27 +58,6 @@ This should return something like the following in case Node.js and npm is alrea
 	3.3.3
 
 If that isn’t the case you have to install Node.js first. On OS X I strongly recommend installing Node via [Homebrew](http://brew.sh). Not just because it’s easier to switch versions with Homebrew but also because you prevent potential permission problems when running npm.
-
-
-### Bower
-
-Bootstrap, jQuery and other plugins are installed via [Bower](http://bower.io) (»a package manager for the web«). You can check the availability of bower with typing the following into your terminal:
-
-	bower --version
-
-Your terminal should response with the version number of Bower, if Bower is installed properly. Something like:
-
-	1.5.2
-
-Otherwise you have to install Bower first.
-
-#### Installing Bower
-
-Thanks to Node.js and npm installing Bower globally is just this simple one-liner:
-
-	npm install -g bower
-
-Also make sure that Git is installed as some bower packages require it to be fetched and installed.
 
 ### Grunt
 
@@ -103,10 +81,6 @@ and call:
 	npm install
 		
 npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our grunt workflow to `\node_modules`.
-
-Afterwards it will call `bower install` which will look at `bower.json` and install the necessary frontend dependencies needed to build our Bootstrap theme to `\libs`.
-
-See [Installing and updating external ressources with bower](#using-bower) if you’re new to Bower.
 
 ## Grunt Workflow and tasks
 
@@ -181,8 +155,7 @@ Beside that we recommend setting up a project within in your editor if you don�
       "dist",
       "reports",
       "docs",
-      "assets/css",
-      "libs"
+      "assets/css"
     ],
     "file_exclude_patterns": [
       "assets/js/*.min.js",
@@ -439,24 +412,12 @@ There are three files which differ from the regular modules. Please have a look 
 	Holds additional global mixins which are meant to be used across modules.
 - [scaffolding.less](assets/less/theme/scaffolding.less)  
 	Used to define the most generic html elements. 
-
-## Installing and updating external resources with Bower
-
-The following isn’t needed after setting up the project because `bower install` is executed with `npm install`. See [Setting up the project](#setup).
-
-But it’s good to know that you can always install the dependencies needed for your theme by entering the following in the terminal:
-
-	cd path/to/your/checkout/of/bootstrap-kickstart
-	bower install
-
-This places a `/lib` directory (if not already existing) containing the dependencies defined in the `bower.json` in your root directory of the project as mentioned before.
-
-**Important**  
-It might be needed to call `bower install` after dependencies are added and used on a remote repository. Because when doing a `git pull` you won’t get the new dependencies since the `lib` directory is not under version control. This will be adressed with issue [#10](https://github.com/micromata/bootstrap-kickstart/issues/10).
+	
+# Installing and updating external resources with npm	
 
 ### Changing versions of external resources
 
-You can change the version of the external resources by editing the `bower.json` file within the root directory of the project.
+You can change the version of the external resources by editing the `package.json` file within the root directory of the project.
 
 	"dependencies": {
 	  "bootstrap": "~3.2.0",
@@ -469,9 +430,9 @@ You can change the version of the external resources by editing the `bower.json`
 The tilde `~` means: Install the latest version including patch-releases.
 The caret `^` means: Install the latest version including minor-releases.
 
-So `~3.2.0` installed the latest 3.2.x release which is version v3.2.0 in case of Bootstrap right now. So  Bootstrap 3.2.1 will be fetched as soon as it is released when you call `bower update` or `bower install`. But Bower won’t install Bootstrap 3.3.x or later.
+So `~3.2.0` installed the latest 3.2.x release which is version v3.2.0 in case of Bootstrap right now. So  Bootstrap 3.2.1 will be fetched as soon as it is released when you call `npm install`. But npm won’t install Bootstrap 3.3.x or later.
 
-Where `^1.11.1` installed the latest 1.x.x release which is version 1.11.1 in case of jQuery right now. So jQuery 1.11.2 as well as jQuery 1.12.0 will be fetched as soon as it is released when you call `bower update` or `bower install`. But Bower won’t install jQuery 2.x.x or later.
+Where `^1.11.1` installed the latest 1.x.x release which is version 1.11.1 in case of jQuery right now. So jQuery 1.11.2 as well as jQuery 1.12.0 will be fetched as soon as it is released when you call `npm install`. But npm won’t install jQuery 2.x.x or later.
 
 Check <http://semver-ftw.org> for more information about »Semantic Versioning«.
 
@@ -479,32 +440,26 @@ Check <http://semver-ftw.org> for more information about »Semantic Versioning«
 
 Let’s assume you like to add even more responsiveness to your tables as provided by bootstraps `table-responsive` class. This could be accomplished with the awesome [Tablesaw plugins](https://github.com/filamentgroup/tablesaw) by the Filament Group.
 
-This is how you get the files into your `/libs` directory and define the dependency  in the `bower.json` file. 
+This is how you get the files into your `node_modules/` directory and define the dependency in the `package.json` file. 
 
 	cd path/to/your/checkout/of/bootstrap-kickstart
-	bower search tablesaw
+	npm search tablesaw
 		
 This leads to something like:
 
 ````
-Search results:
-
-overthrow git://github.com/filamentgroup/Overthrow
-filament-fixed git://github.com/filamentgroup/fixed-fixed.git
-filament-sticky git://github.com/filamentgroup/fixed-sticky.git
-filament-dialog git://github.com/filamentgroup/dialog.git
-tablesaw git://github.com/filamentgroup/tablesaw.git
-social-count git://github.com/filamentgroup/SocialCount.git
+NAME     DESCRIPTION                             AUTHOR               DATE      
+tablesaw A set of plugins for responsive tables. =filamentgroup-admin… 2017-02-1
 ````
 
-where the string before the url (`tablesaw `) is your key for installation. In our use case you would the do:
+where the `NAME` is your key for installation. In our use case you would the do:
 
-	bower install tablesaw --save
+	npm install tablesaw --save
 
 which will:
 
-- download the latest and greatest version to your `libs` directory
-- Add `"tablesaw": "~0.1.6"` to your `bower.json` 
+- download the latest and greatest version to your `node_modules` directory
+- Add `"tablesaw": "~3.3.0"` to your `package.json` 
 
 ## Browser support
 
