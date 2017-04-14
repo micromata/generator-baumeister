@@ -177,8 +177,8 @@ module.exports = function (grunt) {
 				map: true
 			},
 			dev: {
-				src: 'assets/css/index_raw.css',
-				dest: 'assets/css/index.css'
+				src: 'src/assets/css/index_raw.css',
+				dest: 'src/assets/css/index.css'
 			}
 		},
 
