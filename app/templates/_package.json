@@ -8,6 +8,9 @@
     "email": "<%= templateProps.authorMail %>",
     "url": "<%= templateProps.authorUrl %>"
   },
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "license": "<%= templateProps.license %>",
   "version": "<%= templateProps.initialVersion %>",
   "repository": {

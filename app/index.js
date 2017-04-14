@@ -324,7 +324,7 @@ module.exports = class extends Generator {
 		);
 		this.fs.copyTpl(
 			this.templatePath('eslintrc'),
-			this.destinationPath('.eslintrc')
+			this.destinationPath('.eslintrc.json')
 		);
 		this.fs.copyTpl(
 			this.templatePath('assets/js/eslintrc'),
