@@ -1,5 +1,6 @@
 /**
  * @file  Base JavaScript needed independent of the project
+ * @author <%= templateProps.authorName %> <<%= templateProps.authorMail %>>
  */
 
 /**

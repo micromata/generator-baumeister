@@ -65,8 +65,8 @@ describe('bootstrap-kickstart with default options', () => {
 			'.gitignore',
 			'.babelrc',
 			'.travis.yml',
-			'.eslintrc',
-			'src/app/.eslintrc'
+			'.eslintrc.json',
+			'src/app/.eslintrc.json'
 		]);
 	});
 
@@ -825,8 +825,8 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 		assert.file([
 			'.editorconfig',
 			'.gitignore',
-			'.eslintrc',
-			'src/app/.eslintrc'
+			'.eslintrc.json',
+			'src/app/.eslintrc.json'
 		]);
 	});
 
