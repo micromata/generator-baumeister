@@ -441,7 +441,7 @@ module.exports = function (grunt) {
 				stoponerror: true,
 				relaxerror: ['W005']
 			},
-			files: ['<%= config.server %>/*.html']
+			files: ['<%%= config.server %>/*.html']
 		},
 
 		githooks: {

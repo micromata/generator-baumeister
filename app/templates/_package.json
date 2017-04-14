@@ -18,7 +18,17 @@
     "url": "<%= templateProps.issueTracker %>"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    <% if (templateProps.oldIeSupport == true) { %>
+    "html5shiv": "^3.7.3",
+    "jquery": "1.12.4",
+    "jquery-placeholder": "^2.3.1",
+    "respond.js": "^1.4.2"
+    <% } if (templateProps.oldIeSupport == false) { %>
+    "jquery": "^3.2.1"
+    <% } %>
+  },
   "devDependencies": {
     "babel-preset-env": "^1.2.2",
     "babelify": "^7.3.0",
@@ -84,9 +94,10 @@
       "bootstrap"
     ],
     "includeStaticFiles": [
-      "bootstrap/fonts/**/*",
+      "bootstrap/fonts/**/*"<% if(templateProps.oldIeSupport) { %>,
       "html5shiv/dist/html5shiv-printshiv.min.js",
       "respond.js/dest/respond.min.js"
+      <% } %>
     ]
   }
 }

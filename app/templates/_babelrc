@@ -1,0 +1,3 @@
+{
+	"presets": ["env"] /* TODO write test case for file */
+}

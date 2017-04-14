@@ -311,12 +311,16 @@ module.exports = class extends Generator {
 
 		// Dotfiles
 		this.fs.copyTpl(
-			this.templatePath('editorconfig'),
-			this.destinationPath('.editorconfig')
+			this.templatePath('_babelrc'),
+			this.destinationPath('.babelrc')
 		);
 		this.fs.copyTpl(
-			this.templatePath('jshintrc'),
-			this.destinationPath('.jshintrc')
+			this.templatePath('_travis.yml'),
+			this.destinationPath('.travis.yml')
+		);
+		this.fs.copyTpl(
+			this.templatePath('editorconfig'),
+			this.destinationPath('.editorconfig')
 		);
 		this.fs.copyTpl(
 			this.templatePath('eslintrc'),
@@ -324,7 +328,7 @@ module.exports = class extends Generator {
 		);
 		this.fs.copyTpl(
 			this.templatePath('assets/js/eslintrc'),
-			this.destinationPath('assets/js/.eslintrc')
+			this.destinationPath('src/assets/js/.eslintrc')
 		);
 		this.fs.copyTpl(
 			this.templatePath('_gitignore'),
@@ -340,46 +344,46 @@ module.exports = class extends Generator {
 		// Handlebars files
 		this.fs.copyTpl(
 			this.templatePath('templates/_default.hbs'),
-			this.destinationPath('templates/default.hbs'), {
+			this.destinationPath('src/templates/default.hbs'), {
 				templateProps: this.templateProps
 			}
 		);
 		this.fs.copyTpl(
 			this.templatePath('templates/helpers/helpers.js'),
-			this.destinationPath('templates/helpers/helpers.js')
+			this.destinationPath('src/templates/helpers/helpers.js')
 		);
 
 		switch (this.templateProps.boilerplateAmount) {
 			case 'Just a little – Get started with a few example files':
 				this.fs.copyTpl(
 					this.templatePath('partials/footer.hbs'),
-					this.destinationPath('partials/footer.hbs')
+					this.destinationPath('src/partials/footer.hbs')
 				);
 				this.fs.copyTpl(
 					this.templatePath('partials/navbar.hbs'),
-					this.destinationPath('partials/navbar.hbs')
+					this.destinationPath('src/partials/navbar.hbs')
 				);
 				this.fs.copyTpl(
 					this.templatePath('_index-little-boilerplate.hbs'),
-					this.destinationPath('index.hbs')
+					this.destinationPath('src/index.hbs')
 				);
 				this.fs.copyTpl(
 					this.templatePath('_demoElements.hbs'),
-					this.destinationPath('demoElements.hbs')
+					this.destinationPath('src/demoElements.hbs')
 				);
 				this.fs.copyTpl(
 					this.templatePath('_stickyFooter.hbs'),
-					this.destinationPath('stickyFooter.hbs')
+					this.destinationPath('src/stickyFooter.hbs')
 				);
 				break;
 			case 'Almost nothing - Just the minimum files and folders':
 				this.fs.copyTpl(
 					this.templatePath('partials/gitkeep'),
-					this.destinationPath('partials/.gitkeep')
+					this.destinationPath('src/partials/.gitkeep')
 				);
 				this.fs.copyTpl(
 					this.templatePath('_index-no-boilerplate.hbs'),
-					this.destinationPath('index.hbs')
+					this.destinationPath('src/index.hbs')
 				);
 				break;
 			default:
@@ -449,60 +453,41 @@ module.exports = class extends Generator {
 		// Assets
 		this.fs.copy(
 			this.templatePath('assets/fonts'),
-			this.destinationPath('assets/fonts')
+			this.destinationPath('src/assets/fonts')
 		);
 		this.fs.copy(
 			this.templatePath('assets/img'),
-			this.destinationPath('assets/img')
+			this.destinationPath('src/assets/img')
 		);
-
-		switch (this.templateProps.boilerplateAmount) {
-			case 'Just a little – Get started with a few example files':
-				this.fs.copyTpl(
-					this.templatePath('assets/js/_base.js'),
-					this.destinationPath('assets/js/base.js'), {
-						templateProps: this.templateProps
-					}
-				);
-				this.fs.copyTpl(
-					this.templatePath('assets/js/_moduleSkeleton.js'),
-					this.destinationPath('assets/js/moduleSkeleton.js'), {
-						templateProps: this.templateProps
-					}
-				);
-				break;
-			case 'Almost nothing - Just the minimum files and folders':
-				this.fs.copyTpl(
-					this.templatePath('assets/js/_base.js'),
-					this.destinationPath('assets/js/base.js'), {
-						templateProps: this.templateProps
-					}
-				);
-				break;
-			default:
-				break;
-		}
-
 		this.fs.copyTpl(
-			this.templatePath('assets/less/base.less'),
-			this.destinationPath('assets/less/base.less')
-		);
-
-		this.fs.copyTpl(
-			this.templatePath('assets/less/_index.less'),
-			this.destinationPath('assets/less/index.less'), {
+			this.templatePath('assets/js/_base.js'),
+			this.destinationPath('src/app/base.js'), {
 				templateProps: this.templateProps
 			}
 		);
-
+		this.fs.copyTpl(
+			this.templatePath('assets/js/_index.js'),
+			this.destinationPath('src/app/index.js'), {
+				templateProps: this.templateProps
+			}
+		);
+		this.fs.copyTpl(
+			this.templatePath('assets/less/base.less'),
+			this.destinationPath('src/assets/less/base.less')
+		);
+		this.fs.copyTpl(
+			this.templatePath('assets/less/_index.less'),
+			this.destinationPath('src/assets/less/index.less'), {
+				templateProps: this.templateProps
+			}
+		);
 		this.fs.copyTpl(
 			this.templatePath('assets/less/print.less'),
-			this.destinationPath('assets/less/print.less')
+			this.destinationPath('src/assets/less/print.less')
 		);
-
 		this.fs.copyTpl(
 			this.templatePath('assets/less/_theme.less'),
-			this.destinationPath('assets/less/' + this.templateProps.theme + '.less'), {
+			this.destinationPath('src/assets/less/' + this.templateProps.theme + '.less'), {
 				templateProps: this.templateProps
 			}
 		);
@@ -511,48 +496,46 @@ module.exports = class extends Generator {
 
 			this.fs.copyTpl(
 				this.templatePath('assets/less/_theme/_alerts.less'),
-				this.destinationPath('assets/less/' + this.templateProps.theme + '/alerts.less'), {
+				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/alerts.less'), {
 					templateProps: this.templateProps
 				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('assets/less/_theme/_demoElements.less'),
-				this.destinationPath('assets/less/' + this.templateProps.theme + '/demoElements.less'), {
+				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/demoElements.less'), {
 					templateProps: this.templateProps
 				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('assets/less/_theme/_footer.less'),
-				this.destinationPath('assets/less/' + this.templateProps.theme + '/footer.less'), {
+				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/footer.less'), {
 					templateProps: this.templateProps
 				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('assets/less/_theme/_ribbon.less'),
-				this.destinationPath('assets/less/' + this.templateProps.theme + '/ribbon.less'), {
+				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/ribbon.less'), {
 					templateProps: this.templateProps
 				}
 			);
-
 			this.fs.copyTpl(
 				this.templatePath('assets/less/_theme/mixins.less'),
-				this.destinationPath('assets/less/' + this.templateProps.theme + '/mixins.less')
+				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/mixins.less')
 			);
 
 			this.fs.copyTpl(
 				this.templatePath('assets/less/_theme/scaffolding.less'),
-				this.destinationPath('assets/less/' + this.templateProps.theme + '/scaffolding.less')
+				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/scaffolding.less')
 			);
 		}
 
 		this.fs.copyTpl(
 			this.templatePath('assets/less/_theme/testResponsiveHelpers.less'),
-			this.destinationPath('assets/less/' + this.templateProps.theme + '/testResponsiveHelpers.less')
+			this.destinationPath('src/assets/less/' + this.templateProps.theme + '/testResponsiveHelpers.less')
 		);
-
 		this.fs.copyTpl(
 			this.templatePath('assets/less/_theme/variables.less'),
-			this.destinationPath('assets/less/' + this.templateProps.theme + '/variables.less')
+			this.destinationPath('src/assets/less/' + this.templateProps.theme + '/variables.less')
 		);
 
 	}

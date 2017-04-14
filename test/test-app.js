@@ -63,9 +63,10 @@ describe('bootstrap-kickstart with default options', () => {
 		assert.file([
 			'.editorconfig',
 			'.gitignore',
-			'.jshintrc',
+			'.babelrc',
+			'.travis.yml',
 			'.eslintrc',
-			'assets/js/.eslintrc'
+			'src/assets/js/.eslintrc'
 		]);
 	});
 
@@ -77,13 +78,13 @@ describe('bootstrap-kickstart with default options', () => {
 
 	it('should create handlebars files', () => {
 		assert.file([
-			'index.hbs',
-			'stickyFooter.hbs',
-			'demoElements.hbs',
-			'templates/default.hbs',
-			'templates/helpers/helpers.js',
-			'partials/footer.hbs',
-			'partials/navbar.hbs'
+			'src/index.hbs',
+			'src/stickyFooter.hbs',
+			'src/demoElements.hbs',
+			'src/templates/default.hbs',
+			'src/templates/helpers/helpers.js',
+			'src/partials/footer.hbs',
+			'src/partials/navbar.hbs'
 		]);
 	});
 
@@ -99,72 +100,52 @@ describe('bootstrap-kickstart with default options', () => {
 
 	it('should create assets', () => {
 		assert.file([
-			'assets',
-			'assets/fonts',
-			'assets/img',
-			'assets/js/base.js',
-			'assets/js/moduleSkeleton.js',
-			'assets/less/base.less',
-			'assets/less/index.less',
-			'assets/less/print.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/testResponsiveHelpers.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/variables.less'
+			'src/assets',
+			'src/assets/fonts',
+			'src/assets/img',
+			'src/app/base.js',
+			'src/app/index.js',
+			'src/assets/less/base.less',
+			'src/assets/less/index.less',
+			'src/assets/less/print.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/testResponsiveHelpers.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/variables.less'
 
 		]);
 	});
 
 	it('should import all LESS files within ' + _s.slugify(prompts.theme) + '.less file', () => {
 		assert.fileContent([
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /variables.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /testResponsiveHelpers.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/]
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /variables.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /testResponsiveHelpers.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/]
 		]);
 	});
 
 	it('should render author name and email within the comments of JavaScript files', () => {
 		const regex = new RegExp(escapeStringRegexp('@author ' + prompts.authorName + ' <' + prompts.authorMail + '>'), '');
 		const arg = [
-			['assets/js/base.js', regex],
-			['assets/js/moduleSkeleton.js', regex]
+			['src/app/base.js', regex],
+			['src/app/index.js', regex]
 		];
 		assert.fileContent(arg);
 	});
 
-	it('should set the namespace within JavaScript files according to prompted project name', () => {
-		const regexShould = new RegExp(escapeStringRegexp('@namespace ' + _s.camelize(_s.slugify(prompts.projectName))), '');
-		const argShould = [
-			['assets/js/base.js', regexShould],
-			['assets/js/moduleSkeleton.js', regexShould]
-		];
-		const regexShouldNot = /kickstarter/;
-		const argShouldNot = [
-			['assets/js/base.js', regexShouldNot],
-			['assets/js/moduleSkeleton.js', regexShouldNot]
-		];
-
-		assert.fileContent(argShould);
-		assert.noFileContent(argShouldNot);
-	});
-
 	it('should have a valid package.json file', () => {
 		JSON.parse(fs.readFileSync('package.json'));
-	});
-
-	it('should have a valid .jshintrc file', () => {
-		JSON.parse(fs.readFileSync('.jshintrc'));
 	});
 
 	it('should have a .postinstall.js file', () => {
@@ -176,40 +157,38 @@ describe('bootstrap-kickstart with default options', () => {
 		pkgJson.should.not.have.propertyByPath('dependencies', 'html5shiv');
 		pkgJson.should.not.have.propertyByPath('dependencies', 'respondJs');
 		pkgJson.should.not.have.propertyByPath('dependencies', 'jquery-placeholder');
-		pkgJson.should.have.propertyByPath('dependencies', 'jquery').containEql('2.2.4');
+		pkgJson.should.have.propertyByPath('dependencies', 'jquery').containEql('3.2.1');
 	});
 
-	it('should not handle oldIE related files within Grunt tasks', () => {
-		assert.noFileContent([
-			['Gruntfile.js', /html5shiv/],
-			['Gruntfile.js', /respondJs/],
-			['Gruntfile.js', /jquery-placeholder/]
-		]);
+	it('should not handle oldIE related files within package.json', () => {
+		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
+		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('html5shiv/dist/html5shiv-printshiv.min.js') === -1);
+		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('respond.js/dest/respond.min.js') === -1);
 	});
 
 	it('should not reference oldIE related files within HTML files', () => {
 		assert.noFileContent([
-			['templates/default.hbs', /html5shiv/],
-			['templates/default.hbs', /respondJs/],
-			['templates/default.hbs', /jquery-placeholder/]
+			['src/templates/default.hbs', /html5shiv/],
+			['src/templates/default.hbs', /respondJs/],
+			['src/templates/default.hbs', /jquery-placeholder/]
 		]);
 	});
 
 	it('should reference module skeleton in default template', () => {
 		assert.fileContent([
-			['templates/default.hbs', /moduleSkeleton.js/]
+			['src/templates/default.hbs', /moduleSkeleton.js/]
 		]);
 	});
 
 	it('should not include »browsehappy« message', () => {
 		assert.noFileContent([
-			['templates/default.hbs', /browsehappy/]
+			['src/templates/default.hbs', /browsehappy/]
 		]);
 	});
 
 	it('should not include conditional classes to address oldIEs', () => {
 		assert.noFileContent([
-			['templates/default.hbs', /<html class="(.+)ie(\d+)">/g]
+			['src/templates/default.hbs', /<html class="(.+)ie(\d+)">/g]
 		]);
 	});
 
@@ -229,12 +208,12 @@ describe('bootstrap-kickstart with default options', () => {
 
 	it('should render project name in HTML files', () => {
 		const regex = new RegExp(escapeStringRegexp(_s.titleize(prompts.projectName)), '');
-		assert.fileContent('templates/default.hbs', regex);
+		assert.fileContent('src/templates/default.hbs', regex);
 	});
 
 	it('should render author name within the meta tags of HTML files', () => {
 		const regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '" />'), '');
-		assert.fileContent('templates/default.hbs', regex);
+		assert.fileContent('src/templates/default.hbs', regex);
 	});
 
 	it('should have the default output paths within the Gruntfile', () => {
@@ -268,7 +247,6 @@ describe('bootstrap-kickstart with default options', () => {
 
 	it('should have authors email in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
-		const regex = new RegExp(escapeStringRegexp(prompts.authorMail), '');
 
 		packageJson.should.have.propertyByPath('author', 'email').eql(prompts.authorMail);
 	});
@@ -402,33 +380,31 @@ describe('bootstrap-kickstart with oldIE support', () => {
 	it('should have dependencies to support oldIEs', () => {
 		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
 		pkgJson.should.have.propertyByPath('dependencies', 'html5shiv');
-		pkgJson.should.have.propertyByPath('dependencies', 'respondJs');
+		pkgJson.should.have.propertyByPath('dependencies', 'respond.js');
 		pkgJson.should.have.propertyByPath('dependencies', 'jquery-placeholder');
 		pkgJson.should.have.propertyByPath('dependencies', 'jquery').containEql('1.12.4');
 	});
 
-	it('should handle oldIE related files within Grunt tasks', () => {
-		assert.fileContent([
-			['Gruntfile.js', /html5shiv/],
-			['Gruntfile.js', /respondJs/],
-			['Gruntfile.js', /jquery-placeholder/]
-		]);
+	it('should handle oldIE related files within package.json', () => {
+		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
+		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('html5shiv/dist/html5shiv-printshiv.min.js') !== -1);
+		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('respond.js/dest/respond.min.js') !== -1);
 	});
 
 	it('should reference oldIE related files within HTML files', () => {
 		assert.fileContent([
-			['templates/default.hbs', /html5shiv/],
-			['templates/default.hbs', /respondJs/],
-			['templates/default.hbs', /jquery-placeholder/]
+			['src/templates/default.hbs', /html5shiv/],
+			['src/templates/default.hbs', /respondJs/],
+			['src/templates/default.hbs', /jquery-placeholder/]
 		]);
 	});
 
 	it('should include »browsehappy« message', () => {
-		assert.fileContent('templates/default.hbs', /browsehappy/);
+		assert.fileContent('src/templates/default.hbs', /browsehappy/);
 	});
 
 	it('should include conditional classes to address oldIEs', () => {
-		assert.fileContent('templates/default.hbs', /<html class="(.+)ie(\d+)">/g);
+		assert.fileContent('src/templates/default.hbs', /<html class="(.+)ie(\d+)">/g);
 	});
 
 });
@@ -721,57 +697,44 @@ describe('bootstrap-kickstart with less boilerplate code', () => {
 
 	it('should create just the essential handlebars files', () => {
 		assert.file([
-			'index.hbs',
-			'templates/default.hbs',
-			'templates/helpers/helpers.js',
-			'partials/.gitkeep'
+			'src/index.hbs',
+			'src/templates/default.hbs',
+			'src/templates/helpers/helpers.js',
+			'src/partials/.gitkeep'
 		]);
 		assert.noFile([
-			'stickyFooter.hbs',
-			'demoElements.hbs',
-			'partials/footer.hbs',
-			'partials/navbar.hbs'
+			'src/stickyFooter.hbs',
+			'src/demoElements.hbs',
+			'src/partials/footer.hbs',
+			'src/partials/navbar.hbs'
 		]);
 	});
 
 	it('should not include navigation and content in index.hbs', () => {
 		assert.noFileContent([
-			['index.hbs', /navbar|<p/g]
-		]);
-	});
-
-	it('should not reference module skeleton in default template', () => {
-		assert.noFileContent([
-			['templates/default.hbs', /moduleSkeleton.js/]
-		]);
-	});
-
-	it('should create just a single JavaScript file (base.js)', () => {
-		assert.file(['assets/js/base.js']);
-		assert.noFile([
-			'assets/js/moduleSkeleton.js'
+			['src/index.hbs', /navbar|<p/g]
 		]);
 	});
 
 	it('should create just the essential LESS files', () => {
 		assert.noFile([
-			'assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less'
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less'
 		]);
 	});
 
 	it('should only import the essential LESS files within ' + _s.slugify(prompts.theme) + '.less file', () => {
 		assert.noFileContent([
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/]
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/]
 		]);
 	});
 
@@ -868,9 +831,8 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 		assert.file([
 			'.editorconfig',
 			'.gitignore',
-			'.jshintrc',
 			'.eslintrc',
-			'assets/js/.eslintrc'
+			'src/assets/js/.eslintrc'
 		]);
 	});
 
@@ -882,13 +844,13 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 
 	it('should create handlebars files', () => {
 		assert.file([
-			'index.hbs',
-			'stickyFooter.hbs',
-			'demoElements.hbs',
-			'templates/default.hbs',
-			'templates/helpers/helpers.js',
-			'partials/footer.hbs',
-			'partials/navbar.hbs'
+			'src/index.hbs',
+			'src/stickyFooter.hbs',
+			'src/demoElements.hbs',
+			'src/templates/default.hbs',
+			'src/templates/helpers/helpers.js',
+			'src/partials/footer.hbs',
+			'src/partials/navbar.hbs'
 		]);
 	});
 
@@ -904,72 +866,52 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 
 	it('should create assets', () => {
 		assert.file([
-			'assets',
-			'assets/fonts',
-			'assets/img',
-			'assets/js/base.js',
-			'assets/js/moduleSkeleton.js',
-			'assets/less/base.less',
-			'assets/less/index.less',
-			'assets/less/print.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/testResponsiveHelpers.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/variables.less'
+			'src/assets',
+			'src/assets/fonts',
+			'src/assets/img',
+			'src/app/base.js',
+			'src/app/index.js',
+			'src/assets/less/base.less',
+			'src/assets/less/index.less',
+			'src/assets/less/print.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/testResponsiveHelpers.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/variables.less'
 
 		]);
 	});
 
 	it('should import all LESS files within ' + _s.slugify(prompts.theme) + '.less file', () => {
 		assert.fileContent([
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /variables.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /testResponsiveHelpers.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/]
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /variables.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /testResponsiveHelpers.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/]
 		]);
 	});
 
 	it('should render author name and email within the comments of JavaScript files', () => {
 		const regex = new RegExp(escapeStringRegexp('@author ' + prompts.authorName + ' <' + prompts.authorMail + '>'), '');
 		const arg = [
-			['assets/js/base.js', regex],
-			['assets/js/moduleSkeleton.js', regex]
+			['src/app/base.js', regex],
+			['src/app/index.js', regex]
 		];
 		assert.fileContent(arg);
 	});
 
-	it('should set the namespace within JavaScript files according to prompted project name', () => {
-		const regexShould = new RegExp(escapeStringRegexp('@namespace ' + _s.camelize(_s.slugify(prompts.projectName))), '');
-		const argShould = [
-			['assets/js/base.js', regexShould],
-			['assets/js/moduleSkeleton.js', regexShould]
-		];
-		const regexShouldNot = /kickstarter/;
-		const argShouldNot = [
-			['assets/js/base.js', regexShouldNot],
-			['assets/js/moduleSkeleton.js', regexShouldNot]
-		];
-
-		assert.fileContent(argShould);
-		assert.noFileContent(argShouldNot);
-	});
-
 	it('should have a valid package.json file', () => {
 		JSON.parse(fs.readFileSync('package.json'));
-	});
-
-	it('should have a valid .jshintrc file', () => {
-		JSON.parse(fs.readFileSync('.jshintrc'));
 	});
 
 	it('should have a .postinstall.js file', () => {
@@ -981,40 +923,32 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 		pkgJson.should.not.have.propertyByPath('dependencies', 'html5shiv');
 		pkgJson.should.not.have.propertyByPath('dependencies', 'respondJs');
 		pkgJson.should.not.have.propertyByPath('dependencies', 'jquery-placeholder');
-		pkgJson.should.have.propertyByPath('dependencies', 'jquery').containEql('2.2.4');
+		pkgJson.should.have.propertyByPath('dependencies', 'jquery').containEql('3.2.1');
 	});
 
-	it('should not handle oldIE related files within Grunt tasks', () => {
-		assert.noFileContent([
-			['Gruntfile.js', /html5shiv/],
-			['Gruntfile.js', /respondJs/],
-			['Gruntfile.js', /jquery-placeholder/]
-		]);
+	it('should not handle oldIE related files within package.json', () => {
+		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
+		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('html5shiv/dist/html5shiv-printshiv.min.js') === -1);
+		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('respond.js/dest/respond.min.js') === -1);
 	});
 
 	it('should not reference oldIE related files within HTML files', () => {
 		assert.noFileContent([
-			['templates/default.hbs', /html5shiv/],
-			['templates/default.hbs', /respondJs/],
-			['templates/default.hbs', /jquery-placeholder/]
-		]);
-	});
-
-	it('should reference module skeleton in default template', () => {
-		assert.fileContent([
-			['templates/default.hbs', /moduleSkeleton.js/]
+			['src/templates/default.hbs', /html5shiv/],
+			['src/templates/default.hbs', /respondJs/],
+			['src/templates/default.hbs', /jquery-placeholder/]
 		]);
 	});
 
 	it('should not include »browsehappy« message', () => {
 		assert.noFileContent([
-			['templates/default.hbs', /browsehappy/]
+			['src/templates/default.hbs', /browsehappy/]
 		]);
 	});
 
 	it('should not include conditional classes to address oldIEs', () => {
 		assert.noFileContent([
-			['templates/default.hbs', /<html class="(.+)ie(\d+)">/g]
+			['src/templates/default.hbs', /<html class="(.+)ie(\d+)">/g]
 		]);
 	});
 
@@ -1034,12 +968,12 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 
 	it('should render project name in HTML files', () => {
 		const regex = new RegExp(escapeStringRegexp(_s.titleize(prompts.projectName)), '');
-		assert.fileContent('templates/default.hbs', regex);
+		assert.fileContent('src/templates/default.hbs', regex);
 	});
 
 	it('should render author name within the meta tags of HTML files', () => {
 		const regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '" />'), '');
-		assert.fileContent('templates/default.hbs', regex);
+		assert.fileContent('src/templates/default.hbs', regex);
 	});
 
 	it('should have the default output paths within the Gruntfile', () => {
@@ -1073,7 +1007,6 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 
 	it('should have authors email in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
-		const regex = new RegExp(escapeStringRegexp(prompts.authorMail), '');
 
 		packageJson.should.have.propertyByPath('author', 'email').eql(prompts.authorMail);
 	});
