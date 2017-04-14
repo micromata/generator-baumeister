@@ -2,7 +2,7 @@
 
 var getTasks = require('load-grunt-tasks');
 var displayTime = require('time-grunt');
-var templateHelpers = require('./templates/helpers/helpers.js');
+var templateHelpers = require('./src/templates/helpers/helpers.js');
 
 /*
  * Returns a list of all css files defined in the property bundleCSS of package.json
@@ -50,7 +50,7 @@ module.exports = function (grunt) {
 			' * <%%= pkg.author.email %>\n' +
 			' * Copyright ©<%%= grunt.template.today("yyyy") %> <%%= pkg.author.name %>\n' +
 			' * <%%= grunt.template.today("yyyy-mm-dd") %>\n' +
-			' */\n<% } %>',
+			' */\n<% } %>'
 		},
 
 		// List available tasks
@@ -148,7 +148,7 @@ module.exports = function (grunt) {
 			}
 		},
 
-		// less
+		// Less
 		less: {
 			dev: {
 				options: {
@@ -230,11 +230,11 @@ module.exports = function (grunt) {
 				timeout: 2000,
 				ignore: [
 					/\w\.in/,
-					/(#|\.)navbar(\-[a-zA-Z]+)?/,
-					/(#|\.)modal(\-[a-zA-Z]+)?/,
-					/(#|\.)dropdown(\-[a-zA-Z]+)?/,
-					/(#|\.)carousel(\-[a-zA-Z]+)?/,
-					/(#|\.)tooltip(\-[a-zA-Z]+)?/,
+					/(#|\.)navbar(-[a-zA-Z]+)?/,
+					/(#|\.)modal(-[a-zA-Z]+)?/,
+					/(#|\.)dropdown(-[a-zA-Z]+)?/,
+					/(#|\.)carousel(-[a-zA-Z]+)?/,
+					/(#|\.)tooltip(-[a-zA-Z]+)?/,
 					/(#|\.)(open)/,
 					'.fade',
 					'.collapse',
@@ -454,13 +454,13 @@ module.exports = function (grunt) {
 				args: '--no-color'
 			},
 			install: {
-				'post-merge': 'shell:npminstall'
+				'post-merge': 'shell:yarninstall'
 			}
 		},
 
 		shell: {
-			npminstall: {
-				command: 'npm install'
+			yarninstall: {
+				command: 'yarn install'
 			}
 		},
 

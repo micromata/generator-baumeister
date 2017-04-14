@@ -328,7 +328,7 @@ module.exports = class extends Generator {
 		);
 		this.fs.copyTpl(
 			this.templatePath('assets/js/eslintrc'),
-			this.destinationPath('src/assets/js/.eslintrc')
+			this.destinationPath('src/app/.eslintrc')
 		);
 		this.fs.copyTpl(
 			this.templatePath('_gitignore'),
@@ -542,7 +542,15 @@ module.exports = class extends Generator {
 
 	install() {
 		this.installDependencies({
-			skipInstall: this.options['skip-install']
+			skipInstall: this.options['skip-install'],
+			npm: false,
+			bower: false,
+			yarn: true,
+			callback: error => {
+				if (error) {
+					this.log('… or alternatively run ' + chalk.yellow('npm install') + ' instead.');
+				}
+			}
 		});
 	}
 
@@ -551,6 +559,5 @@ module.exports = class extends Generator {
 			chalk.red('That’s it!') + ' You’re all set to begin working with Bootstrap ✌(-‿-)✌\n' +
 			'Enter `grunt tasks` to see the available Grunt tasks.'
 		));
-
 	}
 };
