@@ -182,7 +182,7 @@ describe('bootstrap-kickstart with default options', () => {
 
 	it('should not include conditional classes to address oldIEs', () => {
 		assert.noFileContent([
-			['src/templates/default.hbs', /<html class="(.+)ie(\d+)">/g]
+			['src/templates/default.hbs', /<html lang="en" class="(.+)ie(\d+)">/g]
 		]);
 	});
 
@@ -398,7 +398,7 @@ describe('bootstrap-kickstart with oldIE support', () => {
 	});
 
 	it('should include conditional classes to address oldIEs', () => {
-		assert.fileContent('src/templates/default.hbs', /<html class="(.+)ie(\d+)">/g);
+		assert.fileContent('src/templates/default.hbs', /<html lang="en" class="(.+)ie(\d+)">/g);
 	});
 
 });
@@ -942,7 +942,7 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 
 	it('should not include conditional classes to address oldIEs', () => {
 		assert.noFileContent([
-			['src/templates/default.hbs', /<html class="(.+)ie(\d+)">/g]
+			['src/templates/default.hbs', /<html lang="en" class="(.+)ie(\d+)">/g]
 		]);
 	});
 
