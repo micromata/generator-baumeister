@@ -36,23 +36,23 @@ There are tons of options for now :scream:
 
 | Option  | Description |
 | ------------- | ------------- |
-| `oldIeSupport`  | Whether to make use of »html5shiv«, »respondJs« and »jquery-placeholder« and conditional classes  |
-| `projectName` | Used in the generated README, package.json and bower.json  |
-| `projectDescription`  | Used in the generated Readme.md, package.json and bower.json  |
+| `oldIeSupport`  | Whether to make use of »html5shiv«, »respond.js«, »jquery-placeholder« and conditional classes  |
+| `projectName` | Used in the generated README and package.json  |
+| `projectDescription`  | Used in the generated README and package.json  |
 | `theme`  | Name of your Bootstrap theme. Used to name a file and a folder within the LESS directory  |
 | `customPaths`  | Option to define the output paths `dist`, `docs`, `reports`  |
 | `boilerplateAmount`  | Option to choose the amount of boilerplate code (HTML, LESS and JS examples)  |
 | `license`  | Option to define the license type. Defaults to MIT  |
-| `initialVersion`  | Option to define the initial version number used in generated package.json and bower.json. Defaults to 0.0.0  |
-| `authorName`  | Option to define the author for use in the generated package.json, bower.json and JavaScript files  |
-| `authorMail`  | Option to define the author for use in the generated package.json, bower.json and JavaScript files  |
-| `authorUrl`  | Option to define the author for use in the generated package.json and bower.json files |
-| `projectHomepage`, `projectRepositoryType`, `projectRepository`  | option to define homepage and repository for use in the generated package.json and bower.json files  |
-| `issueTracker`  | Option to define the URL to your issue tracker for use in the generated package.json and bower.json files  |
+| `initialVersion`  | Option to define the initial version number used in generated package.json. Defaults to 0.0.0  |
+| `authorName`  | Option to define the author for use in the generated package.json and JavaScript files  |
+| `authorMail`  | Option to define the author for use in the generated package.json and JavaScript files  |
+| `authorUrl`  | Option to define the author for use in the generated package.json |
+| `projectHomepage`, `projectRepositoryType`, `projectRepository`  | Option to define homepage and repository for use in the generated package.json  |
+| `issueTracker`  | Option to define the URL to your issue tracker for use in the generated package.json  |
 | `banner`  | Optionally adds a comment banner containing author name, version and build date to your production files  |
 | `addDistToVersionControl`  | Option to decide whether to add the `dist` directory to version control or include it in `.gitignore` |
 
-Frequent Users, who are tired beeing asked the same questions again and again might use a config file called `.yo-rc.json` like described [here](#--yo-rc).
+Frequent Users, who are tired being asked the same questions again and again might use a config file called `.yo-rc.json` like described [here](#--yo-rc).
 
 ---
 
@@ -70,7 +70,6 @@ yo bootstrap-kickstart
 ## Dependencies
 
 - Node.js
-- Bower
 - Grunt
 
 See detailed installation instructions [over here](https://github.com/micromata/bootstrap-kickstart#dependencies) if you are new to this.
@@ -175,7 +174,7 @@ See [Features of this generator](#features-of-this-generator).
 
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
 
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+If you'd like to get to know Yeoman better and meet one of his best friends, [Grunt](http://gruntjs.com), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
 
 
 ## Contributing to this project

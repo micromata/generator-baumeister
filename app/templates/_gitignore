@@ -1,5 +1,7 @@
-### Bower ###
-/libs
+### OS ###
+.DS_Store
+thumbs.db
+desktop.ini
 
 ### npm ###
 /node_modules
@@ -9,14 +11,16 @@
 *Thumbs.db
 
 ### Build ###
-/*.zip<% if (!templateProps.addDistToVersionControl) { %>
-/dist<% } %>
+/*.zip
+<% if (templateProps.addDistToVersionControl == false) { %>
+/dist
+<% } %>
 /docs
 /server
 /reports
-/assets/css
-/assets/js/*.min.js
-/assets/js/*.map
+/src/assets/css
+/src/assets/js/*.min.js
+/src/assets/js/*.map
 
 ### Dev ###
 config.codekit

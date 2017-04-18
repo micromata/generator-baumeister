@@ -2,14 +2,18 @@
 
 <%= templateProps.projectDescription %>
 
-This project provides:
+# Build workflow for your web development needs
+
+The aim of this project is to help you with the creation of Bootstrap themes and websites as well as single page applications by providing:
 
 - a file structure with focus on maintainibilty and upgradability
 - a Grunt workflow with the following »features«
-	- compile and minify our code
-	- add sourcemaps for JavaScript and CSS
+	- generating static sites with the use of handlebars templates
+	- transpile and minify our code
+		- ES6 as well as LESS
 	- get rid of `console` output in production files
 	- add vendor prefixes
+	- Lint JavaScript and HTML
 	- optimize images (lossless)
 	- start a local server
 	- keep browsers in sync for testing
@@ -26,24 +30,33 @@ This project provides:
 - [Setting up your Editor (optional)](#setting-up-your-editor-optional)
 - [Writing Markup (using pages, templates and partials)](#writing-markup-using-pages-templates-and-partials)
 - [File and folder structure of LESS files](#file-and-folder-structure-of-less-files)
-- [Installing and updating external resources with Bower](#installing-and-updating-external-resources-with-bower)
+- [Using external libraries](#using-external-libraries)
 - [Browser support](#browser-support)
 - [Contributing to this project](#contributing-to-this-project)
 - [License](#license)
 
-## Quick install guide 
+## Quick install guide
+
+For those already using Node, Grunt and stuff.
+
+### via Yeoman
+
+	$ npm install -g yo
+	$ npm install -g generator-bootstrap-kickstart
+	$ yo bootstrap-kickstart
+
+See: <https://github.com/micromata/generator-bootstrap-kickstart>
 
 ### via Git
 
-	$ git clone <%= templateProps.projectRepository %>
-	$ cd [subdir]
+	$ git clone https://github.com/micromata/bootstrap-kickstart.git
+	$ cd bootstrap-kickstart
 	$ npm install
 	$ grunt tasks
 
 ## Dependencies
 
 - Node.js
-- Bower
 - Grunt
 
 ### Node.js
@@ -56,30 +69,9 @@ Please enter the following in your terminal if your aren’t sure about the avai
 
 This should return something like the following in case Node.js and npm is already installed:
 
-	3.3.3
+	4.4.4
 
-If that isn’t the case you have to install Node.js first. On OS X I strongly recommend installing Node via [Homebrew](http://brew.sh). Not just because it’s easier to switch versions with Homebrew but also because you prevent potential permission problems when running npm.
-
-
-### Bower
-
-Bootstrap, jQuery and other plugins are installed via [Bower](http://bower.io) (»a package manager for the web«). You can check the availability of bower with typing the following into your terminal:
-
-	bower --version
-
-Your terminal should response with the version number of Bower, if Bower is installed properly. Something like:
-
-	1.5.2
-
-Otherwise you have to install Bower first.
-
-#### Installing Bower
-
-Thanks to Node.js and npm installing Bower globally is just this simple one-liner:
-
-	npm install -g bower
-
-Also make sure that Git is installed as some bower packages require it to be fetched and installed.
+If that isn’t the case you have to install Node.js first. On OS X we strongly recommend installing Node via [Homebrew](https://brew.sh/) or [Node Version Manager](https://github.com/creationix/nvm). Not just because it’s easier to switch versions but also because you prevent potential permission problems when running npm.
 
 ### Grunt
 
@@ -90,77 +82,65 @@ Like Bootstrap itself this project uses [Grunt](http://gruntjs.com/) for its bui
 Thanks do Node.js and npm installing the Grunt command line tools globally is just this simple one-liner:
 
 	npm install -g grunt-cli
-		
+
 <a name="setup"></a>
 ## Setting up the project
 
 Navigate to the root of your checkout:
 
-	cd path/to/your/checkout/of/<%= templateProps.name %>
+	cd path/to/your/checkout/of/bootstrap-kickstart
 
 and call:
 
 	npm install
-		
-npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our grunt workflow to `\node_modules`.
 
-Afterwards it will call `bower install` which will look at `bower.json` and install the necessary frontend dependencies needed to build our Bootstrap theme to `\libs`.
-
-See [Installing and updating external ressources with bower](#using-bower) if you’re new to Bower.
+npm will look at the `package.json` file and automatically fetch and install the necessary local dependencies needed for our grunt workflow as well as the needed frontend dependencies to `\node_modules`.
 
 ## Grunt Workflow and tasks
 
 When completed the setup, you'll be able to run the various Grunt tasks provided from the command line.
 
 Just type the following to get an overview about the available Tasks:
- 
+
 	grunt tasks
 
 This will give you the main Grunt tasks which are ready for you to be fired from the terminal (grouped into »Dev« and »Production« Tasks):
 
 ````
 Dev
-default      => Default Task. Just type `grunt` for this one. Calls `grunt dev` first and `grunt server` afterwards.
-dev          => `grunt dev` will hint your JS, building sources within the assets directory and generating docs / reports.
-sync         => `grunt sync` starts a local dev server, sync browsers and runs `grunt watch`
-plato        -> `grunt plato` generates static code analysis charts with plato.
-jsdoc        -> `grunt jsdoc` generates source documentation using jsdoc.
-server       => `grunt server` starts a local dev server and runs `grunt watch`
-watch         > `grunt watch` run dev tasks whenever watched files change and Reloads the browser with »LiveReload« plugin.
+default        =>  Default Task. Just type `grunt` for this one. Calls `grunt dev` first and `grunt server` afterwards.
+dev            =>  `grunt dev` will lint your files, build sources within the server directory.
+sync           =>  `grunt sync` starts a local dev server, sync browsers and runs `grunt watch`
+jsdoc          ->  `grunt jsdoc` generates source documentation using jsdoc.
+serve          =>  `grunt serve` starts a local dev server and runs `grunt watch`
+watch          >   `grunt watch` run dev tasks whenever watched files change and Reloads the browser with »LiveReload« plugin.
+lint           =>  `grunt lint` lints JavaScript (ESLint) and HTML files (W3C validation and Bootlint)
+lint:fix       =>  `grunt lint:fix` tries to fix your ESLint errors.
 
 Production
-build        => `grunt build` builds production ready sources to dist directory.
-checkBuild   => `grunt checkBuild` starts a local server to make it possible to check the build in the browser.
-releasePatch => `grunt releasePatch` builds the current sources, bumps version number (0.0.1) and creates zip.files.
-releaseMinor => `grunt releaseMinor` builds the current sources, bumps version number (0.1.0) and creates zip.files.
-releaseMajor => `grunt releaseMajor` builds the current sources, bumps version number (1.0.0) and creates zip.files.
+build          =>  `grunt build` builds production ready sources to dist directory.
+build:check    =>  `grunt build:check` starts a local server to make it possible to check the build in the browser.
+release:patch  =>  `grunt release:patch` builds the current sources and bumps version number (0.0.1).
+release:minor  =>  `grunt release:minor` builds the current sources and bumps version number (0.1.0).
+release:major  =>  `grunt release:major` builds the current sources and bumps version number (1.0.0).
 ````
-Running those tasks will create a bunch of directories and files which aren’t under version control. So don’t wonder when the following ressources are created after setting up the project:
+Running those tasks will create a bunch of directories and files which aren’t under version control. So don’t wonder when the following resources are created after setting up and working with the project:
 
 ````
-<%= templateProps.name %>/
-├── assets/ 
-│   ├── css/
-│   │   ├── index.css          → Compiled and autoprefixed from LESS files
-│   │   └── index.css.map      → Sourcemap which maps to LESS files
-│   └── js/
-│       ├── file.min.js        → Minified JavaScript file
-│       └── file.min.js.map    → Sourcemap which maps to original js file
-├── dist/                      → Contains the files ready for production 
-│   ├── assets/
-│   │   ├── css/
-│   │   │   ├── index.css      → Compiled and autoprefixed from LESS files
-│   │   │   └── index.css.map  → Sourcemap which maps to LESS files
-│   │   ├── fonts/             → Fonts copied from /assets/fonts
-│   │   ├── img/               → Optimized images from /assets/img
-│   │   └── js/
-│   │       └── file.min.js    → Minified JavaScript file (without console output)
-│   └── libs/                  → Relevant files copied from /libs
-├── docs/                      → JavaScript generated from DocBlock comments
-├── libs/                      → External libraries and plugins installed by Bower
-├── node_modules/              → Dev dependencies installed by npm
-├── reports/                   → JavaScript Source Analysis
-└── server/                    → Contains files for running a local dev server 
+myProject
+├── dist                       → Contains the files ready for production
+│   ├── app
+│   ├── assets
+│   └── libs                   → Relevant files copied from /node_modules
+├── docs                       → JavaScript Docs generated from DocBlock comments
+├── node_modules/              → Dependencies installed by npm
+├── server                     → Contains the files for the development server
+│   ├── app
+│   ├── assets
+│   └── libs                   → Relevant files copied from /node_modules
+└── src
+    └── assets
+        └── css                → Transpiled and autoprefixed from LESS files
 ````
 
 See `/Gruntfile.js` to see what happens in Details.
@@ -181,24 +161,16 @@ Beside that we recommend setting up a project within in your editor if you don�
       "dist",
       "reports",
       "docs",
-      "assets/css",
-      "libs"
+      "src/assets/css"
     ],
     "file_exclude_patterns": [
-      "assets/js/*.min.js",
-      "assets/js/*.min.js.map",
-      ".*rc",
       ".editorconfig",
-      ".gitignore",
-      "*.zip",
-      "*.md",
-      "LICENSE",
-      "*.json",
-      "Gruntfile.js"
+      ".travis.yml"
     ]
   }]
 }
-``` 
+```
+
 ## Writing Markup (using pages, templates and partials)
 Using [grunt-generator](https://github.com/clavery/grunt-generator) we can simplify our templates and avoid markup duplications by using a combination of `pages`, `templates` and `partials` (optional). grunt-generator uses [Handlebars](http://handlebarsjs.com/) under the hood to make that possible.
 
@@ -207,20 +179,20 @@ Because every valid HTML page is a valid Handlebars template. But handlebars giv
 
 - write plain HTML
 - use [built-In helpers](http://handlebarsjs.com/builtin_helpers.html) provided by handlebars
-- go crazy with [custom helpers](http://handlebarsjs.com/block_helpers.html) :heart_eyes: 
+- go crazy with [custom helpers](http://handlebarsjs.com/block_helpers.html) :heart_eyes:
 
 Let’s dive into it by describing a minimal example. Imagine that we have a simplified file/folder structure like the following in our project:
 
 ```
 myProject
-├── index.hbs                  → A page 
-├── anotherPage.hbs            → Another page 
-├── partials                   → Place to store our partials (usage optional) 
+├── index.hbs                  → A page
+├── anotherPage.hbs            → Another page
+├── partials                   → Place to store our partials (usage optional)
 │   └── footer.hbs
 └── templates                  → Place to store our templates
     ├── default.hbs            → Our default template
     └── helpers
-        └── helpers.js         → Place to store handlebars helpers (usage optional) 
+        └── helpers.js         → Place to store handlebars helpers (usage optional)
 ```
 
 As you can see our pages are stored in the root of the project and are rendered as `html` pages with a little help of Handlebars.
@@ -335,9 +307,9 @@ This is s short version of our conventions when it comes to create bootstrap the
 
 Seems to be a pretty huge amount of files for such a little project. So here we go with an explanation.
 
-### index.less  
+### index.less
 Our main LESS file which is the one which is creating our index.css file. This file is just about a few imports and setting the path to the icon fonts provided by bootstrap.
-	
+
 ```css
 // Bootstrap Core
 // --------------------------------------------------
@@ -429,34 +401,158 @@ This folder holds the modules needed by the theme. The skeleton of such a module
 //
 ```
 
-See [footer.less](assets/less/theme/footer.less) for a »real life« example.
+See [footer.less](src/assets/less/theme/footer.less) for a »real life« example.
 
 There are three files which differ from the regular modules. Please have a look at comments within the following files to get an idea how to handle them:
 
-- [variables.less](assets/less/theme/variables.less)  
+- [variables.less](src/assets/less/theme/variables.less)
 	Used to override bootstrap variables. Make sure to read the comments which describe how to handle this file which can save you lots of time when it comes to a Bootstrap update.
-- [mixins.less](assets/less/theme/mixins.less)  
+- [mixins.less](src/assets/less/theme/mixins.less)
 	Holds additional global mixins which are meant to be used across modules.
-- [scaffolding.less](assets/less/theme/scaffolding.less)  
-	Used to define the most generic html elements. 
+- [scaffolding.less](src/assets/less/theme/scaffolding.less)
+	Used to define the most generic html elements.
 
-## Installing and updating external resources with Bower
+## Using external libraries
 
-The following isn’t needed after setting up the project because `bower install` is executed with `npm install`. See [Setting up the project](#setup).
+Let’s assume you like to ad some fanciness to your form select fields. This could be accomplished with [Select2](https://github.com/select2/select2).
 
-But it’s good to know that you can always install the dependencies needed for your theme by entering the following in the terminal:
+This is how you get the files into your `/node_modules` directory and define the dependency in the `package.json` file.
 
 	cd path/to/your/checkout/of/bootstrap-kickstart
-	bower install
+	npm search select2
 
-This places a `/lib` directory (if not already existing) containing the dependencies defined in the `bower.json` in your root directory of the project as mentioned before.
+This leads to something like:
 
-**Important**  
-It might be needed to call `bower install` after dependencies are added and used on a remote repository. Because when doing a `git pull` you won’t get the new dependencies since the `lib` directory is not under version control. This will be adressed with issue [#10](https://github.com/micromata/bootstrap-kickstart/issues/10).
+```
+NAME                      | DESCRIPTION          | AUTHOR          | DATE       | VERSION  | KEYWORDS
+select2                   | Select2 is a jQuery… | =chrisjbaik…    | 2016-05-27 |          | select autocomplete typeahead dropdown multiselect tag tagging
+Select2                   | Select2 is a jQuery… | =syastrebov     | 2016-08-05 |          | select autocomplete typeahead dropdown multiselect tag tagging
+ember-power-select        | The extensible…      | =cibernox       | 2017-03-17 |          | ember-addon select select2 selectize dropdown
+select2-bootstrap-css     | Simple CSS to make…  | =fk             | 2015-02-03 |          | bootstrap select2 css
+vue-select                | A native Vue.js…     | =sagalbot       | 2017-03-12 |          |
+```
+
+where the Name is your key for installation. In our use case you would the do:
+
+	npm install --save select2
+
+which will:
+
+- download the latest and greatest version to your `node_modules` directory
+- add `"select2": "~4.0.3"` to your `package.json`
+
+### Using and bundling JavaScript dependencies
+
+You have to decide whether to use ES6 imports or `require` your dependency in the commonJS way depending on the module format your dependency provides.
+
+Example:
+
+```javascript
+import $ from 'jquery';
+// this is necessary because bootstrap itself checks the existence of jQuery with window.jQuery.
+window.jQuery = $;
+
+// Because of bootstrap and select2 aren’t UMD modules, we can’t import them using ES6 syntax.
+require('bootstrap');
+require('select2');
+```
+
+Finally add the library to the `bundleExternalJS` section of `package.json` to add the sources the `vendor.js` bundle.
+
+```
+bundleExternalJS": ["jquery", "bootstrap", "select2"]
+```
+The bundled JavaScript is stored in the `libs` directory during the build process:
+
+```
+myProject
+├── server
+│   └── libs
+│       └── vendor.js
+└── dist
+    └── libs
+        └── vendor.min.js
+```
+
+### Bundling CSS from dependencies
+
+If your lib ships its own CSS, create a property for your lib in the `bundleCSS` section of your `package.json` where the key is equivalent to the npm package name and the value a string array containing all paths to css files relative to its module folder.
+
+```
+"bundleCSS": {
+    "select2": [
+      "dist/css/select2.css"
+    ],
+    "select2-bootstrap-css": [
+      "select2-bootstrap.css"
+    ]
+  }
+```
+
+The bundled CSS is stored in the `libs` directory during the build process:
+
+```
+myProject
+├── server
+│   └── libs
+│       └── libs.css
+└── dist
+    └── libs
+        └── libs.min.css
+```
+
+### Including static files from dependencies
+
+Sometimes you need to copy static files from an npm package to your project. This may be fonts or JavaScript files you need to include via a seperate `<script>` tag.
+To handle that you just have to include the files in the `includeStaticFiles` section of your `package.json`. Please not that glob pattern macthing is supported over here.
+
+```
+"includeStaticFiles": [
+    "bootstrap/fonts/**/*",
+    "html5shiv/dist/html5shiv-printshiv.min.js",
+    "respond.js/dest/respond.min.js"
+]
+```
+
+These files are stored in the `libs` directory during the build process:
+
+```
+myProject
+├── server
+│   └── libs
+│       ├── bootstrap
+│       │   └── fonts
+│       │       ├── glyphicons-halflings-regular.eot
+│       │       ├── glyphicons-halflings-regular.svg
+│       │       ├── glyphicons-halflings-regular.ttf
+│       │       ├── glyphicons-halflings-regular.woff
+│       │       └── glyphicons-halflings-regular.woff2
+│       ├── html5shiv
+│       │   └── dist
+│       │       └── html5shiv-printshiv.min.js
+│       └── respond.js
+│           └── dest
+│               └── respond.min.js
+└── dist
+    └── libs
+        ├── bootstrap
+        │   └── fonts
+        │       ├── glyphicons-halflings-regular.eot
+        │       ├── glyphicons-halflings-regular.svg
+        │       ├── glyphicons-halflings-regular.ttf
+        │       ├── glyphicons-halflings-regular.woff
+        │       └── glyphicons-halflings-regular.woff2
+        ├── html5shiv
+        │   └── dist
+        │       └── html5shiv-printshiv.min.js
+        └── respond.js
+            └── dest
+                └── respond.min.js
+```
 
 ### Changing versions of external resources
 
-You can change the version of the external resources by editing the `bower.json` file within the root directory of the project.
+You can change the version of the external resources by editing the `package.json` file within the root directory of the project by hand.
 
 	"dependencies": {
 	  "bootstrap": "~3.2.0",
@@ -469,42 +565,29 @@ You can change the version of the external resources by editing the `bower.json`
 The tilde `~` means: Install the latest version including patch-releases.
 The caret `^` means: Install the latest version including minor-releases.
 
-So `~3.2.0` installed the latest 3.2.x release which is version v3.2.0 in case of Bootstrap right now. So  Bootstrap 3.2.1 will be fetched as soon as it is released when you call `bower update` or `bower install`. But Bower won’t install Bootstrap 3.3.x or later.
+So `~3.2.0` installed the latest 3.2.x release which is version v3.2.0 in case of Bootstrap right now. So  Bootstrap 3.2.1 will be fetched as soon as it is released when you call `npm update` or `npm install`. But npm won’t install Bootstrap 3.3.x or later.
 
-Where `^1.11.1` installed the latest 1.x.x release which is version 1.11.1 in case of jQuery right now. So jQuery 1.11.2 as well as jQuery 1.12.0 will be fetched as soon as it is released when you call `bower update` or `bower install`. But Bower won’t install jQuery 2.x.x or later.
+Where `^1.11.1` installed the latest 1.x.x release which is version 1.11.1 in case of jQuery right now. So jQuery 1.11.2 as well as jQuery 1.12.0 will be fetched as soon as it is released when you call `npm update` or `npm install`. But npm won’t install jQuery 2.x.x or later.
 
 Check <http://semver-ftw.org> for more information about »Semantic Versioning«.
 
-### Adding new dependencies
+#### Updating beyond defined semver ranges
 
-Let’s assume you like to add even more responsiveness to your tables as provided by bootstraps `table-responsive` class. This could be accomplished with the awesome [Tablesaw plugins](https://github.com/filamentgroup/tablesaw) by the Filament Group.
+There are multiple ways to get newer versions than defined via the semver ranges in your `package.json`
 
-This is how you get the files into your `/libs` directory and define the dependency  in the `bower.json` file. 
+##### Updating single dependencies via CLI
 
-	cd path/to/your/checkout/of/bootstrap-kickstart
-	bower search tablesaw
-		
-This leads to something like:
+You can use npm to update single dependencies and persist changes to your `package.json`
 
-````
-Search results:
+For example:
 
-overthrow git://github.com/filamentgroup/Overthrow
-filament-fixed git://github.com/filamentgroup/fixed-fixed.git
-filament-sticky git://github.com/filamentgroup/fixed-sticky.git
-filament-dialog git://github.com/filamentgroup/dialog.git
-tablesaw git://github.com/filamentgroup/tablesaw.git
-social-count git://github.com/filamentgroup/SocialCount.git
-````
+```
+npm install --save bootstrap@latest
+```
 
-where the string before the url (`tablesaw `) is your key for installation. In our use case you would the do:
+##### Updating multiple dependencies at once
 
-	bower install tablesaw --save
-
-which will:
-
-- download the latest and greatest version to your `libs` directory
-- Add `"tablesaw": "~0.1.6"` to your `bower.json` 
+We recommend using a command line tool like »[npm-check-update](https://github.com/tjunnone/npm-check-updates)« to update multiple dependencies at once.
 
 ## Browser support
 
@@ -534,4 +617,4 @@ review the [guidelines for contributing](CONTRIBUTING.md).
 ## License
 
 Please be aware of the licenses of the components we use in this project.
-Everything else that has been developed by the contributions to this project is under [<%= templateProps.license %>](LICENSE).
+Everything else that has been developed by the contributions to this project is under [MIT License](LICENSE).

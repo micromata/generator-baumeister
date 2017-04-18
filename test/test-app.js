@@ -51,7 +51,6 @@ describe('bootstrap-kickstart with default options', () => {
 
 	it('should create package manager files', () => {
 		assert.file([
-			'bower.json',
 			'package.json'
 		]);
 	});
@@ -62,12 +61,12 @@ describe('bootstrap-kickstart with default options', () => {
 
 	it('should create dot files', () => {
 		assert.file([
-			'.bowerrc',
 			'.editorconfig',
 			'.gitignore',
-			'.jshintrc',
-			'.eslintrc',
-			'assets/js/.eslintrc'
+			'.babelrc',
+			'.travis.yml',
+			'.eslintrc.json',
+			'src/app/.eslintrc.json'
 		]);
 	});
 
@@ -79,13 +78,13 @@ describe('bootstrap-kickstart with default options', () => {
 
 	it('should create handlebars files', () => {
 		assert.file([
-			'index.hbs',
-			'stickyFooter.hbs',
-			'demoElements.hbs',
-			'templates/default.hbs',
-			'templates/helpers/helpers.js',
-			'partials/footer.hbs',
-			'partials/navbar.hbs'
+			'src/index.hbs',
+			'src/stickyFooter.hbs',
+			'src/demoElements.hbs',
+			'src/templates/default.hbs',
+			'src/templates/helpers/helpers.js',
+			'src/partials/footer.hbs',
+			'src/partials/navbar.hbs'
 		]);
 	});
 
@@ -101,80 +100,52 @@ describe('bootstrap-kickstart with default options', () => {
 
 	it('should create assets', () => {
 		assert.file([
-			'assets',
-			'assets/fonts',
-			'assets/img',
-			'assets/js/base.js',
-			'assets/js/moduleSkeleton.js',
-			'assets/less/base.less',
-			'assets/less/index.less',
-			'assets/less/print.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/testResponsiveHelpers.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/variables.less'
+			'src/assets',
+			'src/assets/fonts',
+			'src/assets/img',
+			'src/app/base.js',
+			'src/app/index.js',
+			'src/assets/less/base.less',
+			'src/assets/less/index.less',
+			'src/assets/less/print.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/testResponsiveHelpers.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/variables.less'
 
 		]);
 	});
 
 	it('should import all LESS files within ' + _s.slugify(prompts.theme) + '.less file', () => {
 		assert.fileContent([
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /variables.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /testResponsiveHelpers.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/]
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /variables.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /testResponsiveHelpers.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/]
 		]);
 	});
 
 	it('should render author name and email within the comments of JavaScript files', () => {
 		const regex = new RegExp(escapeStringRegexp('@author ' + prompts.authorName + ' <' + prompts.authorMail + '>'), '');
 		const arg = [
-			['assets/js/base.js', regex],
-			['assets/js/moduleSkeleton.js', regex]
+			['src/app/base.js', regex],
+			['src/app/index.js', regex]
 		];
 		assert.fileContent(arg);
 	});
 
-	it('should set the namespace within JavaScript files according to prompted project name', () => {
-		const regexShould = new RegExp(escapeStringRegexp('@namespace ' + _s.camelize(_s.slugify(prompts.projectName))), '');
-		const argShould = [
-			['assets/js/base.js', regexShould],
-			['assets/js/moduleSkeleton.js', regexShould]
-		];
-		const regexShouldNot = /kickstarter/;
-		const argShouldNot = [
-			['assets/js/base.js', regexShouldNot],
-			['assets/js/moduleSkeleton.js', regexShouldNot]
-		];
-
-		assert.fileContent(argShould);
-		assert.noFileContent(argShouldNot);
-	});
-
-	it('should have a valid bower.json file', () => {
-		JSON.parse(fs.readFileSync('bower.json'));
-	});
-
 	it('should have a valid package.json file', () => {
 		JSON.parse(fs.readFileSync('package.json'));
-	});
-
-	it('should have a valid .jshintrc file', () => {
-		JSON.parse(fs.readFileSync('.jshintrc'));
-	});
-
-	it('should have a valid .bowerrc file', () => {
-		JSON.parse(fs.readFileSync('.bowerrc'));
 	});
 
 	it('should have a .postinstall.js file', () => {
@@ -182,51 +153,37 @@ describe('bootstrap-kickstart with default options', () => {
 	});
 
 	it('should not have dependencies to support oldIEs', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
-		bowerJson.should.not.have.propertyByPath('dependencies', 'html5shiv');
-		bowerJson.should.not.have.propertyByPath('dependencies', 'respondJs');
-		bowerJson.should.not.have.propertyByPath('dependencies', 'jquery-placeholder');
-		bowerJson.should.have.propertyByPath('dependencies', 'jquery').containEql('2.2.4');
+		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
+		pkgJson.should.not.have.propertyByPath('dependencies', 'html5shiv');
+		pkgJson.should.not.have.propertyByPath('dependencies', 'respond.js');
+		pkgJson.should.not.have.propertyByPath('dependencies', 'jquery-placeholder');
+		pkgJson.should.have.propertyByPath('dependencies', 'jquery').containEql('3.2.1');
 	});
 
-	it('should not handle oldIE related files within Grunt tasks', () => {
-		assert.noFileContent([
-			['Gruntfile.js', /html5shiv/],
-			['Gruntfile.js', /respondJs/],
-			['Gruntfile.js', /jquery-placeholder/]
-		]);
+	it('should not handle oldIE related files within package.json', () => {
+		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
+		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('html5shiv/dist/html5shiv-printshiv.min.js') === -1);
+		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('respond.js/dest/respond.min.js') === -1);
 	});
 
 	it('should not reference oldIE related files within HTML files', () => {
 		assert.noFileContent([
-			['templates/default.hbs', /html5shiv/],
-			['templates/default.hbs', /respondJs/],
-			['templates/default.hbs', /jquery-placeholder/]
+			['src/templates/default.hbs', /html5shiv/],
+			['src/templates/default.hbs', /respond.js/],
+			['src/templates/default.hbs', /jquery-placeholder/]
 		]);
 	});
 
-	it('should reference module skeleton in default template', () => {
+	it('should include »browsehappy« message', () => {
 		assert.fileContent([
-			['templates/default.hbs', /moduleSkeleton.js/]
-		]);
-	});
-
-	it('should not include »browsehappy« message', () => {
-		assert.noFileContent([
-			['templates/default.hbs', /browsehappy/]
+			['src/templates/default.hbs', /browsehappy/]
 		]);
 	});
 
 	it('should not include conditional classes to address oldIEs', () => {
 		assert.noFileContent([
-			['templates/default.hbs', /<html class="(.+)ie(\d+)">/g]
+			['src/templates/default.hbs', /<html lang="en" class="(.+)ie(\d+)">/g]
 		]);
-	});
-
-	it('should render project name and description in bower.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
-		bowerJson.should.have.property('name', _s.slugify(prompts.projectName));
-		bowerJson.should.have.property('description', prompts.projectDescription);
 	});
 
 	it('should render project name and description in package.json', () => {
@@ -245,12 +202,12 @@ describe('bootstrap-kickstart with default options', () => {
 
 	it('should render project name in HTML files', () => {
 		const regex = new RegExp(escapeStringRegexp(_s.titleize(prompts.projectName)), '');
-		assert.fileContent('templates/default.hbs', regex);
+		assert.fileContent('src/templates/default.hbs', regex);
 	});
 
 	it('should render author name within the meta tags of HTML files', () => {
 		const regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '" />'), '');
-		assert.fileContent('templates/default.hbs', regex);
+		assert.fileContent('src/templates/default.hbs', regex);
 	});
 
 	it('should have the default output paths within the Gruntfile', () => {
@@ -274,22 +231,17 @@ describe('bootstrap-kickstart with default options', () => {
 		packageJson.should.not.have.propertyByPath('devDependencies', 'grunt-git');
 	});
 
-	it('should have authors name in bower.json, package.json and LICENSE', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have authors name in package.json and LICENSE', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 		const regex = new RegExp(escapeStringRegexp(prompts.authorName), '');
 
-		bowerJson.should.have.property('authors').match(regex);
 		packageJson.should.have.propertyByPath('author', 'name').eql(prompts.authorName);
 		assert.fileContent('LICENSE', regex);
 	});
 
-	it('should have authors email in bower.json and package.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have authors email in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
-		const regex = new RegExp(escapeStringRegexp(prompts.authorMail), '');
 
-		bowerJson.should.have.property('authors').match(regex);
 		packageJson.should.have.propertyByPath('author', 'email').eql(prompts.authorMail);
 	});
 
@@ -307,28 +259,19 @@ describe('bootstrap-kickstart with default options', () => {
 	});
 
 	it('should have a MIT LICENSE', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
 		assert.fileContent('LICENSE', /copy, modify, merge, publish, distribute, sublicense, and\/or sell/);
-		bowerJson.should.have.property('license', prompts.license);
 		packageJson.should.have.property('license', prompts.license);
 	});
 
-	it('should have the initial version number in bower.json and package.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have the initial version number in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
-		bowerJson.should.have.property('version', prompts.initialVersion);
 		packageJson.should.have.property('version', prompts.initialVersion);
 	});
 
-	it('should have the homepage and repository in bower.json and package.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have the homepage and repository in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
-
-		bowerJson.should.have.property('homepage', prompts.projectHomepage);
-		bowerJson.should.have.propertyByPath('repository', 'type').eql(prompts.projectRepositoryType);
-		bowerJson.should.have.propertyByPath('repository', 'url').eql(prompts.projectRepository);
 
 		packageJson.should.have.property('homepage', prompts.projectHomepage);
 		packageJson.should.have.propertyByPath('repository', 'type').eql(prompts.projectRepositoryType);
@@ -428,40 +371,34 @@ describe('bootstrap-kickstart with oldIE support', () => {
 		.toPromise();
 	});
 
-	it('should have a valid bower.json file', () => {
-		JSON.parse(fs.readFileSync('bower.json'));
-	});
-
 	it('should have dependencies to support oldIEs', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
-		bowerJson.should.have.propertyByPath('dependencies', 'html5shiv');
-		bowerJson.should.have.propertyByPath('dependencies', 'respondJs');
-		bowerJson.should.have.propertyByPath('dependencies', 'jquery-placeholder');
-		bowerJson.should.have.propertyByPath('dependencies', 'jquery').containEql('1.12.4');
+		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
+		pkgJson.should.have.propertyByPath('dependencies', 'html5shiv');
+		pkgJson.should.have.propertyByPath('dependencies', 'respond.js');
+		pkgJson.should.have.propertyByPath('dependencies', 'jquery-placeholder');
+		pkgJson.should.have.propertyByPath('dependencies', 'jquery').containEql('1.12.4');
 	});
 
-	it('should handle oldIE related files within Grunt tasks', () => {
-		assert.fileContent([
-			['Gruntfile.js', /html5shiv/],
-			['Gruntfile.js', /respondJs/],
-			['Gruntfile.js', /jquery-placeholder/]
-		]);
+	it('should handle oldIE related files within package.json', () => {
+		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
+		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('html5shiv/dist/html5shiv-printshiv.min.js') !== -1);
+		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('respond.js/dest/respond.min.js') !== -1);
 	});
 
 	it('should reference oldIE related files within HTML files', () => {
 		assert.fileContent([
-			['templates/default.hbs', /html5shiv/],
-			['templates/default.hbs', /respondJs/],
-			['templates/default.hbs', /jquery-placeholder/]
+			['src/templates/default.hbs', /html5shiv/],
+			['src/templates/default.hbs', /respond.js/],
+			['src/templates/default.hbs', /jquery-placeholder/]
 		]);
 	});
 
 	it('should include »browsehappy« message', () => {
-		assert.fileContent('templates/default.hbs', /browsehappy/);
+		assert.fileContent('src/templates/default.hbs', /browsehappy/);
 	});
 
 	it('should include conditional classes to address oldIEs', () => {
-		assert.fileContent('templates/default.hbs', /<html class="(.+)ie(\d+)">/g);
+		assert.fileContent('src/templates/default.hbs', /<html lang="en" class="(.+)ie(\d+)">/g);
 	});
 
 });
@@ -576,11 +513,9 @@ describe('bootstrap-kickstart without an open source license', () => {
 	});
 
 	it('should not have a open source license', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
 		assert.fileContent('LICENSE', /All rights reserved. It is strictly prohibited to copy, redistribute, republish/);
-		bowerJson.should.have.property('license', prompts.license);
 		packageJson.should.have.property('license', prompts.license);
 	});
 
@@ -642,11 +577,9 @@ describe('bootstrap-kickstart with Apache License, Version 2.0', () => {
 	});
 
 	it('should have a Apache license', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
 		assert.fileContent('LICENSE', /Licensed under the Apache License, Version 2.0/);
-		bowerJson.should.have.property('license', prompts.license);
 		packageJson.should.have.property('license', prompts.license);
 	});
 
@@ -708,11 +641,9 @@ describe('bootstrap-kickstart with GNU General Public License', () => {
 	});
 
 	it('should have a GNU General Public License', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
 		assert.fileContent('LICENSE', /GNU General Public License/);
-		bowerJson.should.have.property('license', prompts.license);
 		packageJson.should.have.property('license', prompts.license);
 	});
 
@@ -760,57 +691,44 @@ describe('bootstrap-kickstart with less boilerplate code', () => {
 
 	it('should create just the essential handlebars files', () => {
 		assert.file([
-			'index.hbs',
-			'templates/default.hbs',
-			'templates/helpers/helpers.js',
-			'partials/.gitkeep'
+			'src/index.hbs',
+			'src/templates/default.hbs',
+			'src/templates/helpers/helpers.js',
+			'src/partials/.gitkeep'
 		]);
 		assert.noFile([
-			'stickyFooter.hbs',
-			'demoElements.hbs',
-			'partials/footer.hbs',
-			'partials/navbar.hbs'
+			'src/stickyFooter.hbs',
+			'src/demoElements.hbs',
+			'src/partials/footer.hbs',
+			'src/partials/navbar.hbs'
 		]);
 	});
 
 	it('should not include navigation and content in index.hbs', () => {
 		assert.noFileContent([
-			['index.hbs', /navbar|<p/g]
-		]);
-	});
-
-	it('should not reference module skeleton in default template', () => {
-		assert.noFileContent([
-			['templates/default.hbs', /moduleSkeleton.js/]
-		]);
-	});
-
-	it('should create just a single JavaScript file (base.js)', () => {
-		assert.file(['assets/js/base.js']);
-		assert.noFile([
-			'assets/js/moduleSkeleton.js'
+			['src/index.hbs', /navbar|<p/g]
 		]);
 	});
 
 	it('should create just the essential LESS files', () => {
 		assert.noFile([
-			'assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less'
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less'
 		]);
 	});
 
 	it('should only import the essential LESS files within ' + _s.slugify(prompts.theme) + '.less file', () => {
 		assert.noFileContent([
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/]
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/]
 		]);
 	});
 
@@ -899,19 +817,16 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 
 	it('should create package manager files', () => {
 		assert.file([
-			'bower.json',
 			'package.json'
 		]);
 	});
 
 	it('should create dot files', () => {
 		assert.file([
-			'.bowerrc',
 			'.editorconfig',
 			'.gitignore',
-			'.jshintrc',
-			'.eslintrc',
-			'assets/js/.eslintrc'
+			'.eslintrc.json',
+			'src/app/.eslintrc.json'
 		]);
 	});
 
@@ -923,13 +838,13 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 
 	it('should create handlebars files', () => {
 		assert.file([
-			'index.hbs',
-			'stickyFooter.hbs',
-			'demoElements.hbs',
-			'templates/default.hbs',
-			'templates/helpers/helpers.js',
-			'partials/footer.hbs',
-			'partials/navbar.hbs'
+			'src/index.hbs',
+			'src/stickyFooter.hbs',
+			'src/demoElements.hbs',
+			'src/templates/default.hbs',
+			'src/templates/helpers/helpers.js',
+			'src/partials/footer.hbs',
+			'src/partials/navbar.hbs'
 		]);
 	});
 
@@ -945,80 +860,52 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 
 	it('should create assets', () => {
 		assert.file([
-			'assets',
-			'assets/fonts',
-			'assets/img',
-			'assets/js/base.js',
-			'assets/js/moduleSkeleton.js',
-			'assets/less/base.less',
-			'assets/less/index.less',
-			'assets/less/print.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/testResponsiveHelpers.less',
-			'assets/less/' + _s.slugify(prompts.theme) + '/variables.less'
+			'src/assets',
+			'src/assets/fonts',
+			'src/assets/img',
+			'src/app/base.js',
+			'src/app/index.js',
+			'src/assets/less/base.less',
+			'src/assets/less/index.less',
+			'src/assets/less/print.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/testResponsiveHelpers.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/variables.less'
 
 		]);
 	});
 
 	it('should import all LESS files within ' + _s.slugify(prompts.theme) + '.less file', () => {
 		assert.fileContent([
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /variables.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /testResponsiveHelpers.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
-			['assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/]
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /variables.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /testResponsiveHelpers.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
+			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/]
 		]);
 	});
 
 	it('should render author name and email within the comments of JavaScript files', () => {
 		const regex = new RegExp(escapeStringRegexp('@author ' + prompts.authorName + ' <' + prompts.authorMail + '>'), '');
 		const arg = [
-			['assets/js/base.js', regex],
-			['assets/js/moduleSkeleton.js', regex]
+			['src/app/base.js', regex],
+			['src/app/index.js', regex]
 		];
 		assert.fileContent(arg);
 	});
 
-	it('should set the namespace within JavaScript files according to prompted project name', () => {
-		const regexShould = new RegExp(escapeStringRegexp('@namespace ' + _s.camelize(_s.slugify(prompts.projectName))), '');
-		const argShould = [
-			['assets/js/base.js', regexShould],
-			['assets/js/moduleSkeleton.js', regexShould]
-		];
-		const regexShouldNot = /kickstarter/;
-		const argShouldNot = [
-			['assets/js/base.js', regexShouldNot],
-			['assets/js/moduleSkeleton.js', regexShouldNot]
-		];
-
-		assert.fileContent(argShould);
-		assert.noFileContent(argShouldNot);
-	});
-
-	it('should have a valid bower.json file', () => {
-		JSON.parse(fs.readFileSync('bower.json'));
-	});
-
 	it('should have a valid package.json file', () => {
 		JSON.parse(fs.readFileSync('package.json'));
-	});
-
-	it('should have a valid .jshintrc file', () => {
-		JSON.parse(fs.readFileSync('.jshintrc'));
-	});
-
-	it('should have a valid .bowerrc file', () => {
-		JSON.parse(fs.readFileSync('.bowerrc'));
 	});
 
 	it('should have a .postinstall.js file', () => {
@@ -1026,51 +913,37 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 	});
 
 	it('should not have dependencies to support oldIEs', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
-		bowerJson.should.not.have.propertyByPath('dependencies', 'html5shiv');
-		bowerJson.should.not.have.propertyByPath('dependencies', 'respondJs');
-		bowerJson.should.not.have.propertyByPath('dependencies', 'jquery-placeholder');
-		bowerJson.should.have.propertyByPath('dependencies', 'jquery').containEql('2.2.4');
+		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
+		pkgJson.should.not.have.propertyByPath('dependencies', 'html5shiv');
+		pkgJson.should.not.have.propertyByPath('dependencies', 'respond.js');
+		pkgJson.should.not.have.propertyByPath('dependencies', 'jquery-placeholder');
+		pkgJson.should.have.propertyByPath('dependencies', 'jquery').containEql('3.2.1');
 	});
 
-	it('should not handle oldIE related files within Grunt tasks', () => {
-		assert.noFileContent([
-			['Gruntfile.js', /html5shiv/],
-			['Gruntfile.js', /respondJs/],
-			['Gruntfile.js', /jquery-placeholder/]
-		]);
+	it('should not handle oldIE related files within package.json', () => {
+		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
+		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('html5shiv/dist/html5shiv-printshiv.min.js') === -1);
+		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('respond.js/dest/respond.min.js') === -1);
 	});
 
 	it('should not reference oldIE related files within HTML files', () => {
 		assert.noFileContent([
-			['templates/default.hbs', /html5shiv/],
-			['templates/default.hbs', /respondJs/],
-			['templates/default.hbs', /jquery-placeholder/]
+			['src/templates/default.hbs', /html5shiv/],
+			['src/templates/default.hbs', /respond.js/],
+			['src/templates/default.hbs', /jquery-placeholder/]
 		]);
 	});
 
-	it('should reference module skeleton in default template', () => {
+	it('should include »browsehappy« message', () => {
 		assert.fileContent([
-			['templates/default.hbs', /moduleSkeleton.js/]
-		]);
-	});
-
-	it('should not include »browsehappy« message', () => {
-		assert.noFileContent([
-			['templates/default.hbs', /browsehappy/]
+			['src/templates/default.hbs', /browsehappy/]
 		]);
 	});
 
 	it('should not include conditional classes to address oldIEs', () => {
 		assert.noFileContent([
-			['templates/default.hbs', /<html class="(.+)ie(\d+)">/g]
+			['src/templates/default.hbs', /<html lang="en" class="(.+)ie(\d+)">/g]
 		]);
-	});
-
-	it('should render project name and description in bower.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
-		bowerJson.should.have.property('name', _s.slugify(prompts.projectName));
-		bowerJson.should.have.property('description', prompts.projectDescription);
 	});
 
 	it('should render project name and description in package.json', () => {
@@ -1089,12 +962,12 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 
 	it('should render project name in HTML files', () => {
 		const regex = new RegExp(escapeStringRegexp(_s.titleize(prompts.projectName)), '');
-		assert.fileContent('templates/default.hbs', regex);
+		assert.fileContent('src/templates/default.hbs', regex);
 	});
 
 	it('should render author name within the meta tags of HTML files', () => {
 		const regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '" />'), '');
-		assert.fileContent('templates/default.hbs', regex);
+		assert.fileContent('src/templates/default.hbs', regex);
 	});
 
 	it('should have the default output paths within the Gruntfile', () => {
@@ -1118,22 +991,17 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 		packageJson.should.not.have.propertyByPath('devDependencies', 'grunt-git');
 	});
 
-	it('should have authors name in bower.json, package.json and LICENSE', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have authors name in package.json and LICENSE', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 		const regex = new RegExp(escapeStringRegexp(prompts.authorName), '');
 
-		bowerJson.should.have.property('authors').match(regex);
 		packageJson.should.have.propertyByPath('author', 'name').eql(prompts.authorName);
 		assert.fileContent('LICENSE', regex);
 	});
 
-	it('should have authors email in bower.json and package.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have authors email in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
-		const regex = new RegExp(escapeStringRegexp(prompts.authorMail), '');
 
-		bowerJson.should.have.property('authors').match(regex);
 		packageJson.should.have.propertyByPath('author', 'email').eql(prompts.authorMail);
 	});
 
@@ -1151,28 +1019,19 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 	});
 
 	it('should have a MIT LICENSE', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
 		assert.fileContent('LICENSE', /copy, modify, merge, publish, distribute, sublicense, and\/or sell/);
-		bowerJson.should.have.property('license', prompts.license);
 		packageJson.should.have.property('license', prompts.license);
 	});
 
-	it('should have the initial version number in bower.json and package.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have the initial version number in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
-		bowerJson.should.have.property('version', prompts.initialVersion);
 		packageJson.should.have.property('version', prompts.initialVersion);
 	});
 
-	it('should have the homepage and repository in bower.json and package.json', () => {
-		const bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+	it('should have the homepage and repository in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
-
-		bowerJson.should.have.property('homepage', prompts.projectHomepage);
-		bowerJson.should.have.propertyByPath('repository', 'type').eql(prompts.projectRepositoryType);
-		bowerJson.should.have.propertyByPath('repository', 'url').eql(prompts.projectRepository);
 
 		packageJson.should.have.property('homepage', prompts.projectHomepage);
 		packageJson.should.have.propertyByPath('repository', 'type').eql(prompts.projectRepositoryType);
@@ -1184,5 +1043,4 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 		packageJson.should.have.propertyByPath('bugs', 'url').eql(prompts.issueTracker);
 	});
-
 });

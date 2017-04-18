@@ -1,11 +1,14 @@
 {
-  "root": true,
-	"extends": "xo",
+  "extends": "xo/esnext",
+  "plugins": [
+    "security"
+  ],
   "rules": {
     "padded-blocks": ["off"],
     "operator-assignment": ["off"],
     "eqeqeq": ["error", "allow-null"],
     "no-eq-null": ["off"],
-    "quote-props": ["error", "as-needed"]
+    "quote-props": ["error", "as-needed"],
+    "capitalized-comments": ["warn"]
   }
 }

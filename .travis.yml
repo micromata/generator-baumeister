@@ -11,7 +11,7 @@ before_install:
   - if [ "$currentfolder" != 'generator-bootstrap-kickstart' ]; then cd .. && eval "mv $currentfolder generator-bootstrap-kickstart" && cd generator-bootstrap-kickstart; fi
 install:
   - npm install -g npm
-  - npm install -g bower
+  - npm install -g yarn
   - npm install -g grunt-cli
   - npm install -g yo
   - npm install
