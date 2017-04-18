@@ -401,15 +401,15 @@ This folder holds the modules needed by the theme. The skeleton of such a module
 //
 ```
 
-See [footer.less](assets/less/theme/footer.less) for a »real life« example.
+See [footer.less](src/assets/less/theme/footer.less) for a »real life« example.
 
 There are three files which differ from the regular modules. Please have a look at comments within the following files to get an idea how to handle them:
 
-- [variables.less](assets/less/theme/variables.less)
+- [variables.less](src/assets/less/theme/variables.less)
 	Used to override bootstrap variables. Make sure to read the comments which describe how to handle this file which can save you lots of time when it comes to a Bootstrap update.
-- [mixins.less](assets/less/theme/mixins.less)
+- [mixins.less](src/assets/less/theme/mixins.less)
 	Holds additional global mixins which are meant to be used across modules.
-- [scaffolding.less](assets/less/theme/scaffolding.less)
+- [scaffolding.less](src/assets/less/theme/scaffolding.less)
 	Used to define the most generic html elements.
 
 ## Using external libraries

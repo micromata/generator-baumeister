@@ -327,7 +327,7 @@ module.exports = class extends Generator {
 			this.destinationPath('.eslintrc.json')
 		);
 		this.fs.copyTpl(
-			this.templatePath('assets/js/eslintrc'),
+			this.templatePath('src/app/eslintrc'),
 			this.destinationPath('src/app/.eslintrc.json')
 		);
 		this.fs.copyTpl(
@@ -343,46 +343,46 @@ module.exports = class extends Generator {
 
 		// Handlebars files
 		this.fs.copyTpl(
-			this.templatePath('templates/_default.hbs'),
+			this.templatePath('src/templates/_default.hbs'),
 			this.destinationPath('src/templates/default.hbs'), {
 				templateProps: this.templateProps
 			}
 		);
 		this.fs.copyTpl(
-			this.templatePath('templates/helpers/helpers.js'),
+			this.templatePath('src/templates/helpers/helpers.js'),
 			this.destinationPath('src/templates/helpers/helpers.js')
 		);
 
 		switch (this.templateProps.boilerplateAmount) {
 			case 'Just a little – Get started with a few example files':
 				this.fs.copyTpl(
-					this.templatePath('partials/footer.hbs'),
+					this.templatePath('src/partials/footer.hbs'),
 					this.destinationPath('src/partials/footer.hbs')
 				);
 				this.fs.copyTpl(
-					this.templatePath('partials/navbar.hbs'),
+					this.templatePath('src/partials/navbar.hbs'),
 					this.destinationPath('src/partials/navbar.hbs')
 				);
 				this.fs.copyTpl(
-					this.templatePath('_index-little-boilerplate.hbs'),
+					this.templatePath('src/_index-little-boilerplate.hbs'),
 					this.destinationPath('src/index.hbs')
 				);
 				this.fs.copyTpl(
-					this.templatePath('_demoElements.hbs'),
+					this.templatePath('src/_demoElements.hbs'),
 					this.destinationPath('src/demoElements.hbs')
 				);
 				this.fs.copyTpl(
-					this.templatePath('_stickyFooter.hbs'),
+					this.templatePath('src/_stickyFooter.hbs'),
 					this.destinationPath('src/stickyFooter.hbs')
 				);
 				break;
 			case 'Almost nothing - Just the minimum files and folders':
 				this.fs.copyTpl(
-					this.templatePath('partials/gitkeep'),
+					this.templatePath('src/partials/gitkeep'),
 					this.destinationPath('src/partials/.gitkeep')
 				);
 				this.fs.copyTpl(
-					this.templatePath('_index-no-boilerplate.hbs'),
+					this.templatePath('src/_index-no-boilerplate.hbs'),
 					this.destinationPath('src/index.hbs')
 				);
 				break;
@@ -452,41 +452,41 @@ module.exports = class extends Generator {
 
 		// Assets
 		this.fs.copy(
-			this.templatePath('assets/fonts'),
+			this.templatePath('src/assets/fonts'),
 			this.destinationPath('src/assets/fonts')
 		);
 		this.fs.copy(
-			this.templatePath('assets/img'),
+			this.templatePath('src/assets/img'),
 			this.destinationPath('src/assets/img')
 		);
 		this.fs.copyTpl(
-			this.templatePath('assets/js/_base.js'),
+			this.templatePath('src/app/_base.js'),
 			this.destinationPath('src/app/base.js'), {
 				templateProps: this.templateProps
 			}
 		);
 		this.fs.copyTpl(
-			this.templatePath('assets/js/_index.js'),
+			this.templatePath('src/app/_index.js'),
 			this.destinationPath('src/app/index.js'), {
 				templateProps: this.templateProps
 			}
 		);
 		this.fs.copyTpl(
-			this.templatePath('assets/less/base.less'),
+			this.templatePath('src/assets/less/base.less'),
 			this.destinationPath('src/assets/less/base.less')
 		);
 		this.fs.copyTpl(
-			this.templatePath('assets/less/_index.less'),
+			this.templatePath('src/assets/less/_index.less'),
 			this.destinationPath('src/assets/less/index.less'), {
 				templateProps: this.templateProps
 			}
 		);
 		this.fs.copyTpl(
-			this.templatePath('assets/less/print.less'),
+			this.templatePath('src/assets/less/print.less'),
 			this.destinationPath('src/assets/less/print.less')
 		);
 		this.fs.copyTpl(
-			this.templatePath('assets/less/_theme.less'),
+			this.templatePath('src/assets/less/_theme.less'),
 			this.destinationPath('src/assets/less/' + this.templateProps.theme + '.less'), {
 				templateProps: this.templateProps
 			}
@@ -495,46 +495,46 @@ module.exports = class extends Generator {
 		if (this.templateProps.boilerplateAmount === 'Just a little – Get started with a few example files') {
 
 			this.fs.copyTpl(
-				this.templatePath('assets/less/_theme/_alerts.less'),
+				this.templatePath('src/assets/less/_theme/_alerts.less'),
 				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/alerts.less'), {
 					templateProps: this.templateProps
 				}
 			);
 			this.fs.copyTpl(
-				this.templatePath('assets/less/_theme/_demoElements.less'),
+				this.templatePath('src/assets/less/_theme/_demoElements.less'),
 				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/demoElements.less'), {
 					templateProps: this.templateProps
 				}
 			);
 			this.fs.copyTpl(
-				this.templatePath('assets/less/_theme/_footer.less'),
+				this.templatePath('src/assets/less/_theme/_footer.less'),
 				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/footer.less'), {
 					templateProps: this.templateProps
 				}
 			);
 			this.fs.copyTpl(
-				this.templatePath('assets/less/_theme/_ribbon.less'),
+				this.templatePath('src/assets/less/_theme/_ribbon.less'),
 				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/ribbon.less'), {
 					templateProps: this.templateProps
 				}
 			);
 			this.fs.copyTpl(
-				this.templatePath('assets/less/_theme/mixins.less'),
+				this.templatePath('src/assets/less/_theme/mixins.less'),
 				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/mixins.less')
 			);
 
 			this.fs.copyTpl(
-				this.templatePath('assets/less/_theme/scaffolding.less'),
+				this.templatePath('src/assets/less/_theme/scaffolding.less'),
 				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/scaffolding.less')
 			);
 		}
 
 		this.fs.copyTpl(
-			this.templatePath('assets/less/_theme/testResponsiveHelpers.less'),
+			this.templatePath('src/assets/less/_theme/testResponsiveHelpers.less'),
 			this.destinationPath('src/assets/less/' + this.templateProps.theme + '/testResponsiveHelpers.less')
 		);
 		this.fs.copyTpl(
-			this.templatePath('assets/less/_theme/variables.less'),
+			this.templatePath('src/assets/less/_theme/variables.less'),
 			this.destinationPath('src/assets/less/' + this.templateProps.theme + '/variables.less')
 		);
 
