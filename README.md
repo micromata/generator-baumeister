@@ -10,7 +10,7 @@
 
 
 
-#Yeoman Generator for »Bootstrap Kickstart«
+# Yeoman Generator for »Bootstrap Kickstart«
 
 
     	 _-----_
