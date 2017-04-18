@@ -323,11 +323,11 @@ module.exports = class extends Generator {
 			this.destinationPath('.editorconfig')
 		);
 		this.fs.copyTpl(
-			this.templatePath('eslintrc'),
+			this.templatePath('eslintrc.json'),
 			this.destinationPath('.eslintrc.json')
 		);
 		this.fs.copyTpl(
-			this.templatePath('src/app/eslintrc'),
+			this.templatePath('src/app/eslintrc.json'),
 			this.destinationPath('src/app/.eslintrc.json')
 		);
 		this.fs.copyTpl(
