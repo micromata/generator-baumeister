@@ -182,7 +182,7 @@ module.exports = class extends Generator {
 				{
 					type: 'input',
 					name: 'initialVersion',
-					message: 'What initial version should we put in the package.json?',
+					message: 'Which initial version should we put in the package.json?',
 					default: '0.0.0',
 					validate(value) {
 						let returnValue;
