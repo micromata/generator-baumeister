@@ -311,11 +311,11 @@ module.exports = class extends Generator {
 
 		// Dotfiles
 		this.fs.copyTpl(
-			this.templatePath('_babelrc'),
+			this.templatePath('babelrc'),
 			this.destinationPath('.babelrc')
 		);
 		this.fs.copyTpl(
-			this.templatePath('_travis.yml'),
+			this.templatePath('travis.yml'),
 			this.destinationPath('.travis.yml')
 		);
 		this.fs.copyTpl(
@@ -364,15 +364,15 @@ module.exports = class extends Generator {
 					this.destinationPath('src/partials/navbar.hbs')
 				);
 				this.fs.copyTpl(
-					this.templatePath('src/_index-little-boilerplate.hbs'),
+					this.templatePath('src/index-little-boilerplate.hbs'),
 					this.destinationPath('src/index.hbs')
 				);
 				this.fs.copyTpl(
-					this.templatePath('src/_demoElements.hbs'),
+					this.templatePath('src/demoElements.hbs'),
 					this.destinationPath('src/demoElements.hbs')
 				);
 				this.fs.copyTpl(
-					this.templatePath('src/_stickyFooter.hbs'),
+					this.templatePath('src/stickyFooter.hbs'),
 					this.destinationPath('src/stickyFooter.hbs')
 				);
 				break;
@@ -382,7 +382,7 @@ module.exports = class extends Generator {
 					this.destinationPath('src/partials/.gitkeep')
 				);
 				this.fs.copyTpl(
-					this.templatePath('src/_index-no-boilerplate.hbs'),
+					this.templatePath('src/index-no-boilerplate.hbs'),
 					this.destinationPath('src/index.hbs')
 				);
 				break;
