@@ -174,8 +174,8 @@ describe('bootstrap-kickstart with default options', () => {
 		]);
 	});
 
-	it('should not include »browsehappy« message', () => {
-		assert.noFileContent([
+	it('should include »browsehappy« message', () => {
+		assert.fileContent([
 			['src/templates/default.hbs', /browsehappy/]
 		]);
 	});
@@ -934,8 +934,8 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 		]);
 	});
 
-	it('should not include »browsehappy« message', () => {
-		assert.noFileContent([
+	it('should include »browsehappy« message', () => {
+		assert.fileContent([
 			['src/templates/default.hbs', /browsehappy/]
 		]);
 	});
