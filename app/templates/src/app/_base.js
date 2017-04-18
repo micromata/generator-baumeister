@@ -6,7 +6,6 @@
 /**
  * Fix viewport issues with IE 10.
  * @see {@link http://getbootstrap.com/getting-started/#support-ie10-width}
- * @private
  */
 export function ieViewportFix() {
 	if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
@@ -23,7 +22,6 @@ export function ieViewportFix() {
 /**
  * Avoid `console` errors in browsers that lack a console.
  * @see {@link https://github.com/h5bp/html5-boilerplate/blob/master/js/plugins.js}
- * @private
  */
 export function consoleErrorFix() {
 	let method;
