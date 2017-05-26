@@ -42,7 +42,6 @@ module.exports = class extends Generator {
 				namespace: _s.camelize(_s.slugify(config.projectName)),
 				projectDescription: config.projectDescription,
 				theme: _s.slugify(config.theme),
-				oldIeSupport: config.oldIeSupport,
 				distDirectory: config.distDirectory || 'dist',
 				docsDirectory: config.docsDirectory || 'docs',
 				reportsDirectory: config.reportsDirectory || 'reports',
@@ -100,13 +99,6 @@ module.exports = class extends Generator {
 						}
 						return returnValue;
 					}
-				},
-				{
-					type: 'confirm',
-					name: 'oldIeSupport',
-					message: 'Do you need to support Internet Explorer below IE9?',
-					default: false,
-					store: true
 				},
 				{
 					type: 'list',
@@ -276,7 +268,6 @@ module.exports = class extends Generator {
 					namespace: _s.camelize(_s.slugify(props.projectName)),
 					projectDescription: props.projectDescription,
 					theme: _s.slugify(props.theme),
-					oldIeSupport: props.oldIeSupport,
 					distDirectory: props.distDirectory || 'dist',
 					docsDirectory: props.docsDirectory || 'docs',
 					reportsDirectory: props.reportsDirectory || 'reports',

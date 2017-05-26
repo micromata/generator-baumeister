@@ -36,7 +36,6 @@ There are tons of options for now :scream:
 
 | Option  | Description |
 | ------------- | ------------- |
-| `oldIeSupport`  | Whether to make use of »html5shiv«, »respond.js«, »jquery-placeholder« and conditional classes  |
 | `projectName` | Used in the generated README and package.json  |
 | `projectDescription`  | Used in the generated README and package.json  |
 | `theme`  | Name of your Bootstrap theme. Used to name a file and a folder within the LESS directory  |
@@ -157,7 +156,6 @@ This file should contain the options which are otherwise prompted by Yeoman. See
     "projectHomepage": "",
     "projectRepository": "",
     "issueTracker": "",
-    "oldIeSupport": false,
     "customPaths": true,
     "distDirectory": "myDist",
     "docsDirectory": "myDocs",

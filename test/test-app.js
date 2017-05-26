@@ -16,7 +16,6 @@ describe('Baumeister with default options', () => {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
 		theme: 'My theme',
-		oldIeSupport: false,
 		customPaths: false,
 		authorName: 'My Name',
 		authorMail: 'name@domain.com',
@@ -152,40 +151,6 @@ describe('Baumeister with default options', () => {
 		assert.file(['.postinstall.js']);
 	});
 
-	it('should not have dependencies to support oldIEs', () => {
-		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
-		pkgJson.should.not.have.propertyByPath('dependencies', 'html5shiv');
-		pkgJson.should.not.have.propertyByPath('dependencies', 'respond.js');
-		pkgJson.should.not.have.propertyByPath('dependencies', 'jquery-placeholder');
-		pkgJson.should.have.propertyByPath('dependencies', 'jquery').containEql('3.2.1');
-	});
-
-	it('should not handle oldIE related files within package.json', () => {
-		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
-		assert(pkgJson.baumeister.includeStaticFiles.indexOf('html5shiv/dist/html5shiv-printshiv.min.js') === -1);
-		assert(pkgJson.baumeister.includeStaticFiles.indexOf('respond.js/dest/respond.min.js') === -1);
-	});
-
-	it('should not reference oldIE related files within HTML files', () => {
-		assert.noFileContent([
-			['src/templates/default.hbs', /html5shiv/],
-			['src/templates/default.hbs', /respond.js/],
-			['src/templates/default.hbs', /jquery-placeholder/]
-		]);
-	});
-
-	it('should include »browsehappy« message', () => {
-		assert.fileContent([
-			['src/templates/default.hbs', /browsehappy/]
-		]);
-	});
-
-	it('should not include conditional classes to address oldIEs', () => {
-		assert.noFileContent([
-			['src/templates/default.hbs', /<html lang="en" class="(.+)ie(\d+)">/g]
-		]);
-	});
-
 	it('should render project name and description in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 		packageJson.should.have.property('name', _s.slugify(prompts.projectName));
@@ -293,7 +258,6 @@ describe('Baumeister with banner', () => {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
 		theme: 'My theme',
-		oldIeSupport: false,
 		customPaths: false,
 		authorName: 'My Name',
 		authorMail: 'name@domain.com',
@@ -331,78 +295,6 @@ describe('Baumeister with banner', () => {
 	});
 });
 
-describe('Baumeister with oldIE support', () => {
-
-	// Define prompt answers
-	const prompts = {
-		projectName: '',
-		projectDescription: '',
-		theme: 'My theme',
-		oldIeSupport: true,
-		customPaths: false,
-		authorName: 'My Name',
-		authorMail: 'name@domain.com',
-		authorUrl: 'http://www.foo.com',
-		license: 'MIT',
-		initialVersion: '0.0.0',
-		projectHomepage: 'https://github.com/userName/repository',
-		projectRepositoryType: 'git',
-		projectRepository: 'git@github.com:userName/repository.git',
-		banner: false,
-		addDistToVersionControl: false,
-		issueTracker: 'https://github.com/userName/repository/issues',
-		boilerplateAmount: 'Just a little – Get started with a few example files'
-	};
-
-	before(() => {
-		return helpers.run(path.join(__dirname, '../app'))
-
-		// Clear the directory and set it as the CWD
-		.inDir(path.join(os.tmpdir(), './temp-test'))
-
-		// Mock options passed in
-		.withOptions({
-			'skip-install': true
-		})
-
-		// Mock the prompt answers
-		.withPrompts(prompts)
-
-		.toPromise();
-	});
-
-	it('should have dependencies to support oldIEs', () => {
-		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
-		pkgJson.should.have.propertyByPath('dependencies', 'html5shiv');
-		pkgJson.should.have.propertyByPath('dependencies', 'respond.js');
-		pkgJson.should.have.propertyByPath('dependencies', 'jquery-placeholder');
-		pkgJson.should.have.propertyByPath('dependencies', 'jquery').containEql('1.12.4');
-	});
-
-	it('should handle oldIE related files within package.json', () => {
-		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
-		assert(pkgJson.baumeister.includeStaticFiles.indexOf('html5shiv/dist/html5shiv-printshiv.min.js') !== -1);
-		assert(pkgJson.baumeister.includeStaticFiles.indexOf('respond.js/dest/respond.min.js') !== -1);
-	});
-
-	it('should reference oldIE related files within HTML files', () => {
-		assert.fileContent([
-			['src/templates/default.hbs', /html5shiv/],
-			['src/templates/default.hbs', /respond.js/],
-			['src/templates/default.hbs', /jquery-placeholder/]
-		]);
-	});
-
-	it('should include »browsehappy« message', () => {
-		assert.fileContent('src/templates/default.hbs', /browsehappy/);
-	});
-
-	it('should include conditional classes to address oldIEs', () => {
-		assert.fileContent('src/templates/default.hbs', /<html lang="en" class="(.+)ie(\d+)">/g);
-	});
-
-});
-
 describe('Baumeister with custom output paths', () => {
 
 	// Define prompt answers
@@ -410,7 +302,6 @@ describe('Baumeister with custom output paths', () => {
 		projectName: '',
 		projectDescription: '',
 		theme: 'My theme',
-		oldIeSupport: true,
 		customPaths: true,
 		distDirectory: 'disty',
 		docsDirectory: 'docsy',
@@ -464,7 +355,6 @@ describe('Baumeister without an open source license', () => {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
 		theme: 'My theme',
-		oldIeSupport: false,
 		customPaths: false,
 		authorName: '',
 		authorMail: '',
@@ -528,7 +418,6 @@ describe('Baumeister with Apache License, Version 2.0', () => {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
 		theme: 'My theme',
-		oldIeSupport: false,
 		customPaths: false,
 		authorName: '',
 		authorMail: '',
@@ -592,7 +481,6 @@ describe('Baumeister with GNU General Public License', () => {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
 		theme: 'My theme',
-		oldIeSupport: false,
 		customPaths: false,
 		authorName: '',
 		authorMail: '',
@@ -656,7 +544,6 @@ describe('Baumeister with less boilerplate code', () => {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
 		theme: 'My theme',
-		oldIeSupport: false,
 		customPaths: false,
 		authorName: 'My Name',
 		authorMail: 'name@domain.com',
@@ -741,7 +628,6 @@ describe('Baumeister with `dist` added to version control', () => {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
 		theme: 'My theme',
-		oldIeSupport: false,
 		customPaths: false,
 		authorName: '',
 		authorMail: '',
@@ -910,40 +796,6 @@ describe('Baumeister using --yo-rc flag', () => {
 
 	it('should have a .postinstall.js file', () => {
 		assert.file(['.postinstall.js']);
-	});
-
-	it('should not have dependencies to support oldIEs', () => {
-		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
-		pkgJson.should.not.have.propertyByPath('dependencies', 'html5shiv');
-		pkgJson.should.not.have.propertyByPath('dependencies', 'respond.js');
-		pkgJson.should.not.have.propertyByPath('dependencies', 'jquery-placeholder');
-		pkgJson.should.have.propertyByPath('dependencies', 'jquery').containEql('3.2.1');
-	});
-
-	it('should not handle oldIE related files within package.json', () => {
-		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
-		assert(pkgJson.baumeister.includeStaticFiles.indexOf('html5shiv/dist/html5shiv-printshiv.min.js') === -1);
-		assert(pkgJson.baumeister.includeStaticFiles.indexOf('respond.js/dest/respond.min.js') === -1);
-	});
-
-	it('should not reference oldIE related files within HTML files', () => {
-		assert.noFileContent([
-			['src/templates/default.hbs', /html5shiv/],
-			['src/templates/default.hbs', /respond.js/],
-			['src/templates/default.hbs', /jquery-placeholder/]
-		]);
-	});
-
-	it('should include »browsehappy« message', () => {
-		assert.fileContent([
-			['src/templates/default.hbs', /browsehappy/]
-		]);
-	});
-
-	it('should not include conditional classes to address oldIEs', () => {
-		assert.noFileContent([
-			['src/templates/default.hbs', /<html lang="en" class="(.+)ie(\d+)">/g]
-		]);
 	});
 
 	it('should render project name and description in package.json', () => {

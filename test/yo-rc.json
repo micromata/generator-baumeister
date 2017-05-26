@@ -3,7 +3,6 @@
     "projectName": "Test this Thingy",
     "projectDescription": "Just a test.",
     "theme": "My theme",
-    "oldIeSupport": false,
     "customPaths": false,
     "authorName": "My Name",
     "authorMail": "name@domain.com",
