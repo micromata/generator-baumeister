@@ -100,13 +100,9 @@ module.exports = function (grunt) {
 
 		// ESLint
 		eslint: {
-			options: {
-				ignorePattern: '!.postinstall.js'
-			},
 			check: {
 				files: {
 					src: [
-						'.postinstall.js',
 						'src/templates/helpers/helpers.js',
 						'Gruntfile.js',
 						'src/app/*.js'
@@ -512,7 +508,7 @@ module.exports = function (grunt) {
 				}
 			},
 			otherJsFiles: {
-				files: ['Gruntfile.js', '.postinstall.js', 'src/templates/helpers/helpers.js'],
+				files: ['Gruntfile.js', 'src/templates/helpers/helpers.js'],
 				tasks: ['eslint:fix'],
 				options: {
 					spawn: false

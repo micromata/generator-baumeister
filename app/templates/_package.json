@@ -66,7 +66,6 @@
     "time-grunt": "1.4.0"
   },
   "scripts": {
-    "postinstall": "chmod u+x .postinstall.js && node ./.postinstall.js",
     "test": "grunt lint",
     "start": "grunt sync",
     "dev": "grunt dev",

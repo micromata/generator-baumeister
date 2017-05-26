@@ -147,10 +147,6 @@ describe('Baumeister with default options', () => {
 		JSON.parse(fs.readFileSync('package.json'));
 	});
 
-	it('should have a .postinstall.js file', () => {
-		assert.file(['.postinstall.js']);
-	});
-
 	it('should render project name and description in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 		packageJson.should.have.property('name', _s.slugify(prompts.projectName));
@@ -792,10 +788,6 @@ describe('Baumeister using --yo-rc flag', () => {
 
 	it('should have a valid package.json file', () => {
 		JSON.parse(fs.readFileSync('package.json'));
-	});
-
-	it('should have a .postinstall.js file', () => {
-		assert.file(['.postinstall.js']);
 	});
 
 	it('should render project name and description in package.json', () => {

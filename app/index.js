@@ -327,10 +327,6 @@ module.exports = class extends Generator {
 				templateProps: this.templateProps
 			}
 		);
-		this.fs.copyTpl(
-			this.templatePath('postinstall.js'),
-			this.destinationPath('.postinstall.js')
-		);
 
 		// Handlebars files
 		this.fs.copyTpl(
