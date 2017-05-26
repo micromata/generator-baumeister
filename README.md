@@ -10,13 +10,13 @@
 
 
 
-# Yeoman Generator for »Bootstrap Kickstart«
+# Yeoman Generator for »Baumeister«
 
 
     	 _-----_
 	    |       |    .--------------------------.
 	    |--(o)--|    |   Yeoman Generator for   |
-	   `---------´   |   »Bootstrap Kickstart«  |
+	   `---------´   |       »Baumeister«       |
 	    ( _´U`_ )    '--------------------------'
 	    /___A___\    
 	     |  ~  |     
@@ -25,9 +25,9 @@
 
 
 
-Using this generator will give you a solid base for your Bootstrap based project in a matter of minutes. It will offer you some neat options for using »Bootstrap Kickstart« which will help you with the creation of Bootstrap themes and sites by providing a file structure with focus on maintainibilty and upgradability and a set of useful Grunt Tasks. 
+Using this generator will give you a solid base for your Bootstrap based project in a matter of minutes. It will offer you some neat options for using »Baumeister« which will help you with the creation of Bootstrap themes and sites by providing a file structure with focus on maintainibilty and upgradability and a set of useful Grunt Tasks. 
 
-Please check the epic [README](https://github.com/micromata/bootstrap-kickstart) of »Bootstrap Kickstart« to get detailed information about what it’s all about.
+Please check the epic [README](https://github.com/micromata/bootstrap-kickstart) of »Baumeister« to get detailed information about what it’s all about.
 
 ## Features of this generator
 

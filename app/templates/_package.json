@@ -90,7 +90,7 @@
     "release:minor": "grunt release:minor",
     "release:major": "grunt release:major"
   },
-  "bootstrapKickstart": {
+  "baumeister": {
     "bundleCSS": {},
     "bundleExternalJS": [
       "jquery",

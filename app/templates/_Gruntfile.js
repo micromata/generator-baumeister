@@ -11,8 +11,8 @@ const templateHelpers = require('./src/templates/helpers/helpers.js');
  */
 function getBundleCSSFiles(packageJson) {
 	const basePath = 'node_modules/';
-	return Object.keys(packageJson.bootstrapKickstart.bundleCSS)
-		.map(dependencyKey => packageJson.bootstrapKickstart.bundleCSS[dependencyKey]
+	return Object.keys(packageJson.baumeister.bundleCSS)
+		.map(dependencyKey => packageJson.baumeister.bundleCSS[dependencyKey]
 			.map(relativeCSSFilePath => basePath + dependencyKey + '/' + relativeCSSFilePath))
 		.reduce((left, right) => left.concat(right), []);
 }
@@ -327,7 +327,7 @@ module.exports = function (grunt) {
 			distFilesFromLibs: {
 				expand: true,
 				cwd: 'node_modules',
-				src: packageJson.bootstrapKickstart.includeStaticFiles,
+				src: packageJson.baumeister.includeStaticFiles,
 				dest: '<%%= config.dist %>/libs'
 			},
 			server: {
@@ -343,7 +343,7 @@ module.exports = function (grunt) {
 			serverFilesFromLibs: {
 				expand: true,
 				cwd: 'node_modules',
-				src: packageJson.bootstrapKickstart.includeStaticFiles,
+				src: packageJson.baumeister.includeStaticFiles,
 				dest: '<%%= config.server %>/libs'
 			}
 		},
@@ -543,7 +543,7 @@ module.exports = function (grunt) {
 				src: [],
 				dest: '<%%= config.server %>/libs/vendor.js',
 				options: {
-					require: packageJson.bootstrapKickstart.bundleExternalJS
+					require: packageJson.baumeister.bundleExternalJS
 				}
 			},
 			clientDevelopment: {
@@ -558,7 +558,7 @@ module.exports = function (grunt) {
 							sourceMaps: true
 						}]
 					],
-					external: packageJson.bootstrapKickstart.bundleExternalJS
+					external: packageJson.baumeister.bundleExternalJS
 				}
 			},
 			clientProduction: {
@@ -573,7 +573,7 @@ module.exports = function (grunt) {
 							sourceMaps: false
 						}]
 					],
-					external: packageJson.bootstrapKickstart.bundleExternalJS
+					external: packageJson.baumeister.bundleExternalJS
 				}
 			}
 		},

@@ -9,7 +9,7 @@ const should = require('should'); // eslint-disable-line no-unused-vars
 const fs = require('fs');
 const escapeStringRegexp = require('escape-string-regexp');
 
-describe('bootstrap-kickstart with default options', () => {
+describe('Baumeister with default options', () => {
 
 	// Define prompt answers
 	const prompts = {
@@ -162,8 +162,8 @@ describe('bootstrap-kickstart with default options', () => {
 
 	it('should not handle oldIE related files within package.json', () => {
 		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
-		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('html5shiv/dist/html5shiv-printshiv.min.js') === -1);
-		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('respond.js/dest/respond.min.js') === -1);
+		assert(pkgJson.baumeister.includeStaticFiles.indexOf('html5shiv/dist/html5shiv-printshiv.min.js') === -1);
+		assert(pkgJson.baumeister.includeStaticFiles.indexOf('respond.js/dest/respond.min.js') === -1);
 	});
 
 	it('should not reference oldIE related files within HTML files', () => {
@@ -286,7 +286,7 @@ describe('bootstrap-kickstart with default options', () => {
 
 });
 
-describe('bootstrap-kickstart with banner', () => {
+describe('Baumeister with banner', () => {
 
 // Define prompt answers
 	const prompts = {
@@ -331,7 +331,7 @@ describe('bootstrap-kickstart with banner', () => {
 	});
 });
 
-describe('bootstrap-kickstart with oldIE support', () => {
+describe('Baumeister with oldIE support', () => {
 
 	// Define prompt answers
 	const prompts = {
@@ -381,8 +381,8 @@ describe('bootstrap-kickstart with oldIE support', () => {
 
 	it('should handle oldIE related files within package.json', () => {
 		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
-		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('html5shiv/dist/html5shiv-printshiv.min.js') !== -1);
-		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('respond.js/dest/respond.min.js') !== -1);
+		assert(pkgJson.baumeister.includeStaticFiles.indexOf('html5shiv/dist/html5shiv-printshiv.min.js') !== -1);
+		assert(pkgJson.baumeister.includeStaticFiles.indexOf('respond.js/dest/respond.min.js') !== -1);
 	});
 
 	it('should reference oldIE related files within HTML files', () => {
@@ -403,7 +403,7 @@ describe('bootstrap-kickstart with oldIE support', () => {
 
 });
 
-describe('bootstrap-kickstart with custom output paths', () => {
+describe('Baumeister with custom output paths', () => {
 
 	// Define prompt answers
 	const prompts = {
@@ -457,7 +457,7 @@ describe('bootstrap-kickstart with custom output paths', () => {
 
 });
 
-describe('bootstrap-kickstart without an open source license', () => {
+describe('Baumeister without an open source license', () => {
 
 	// Define prompt answers
 	const prompts = {
@@ -521,7 +521,7 @@ describe('bootstrap-kickstart without an open source license', () => {
 
 });
 
-describe('bootstrap-kickstart with Apache License, Version 2.0', () => {
+describe('Baumeister with Apache License, Version 2.0', () => {
 
 	// Define prompt answers
 	const prompts = {
@@ -585,7 +585,7 @@ describe('bootstrap-kickstart with Apache License, Version 2.0', () => {
 
 });
 
-describe('bootstrap-kickstart with GNU General Public License', () => {
+describe('Baumeister with GNU General Public License', () => {
 
 	// Define prompt answers
 	const prompts = {
@@ -649,7 +649,7 @@ describe('bootstrap-kickstart with GNU General Public License', () => {
 
 });
 
-describe('bootstrap-kickstart with less boilerplate code', () => {
+describe('Baumeister with less boilerplate code', () => {
 
 	// Define prompt answers
 	const prompts = {
@@ -734,7 +734,7 @@ describe('bootstrap-kickstart with less boilerplate code', () => {
 
 });
 
-describe('bootstrap-kickstart with `dist` added to version control', () => {
+describe('Baumeister with `dist` added to version control', () => {
 
 	// Define prompt answers
 	const prompts = {
@@ -794,7 +794,7 @@ describe('bootstrap-kickstart with `dist` added to version control', () => {
 
 });
 
-describe('bootstrap-kickstart using --yo-rc flag', () => {
+describe('Baumeister using --yo-rc flag', () => {
 
 	// Load prompt answers from yo-rc.json
 	const prompts = JSON.parse(fs.readFileSync(path.join(__dirname, 'yo-rc.json')))['generator-bootstrap-kickstart'];
@@ -922,8 +922,8 @@ describe('bootstrap-kickstart using --yo-rc flag', () => {
 
 	it('should not handle oldIE related files within package.json', () => {
 		const pkgJson = JSON.parse(fs.readFileSync('package.json'));
-		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('html5shiv/dist/html5shiv-printshiv.min.js') === -1);
-		assert(pkgJson.bootstrapKickstart.includeStaticFiles.indexOf('respond.js/dest/respond.min.js') === -1);
+		assert(pkgJson.baumeister.includeStaticFiles.indexOf('html5shiv/dist/html5shiv-printshiv.min.js') === -1);
+		assert(pkgJson.baumeister.includeStaticFiles.indexOf('respond.js/dest/respond.min.js') === -1);
 	});
 
 	it('should not reference oldIE related files within HTML files', () => {

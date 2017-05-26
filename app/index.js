@@ -70,7 +70,7 @@ module.exports = class extends Generator {
 
 			// Have Yeoman greet the user.
 			this.log(yosay(
-				'Yo, welcome to the ' + superb() + ' ' + chalk.yellow('Bootstrap Kickstart') + ' generator!'
+				'Yo, welcome to the ' + superb() + ' ' + chalk.yellow('Baumeister') + ' generator!'
 			));
 
 			const prompts = [
