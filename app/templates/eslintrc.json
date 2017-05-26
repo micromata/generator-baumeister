@@ -9,6 +9,9 @@
     "eqeqeq": ["error", "allow-null"],
     "no-eq-null": ["off"],
     "quote-props": ["error", "as-needed"],
-    "capitalized-comments": ["warn"]
+    "capitalized-comments": ["warn"],
+    "curly": ["error", "multi-line"],
+    "arrow-parens": ["off"],
+    "no-debugger": ["warn"]
   }
 }

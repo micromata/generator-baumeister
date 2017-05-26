@@ -300,6 +300,114 @@ module.exports = class extends Generator {
 			}
 		);
 
+		// Gulp related files
+		this.fs.copyTpl(
+			this.templatePath('gulp/commandLineArgs.js'),
+			this.destinationPath('gulp/commandLineArgs.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/config.js'),
+			this.destinationPath('gulp/config.js'), {
+				templateProps: this.templateProps
+			}
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/onError.js'),
+			this.destinationPath('gulp/onError.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/appTemplates.js'),
+			this.destinationPath('gulp/tasks/appTemplates.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/bumpVersion.js'),
+			this.destinationPath('gulp/tasks/bumpVersion.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/bundleExternalCSS.js'),
+			this.destinationPath('gulp/tasks/bundleExternalCSS.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/cacheBust.js'),
+			this.destinationPath('gulp/tasks/cacheBust.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/clean.js'),
+			this.destinationPath('gulp/tasks/clean.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/clientScripts.js'),
+			this.destinationPath('gulp/tasks/clientScripts.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/commitChanges.js'),
+			this.destinationPath('gulp/tasks/commitChanges.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/copyStaticFiles.js'),
+			this.destinationPath('gulp/tasks/copyStaticFiles.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/createChangelog.js'),
+			this.destinationPath('gulp/tasks/createChangelog.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/createTag.js'),
+			this.destinationPath('gulp/tasks/createTag.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/fonts.js'),
+			this.destinationPath('gulp/tasks/fonts.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/handlebars.js'),
+			this.destinationPath('gulp/tasks/handlebars.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/images.js'),
+			this.destinationPath('gulp/tasks/images.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/lint.js'),
+			this.destinationPath('gulp/tasks/lint.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/lintBootstrap.js'),
+			this.destinationPath('gulp/tasks/lintBootstrap.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/lintStyles.js'),
+			this.destinationPath('gulp/tasks/lintStyles.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/processHtml.js'),
+			this.destinationPath('gulp/tasks/processHtml.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/security.js'),
+			this.destinationPath('gulp/tasks/security.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/serve.js'),
+			this.destinationPath('gulp/tasks/serve.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/styles.js'),
+			this.destinationPath('gulp/tasks/styles.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/test.js'),
+			this.destinationPath('gulp/tasks/test.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/validateHtml.js'),
+			this.destinationPath('gulp/tasks/validateHtml.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('gulp/tasks/vendorScripts.js'),
+			this.destinationPath('gulp/tasks/vendorScripts.js')
+		);
+
 		// Dotfiles
 		this.fs.copyTpl(
 			this.templatePath('babelrc'),
@@ -330,25 +438,25 @@ module.exports = class extends Generator {
 
 		// Handlebars files
 		this.fs.copyTpl(
-			this.templatePath('src/templates/_default.hbs'),
-			this.destinationPath('src/templates/default.hbs'), {
+			this.templatePath('src/handlebars/layouts/_default.hbs'),
+			this.destinationPath('src/handlebars/layouts/default.hbs'), {
 				templateProps: this.templateProps
 			}
 		);
 		this.fs.copyTpl(
-			this.templatePath('src/templates/helpers/helpers.js'),
-			this.destinationPath('src/templates/helpers/helpers.js')
+			this.templatePath('src/handlebars/helpers/helpers.js'),
+			this.destinationPath('src/handlebars/helpers/helpers.js')
 		);
 
 		switch (this.templateProps.boilerplateAmount) {
 			case 'Just a little – Get started with a few example files':
 				this.fs.copyTpl(
-					this.templatePath('src/partials/footer.hbs'),
-					this.destinationPath('src/partials/footer.hbs')
+					this.templatePath('src/handlebars/partials/footer.hbs'),
+					this.destinationPath('src/handlebars/partials/footer.hbs')
 				);
 				this.fs.copyTpl(
-					this.templatePath('src/partials/navbar.hbs'),
-					this.destinationPath('src/partials/navbar.hbs')
+					this.templatePath('src/handlebars/partials/navbar.hbs'),
+					this.destinationPath('src/handlebars/partials/navbar.hbs')
 				);
 				this.fs.copyTpl(
 					this.templatePath('src/index-little-boilerplate.hbs'),
@@ -365,8 +473,8 @@ module.exports = class extends Generator {
 				break;
 			case 'Almost nothing - Just the minimum files and folders':
 				this.fs.copyTpl(
-					this.templatePath('src/partials/gitkeep'),
-					this.destinationPath('src/partials/.gitkeep')
+					this.templatePath('src/handlebars/partials/gitkeep'),
+					this.destinationPath('src/handlebars/partials/.gitkeep')
 				);
 				this.fs.copyTpl(
 					this.templatePath('src/index-no-boilerplate.hbs'),
@@ -385,8 +493,8 @@ module.exports = class extends Generator {
 			}
 		);
 		this.fs.copyTpl(
-			this.templatePath('_Gruntfile.js'),
-			this.destinationPath('Gruntfile.js'), {
+			this.templatePath('_gulpfile.babel.js'),
+			this.destinationPath('gulpfile.babel.js'), {
 				templateProps: this.templateProps
 			}
 		);
@@ -459,22 +567,18 @@ module.exports = class extends Generator {
 			}
 		);
 		this.fs.copyTpl(
-			this.templatePath('src/assets/less/base.less'),
-			this.destinationPath('src/assets/less/base.less')
-		);
-		this.fs.copyTpl(
-			this.templatePath('src/assets/less/_index.less'),
-			this.destinationPath('src/assets/less/index.less'), {
+			this.templatePath('src/assets/scss/_index.scss'),
+			this.destinationPath('src/assets/scss/index.scss'), {
 				templateProps: this.templateProps
 			}
 		);
 		this.fs.copyTpl(
-			this.templatePath('src/assets/less/print.less'),
-			this.destinationPath('src/assets/less/print.less')
+			this.templatePath('src/assets/scss/_print.scss'),
+			this.destinationPath('src/assets/scss/_print.scss')
 		);
 		this.fs.copyTpl(
-			this.templatePath('src/assets/less/_theme.less'),
-			this.destinationPath('src/assets/less/' + this.templateProps.theme + '.less'), {
+			this.templatePath('src/assets/scss/_theme.scss'),
+			this.destinationPath('src/assets/scss/' + this.templateProps.theme + '.scss'), {
 				templateProps: this.templateProps
 			}
 		);
@@ -482,47 +586,41 @@ module.exports = class extends Generator {
 		if (this.templateProps.boilerplateAmount === 'Just a little – Get started with a few example files') {
 
 			this.fs.copyTpl(
-				this.templatePath('src/assets/less/_theme/_alerts.less'),
-				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/alerts.less'), {
+				this.templatePath('src/assets/scss/_theme/_alerts.scss'),
+				this.destinationPath('src/assets/scss/' + this.templateProps.theme + '/_alerts.scss'), {
 					templateProps: this.templateProps
 				}
 			);
 			this.fs.copyTpl(
-				this.templatePath('src/assets/less/_theme/_demoElements.less'),
-				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/demoElements.less'), {
+				this.templatePath('src/assets/scss/_theme/_demoElements.scss'),
+				this.destinationPath('src/assets/scss/' + this.templateProps.theme + '/_demoElements.scss'), {
 					templateProps: this.templateProps
 				}
 			);
 			this.fs.copyTpl(
-				this.templatePath('src/assets/less/_theme/_footer.less'),
-				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/footer.less'), {
+				this.templatePath('src/assets/scss/_theme/_footer.scss'),
+				this.destinationPath('src/assets/scss/' + this.templateProps.theme + '/_footer.scss'), {
 					templateProps: this.templateProps
 				}
 			);
 			this.fs.copyTpl(
-				this.templatePath('src/assets/less/_theme/_ribbon.less'),
-				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/ribbon.less'), {
-					templateProps: this.templateProps
-				}
-			);
-			this.fs.copyTpl(
-				this.templatePath('src/assets/less/_theme/mixins.less'),
-				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/mixins.less')
+				this.templatePath('src/assets/scss/_theme/_mixins.scss'),
+				this.destinationPath('src/assets/scss/' + this.templateProps.theme + '/_mixins.scss')
 			);
 
 			this.fs.copyTpl(
-				this.templatePath('src/assets/less/_theme/scaffolding.less'),
-				this.destinationPath('src/assets/less/' + this.templateProps.theme + '/scaffolding.less')
+				this.templatePath('src/assets/scss/_theme/_scaffolding.scss'),
+				this.destinationPath('src/assets/scss/' + this.templateProps.theme + '/_scaffolding.scss')
 			);
 		}
 
 		this.fs.copyTpl(
-			this.templatePath('src/assets/less/_theme/testResponsiveHelpers.less'),
-			this.destinationPath('src/assets/less/' + this.templateProps.theme + '/testResponsiveHelpers.less')
+			this.templatePath('src/assets/scss/_theme/_testResponsiveHelpers.scss'),
+			this.destinationPath('src/assets/scss/' + this.templateProps.theme + '/_testResponsiveHelpers.scss')
 		);
 		this.fs.copyTpl(
-			this.templatePath('src/assets/less/_theme/variables.less'),
-			this.destinationPath('src/assets/less/' + this.templateProps.theme + '/variables.less')
+			this.templatePath('src/assets/scss/_variables.scss'),
+			this.destinationPath('src/assets/scss/_variables.scss')
 		);
 
 	}

@@ -1,28 +1,22 @@
 ### OS ###
-.DS_Store
-thumbs.db
-desktop.ini
+*.DS_Store
+*thumbs.db
+*desktop.ini
 
 ### npm ###
-/node_modules
-
-### System ###
-*.DS_Store
-*Thumbs.db
+node_modules
 
 ### Build ###
-/*.zip
-<% if (templateProps.addDistToVersionControl == false) { %>
-/dist
+<% if (templateProps.addDistToVersionControl === false) { %>
+dist
 <% } %>
-/docs
-/server
-/reports
-/src/assets/css
-/src/assets/js/*.min.js
-/src/assets/js/*.map
+server
+src/assets/css
+.browserify-cache-client.json
+.browserify-cache-vendor.json
+coverage
+.metalsmith-build
 
 ### Dev ###
-config.codekit
 *.sublime-project
 *.sublime-workspace

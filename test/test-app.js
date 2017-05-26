@@ -35,17 +35,48 @@ describe('Baumeister with default options', () => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
-		.inDir(path.join(os.tmpdir(), './temp-test'))
+			.inDir(path.join(os.tmpdir(), './temp-test'))
 
-		// Mock options passed in
-		.withOptions({
-			'skip-install': true
-		})
+			// Mock options passed in
+			.withOptions({
+				'skip-install': true
+			})
 
-		// Mock the prompt answers
-		.withPrompts(prompts)
+			// Mock the prompt answers
+			.withPrompts(prompts)
 
-		.toPromise();
+			.toPromise();
+	});
+
+	it('should create Gulp related files', () => {
+		assert.file([
+			'gulp/commandLineArgs.js',
+			'gulp/config.js',
+			'gulp/onError.js',
+			'gulp/tasks/appTemplates.js',
+			'gulp/tasks/bumpVersion.js',
+			'gulp/tasks/bundleExternalCSS.js',
+			'gulp/tasks/cacheBust.js',
+			'gulp/tasks/clean.js',
+			'gulp/tasks/clientScripts.js',
+			'gulp/tasks/commitChanges.js',
+			'gulp/tasks/copyStaticFiles.js',
+			'gulp/tasks/createChangelog.js',
+			'gulp/tasks/createTag.js',
+			'gulp/tasks/fonts.js',
+			'gulp/tasks/handlebars.js',
+			'gulp/tasks/images.js',
+			'gulp/tasks/lint.js',
+			'gulp/tasks/lintBootstrap.js',
+			'gulp/tasks/lintStyles.js',
+			'gulp/tasks/processHtml.js',
+			'gulp/tasks/security.js',
+			'gulp/tasks/serve.js',
+			'gulp/tasks/styles.js',
+			'gulp/tasks/test.js',
+			'gulp/tasks/validateHtml.js',
+			'gulp/tasks/vendorScripts.js'
+		]);
 	});
 
 	it('should create package manager files', () => {
@@ -54,9 +85,9 @@ describe('Baumeister with default options', () => {
 		]);
 	});
 
-	it('should have an empty string as banner within the Gruntfile', () => {
-		assert.fileContent('Gruntfile.js', /banner: ''/);
-	});
+	/*	It('should have an empty string as banner within the Gruntfile', () => {
+	 assert.fileContent('Gruntfile.js', /banner: ''/);
+	 }); */
 
 	it('should create dot files', () => {
 		assert.file([
@@ -80,17 +111,17 @@ describe('Baumeister with default options', () => {
 			'src/index.hbs',
 			'src/stickyFooter.hbs',
 			'src/demoElements.hbs',
-			'src/templates/default.hbs',
-			'src/templates/helpers/helpers.js',
-			'src/partials/footer.hbs',
-			'src/partials/navbar.hbs'
+			'src/handlebars/layouts/default.hbs',
+			'src/handlebars/helpers/helpers.js',
+			'src/handlebars/partials/footer.hbs',
+			'src/handlebars/partials/navbar.hbs'
 		]);
 	});
 
 	it('should create other project files', () => {
 		assert.file([
 			'README.md',
-			'Gruntfile.js',
+			'gulpfile.babel.js',
 			'humans.txt',
 			'LICENSE',
 			'CONTRIBUTING.md'
@@ -104,33 +135,33 @@ describe('Baumeister with default options', () => {
 			'src/assets/img',
 			'src/app/base.js',
 			'src/app/index.js',
-			'src/assets/less/base.less',
-			'src/assets/less/index.less',
-			'src/assets/less/print.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/testResponsiveHelpers.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/variables.less'
-
+			'src/assets/scss/index.scss',
+			'src/assets/scss/_print.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_alerts.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_demoElements.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_footer.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_mixins.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_scaffolding.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_testResponsiveHelpers.scss',
+			'src/assets/scss/_variables.scss'
 		]);
 	});
 
-	it('should import all LESS files within ' + _s.slugify(prompts.theme) + '.less file', () => {
+	it('should import all Sass files within ' + _s.slugify(prompts.theme) + '.scss file', () => {
 		assert.fileContent([
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /variables.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /testResponsiveHelpers.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/]
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /testResponsiveHelpers/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /alerts/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /demoElements/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /footer/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /mixins/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /scaffolding/]
+		]);
+	});
+
+	it('should import `_variables.scss` within `index.scss` file', () => {
+		assert.fileContent([
+			['src/assets/scss/index.scss', /.\/variables/]
 		]);
 	});
 
@@ -163,28 +194,19 @@ describe('Baumeister with default options', () => {
 
 	it('should render project name in HTML files', () => {
 		const regex = new RegExp(escapeStringRegexp(_s.titleize(prompts.projectName)), '');
-		assert.fileContent('src/templates/default.hbs', regex);
+		assert.fileContent('src/handlebars/layouts/default.hbs', regex);
 	});
 
 	it('should render author name within the meta tags of HTML files', () => {
-		const regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '" />'), '');
-		assert.fileContent('src/templates/default.hbs', regex);
+		const regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '"/>'), '');
+		assert.fileContent('src/handlebars/layouts/default.hbs', regex);
 	});
 
-	it('should have the default output paths within the Gruntfile', () => {
+	it('should have the default output paths within the gulpfile', () => {
 		const arg = [
-			['Gruntfile.js', /dist/],
-			['Gruntfile.js', /docs/],
-			['Gruntfile.js', /reports/]
+			['gulp/config.js', /dist: 'dist'/]
 		];
 		assert.fileContent(arg);
-	});
-
-	it('should not have a `gitadd` task within the Gruntfile', () => {
-		const arg = [
-			['Gruntfile.js', /gitadd/]
-		];
-		assert.noFileContent(arg);
 	});
 
 	it('should not have dev dependency `grunt-git` in package.json', () => {
@@ -247,49 +269,49 @@ describe('Baumeister with default options', () => {
 
 });
 
-describe('Baumeister with banner', () => {
+/* Describe('Baumeister with banner', () => {
 
-// Define prompt answers
-	const prompts = {
-		projectName: 'Test this Thingy',
-		projectDescription: 'Just a test.',
-		theme: 'My theme',
-		customPaths: false,
-		authorName: 'My Name',
-		authorMail: 'name@domain.com',
-		authorUrl: 'http://www.foo.com',
-		license: 'MIT',
-		initialVersion: '0.0.0',
-		projectHomepage: 'https://github.com/userName/repository',
-		projectRepositoryType: 'git',
-		projectRepository: 'git@github.com:userName/repository.git',
-		banner: true,
-		addDistToVersionControl: false,
-		issueTracker: 'https://github.com/userName/repository/issues',
-		boilerplateAmount: 'Just a little – Get started with a few example files'
-	};
+ // Define prompt answers
+ const prompts = {
+ projectName: 'Test this Thingy',
+ projectDescription: 'Just a test.',
+ theme: 'My theme',
+ customPaths: false,
+ authorName: 'My Name',
+ authorMail: 'name@domain.com',
+ authorUrl: 'http://www.foo.com',
+ license: 'MIT',
+ initialVersion: '0.0.0',
+ projectHomepage: 'https://github.com/userName/repository',
+ projectRepositoryType: 'git',
+ projectRepository: 'git@github.com:userName/repository.git',
+ banner: true,
+ addDistToVersionControl: false,
+ issueTracker: 'https://github.com/userName/repository/issues',
+ boilerplateAmount: 'Just a little – Get started with a few example files'
+ };
 
-	before(() => {
-		return helpers.run(path.join(__dirname, '../app'))
+ before(() => {
+ return helpers.run(path.join(__dirname, '../app'))
 
-		// Clear the directory and set it as the CWD
-		.inDir(path.join(os.tmpdir(), './temp-test'))
+ // Clear the directory and set it as the CWD
+ .inDir(path.join(os.tmpdir(), './temp-test'))
 
-		// Mock options passed in
-		.withOptions({
-			'skip-install': true
-		})
+ // Mock options passed in
+ .withOptions({
+ 'skip-install': true
+ })
 
-		// Mock the prompt answers
-		.withPrompts(prompts)
+ // Mock the prompt answers
+ .withPrompts(prompts)
 
-		.toPromise();
-	});
+ .toPromise();
+ });
 
-	it('should have the message like defined in the template of the Gruntfile', () => {
-		assert.fileContent('Gruntfile.js', /banner: '\/\*! <%= pkg\.title %> - v<%= pkg\.version %>\\n' \+/);
-	});
-});
+ it('should have the message like defined in the template of the Gruntfile', () => {
+ assert.fileContent('Gruntfile.js', /banner: '\/\*! <%= pkg\.title %> - v<%= pkg\.version %>\\n' \+/);
+ });
+ }) */
 
 describe('Baumeister with custom output paths', () => {
 
@@ -320,24 +342,22 @@ describe('Baumeister with custom output paths', () => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
-		.inDir(path.join(os.tmpdir(), './temp-test'))
+			.inDir(path.join(os.tmpdir(), './temp-test'))
 
-		// Mock options passed in
-		.withOptions({
-			'skip-install': true
-		})
+			// Mock options passed in
+			.withOptions({
+				'skip-install': true
+			})
 
-		// Mock the prompt answers
-		.withPrompts(prompts)
+			// Mock the prompt answers
+			.withPrompts(prompts)
 
-		.toPromise();
+			.toPromise();
 	});
 
-	it('should have the prompted output paths within the Gruntfile', () => {
+	it('should have the prompted output paths within the gulpfile', () => {
 		const arg = [
-			['Gruntfile.js', new RegExp(escapeStringRegexp(prompts.distDirectory), '')],
-			['Gruntfile.js', new RegExp(escapeStringRegexp(prompts.docsDirectory), '')],
-			['Gruntfile.js', new RegExp(escapeStringRegexp(prompts.reportsDirectory), '')]
+			['gulp/config.js', new RegExp(escapeStringRegexp(`dist: '${prompts.distDirectory}'`), '')]
 		];
 		assert.fileContent(arg);
 	});
@@ -370,17 +390,17 @@ describe('Baumeister without an open source license', () => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
-		.inDir(path.join(os.tmpdir(), './temp-test'))
+			.inDir(path.join(os.tmpdir(), './temp-test'))
 
-		// Mock options passed in
-		.withOptions({
-			'skip-install': true
-		})
+			// Mock options passed in
+			.withOptions({
+				'skip-install': true
+			})
 
-		// Mock the prompt answers
-		.withPrompts(prompts)
+			// Mock the prompt answers
+			.withPrompts(prompts)
 
-		.toPromise();
+			.toPromise();
 	});
 
 	it('should have authors name in LICENSE', () => {
@@ -433,17 +453,17 @@ describe('Baumeister with Apache License, Version 2.0', () => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
-		.inDir(path.join(os.tmpdir(), './temp-test'))
+			.inDir(path.join(os.tmpdir(), './temp-test'))
 
-		// Mock options passed in
-		.withOptions({
-			'skip-install': true
-		})
+			// Mock options passed in
+			.withOptions({
+				'skip-install': true
+			})
 
-		// Mock the prompt answers
-		.withPrompts(prompts)
+			// Mock the prompt answers
+			.withPrompts(prompts)
 
-		.toPromise();
+			.toPromise();
 	});
 
 	it('should have authors name in LICENSE', () => {
@@ -496,17 +516,17 @@ describe('Baumeister with GNU General Public License', () => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
-		.inDir(path.join(os.tmpdir(), './temp-test'))
+			.inDir(path.join(os.tmpdir(), './temp-test'))
 
-		// Mock options passed in
-		.withOptions({
-			'skip-install': true
-		})
+			// Mock options passed in
+			.withOptions({
+				'skip-install': true
+			})
 
-		// Mock the prompt answers
-		.withPrompts(prompts)
+			// Mock the prompt answers
+			.withPrompts(prompts)
 
-		.toPromise();
+			.toPromise();
 	});
 
 	it('should have authors name in LICENSE', () => {
@@ -559,31 +579,31 @@ describe('Baumeister with less boilerplate code', () => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
-		.inDir(path.join(os.tmpdir(), './temp-test'))
+			.inDir(path.join(os.tmpdir(), './temp-test'))
 
-		// Mock options passed in
-		.withOptions({
-			'skip-install': true
-		})
+			// Mock options passed in
+			.withOptions({
+				'skip-install': true
+			})
 
-		// Mock the prompt answers
-		.withPrompts(prompts)
+			// Mock the prompt answers
+			.withPrompts(prompts)
 
-		.toPromise();
+			.toPromise();
 	});
 
 	it('should create just the essential handlebars files', () => {
 		assert.file([
 			'src/index.hbs',
-			'src/templates/default.hbs',
-			'src/templates/helpers/helpers.js',
-			'src/partials/.gitkeep'
+			'src/handlebars/layouts/default.hbs',
+			'src/handlebars/helpers/helpers.js',
+			'src/handlebars/partials/.gitkeep'
 		]);
 		assert.noFile([
 			'src/stickyFooter.hbs',
 			'src/demoElements.hbs',
-			'src/partials/footer.hbs',
-			'src/partials/navbar.hbs'
+			'src/handlebars/partials/footer.hbs',
+			'src/handlebars/partials/navbar.hbs'
 		]);
 	});
 
@@ -599,22 +619,20 @@ describe('Baumeister with less boilerplate code', () => {
 			'src/assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
 			'src/assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
 			'src/assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less'
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_mixins.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_scaffolding.scss'
 		]);
 	});
 
-	it('should only import the essential LESS files within ' + _s.slugify(prompts.theme) + '.less file', () => {
+	it('should only import the essential Sass files within ' + _s.slugify(prompts.theme) + '.scss file', () => {
 		assert.noFileContent([
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/]
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /alerts.less/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /demoElements.less/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /footer.less/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /mixins.less/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /scaffolding.less/]
 		]);
 	});
-
 });
 
 describe('Baumeister with `dist` added to version control', () => {
@@ -643,17 +661,17 @@ describe('Baumeister with `dist` added to version control', () => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
-		.inDir(path.join(os.tmpdir(), './temp-test'))
+			.inDir(path.join(os.tmpdir(), './temp-test'))
 
-		// Mock options passed in
-		.withOptions({
-			'skip-install': true
-		})
+			// Mock options passed in
+			.withOptions({
+				'skip-install': true
+			})
 
-		// Mock the prompt answers
-		.withPrompts(prompts)
+			// Mock the prompt answers
+			.withPrompts(prompts)
 
-		.toPromise();
+			.toPromise();
 	});
 
 	it('should not have `/dist` directory in .gitignore', () => {
@@ -661,19 +679,6 @@ describe('Baumeister with `dist` added to version control', () => {
 			['.gitignore', /dist/]
 		]);
 	});
-
-	it('should have dev dependency `grunt-git` in package.json', () => {
-		const packageJson = JSON.parse(fs.readFileSync('package.json'));
-		packageJson.should.have.propertyByPath('devDependencies', 'grunt-git');
-	});
-
-	it('should have a `gitadd` task within the Gruntfile', () => {
-		const arg = [
-			['Gruntfile.js', /gitadd/]
-		];
-		assert.fileContent(arg);
-	});
-
 });
 
 describe('Baumeister using --yo-rc flag', () => {
@@ -685,16 +690,16 @@ describe('Baumeister using --yo-rc flag', () => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
-		.inDir(path.join(os.tmpdir(), './temp-test'), () => {
-			fs.writeFileSync('.yo-rc.json', fs.readFileSync(path.join(__dirname, 'yo-rc.json')));
-		})
+			.inDir(path.join(os.tmpdir(), './temp-test'), () => {
+				fs.writeFileSync('.yo-rc.json', fs.readFileSync(path.join(__dirname, 'yo-rc.json')));
+			})
 
-		.withOptions({
-			'skip-install': true,
-			'yo-rc': true
-		})
+			.withOptions({
+				'skip-install': true,
+				'yo-rc': true
+			})
 
-		.toPromise();
+			.toPromise();
 	});
 
 	it('should create package manager files', () => {
@@ -723,17 +728,17 @@ describe('Baumeister using --yo-rc flag', () => {
 			'src/index.hbs',
 			'src/stickyFooter.hbs',
 			'src/demoElements.hbs',
-			'src/templates/default.hbs',
-			'src/templates/helpers/helpers.js',
-			'src/partials/footer.hbs',
-			'src/partials/navbar.hbs'
+			'src/handlebars/layouts/default.hbs',
+			'src/handlebars/helpers/helpers.js',
+			'src/handlebars/partials/footer.hbs',
+			'src/handlebars/partials/navbar.hbs'
 		]);
 	});
 
 	it('should create other project files', () => {
 		assert.file([
 			'README.md',
-			'Gruntfile.js',
+			'gulpfile.babel.js',
 			'humans.txt',
 			'LICENSE',
 			'CONTRIBUTING.md'
@@ -747,33 +752,33 @@ describe('Baumeister using --yo-rc flag', () => {
 			'src/assets/img',
 			'src/app/base.js',
 			'src/app/index.js',
-			'src/assets/less/base.less',
-			'src/assets/less/index.less',
-			'src/assets/less/print.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/mixins.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/scaffolding.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/testResponsiveHelpers.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/variables.less'
-
+			'src/assets/scss/index.scss',
+			'src/assets/scss/_print.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_alerts.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_demoElements.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_footer.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_mixins.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_scaffolding.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_testResponsiveHelpers.scss',
+			'src/assets/scss/_variables.scss'
 		]);
 	});
 
-	it('should import all LESS files within ' + _s.slugify(prompts.theme) + '.less file', () => {
+	it('should import all Sass files within ' + _s.slugify(prompts.theme) + '.scss file', () => {
 		assert.fileContent([
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /variables.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /testResponsiveHelpers.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /alerts.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /demoElements.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /footer.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /ribbon.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /mixins.less/],
-			['src/assets/less/' + _s.slugify(prompts.theme) + '.less', /scaffolding.less/]
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /testResponsiveHelpers/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /alerts/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /demoElements/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /footer/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /mixins/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /scaffolding/]
+		]);
+	});
+
+	it('should import `_variables.scss` within `index.scss` file', () => {
+		assert.fileContent([
+			['src/assets/scss/index.scss', /.\/variables/]
 		]);
 	});
 
@@ -806,28 +811,19 @@ describe('Baumeister using --yo-rc flag', () => {
 
 	it('should render project name in HTML files', () => {
 		const regex = new RegExp(escapeStringRegexp(_s.titleize(prompts.projectName)), '');
-		assert.fileContent('src/templates/default.hbs', regex);
+		assert.fileContent('src/handlebars/layouts/default.hbs', regex);
 	});
 
 	it('should render author name within the meta tags of HTML files', () => {
-		const regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '" />'), '');
-		assert.fileContent('src/templates/default.hbs', regex);
+		const regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '"/>'), '');
+		assert.fileContent('src/handlebars/layouts/default.hbs', regex);
 	});
 
-	it('should have the default output paths within the Gruntfile', () => {
+	it('should have the default output paths within the config file', () => {
 		const arg = [
-			['Gruntfile.js', /dist/],
-			['Gruntfile.js', /docs/],
-			['Gruntfile.js', /reports/]
+			['gulp/config.js', new RegExp(escapeStringRegexp(`dist: 'dist'`), '')]
 		];
 		assert.fileContent(arg);
-	});
-
-	it('should not have a `gitadd` task within the Gruntfile', () => {
-		const arg = [
-			['Gruntfile.js', /gitadd/]
-		];
-		assert.noFileContent(arg);
 	});
 
 	it('should not have dev dependency `grunt-git` in package.json', () => {

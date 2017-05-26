@@ -1,6 +1,10 @@
 {
   "env": {
     "browser": true,
-    "jquery": true
+    "jquery": true,
+    "jest": true
+  },
+  "rules": {
+    "no-console": ["warn"]
   }
 }
