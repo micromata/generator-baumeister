@@ -50,11 +50,11 @@ $footer-text-margin: 20px;
 	background-color: $footer-bg;
 
 	> .container {
-	padding-right: 15px;
-	padding-left: 15px;
+		padding-right: 15px;
+		padding-left: 15px;
 	}
 
 	.footer-text {
-	margin: $footer-text-margin 0;
+		margin: $footer-text-margin 0;
 	}
 }
