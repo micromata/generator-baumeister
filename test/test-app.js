@@ -97,7 +97,8 @@ describe('Baumeister with default options', () => {
 			'.babelrc',
 			'.travis.yml',
 			'.eslintrc.json',
-			'src/app/.eslintrc.json'
+			'src/app/.eslintrc.json',
+			'.stylelintrc.json'
 		]);
 	});
 
