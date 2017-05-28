@@ -15,6 +15,7 @@ describe('Baumeister with default options', () => {
 	const prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
+		useHandlebars: true,
 		theme: 'My theme',
 		customPaths: false,
 		authorName: 'My Name',
@@ -267,6 +268,61 @@ describe('Baumeister with default options', () => {
 		packageJson.should.have.propertyByPath('bugs', 'url').eql(prompts.issueTracker);
 	});
 
+});
+
+describe('Baumeister with Handlebars disabled', () => {
+	// Define prompt answers
+	const prompts = {
+		projectName: 'Test this Thingy',
+		projectDescription: 'Just a test.',
+		useHandlebars: false,
+		theme: 'My theme',
+		customPaths: false,
+		authorName: 'My Name',
+		authorMail: 'name@domain.com',
+		authorUrl: 'http://www.foo.com',
+		license: 'MIT',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
+		addDistToVersionControl: false,
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Just a little – Get started with a few example files'
+	};
+
+	before(() => {
+		return helpers.run(path.join(__dirname, '../app'))
+
+		// Clear the directory and set it as the CWD
+			.inDir(path.join(os.tmpdir(), './temp-test'))
+
+			// Mock options passed in
+			.withOptions({
+				'skip-install': true
+			})
+
+			// Mock the prompt answers
+			.withPrompts(prompts)
+
+			.toPromise();
+	});
+
+	it('should create no Handlebars related files', () => {
+		assert.noFile([
+			'src/**/*.hbs',
+			'src/handlebars'
+		]);
+	});
+
+	it('should create example html files', () => {
+		assert.file([
+			'src/index.html',
+			'src/stickyFooter.html',
+			'src/demoElements.html'
+		]);
+	});
 });
 
 /* Describe('Baumeister with banner', () => {
@@ -553,13 +609,14 @@ describe('Baumeister with GNU General Public License', () => {
 
 });
 
-describe('Baumeister with less boilerplate code', () => {
+describe('Baumeister with less boilerplate code and handlebars enabled', () => {
 
 	// Define prompt answers
 	const prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
 		theme: 'My theme',
+		useHandlebars: true,
 		customPaths: false,
 		authorName: 'My Name',
 		authorMail: 'name@domain.com',
@@ -610,6 +667,86 @@ describe('Baumeister with less boilerplate code', () => {
 	it('should not include navigation and content in index.hbs', () => {
 		assert.noFileContent([
 			['src/index.hbs', /navbar|<p/g]
+		]);
+	});
+
+	it('should create just the essential LESS files', () => {
+		assert.noFile([
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
+			'src/assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_mixins.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_scaffolding.scss'
+		]);
+	});
+
+	it('should only import the essential Sass files within ' + _s.slugify(prompts.theme) + '.scss file', () => {
+		assert.noFileContent([
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /alerts.less/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /demoElements.less/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /footer.less/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /mixins.less/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /scaffolding.less/]
+		]);
+	});
+});
+
+describe('Baumeister with less boilerplate code and handlebars disabled', () => {
+
+	// Define prompt answers
+	const prompts = {
+		projectName: 'Test this Thingy',
+		projectDescription: 'Just a test.',
+		theme: 'My theme',
+		useHandlebars: false,
+		customPaths: false,
+		authorName: 'My Name',
+		authorMail: 'name@domain.com',
+		authorUrl: 'http://www.foo.com',
+		license: 'MIT',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		banner: false,
+		addDistToVersionControl: false,
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Almost nothing - Just the minimum files and folders'
+	};
+
+	before(() => {
+		return helpers.run(path.join(__dirname, '../app'))
+
+		// Clear the directory and set it as the CWD
+			.inDir(path.join(os.tmpdir(), './temp-test'))
+
+			// Mock options passed in
+			.withOptions({
+				'skip-install': true
+			})
+
+			// Mock the prompt answers
+			.withPrompts(prompts)
+
+			.toPromise();
+	});
+
+	it('should create just the essential html files', () => {
+		assert.file([
+			'src/index.html'
+		]);
+		assert.noFile([
+			'src/stickyFooter.html',
+			'src/demoElements.html',
+			'src/handlebars/partials/footer.html',
+			'src/handlebars/partials/navbar.hbs'
+		]);
+	});
+
+	it('should not include navigation in index.html', () => {
+		assert.noFileContent([
+			['src/index.html', /role="navigation"/]
 		]);
 	});
 
@@ -733,6 +870,10 @@ describe('Baumeister using --yo-rc flag', () => {
 			'src/handlebars/partials/footer.hbs',
 			'src/handlebars/partials/navbar.hbs'
 		]);
+	});
+
+	it('shouldn\'t create a static index.html file', () => {
+		assert.noFile(['src/index.html']);
 	});
 
 	it('should create other project files', () => {

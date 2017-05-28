@@ -41,6 +41,7 @@ module.exports = class extends Generator {
 				title: _s.titleize(config.projectName),
 				namespace: _s.camelize(_s.slugify(config.projectName)),
 				projectDescription: config.projectDescription,
+				useHandlebars: config.useHandlebars || true, // TODO: should handlebars be active by default?
 				theme: _s.slugify(config.theme),
 				distDirectory: config.distDirectory || 'dist',
 				docsDirectory: config.docsDirectory || 'docs',
@@ -84,6 +85,13 @@ module.exports = class extends Generator {
 					type: 'input',
 					name: 'projectDescription',
 					message: 'A short description of your project:'
+				},
+				{
+					type: 'confirm',
+					name: 'useHandlebars',
+					message: 'Do you want to use Handlebars in your project?',
+					default: true, // TODO See L44
+					store: true
 				},
 				{
 					type: 'input',
@@ -267,6 +275,7 @@ module.exports = class extends Generator {
 					title: _s.titleize(props.projectName),
 					namespace: _s.camelize(_s.slugify(props.projectName)),
 					projectDescription: props.projectDescription,
+					useHandlebars: props.useHandlebars,
 					theme: _s.slugify(props.theme),
 					distDirectory: props.distDirectory || 'dist',
 					docsDirectory: props.docsDirectory || 'docs',
@@ -306,7 +315,7 @@ module.exports = class extends Generator {
 			this.destinationPath('gulp/commandLineArgs.js')
 		);
 		this.fs.copyTpl(
-			this.templatePath('gulp/config.js'),
+			this.templatePath('gulp/_config.js'),
 			this.destinationPath('gulp/config.js'), {
 				templateProps: this.templateProps
 			}
@@ -436,50 +445,81 @@ module.exports = class extends Generator {
 			}
 		);
 
-		// Handlebars files
-		this.fs.copyTpl(
-			this.templatePath('src/handlebars/layouts/_default.hbs'),
-			this.destinationPath('src/handlebars/layouts/default.hbs'), {
-				templateProps: this.templateProps
-			}
-		);
-		this.fs.copyTpl(
-			this.templatePath('src/handlebars/helpers/helpers.js'),
-			this.destinationPath('src/handlebars/helpers/helpers.js')
-		);
+		if (this.templateProps.useHandlebars) {
+			this.fs.copyTpl(
+				this.templatePath('src/handlebars/layouts/_default.hbs'),
+				this.destinationPath('src/handlebars/layouts/default.hbs'), {
+					templateProps: this.templateProps
+				}
+			);
+			this.fs.copyTpl(
+				this.templatePath('src/handlebars/helpers/helpers.js'),
+				this.destinationPath('src/handlebars/helpers/helpers.js')
+			);
+		}
 
 		switch (this.templateProps.boilerplateAmount) {
 			case 'Just a little – Get started with a few example files':
-				this.fs.copyTpl(
-					this.templatePath('src/handlebars/partials/footer.hbs'),
-					this.destinationPath('src/handlebars/partials/footer.hbs')
-				);
-				this.fs.copyTpl(
-					this.templatePath('src/handlebars/partials/navbar.hbs'),
-					this.destinationPath('src/handlebars/partials/navbar.hbs')
-				);
-				this.fs.copyTpl(
-					this.templatePath('src/index-little-boilerplate.hbs'),
-					this.destinationPath('src/index.hbs')
-				);
-				this.fs.copyTpl(
-					this.templatePath('src/demoElements.hbs'),
-					this.destinationPath('src/demoElements.hbs')
-				);
-				this.fs.copyTpl(
-					this.templatePath('src/stickyFooter.hbs'),
-					this.destinationPath('src/stickyFooter.hbs')
-				);
+				if (this.templateProps.useHandlebars) {
+					this.fs.copyTpl(
+						this.templatePath('src/handlebars/partials/footer.hbs'),
+						this.destinationPath('src/handlebars/partials/footer.hbs')
+					);
+					this.fs.copyTpl(
+						this.templatePath('src/handlebars/partials/navbar.hbs'),
+						this.destinationPath('src/handlebars/partials/navbar.hbs')
+					);
+					this.fs.copyTpl(
+						this.templatePath('src/index-little-boilerplate.hbs'),
+						this.destinationPath('src/index.hbs')
+					);
+					this.fs.copyTpl(
+						this.templatePath('src/demoElements.hbs'),
+						this.destinationPath('src/demoElements.hbs')
+					);
+					this.fs.copyTpl(
+						this.templatePath('src/stickyFooter.hbs'),
+						this.destinationPath('src/stickyFooter.hbs')
+					);
+				} else {
+					this.fs.copyTpl(
+						this.templatePath('src/_index-little-boilerplate.html'),
+						this.destinationPath('src/index.html'), {
+							templateProps: this.templateProps
+						}
+					);
+					this.fs.copyTpl(
+						this.templatePath('src/_demoElements.html'),
+						this.destinationPath('src/demoElements.html'), {
+							templateProps: this.templateProps
+						}
+					);
+					this.fs.copyTpl(
+						this.templatePath('src/_stickyFooter.html'),
+						this.destinationPath('src/stickyFooter.html'), {
+							templateProps: this.templateProps
+						}
+					);
+				}
 				break;
 			case 'Almost nothing - Just the minimum files and folders':
-				this.fs.copyTpl(
-					this.templatePath('src/handlebars/partials/gitkeep'),
-					this.destinationPath('src/handlebars/partials/.gitkeep')
-				);
-				this.fs.copyTpl(
-					this.templatePath('src/index-no-boilerplate.hbs'),
-					this.destinationPath('src/index.hbs')
-				);
+				if (this.templateProps.useHandlebars) {
+					this.fs.copyTpl(
+						this.templatePath('src/handlebars/partials/gitkeep'),
+						this.destinationPath('src/handlebars/partials/.gitkeep')
+					);
+					this.fs.copyTpl(
+						this.templatePath('src/index-no-boilerplate.hbs'),
+						this.destinationPath('src/index.hbs')
+					);
+				} else {
+					this.fs.copyTpl(
+						this.templatePath('src/_index-no-boilerplate.html'),
+						this.destinationPath('src/index.html'), {
+							templateProps: this.templateProps
+						}
+					);
+				}
 				break;
 			default:
 				break;

@@ -2,6 +2,7 @@
   "generator-bootstrap-kickstart": {
     "projectName": "Test this Thingy",
     "projectDescription": "Just a test.",
+    "useHandlebars": true,
     "theme": "My theme",
     "customPaths": false,
     "authorName": "My Name",
