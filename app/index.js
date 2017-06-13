@@ -685,8 +685,8 @@ module.exports = class extends Generator {
 
 	end() {
 		this.log(yosay(
-			chalk.red('That’s it!') + ' You’re all set to begin working with Bootstrap ✌(-‿-)✌\n' +
-			'Enter `grunt tasks` to see the available Grunt tasks.'
+			chalk.red('That’s it!') + ' You’re all set to begin building your stuff ✌(-‿-)✌\n' +
+			'Enter `gulp --tasks` to see the available Gulp tasks.'
 		));
 	}
 };
