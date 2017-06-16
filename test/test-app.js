@@ -130,7 +130,8 @@ describe('Baumeister with default options', () => {
 			'gulpfile.babel.js',
 			'humans.txt',
 			'LICENSE',
-			'CONTRIBUTING.md'
+			'CONTRIBUTING.md',
+			'CODE_OF_CONDUCT.md'
 		]);
 	});
 
@@ -675,24 +676,24 @@ describe('Baumeister with less boilerplate code and handlebars enabled', () => {
 		]);
 	});
 
-	it('should create just the essential LESS files', () => {
+	it('should create just the essential Sass files', () => {
 		assert.noFile([
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_alerts.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_demoElements.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_footer.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_mixins.scss',
-			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_scaffolding.scss'
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_scaffolding.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_testResponsiveHelpers.scss'
 		]);
 	});
 
 	it('should only import the essential Sass files within ' + _s.slugify(prompts.theme) + '.scss file', () => {
 		assert.noFileContent([
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /alerts.less/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /demoElements.less/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /footer.less/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /mixins.less/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /scaffolding.less/]
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /alerts/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /demoElements/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /footer/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /mixins/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /scaffolding/]
 		]);
 	});
 });
@@ -755,12 +756,12 @@ describe('Baumeister with less boilerplate code and handlebars disabled', () => 
 		]);
 	});
 
-	it('should create just the essential LESS files', () => {
+	it('should create just the essential Sass files', () => {
 		assert.noFile([
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/alerts.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/demoElements.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/footer.less',
-			'src/assets/less/' + _s.slugify(prompts.theme) + '/ribbon.less',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_alerts.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_demoElements.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_footer.scss',
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_ribbon.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_mixins.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_scaffolding.scss'
 		]);
@@ -768,11 +769,11 @@ describe('Baumeister with less boilerplate code and handlebars disabled', () => 
 
 	it('should only import the essential Sass files within ' + _s.slugify(prompts.theme) + '.scss file', () => {
 		assert.noFileContent([
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /alerts.less/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /demoElements.less/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /footer.less/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /mixins.less/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /scaffolding.less/]
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /alerts/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /demoElements/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /footer/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /mixins/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /scaffolding/]
 		]);
 	});
 });

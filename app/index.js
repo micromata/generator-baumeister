@@ -597,6 +597,12 @@ module.exports = class extends Generator {
 			this.templatePath('CONTRIBUTING.md'),
 			this.destinationPath('CONTRIBUTING.md')
 		);
+		this.fs.copyTpl(
+			this.templatePath('_CODE_OF_CONDUCT.md'),
+			this.destinationPath('CODE_OF_CONDUCT.md'), {
+				templateProps: this.templateProps
+			}
+		);
 
 		// Assets
 		this.fs.copy(
