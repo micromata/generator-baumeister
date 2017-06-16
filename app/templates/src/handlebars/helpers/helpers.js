@@ -16,7 +16,6 @@ function addYear(s) {
 }
 
 module.exports = {
-	/* stylelint-disable */ // because handlebars isn't able to work with shorthands
+	// eslint-disable-next-line object-shorthand
 	addYear: addYear
-	/* stylelint-enable */
 };
