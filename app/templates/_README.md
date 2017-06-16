@@ -9,9 +9,10 @@ The aim of this project is to help you with the creation of Bootstrap themes and
 - a file structure with focus on maintainability and upgradability
 - a Gulp workflow with the following »features«
 	- generate static sites with ease using handlebars templates
+		- optional – see [details](#writing-markup-using-pages-layouts-and-partials)
 	- transpile, bundle and minify your code
 		- ES6 as well as Sass
-	- remove `console` output and debugger statements in production files
+	- remove `console` output and `debugger` statements in production files
 	- add vendor prefixes
 	- lint JavaScript, Sass and HTML
 	- optimize images (lossless)
@@ -74,9 +75,9 @@ Please enter the following in your terminal if your aren’t sure about the avai
 
 This should return something like the following in case Node.js and npm is already installed:
 
-	v6.10.2
+	v8.1.0
 
-If that isn’t the case you have to install Node.js first. On OS X we strongly recommend installing Node via [Homebrew](https://brew.sh/) or [Node Version Manager](https://github.com/creationix/nvm). Not just because it’s easier to switch versions but also because you prevent potential permission problems when running npm.
+If this isn’t the case you have to install Node.js first. On OS X we strongly recommend installing Node via [Homebrew](https://brew.sh/) or [Node Version Manager](https://github.com/creationix/nvm). Not just because it’s easier to switch versions but also because you prevent potential permission problems when running npm.
 
 ### Gulp
 
@@ -189,15 +190,15 @@ Beside that we recommend setting up a project within in your editor if you don�
 Using handlebars we can simplify our templates and avoid markup duplications by using a combination of `pages`, `layouts` and `partials`.
 
 ### This is optional
-Using Handlebars instead of plain HTML is fully optional and will probably suit your needs if you use Bootstrap Kickstart for creating a static site. If you are developing a single page application instead you might turn of handlebars compiling and place `.html` files in the `/src` directory.
+Using Handlebars instead of plain HTML is fully optional and will probably suit your needs if you use Baumeister as static site generator for creating a static site. If you are developing a single page application instead you might turn of handlebars compiling and place just in `index.html` file in the `/src` directory and store additional templates in `/src/app`.
 
-In this case you have turn of Handlebars compiling in `gulp/config.js`:
+In this case you have to turn off Handlebars compiling in `gulp/config.js`:
 
 ```javascript
 /**
  * Boolean flag to set when using handlebars instead of plain HTML files in `src`.
  */
-export const useHandlebars = true;
+export const useHandlebars = false;
 ```
 
 ### Using handlebars
@@ -455,7 +456,7 @@ There are three files which differ from regular components. Please have a look a
 
 ## Using external libraries
 
-Let’s assume you like to ad some fanciness to your form select fields. This could be accomplished with [Select2](https://github.com/select2/select2).
+Let’s assume you like to add some fanciness to your form select fields. This could be accomplished with [Select2](https://github.com/select2/select2).
 
 This is how you get the files into your `/node_modules` directory and define the dependency in the `package.json` file.
 
@@ -517,7 +518,7 @@ myProject
 
 ### Bundling CSS from dependencies
 
-If your lib ships its own CSS you have to include the path to the files you like to bundle in the `bundleCSS` section of your `package.json`. Please note that glob pattern matching is supported over here.
+If a used library ships its own CSS you have to include the path to the files you like to bundle in the `bundleCSS` section of your `package.json`. Please note that glob pattern matching is supported over here.
 
 ```
 "bundleCSS": [
@@ -540,7 +541,7 @@ myProject
 
 ### Including static files from dependencies
 
-Sometimes you need to copy static files from an npm package to your project. This may be fonts or JavaScript files you need to include via a seperate `<script>` tag.
+Sometimes you need to copy static files from an npm package to your project. This may be fonts or JavaScript files you need to include via a separate `<script>` tag.
 To handle that you just have to include the files in the `includeStaticFiles` section of your `package.json`. Please note that glob pattern matching is supported over here.
 
 ```
@@ -587,9 +588,9 @@ myProject
                 └── respond.min.js
 ```
 
-### Changing versions of external resources
+### Changing versions of dependencies
 
-You can change the version of the external resources by editing the `package.json` file within the root directory of the project by hand.
+You can change the version of the dependencies by editing the `package.json` file within the root directory of the project by hand.
 
 	"dependencies": {
 	  "bootstrap": "~3.2.0",
@@ -748,7 +749,7 @@ We are using »conventional changelog« to get relevant changes out of the git c
 
 You should write your commit messages with this [conventions](https://github.com/conventional-changelog/conventional-changelog/blob/master/packages/conventional-changelog-angular/convention.md) in mind.
 
-See the last commits of Bootstrap Kickstart for some real life commit messages: https://github.com/micromata/baumeister/commits
+See the last [commits](https://github.com/micromata/baumeister/commits) of Baumeister for some real life commit messages.
 
 #### Short summary of the conventions
 
@@ -796,7 +797,7 @@ feat(build): Replace Grunt with Gulp
 <BLANK LINE>
 Closes #28
 BREAKING CHANGE: Grunt Tasks aren’t available any longer.
-But there are equvalent Gulp tasks.
+But there are equivalent Gulp tasks.
 List the available tasks with `gulp --tasks`
 ```
 The body can include the motivation for the change and contrast this with previous behavior.
@@ -814,7 +815,7 @@ https://github.com/angular/angular/blob/master/CHANGELOG.md
 ## Contributing to this project
 
 Anyone and everyone is welcome to contribute. Please take a moment to
-review the [guidelines for contributing](CONTRIBUTING.md).
+review our [Code of Conduct](CODE_OF_CONDUCT.md) as well as our [guidelines for contributing](CONTRIBUTING.md).
 
 * [Bug reports](CONTRIBUTING.md#bugs)
 * [Feature requests](CONTRIBUTING.md#features)
