@@ -41,7 +41,7 @@ module.exports = class extends Generator {
 				title: _s.titleize(config.projectName),
 				namespace: _s.camelize(_s.slugify(config.projectName)),
 				projectDescription: config.projectDescription,
-				projectType: config.projectType || true,
+				projectType: config.projectType || 'A static website',
 				theme: _s.slugify(config.theme),
 				distDirectory: config.distDirectory || 'dist',
 				docsDirectory: config.docsDirectory || 'docs',
