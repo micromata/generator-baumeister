@@ -15,7 +15,7 @@ describe('Baumeister with default options', () => {
 	const prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		useHandlebars: true,
+		projectType: 'A static website',
 		theme: 'My theme',
 		customPaths: false,
 		authorName: 'My Name',
@@ -84,6 +84,10 @@ describe('Baumeister with default options', () => {
 		assert.file([
 			'package.json'
 		]);
+	});
+
+	it('should create dummy test file', () => {
+		assert.file('src/app/__tests__/dummy-test.js');
 	});
 
 	/*	It('should have an empty string as banner within the Gruntfile', () => {
@@ -276,7 +280,7 @@ describe('Baumeister with Handlebars disabled', () => {
 	const prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		useHandlebars: false,
+		projectType: 'A single page application',
 		theme: 'My theme',
 		customPaths: false,
 		authorName: 'My Name',
@@ -617,7 +621,7 @@ describe('Baumeister with less boilerplate code and handlebars enabled', () => {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
 		theme: 'My theme',
-		useHandlebars: true,
+		projectType: 'A static website',
 		customPaths: false,
 		authorName: 'My Name',
 		authorMail: 'name@domain.com',
@@ -700,7 +704,7 @@ describe('Baumeister with less boilerplate code and handlebars disabled', () => 
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
 		theme: 'My theme',
-		useHandlebars: false,
+		projectType: 'A single page application',
 		customPaths: false,
 		authorName: 'My Name',
 		authorMail: 'name@domain.com',
@@ -822,7 +826,7 @@ describe('Baumeister with `dist` added to version control', () => {
 describe('Baumeister using --yo-rc flag', () => {
 
 	// Load prompt answers from yo-rc.json
-	const prompts = JSON.parse(fs.readFileSync(path.join(__dirname, 'yo-rc.json')))['generator-bootstrap-kickstart'];
+	const prompts = JSON.parse(fs.readFileSync(path.join(__dirname, 'yo-rc.json')))['generator-baumeister'];
 
 	before(() => {
 		return helpers.run(path.join(__dirname, '../app'))

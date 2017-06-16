@@ -1,8 +1,8 @@
 {
-  "generator-bootstrap-kickstart": {
+  "generator-baumeister": {
     "projectName": "Test this Thingy",
     "projectDescription": "Just a test.",
-    "useHandlebars": true,
+    "projectType": "A static website",
     "theme": "My theme",
     "customPaths": false,
     "authorName": "My Name",

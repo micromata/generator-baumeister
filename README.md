@@ -39,6 +39,7 @@ There are tons of options for now :scream:
 | `projectName` | Used in the generated README and package.json  |
 | `projectDescription`  | Used in the generated README and package.json  |
 | `theme`  | Name of your Bootstrap theme. Used to name a file and a folder within the LESS directory  |
+| `projectType` | Whether to use Baumeister as a SPA or a static site generator using Handlebars and Frontmatters |
 | `customPaths`  | Option to define the output paths `dist`, `docs`, `reports`  |
 | `boilerplateAmount`  | Option to choose the amount of boilerplate code (HTML, LESS and JS examples)  |
 | `license`  | Option to define the license type. Defaults to MIT  |
@@ -48,7 +49,7 @@ There are tons of options for now :scream:
 | `authorUrl`  | Option to define the author for use in the generated package.json |
 | `projectHomepage`, `projectRepositoryType`, `projectRepository`  | Option to define homepage and repository for use in the generated package.json  |
 | `issueTracker`  | Option to define the URL to your issue tracker for use in the generated package.json  |
-| `banner`  | Optionally adds a comment banner containing author name, version and build date to your production files  |
+| `banner`  | Optionally adds a comment banner containing author name, version and build date to your production files (CSS and JS)  |
 | `addDistToVersionControl`  | Option to decide whether to add the `dist` directory to version control or include it in `.gitignore` |
 
 Frequent Users, who are tired being asked the same questions again and again might use a config file called `.yo-rc.json` like described [here](#--yo-rc).
@@ -147,6 +148,7 @@ This file should contain the options which are otherwise prompted by Yeoman. See
     "projectName": "foozy",
     "projectDescription": "boozy",
     "banner": false,
+    "projectType": "A static website",
     "theme": "foozel",
     "boilerplateAmount": "Almost nothing - Just the minimum files and folders",
     "license": "MIT",

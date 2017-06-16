@@ -11,8 +11,8 @@
  * {{addYear '©'}} --> © 2017
  *
  */
-function addYearToString(s) {
+function addYear(s) {
 	return s + ' ' + new Date().getFullYear();
 }
 
-module.exports = {addYear: addYearToString};
+module.exports = addYear;

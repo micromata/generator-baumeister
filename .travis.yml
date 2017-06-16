@@ -34,7 +34,7 @@ script:
   - echo '"generator-bootstrap-kickstart":{' >> .yo-rc.json
   - echo '"projectName":"Test this Thingy",' >> .yo-rc.json
   - echo '"projectDescription":"Just a test.",' >> .yo-rc.json
-  - echo '"useHandlebars":true,' >> .yo-rc.json
+  - echo '"projectType":"A static website",' >> .yo-rc.json
   - echo '"theme":"My theme",' >> .yo-rc.json
   - echo '"customPaths":false,' >> .yo-rc.json
   - echo '"authorName":"My Name",' >> .yo-rc.json

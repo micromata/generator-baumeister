@@ -41,7 +41,7 @@ module.exports = class extends Generator {
 				title: _s.titleize(config.projectName),
 				namespace: _s.camelize(_s.slugify(config.projectName)),
 				projectDescription: config.projectDescription,
-				useHandlebars: config.useHandlebars || true, // TODO: should handlebars be active by default?
+				projectType: config.projectType || true,
 				theme: _s.slugify(config.theme),
 				distDirectory: config.distDirectory || 'dist',
 				docsDirectory: config.docsDirectory || 'docs',
@@ -87,10 +87,13 @@ module.exports = class extends Generator {
 					message: 'A short description of your project:'
 				},
 				{
-					type: 'confirm',
-					name: 'useHandlebars',
-					message: 'Do you want to use Handlebars in your project?',
-					default: true, // TODO See L44
+					type: 'list',
+					name: 'projectType',
+					message: 'What to you want to build?',
+					choices: [
+						'A static website',
+						'A single page application'
+					],
 					store: true
 				},
 				{
@@ -275,7 +278,7 @@ module.exports = class extends Generator {
 					title: _s.titleize(props.projectName),
 					namespace: _s.camelize(_s.slugify(props.projectName)),
 					projectDescription: props.projectDescription,
-					useHandlebars: props.useHandlebars,
+					projectType: props.projectType,
 					theme: _s.slugify(props.theme),
 					distDirectory: props.distDirectory || 'dist',
 					docsDirectory: props.docsDirectory || 'docs',
@@ -307,6 +310,12 @@ module.exports = class extends Generator {
 			this.destinationPath('package.json'), {
 				templateProps: this.templateProps
 			}
+		);
+
+		// Tests
+		this.fs.copyTpl(
+			this.templatePath('src/app/__tests__'),
+			this.destinationPath('src/app/__tests__')
 		);
 
 		// Gulp related files
@@ -449,7 +458,7 @@ module.exports = class extends Generator {
 			}
 		);
 
-		if (this.templateProps.useHandlebars) {
+		if (this.templateProps.projectType === 'A static website') {
 			this.fs.copyTpl(
 				this.templatePath('src/handlebars/layouts/_default.hbs'),
 				this.destinationPath('src/handlebars/layouts/default.hbs'), {
@@ -464,7 +473,7 @@ module.exports = class extends Generator {
 
 		switch (this.templateProps.boilerplateAmount) {
 			case 'Just a little – Get started with a few example files':
-				if (this.templateProps.useHandlebars) {
+				if (this.templateProps.projectType === 'A static website') {
 					this.fs.copyTpl(
 						this.templatePath('src/handlebars/partials/footer.hbs'),
 						this.destinationPath('src/handlebars/partials/footer.hbs')
@@ -507,7 +516,7 @@ module.exports = class extends Generator {
 				}
 				break;
 			case 'Almost nothing - Just the minimum files and folders':
-				if (this.templateProps.useHandlebars) {
+				if (this.templateProps.projectType === 'A static website') {
 					this.fs.copyTpl(
 						this.templatePath('src/handlebars/partials/gitkeep'),
 						this.destinationPath('src/handlebars/partials/.gitkeep')

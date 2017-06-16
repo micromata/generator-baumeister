@@ -1,7 +1,7 @@
 /**
  * Boolean flag to set when using handlebars instead of plain HTML files in `src`.
  */
-export const useHandlebars = <%= templateProps.useHandlebars %>;
+export const useHandlebars = <%= templateProps.projectType === 'A static website' %>;
 
 export const pkgJson = require('../package.json');
 
