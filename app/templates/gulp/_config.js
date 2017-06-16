@@ -3,6 +3,11 @@
  */
 export const useHandlebars = <%= templateProps.projectType === 'A static website (Static site generator using Handlebars and Frontmatters)' %>;
 
+/**
+ * Flag for generating banners on on top of dist files (CSS & JS).
+ */
+export const generateBanners = <%= templateProps.generateBanners === true %>;
+
 export const pkgJson = require('../package.json');
 
 export const mainDirectories = {
