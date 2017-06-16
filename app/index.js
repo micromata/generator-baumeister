@@ -41,7 +41,7 @@ module.exports = class extends Generator {
 				title: _s.titleize(config.projectName),
 				namespace: _s.camelize(_s.slugify(config.projectName)),
 				projectDescription: config.projectDescription,
-				projectType: config.projectType || 'A static website',
+				projectType: config.projectType || 'A static website (Static site generator using Handlebars and Frontmatters)',
 				theme: _s.slugify(config.theme),
 				distDirectory: config.distDirectory || 'dist',
 				docsDirectory: config.docsDirectory || 'docs',
@@ -91,8 +91,8 @@ module.exports = class extends Generator {
 					name: 'projectType',
 					message: 'What to you want to build?',
 					choices: [
-						'A static website',
-						'A single page application'
+						'A static website (Static site generator using Handlebars and Frontmatters)',
+						'A single page application (using plain HTML and the template engine provided by your framework)'
 					],
 					store: true
 				},
@@ -458,7 +458,7 @@ module.exports = class extends Generator {
 			}
 		);
 
-		if (this.templateProps.projectType === 'A static website') {
+		if (this.templateProps.projectType === 'A static website (Static site generator using Handlebars and Frontmatters)') {
 			this.fs.copyTpl(
 				this.templatePath('src/handlebars/layouts/_default.hbs'),
 				this.destinationPath('src/handlebars/layouts/default.hbs'), {
@@ -473,7 +473,7 @@ module.exports = class extends Generator {
 
 		switch (this.templateProps.boilerplateAmount) {
 			case 'Just a little – Get started with a few example files':
-				if (this.templateProps.projectType === 'A static website') {
+				if (this.templateProps.projectType === 'A static website (Static site generator using Handlebars and Frontmatters)') {
 					this.fs.copyTpl(
 						this.templatePath('src/handlebars/partials/footer.hbs'),
 						this.destinationPath('src/handlebars/partials/footer.hbs')
@@ -516,7 +516,7 @@ module.exports = class extends Generator {
 				}
 				break;
 			case 'Almost nothing - Just the minimum files and folders':
-				if (this.templateProps.projectType === 'A static website') {
+				if (this.templateProps.projectType === 'A static website (Static site generator using Handlebars and Frontmatters)') {
 					this.fs.copyTpl(
 						this.templatePath('src/handlebars/partials/gitkeep'),
 						this.destinationPath('src/handlebars/partials/.gitkeep')

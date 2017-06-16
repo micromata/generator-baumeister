@@ -39,7 +39,7 @@ There are tons of options for now :scream:
 | `projectName` | Used in the generated README and package.json  |
 | `projectDescription`  | Used in the generated README and package.json  |
 | `theme`  | Name of your Bootstrap theme. Used to name a file and a folder within the LESS directory  |
-| `projectType` | Whether to use Baumeister as a SPA or a static site generator using Handlebars and Frontmatters |
+| `projectType` | Adds static site generator abilities (using Handlebars and Frontmatters) if you choose to build a static website |
 | `customPaths`  | Option to define the output paths `dist`, `docs`, `reports`  |
 | `boilerplateAmount`  | Option to choose the amount of boilerplate code (HTML, LESS and JS examples)  |
 | `license`  | Option to define the license type. Defaults to MIT  |
