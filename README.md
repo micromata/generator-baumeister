@@ -148,7 +148,7 @@ This file should contain the options which are otherwise prompted by Yeoman. See
     "projectName": "foozy",
     "projectDescription": "boozy",
     "banner": false,
-    "projectType": "A static website",
+    "projectType": "A static website (Static site generator using Handlebars and Frontmatters)",
     "theme": "foozel",
     "boilerplateAmount": "Almost nothing - Just the minimum files and folders",
     "license": "MIT",
