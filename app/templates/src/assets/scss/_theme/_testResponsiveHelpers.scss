@@ -8,6 +8,7 @@ body::after,
 body::before,
 html::before {
 	@include opacity(0.8);
+
 	background: grey;
 	color: white;
 	content: 'undefined';

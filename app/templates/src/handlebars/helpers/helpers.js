@@ -15,4 +15,8 @@ function addYear(s) {
 	return s + ' ' + new Date().getFullYear();
 }
 
-module.exports = addYear;
+module.exports = {
+	/* stylelint-disable */ // because handlebars isn't able to work with shorthands
+	addYear: addYear
+	/* stylelint-enable */
+};
