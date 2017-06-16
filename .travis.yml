@@ -31,7 +31,7 @@ script:
   - cd run-generator
   - touch .yo-rc.json
   - echo '{' > .yo-rc.json
-  - echo '"generator-bootstrap-kickstart":{' >> .yo-rc.json
+  - echo '"generator-baumeister":{' >> .yo-rc.json
   - echo '"projectName":"Test this Thingy",' >> .yo-rc.json
   - echo '"projectDescription":"Just a test.",' >> .yo-rc.json
   - echo '"projectType":"A static website",' >> .yo-rc.json
@@ -51,5 +51,5 @@ script:
   - echo '"boilerplateAmount":"Just a little – Get started with a few example files"' >> .yo-rc.json
   - echo '}' >> .yo-rc.json
   - echo '}' >> .yo-rc.json
-  - yo bootstrap-kickstart --yo-rc
+  - yo baumeister --yo-rc
   - npm run build

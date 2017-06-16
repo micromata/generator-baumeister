@@ -1,9 +1,9 @@
-[![npm version](https://badge.fury.io/js/generator-bootstrap-kickstart.svg)](http://badge.fury.io/js/generator-bootstrap-kickstart)
-[![Build Status](https://travis-ci.org/micromata/generator-bootstrap-kickstart.svg?branch=master)](https://travis-ci.org/micromata/generator-bootstrap-kickstart)
-[![Coverage Status](https://coveralls.io/repos/micromata/generator-bootstrap-kickstart/badge.svg?branch=master&service=github)](https://coveralls.io/github/micromata/generator-bootstrap-kickstart?branch=master)
-[![devDependency Status](https://david-dm.org/micromata/generator-bootstrap-kickstart/dev-status.svg)](https://david-dm.org/micromata/generator-bootstrap-kickstart#info=devDependencies)
-[![Dependency Status](https://david-dm.org/micromata/generator-bootstrap-kickstart/status.svg)](https://david-dm.org/micromata/generator-bootstrap-kickstart#info=Dependencies)
-[![Join the chat at https://gitter.im/micromata/bootstrap-kickstart](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/micromata/bootstrap-kickstart?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![npm version](https://badge.fury.io/js/generator-baumeister.svg)](http://badge.fury.io/js/generator-baumeister)
+[![Build Status](https://travis-ci.org/micromata/generator-baumeister.svg?branch=master)](https://travis-ci.org/micromata/generator-baumeister)
+[![Coverage Status](https://coveralls.io/repos/micromata/generator-baumeister/badge.svg?branch=master&service=github)](https://coveralls.io/github/micromata/generator-baumeister?branch=master)
+[![devDependency Status](https://david-dm.org/micromata/generator-baumeister/dev-status.svg)](https://david-dm.org/micromata/generator-baumeister#info=devDependencies)
+[![Dependency Status](https://david-dm.org/micromata/generator-baumeister/status.svg)](https://david-dm.org/micromata/generator-baumeister#info=Dependencies)
+[![Join the chat at https://gitter.im/micromata/baumeister](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/micromata/baumeister?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Twitter](https://img.shields.io/badge/Twitter-%40BootstrapKick%20-blue.svg?style=flat)](https://twitter.com/BootstrapKick)
 [![Unicorn](https://img.shields.io/badge/unicorn-approved-ff69b4.svg?style=flat)](https://www.youtube.com/watch?v=qRC4Vk6kisY) 
 
@@ -27,7 +27,7 @@
 
 Using this generator will give you a solid base for your Bootstrap based project in a matter of minutes. It will offer you some neat options for using »Baumeister« which will help you with the creation of Bootstrap themes and sites by providing a file structure with focus on maintainibilty and upgradability and a set of useful Grunt Tasks. 
 
-Please check the epic [README](https://github.com/micromata/bootstrap-kickstart) of »Baumeister« to get detailed information about what it’s all about.
+Please check the epic [README](https://github.com/micromata/baumeister) of »Baumeister« to get detailed information about what it’s all about.
 
 ## Features of this generator
 
@@ -62,8 +62,8 @@ Frequent Users, who are tired being asked the same questions again and again mig
 For those already using Yeoman.
 
 ```bash
-npm install -g generator-bootstrap-kickstart
-yo bootstrap-kickstart
+npm install -g generator-baumeister
+yo baumeister
 ```
 ---
 
@@ -72,7 +72,7 @@ yo bootstrap-kickstart
 - Node.js
 - Grunt
 
-See detailed installation instructions [over here](https://github.com/micromata/bootstrap-kickstart#dependencies) if you are new to this.
+See detailed installation instructions [over here](https://github.com/micromata/baumeister#dependencies) if you are new to this.
 
 ## Getting Started
 
@@ -94,16 +94,16 @@ npm install -g yo
 
 Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
 
-To install generator-bootstrap-kickstart from npm, run:
+To install generator-baumeister from npm, run:
 
 ```bash
-npm install -g generator-bootstrap-kickstart
+npm install -g generator-baumeister
 ```
 
 Finally, initiate the generator:
 
 ```bash
-yo bootstrap-kickstart
+yo baumeister
 ```
 
 ### Options via command line flags
@@ -115,7 +115,7 @@ yo bootstrap-kickstart
 Default: false
 
 ```bash
-yo bootstrap-kickstart --skip-cache
+yo baumeister --skip-cache
 ```
 
 #### --skip-install
@@ -125,7 +125,7 @@ yo bootstrap-kickstart --skip-cache
 Default: false
 
 ```bash
-yo bootstrap-kickstart --skip-install
+yo baumeister --skip-install
 ```
 
 #### --yo-rc
@@ -135,7 +135,7 @@ yo bootstrap-kickstart --skip-install
 Default: false
 
 ```bash
-yo bootstrap-kickstart --yo-rc
+yo baumeister --yo-rc
 ```
 
 You could place a  `.yo-rc.json` in the directory you are going to run the generator or in any parent directory up to your user directory (`~/.yo-rc.json`)
@@ -144,7 +144,7 @@ This file should contain the options which are otherwise prompted by Yeoman. See
 
 ```json
 {
-  "generator-bootstrap-kickstart": {
+  "generator-baumeister": {
     "projectName": "foozy",
     "projectDescription": "boozy",
     "banner": false,

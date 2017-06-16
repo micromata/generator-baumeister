@@ -46,16 +46,16 @@ For those already using Node, Gulp and stuff.
 ### via Yeoman
 
 	$ npm install -g yo
-	$ npm install -g generator-bootstrap-kickstart
-	$ yo bootstrap-kickstart
+	$ npm install -g generator-baumeister
+	$ yo baumeister
 	$ gulp --tasks
 
-See: <https://github.com/micromata/generator-bootstrap-kickstart>
+See: <https://github.com/micromata/generator-baumeister>
 
 ### via Git
 
-	$ git clone https://github.com/micromata/bootstrap-kickstart.git
-	$ cd bootstrap-kickstart
+	$ git clone https://github.com/micromata/baumeister.git
+	$ cd baumeister
 	$ npm install
 	$ gulp --tasks
 
@@ -93,7 +93,7 @@ Thanks do Node.js and npm installing the Gulp command line tools globally is jus
 
 Navigate to the root of your checkout:
 
-	cd path/to/your/checkout/of/bootstrap-kickstart
+	cd path/to/your/checkout/of/baumeister
 
 and call:
 
@@ -112,7 +112,7 @@ Just type the following to get an overview about the available Tasks:
 This will give you the main Gulp tasks which are ready for you to be fired from the terminal.:
 
 ````
-Tasks for ~/Documents/Projects/bootstrap-kickstart/gulpfile.babel.js
+Tasks for ~/Documents/Projects/baumeister/gulpfile.babel.js
 ├── build                 `gulp build` is the main build task
 │   --production          … builds for production to `dist` directory.
 │   -P                    … Alias for --production
@@ -325,7 +325,7 @@ title: My page title
 ---
 ```
 
-Frontmatters are basically a key/value storage you can access within your layouts, pages and partials via Handlebars.  This empowers you to do things like [handling active states](https://github.com/micromata/bootstrap-kickstart/blob/master/src/handlebars/partials/navbar.hbs#L16-L22) of your navigation and much more.
+Frontmatters are basically a key/value storage you can access within your layouts, pages and partials via Handlebars.  This empowers you to do things like [handling active states](https://github.com/micromata/baumeister/blob/master/src/handlebars/partials/navbar.hbs#L16-L22) of your navigation and much more.
 
 There is one predefined key which let you choose a different layout file in case you’re using more than one:
 
@@ -459,7 +459,7 @@ Let’s assume you like to ad some fanciness to your form select fields. This co
 
 This is how you get the files into your `/node_modules` directory and define the dependency in the `package.json` file.
 
-	cd path/to/your/checkout/of/bootstrap-kickstart
+	cd path/to/your/checkout/of/baumeister
 	npm search select2
 
 This leads to something like:
@@ -748,7 +748,7 @@ We are using »conventional changelog« to get relevant changes out of the git c
 
 You should write your commit messages with this [conventions](https://github.com/conventional-changelog/conventional-changelog/blob/master/packages/conventional-changelog-angular/convention.md) in mind.
 
-See the last commits of Bootstrap Kickstart for some real life commit messages: https://github.com/micromata/bootstrap-kickstart/commits
+See the last commits of Bootstrap Kickstart for some real life commit messages: https://github.com/micromata/baumeister/commits
 
 #### Short summary of the conventions
 

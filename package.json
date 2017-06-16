@@ -4,8 +4,8 @@
   "description": "Yeoman Generator for »Baumeister«",
   "license": "MIT",
   "main": "app/index.js",
-  "homepage": "https://github.com/micromata/generator-bootstrap-kickstart",
-  "repository": "micromata/generator-bootstrap-kickstart",
+  "homepage": "https://github.com/micromata/generator-baumeister",
+  "repository": "micromata/generator-baumeister",
   "author": {
     "name": "Michael Kühnel",
     "email": "m.kuehnel@micromata.de",
