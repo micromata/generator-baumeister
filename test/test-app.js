@@ -26,7 +26,7 @@ describe('Baumeister with default options', () => {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		banner: false,
+		banners: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -81,6 +81,14 @@ describe('Baumeister with default options', () => {
 		]);
 	});
 
+	it('should have `useHandlebars` set to `true` in gulp/config.js', () => {
+		assert.fileContent('gulp/config.js', /const useHandlebars = true;/);
+	});
+
+	it('should have `generateBanners` set to `false` in gulp/config.js', () => {
+		assert.fileContent('gulp/config.js', /const generateBanners = false;/);
+	});
+
 	it('should create package manager files', () => {
 		assert.file([
 			'package.json'
@@ -90,10 +98,6 @@ describe('Baumeister with default options', () => {
 	it('should create dummy test file', () => {
 		assert.file('src/app/__tests__/dummy-test.js');
 	});
-
-	/*	It('should have an empty string as banner within the Gruntfile', () => {
-	 assert.fileContent('Gruntfile.js', /banner: ''/);
-	 }); */
 
 	it('should create dot files', () => {
 		assert.file([
@@ -217,11 +221,6 @@ describe('Baumeister with default options', () => {
 		assert.fileContent(arg);
 	});
 
-	it('should not have dev dependency `grunt-git` in package.json', () => {
-		const packageJson = JSON.parse(fs.readFileSync('package.json'));
-		packageJson.should.not.have.propertyByPath('devDependencies', 'grunt-git');
-	});
-
 	it('should have authors name in package.json and LICENSE', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 		const regex = new RegExp(escapeStringRegexp(prompts.authorName), '');
@@ -293,7 +292,7 @@ describe('Baumeister with Handlebars disabled', () => {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		banner: false,
+		banners: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -316,6 +315,10 @@ describe('Baumeister with Handlebars disabled', () => {
 			.toPromise();
 	});
 
+	it('should have `useHandlebars` set to `false` in gulp/config.js', () => {
+		assert.fileContent('gulp/config.js', /const useHandlebars = false;/);
+	});
+
 	it('should create no Handlebars related files', () => {
 		assert.noFile([
 			'src/**/*.hbs',
@@ -332,49 +335,46 @@ describe('Baumeister with Handlebars disabled', () => {
 	});
 });
 
-/* Describe('Baumeister with banner', () => {
+describe('Baumeister with banner', () => {
 
- // Define prompt answers
- const prompts = {
- projectName: 'Test this Thingy',
- projectDescription: 'Just a test.',
- theme: 'My theme',
- customPaths: false,
- authorName: 'My Name',
- authorMail: 'name@domain.com',
- authorUrl: 'http://www.foo.com',
- license: 'MIT',
- initialVersion: '0.0.0',
- projectHomepage: 'https://github.com/userName/repository',
- projectRepositoryType: 'git',
- projectRepository: 'git@github.com:userName/repository.git',
- banner: true,
- addDistToVersionControl: false,
- issueTracker: 'https://github.com/userName/repository/issues',
- boilerplateAmount: 'Just a little – Get started with a few example files'
- };
+	// Define prompt answers
+	const prompts = {
+		projectName: 'Test this Thingy',
+		projectDescription: 'Just a test.',
+		theme: 'My theme',
+		customPaths: false,
+		authorName: 'My Name',
+		authorMail: 'name@domain.com',
+		authorUrl: 'http://www.foo.com',
+		license: 'MIT',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		banners: true,
+		addDistToVersionControl: false,
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Just a little – Get started with a few example files'
+	};
 
- before(() => {
- return helpers.run(path.join(__dirname, '../app'))
+	before(() => {
+		return helpers.run(path.join(__dirname, '../app'))
 
- // Clear the directory and set it as the CWD
- .inDir(path.join(os.tmpdir(), './temp-test'))
+		// Clear the directory and set it as the CWD
+			.inDir(path.join(os.tmpdir(), './temp-test'))
 
- // Mock options passed in
- .withOptions({
- 'skip-install': true
- })
+		// Mock options passed in
+			.withOptions({'skip-install': true})
 
- // Mock the prompt answers
- .withPrompts(prompts)
+		// Mock the prompt answers
+			.withPrompts(prompts).toPromise();
+	});
 
- .toPromise();
- });
+	it('should have `generateBanners` set to `true` in gulp/config.js', () => {
+		assert.fileContent('gulp/config.js', /const generateBanners = true;/);
+	});
 
- it('should have the message like defined in the template of the Gruntfile', () => {
- assert.fileContent('Gruntfile.js', /banner: '\/\*! <%= pkg\.title %> - v<%= pkg\.version %>\\n' \+/);
- });
- }) */
+});
 
 describe('Baumeister with custom output paths', () => {
 
@@ -393,7 +393,7 @@ describe('Baumeister with custom output paths', () => {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		banner: false,
+		banners: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -441,7 +441,7 @@ describe('Baumeister without an open source license', () => {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		banner: false,
+		banners: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -504,7 +504,7 @@ describe('Baumeister with Apache License, Version 2.0', () => {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		banner: false,
+		banners: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -567,7 +567,7 @@ describe('Baumeister with GNU General Public License', () => {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		banner: false,
+		banners: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
@@ -631,7 +631,7 @@ describe('Baumeister with less boilerplate code and handlebars enabled', () => {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		banner: false,
+		banners: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Almost nothing - Just the minimum files and folders'
@@ -713,7 +713,7 @@ describe('Baumeister with less boilerplate code and handlebars disabled', () => 
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		banner: false,
+		banners: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Almost nothing - Just the minimum files and folders'
@@ -792,7 +792,7 @@ describe('Baumeister with `dist` added to version control', () => {
 		projectHomepage: 'https://github.com/userName/repository',
 		projectRepositoryType: 'git',
 		projectRepository: 'git@github.com:userName/repository.git',
-		banner: false,
+		banners: false,
 		addDistToVersionControl: true,
 		issueTracker: 'https://github.com/userName/repository/issues',
 		boilerplateAmount: 'Just a little – Get started with a few example files'
