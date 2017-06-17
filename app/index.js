@@ -287,6 +287,14 @@ module.exports = class extends Generator {
 				templateProps: this.templateProps
 			}
 		);
+		this.fs.copyTpl(
+			this.templatePath('package-lock.json'),
+			this.destinationPath('package-lock.json')
+		);
+		this.fs.copyTpl(
+			this.templatePath('yarn.lock'),
+			this.destinationPath('yarn.lock')
+		);
 
 		// Tests
 		this.fs.copyTpl(
