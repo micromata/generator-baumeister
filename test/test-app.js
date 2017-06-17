@@ -8,6 +8,8 @@ const _s = require('underscore.string');
 const should = require('should'); // eslint-disable-line no-unused-vars
 const fs = require('fs');
 const escapeStringRegexp = require('escape-string-regexp');
+const chalk = require('chalk');
+const helper = require('../app/promptingHelpers');
 
 describe('Baumeister with default options', () => {
 
@@ -1035,4 +1037,38 @@ describe('Baumeister using --yo-rc flag', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 		packageJson.should.have.propertyByPath('bugs', 'url').eql(prompts.issueTracker);
 	});
+});
+
+describe('Baumeister prompting helpers', () => {
+
+	describe('→ validateThemeName()', () => {
+		it('should accept any string', () => {
+			assert.equal(helper.validateThemeName('my-theme'), true);
+		});
+		it('should fail with an empty string', () => {
+			assert.equal(helper.validateThemeName(''), chalk.red('Oops. This is used to name a file and a directory and can’t left blank.'));
+		});
+	});
+
+	describe('→ validateSemverVersion()', () => {
+		it('should accept a valid semver version number', () => {
+			assert.equal(helper.validateSemverVersion('1.0.0'), true);
+		});
+		it('should fail with a invalid semver version number', () => {
+			assert.equal(helper.validateSemverVersion('beta-1'), chalk.red('Please enter a valid semver version, i.e. MAJOR.MINOR.PATCH. See → https://nodesource.com/blog/semver-a-primer/'));
+		});
+	});
+
+	describe('→ defaultIssueTracker()', () => {
+		it('should return a GitHub issues link for HTTPS repo clone URLs', () => {
+			assert.equal(helper.defaultIssueTracker({projectRepository: 'https://github.com/micromata/baumeister.git'}), 'https://github.com/micromata/baumeister/issues');
+		});
+		it('should return a GitHub issues link for SSH repo clone URLs', () => {
+			assert.equal(helper.defaultIssueTracker({projectRepository: 'git@github.com:micromata/baumeister.git'}), 'https://github.com/micromata/baumeister/issues');
+		});
+		it('should return an empty string when regex for Github clone URLs don’t match', () => {
+			assert.equal(helper.defaultIssueTracker({projectRepository: ''}), '');
+		});
+	});
+
 });

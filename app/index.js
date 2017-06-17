@@ -4,11 +4,10 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const superb = require('superb');
-const semver = require('semver');
 const _s = require('underscore.string');
+const helper = require('./promptingHelpers');
 
 // Define chalk styles
-const error = chalk.red;
 const info = chalk.yellow.reset;
 
 module.exports = class extends Generator {
@@ -98,16 +97,7 @@ module.exports = class extends Generator {
 					type: 'input',
 					name: 'theme',
 					message: 'How should your Bootstrap theme be named in the Sass files?',
-					validate(value) {
-						let returnValue;
-
-						if (value === '') {
-							returnValue = error('Oops. This is used to name a file and a directory and can’t left blank.');
-						} else {
-							returnValue = true;
-						}
-						return returnValue;
-					}
+					validate: helper.validateThemeName
 				},
 				{
 					type: 'list',
@@ -165,16 +155,7 @@ module.exports = class extends Generator {
 					name: 'initialVersion',
 					message: 'Which initial version should we put in the package.json?',
 					default: '0.0.0',
-					validate(value) {
-						let returnValue;
-
-						if (semver.valid(value)) {
-							returnValue = true;
-						} else {
-							returnValue = error('Please enter a correct semver version, i.e. MAJOR.MINOR.PATCH. See → http://semver-ftw.org');
-						}
-						return returnValue;
-					},
+					validate: helper.validateSemverVersion,
 					store: true
 				},
 				{
@@ -236,13 +217,7 @@ module.exports = class extends Generator {
 					type: 'input',
 					name: 'issueTracker',
 					message: 'What’s the URL of your projects issue tracker?',
-					default(answers) {
-						const regex = /(?:git@|https:\/\/)(github.com)(?::|\/{1})(.+).git/ig;
-
-						if (answers.projectRepository.match(regex) !== null) {
-							return answers.projectRepository.replace(regex, 'https://$1/$2/issues');
-						}
-					},
+					default: helper.defaultIssueTracker,
 					when(answers) {
 						return answers.additionalInfo;
 					}
