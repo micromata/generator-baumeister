@@ -2,7 +2,7 @@
   "generator-baumeister": {
     "projectName": "Test this Thingy",
     "projectDescription": "Just a test.",
-    "projectType": "A static website",
+    "projectType": "A static website (Static site generator using Handlebars and Frontmatters)",
     "theme": "My theme",
     "customPaths": false,
     "authorName": "My Name",
