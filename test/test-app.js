@@ -123,7 +123,7 @@ describe('Baumeister with default options', () => {
 			'src/stickyFooter.hbs',
 			'src/demoElements.hbs',
 			'src/handlebars/layouts/default.hbs',
-			'src/handlebars/helpers/helpers.js',
+			'src/handlebars/helpers/addYear.js',
 			'src/handlebars/partials/footer.hbs',
 			'src/handlebars/partials/navbar.hbs'
 		]);
@@ -210,7 +210,7 @@ describe('Baumeister with default options', () => {
 	});
 
 	it('should render author name within the meta tags of HTML files', () => {
-		const regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '"/>'), '');
+		const regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '">'), '');
 		assert.fileContent('src/handlebars/layouts/default.hbs', regex);
 	});
 
@@ -658,7 +658,7 @@ describe('Baumeister with less boilerplate code and handlebars enabled', () => {
 		assert.file([
 			'src/index.hbs',
 			'src/handlebars/layouts/default.hbs',
-			'src/handlebars/helpers/helpers.js',
+			'src/handlebars/helpers/addYear.js',
 			'src/handlebars/partials/.gitkeep'
 		]);
 		assert.noFile([
@@ -870,7 +870,7 @@ describe('Baumeister using --yo-rc flag', () => {
 			'src/stickyFooter.hbs',
 			'src/demoElements.hbs',
 			'src/handlebars/layouts/default.hbs',
-			'src/handlebars/helpers/helpers.js',
+			'src/handlebars/helpers/addYear.js',
 			'src/handlebars/partials/footer.hbs',
 			'src/handlebars/partials/navbar.hbs'
 		]);
@@ -960,7 +960,7 @@ describe('Baumeister using --yo-rc flag', () => {
 	});
 
 	it('should render author name within the meta tags of HTML files', () => {
-		const regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '"/>'), '');
+		const regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '">'), '');
 		assert.fileContent('src/handlebars/layouts/default.hbs', regex);
 	});
 

@@ -15,7 +15,4 @@ function addYear(s) {
 	return s + ' ' + new Date().getFullYear();
 }
 
-module.exports = {
-	// eslint-disable-next-line object-shorthand
-	addYear: addYear
-};
+module.exports = addYear;

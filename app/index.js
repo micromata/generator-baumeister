@@ -355,8 +355,8 @@ module.exports = class extends Generator {
 				}
 			);
 			this.fs.copyTpl(
-				this.templatePath('src/handlebars/helpers/helpers.js'),
-				this.destinationPath('src/handlebars/helpers/helpers.js')
+				this.templatePath('src/handlebars/helpers/addYear.js'),
+				this.destinationPath('src/handlebars/helpers/addYear.js')
 			);
 		}
 
