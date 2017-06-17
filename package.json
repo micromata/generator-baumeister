@@ -35,7 +35,16 @@
     "kickstart",
     "kickstarter",
     "micromata",
-    "workflow"
+    "workflow",
+    "build",
+    "gulp",
+    "static site generator",
+    "baumeister",
+    "handlebars",
+    "single page application",
+    "single page applications",
+    "es6",
+    "jest"
   ],
   "dependencies": {
     "chalk": "1.1.3",
