@@ -2,14 +2,18 @@
 
 <%= templateProps.projectDescription %>
 
-# Build workflow for your web development needs
+# Baumeister – The frontend build workflow for your needs
 
-The aim of this project is to help you with the creation of Bootstrap themes and websites as well as single page applications by providing:
+<p align="center">
+	<img width="65%" src="https://raw.githubusercontent.com/micromata/baumeister/master/src/assets/img/baumeister-logo.png" alt="Baumeister Logo">
+</p>
+
+The aim of this project is to help you to build your things. From Bootstrap themes over static websites to single page applications. Baumeister provides:
 
 - a file structure with focus on maintainability and upgradability
 - a Gulp workflow with the following »features«
 	- generate static sites with ease using handlebars templates
-		- optional – see [details](#writing-markup-using-pages-layouts-and-partials)
+		- optional – see [details](#writing-markup-static-sites-vs-single-page-apps)
 	- transpile, bundle and minify your code
 		- ES6 as well as Sass
 	- remove `console` output and `debugger` statements in production files
@@ -29,9 +33,9 @@ The aim of this project is to help you with the creation of Bootstrap themes and
 - [Quick install guide](#quick-install-guide)
 - [Dependencies](#dependencies)
 - [Setting up the project](#setting-up-the-project)
-- [Gulp Workflow and tasks](#gulp-workflow-and-tasks)
-- [Setting up your Editor (optional)](#setting-up-your-editor-optional)
-- [Writing Markup (using pages, layouts and partials)](#writing-markup-using-pages-layouts-and-partials)
+- [Gulp workflow and tasks](#gulp-workflow-and-tasks)
+- [Setting up your editor (optional)](#setting-up-your-editor-optional)
+- [Writing markup (static sites vs. single page apps)](#writing-markup-static-sites-vs-single-page-apps)
 - [File and folder structure of Sass files](#file-and-folder-structure-of-sass-files)
 - [Using external libraries](#using-external-libraries)
 - [Unit tests](#unit-tests)
@@ -142,18 +146,18 @@ myProject
 ├──.browserify-cache-vendor.json    → Browserify cache file
 ├──.metalsmith-build                → Compiled handlebars sources
 ├── dist                            → Contains the files ready for production
-│   ├── app
-│   ├── assets
-│   └── libs                        → Relevant files copied from /node_modules
+│   ├── app
+│   ├── assets
+│   └── libs                        → Relevant files copied from /node_modules
 ├── coverage                        → Test coverage reports
 ├── node_modules/                   → Dependencies installed by npm
 ├── server                          → Contains the files for the development server
-│   ├── app
-│   ├── assets
-│   └── libs                        → Relevant files copied from /node_modules
+│   ├── app
+│   ├── assets
+│   └── libs                        → Relevant files copied from /node_modules
 └── src
     └── assets
-        └── css                     → Transpiled and autoprefixed from Sass files
+        └── css                     → Transpiled and autoprefixed from Sass files
 ````
 
 See `/gulpfile.babel.js` to see what happens in Details.
@@ -186,13 +190,13 @@ Beside that we recommend setting up a project within in your editor if you don�
 }
 ```
 
-## Writing Markup (using pages, layouts and partials)
-Using handlebars we can simplify our templates and avoid markup duplications by using a combination of `pages`, `layouts` and `partials`.
+## Writing Markup (static sites vs. single page apps)
+Baumeister acts like a static sites generator by default. Using handlebars we can simplify our templates and avoid markup duplications by using a combination of `pages`, `layouts` and `partials`.
 
 ### This is optional
-Using Handlebars instead of plain HTML is fully optional and will probably suit your needs if you use Baumeister as static site generator for creating a static site. If you are developing a single page application instead you might turn of handlebars compiling and place just in `index.html` file in the `/src` directory and store additional templates in `/src/app`.
+Using Handlebars instead of plain HTML is fully optional and will probably suit your needs if you use Baumeister for creating a static site. If you are developing a single page application instead you might turn off handlebars compiling and place just an `index.html` file in the `/src` directory and store additional templates in `/src/app`.
 
-In this case you have to turn off Handlebars compiling in `gulp/config.js`:
+In this case you have to switch off Handlebars compiling in `gulp/config.js`:
 
 ```javascript
 /**
@@ -217,12 +221,12 @@ src
 ├── index.hbs              → A page
 ├── anotherPage.hbs        → Another page
 └── handlebars
-    ├── helpers            → Place to store custom handlebars helpers (usage optional)
-    │   └── addYear.js
-    ├── layouts            → Place to store our layouts
-    │   └── default.hbs    → Our default layout
-    └── partials           → Place to store our partials (usage optional)
-        └── footer.hbs
+    ├── helpers            → Place to store custom handlebars helpers (usage optional)
+    │   └── addYear.js
+    ├── layouts            → Place to store our layouts
+    │   └── default.hbs    → Our default layout
+    └── partials           → Place to store our partials (usage optional)
+        └── footer.hbs
 ```
 
 As you can see our pages are stored in the root of the project and are rendered as `html` pages with a little help of Handlebars.
@@ -509,11 +513,11 @@ The bundled JavaScript is stored in the `libs` directory during the build proces
 ```
 myProject
 ├── server
-│   └── libs
-│       └── vendor.js
+│   └── libs
+│       └── vendor.js
 └── dist
     └── libs
-        └── vendor.min.js
+        └── vendor.min.js
 ```
 
 ### Bundling CSS from dependencies
@@ -532,11 +536,11 @@ The bundled CSS is stored in the `libs` directory during the build process:
 ```
 myProject
 ├── server
-│   └── libs
-│       └── libs.css
+│   └── libs
+│       └── libs.css
 └── dist
     └── libs
-        └── libs.min.css
+        └── libs.min.css
 ```
 
 ### Including static files from dependencies
@@ -557,35 +561,35 @@ These files are stored in the `libs` directory during the build process:
 ```
 myProject
 ├── server
-│   └── libs
-│       ├── bootstrap
-│       │   └── fonts
-│       │       ├── glyphicons-halflings-regular.eot
-│       │       ├── glyphicons-halflings-regular.svg
-│       │       ├── glyphicons-halflings-regular.ttf
-│       │       ├── glyphicons-halflings-regular.woff
-│       │       └── glyphicons-halflings-regular.woff2
+│   └── libs
+│       ├── bootstrap
+│       │   └── fonts
+│       │       ├── glyphicons-halflings-regular.eot
+│       │       ├── glyphicons-halflings-regular.svg
+│       │       ├── glyphicons-halflings-regular.ttf
+│       │       ├── glyphicons-halflings-regular.woff
+│       │       └── glyphicons-halflings-regular.woff2
 │       ├── html5shiv
-│       │   └── dist
-│       │       └── html5shiv-printshiv.min.js
+│       │   └── dist
+│       │       └── html5shiv-printshiv.min.js
 │       └── respond.js
 │           └── dest
 │               └── respond.min.js
 └── dist
     └── libs
-        ├── bootstrap
-        │   └── fonts
-        │       ├── glyphicons-halflings-regular.eot
-        │       ├── glyphicons-halflings-regular.svg
-        │       ├── glyphicons-halflings-regular.ttf
-        │       ├── glyphicons-halflings-regular.woff
-        │       └── glyphicons-halflings-regular.woff2
+        ├── bootstrap
+        │   └── fonts
+        │       ├── glyphicons-halflings-regular.eot
+        │       ├── glyphicons-halflings-regular.svg
+        │       ├── glyphicons-halflings-regular.ttf
+        │       ├── glyphicons-halflings-regular.woff
+        │       └── glyphicons-halflings-regular.woff2
         ├── html5shiv
-        │   └── dist
-        │       └── html5shiv-printshiv.min.js
+        │   └── dist
+        │       └── html5shiv-printshiv.min.js
         └── respond.js
             └── dest
-                └── respond.min.js
+                └── respond.min.js
 ```
 
 ### Changing versions of dependencies
