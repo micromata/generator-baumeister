@@ -12,7 +12,7 @@
     "url": "http://www.micromata.de"
   },
   "engines": {
-    "node": ">=0.12.7"
+    "node": ">=6.0.0"
   },
   "scripts": {
     "test": "mocha",
