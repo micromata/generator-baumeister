@@ -56,7 +56,7 @@ module.exports = class extends Generator {
 				projectHomepage: config.projectHomepage,
 				projectRepositoryType: config.projectRepositoryType,
 				projectRepository: config.projectRepository,
-				banner: config.banner,
+				banners: config.banners,
 				addDistToVersionControl: config.addDistToVersionControl,
 				issueTracker: config.issueTracker,
 				boilerplateAmount: config.boilerplateAmount
@@ -242,7 +242,7 @@ module.exports = class extends Generator {
 				},
 				{
 					type: 'confirm',
-					name: 'banner',
+					name: 'banners',
 					message: 'Do you like to add comment headers containing meta information to your production files?',
 					default: false,
 					store: true
@@ -293,7 +293,7 @@ module.exports = class extends Generator {
 					projectHomepage: props.projectHomepage,
 					projectRepositoryType: props.projectRepositoryType,
 					projectRepository: props.projectRepository,
-					banner: props.banner,
+					banners: props.banners,
 					addDistToVersionControl: props.addDistToVersionControl,
 					issueTracker: props.issueTracker,
 					boilerplateAmount: props.boilerplateAmount
