@@ -77,8 +77,8 @@ yo baumeister
 
 ## Dependencies
 
-- Node.js
-- Grunt
+- Node.js (>=6.0.0)
+- Gulp
 
 See detailed installation instructions [over here](https://github.com/micromata/baumeister#dependencies) if you are new to this.
 
