@@ -6,13 +6,13 @@ export const useHandlebars = <%= templateProps.projectType === 'A static website
 /**
  * Flag for generating banners on on top of dist files (CSS & JS).
  */
-export const banners = <%= templateProps.banners === true %>;
+export const generateBanners = <%= templateProps.banners === true %>;
 
 export const pkgJson = require('../package.json');
 
 export const mainDirectories = {
 	dev: './server/',
-	dist: '<%= templateProps.distDirectory %>'
+	dist: './<%= templateProps.distDirectory %>/'
 };
 
 export const settings = {
