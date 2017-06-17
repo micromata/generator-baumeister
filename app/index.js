@@ -97,7 +97,7 @@ module.exports = class extends Generator {
 				{
 					type: 'input',
 					name: 'theme',
-					message: 'What would you like to name your Bootstrap theme in the less-files?',
+					message: 'How should your Bootstrap theme be named in the Sass files?',
 					validate(value) {
 						let returnValue;
 

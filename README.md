@@ -46,10 +46,10 @@ There are tons of options for now :scream:
 | ------------- | ------------- |
 | `projectName` | Used in the generated README and package.json  |
 | `projectDescription`  | Used in the generated README and package.json  |
-| `theme`  | Name of your Bootstrap theme. Used to name a file and a folder within the LESS directory  |
+| `theme`  | Name of your Bootstrap theme. Used to name a file and a folder within the Sass directory  |
 | `projectType` | Adds static site generator abilities (using Handlebars and Frontmatters) if you choose to build a static website |
 | `customPaths`  | Option to define the output paths `dist`, `docs`, `reports`  |
-| `boilerplateAmount`  | Option to choose the amount of boilerplate code (HTML, LESS and JS examples)  |
+| `boilerplateAmount`  | Option to choose the amount of boilerplate code (HTML, Sass and JS examples)  |
 | `license`  | Option to define the license type. Defaults to MIT  |
 | `initialVersion`  | Option to define the initial version number used in generated package.json. Defaults to 0.0.0  |
 | `authorName`  | Option to define the author for use in the generated package.json and JavaScript files  |

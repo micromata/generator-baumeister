@@ -14,7 +14,7 @@ const stylelintOptions = {
 };
 
 /**
- * Lint LESS using StyleLint extending the stylelint-config-standard rule set.
+ * Lint Sass using StyleLint extending the stylelint-config-standard rule set.
  */
 function lintStyles() {
 	if (isProdBuild()) {
