@@ -4,36 +4,43 @@
 [![devDependency Status](https://david-dm.org/micromata/generator-baumeister/dev-status.svg)](https://david-dm.org/micromata/generator-baumeister#info=devDependencies)
 [![Dependency Status](https://david-dm.org/micromata/generator-baumeister/status.svg)](https://david-dm.org/micromata/generator-baumeister#info=Dependencies)
 [![Code of Conduct](https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-orange.svg?style=flat)](CODE_OF_CONDUCT.md)
-[![Join the chat at https://gitter.im/micromata/baumeister](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/micromata/baumeister?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Twitter](https://img.shields.io/badge/Twitter-%40BootstrapKick%20-blue.svg?style=flat)](https://twitter.com/BootstrapKick)
-[![Unicorn](https://img.shields.io/badge/unicorn-approved-ff69b4.svg?style=flat)](https://www.youtube.com/watch?v=qRC4Vk6kisY) 
-
-
-
+  [![Join the chat at https://gitter.im/micromata/baumeister](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/micromata/baumeister?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Twitter](https://img.shields.io/badge/Twitter-%40baumeister__io%20-blue.svg?style=flat)](https://twitter.com/baumeister_io)
 
 # Yeoman Generator for »Baumeister«
 
+<p align="center">
+	<img width="40%" src="https://raw.githubusercontent.com/micromata/baumeister/master/src/assets/img/baumeister-logo.png" alt="Baumeister Logo">:heart:<img width="31%" src="https://raw.githubusercontent.com/yeoman/media/master/optimized/yeoman-600x600-opaque.png" alt="Yeoman Logo">
+</p>
 
-    	 _-----_
-	    |       |    .--------------------------.
-	    |--(o)--|    |   Yeoman Generator for   |
-	   `---------´   |       »Baumeister«       |
-	    ( _´U`_ )    '--------------------------'
-	    /___A___\    
-	     |  ~  |     
-	   __'.___.'__   
-	 ´   `  |° ´ Y ` 
+Using this generator will give you a solid base for your project in a matter of minutes. No matter if it’s a static website or a single page application.
 
+Baumeister is here to help you to build your things by providing:
 
-
-Using this generator will give you a solid base for your Bootstrap based project in a matter of minutes. It will offer you some neat options for using »Baumeister« which will help you with the creation of Bootstrap themes and sites by providing a file structure with focus on maintainibilty and upgradability and a set of useful Grunt Tasks. 
+- a file structure with focus on maintainability and upgradability
+- a Gulp workflow with the following »features«
+	- generate static sites with ease using handlebars templates
+		- optional – see [details](#writing-markup-static-sites-vs-single-page-apps)
+	- transpile, bundle and minify your code
+		- ES6 as well as Sass
+	- remove `console` output and `debugger` statements in production files
+	- add vendor prefixes
+	- lint JavaScript, Sass and HTML
+	- optimize images (lossless)
+	- start a local server
+	- keep browsers in sync for testing
+	- delete unused CSS (optional)
+	- check for know vulnerabilities in dependencies
+	- release new versions
+	- run unit tests and create coverage reports
+	- and more.
 
 Please check the epic [README](https://github.com/micromata/baumeister) of »Baumeister« to get detailed information about what it’s all about.
 
 ## Features of this generator
 
 There are tons of options for now :scream:  
-… but dont be afraid – most of them are optional and you even get to see them all because some are depending on others. Plus the ones that probably don’t change from one project to the other are stored for your convenience.
+… but don’t be afraid – most of them are optional and you probably won’t see them all because some are depending on others. Plus the ones that probably don’t change from one project to the other are stored for your convenience.
 
 | Option  | Description |
 | ------------- | ------------- |
