@@ -1,5 +1,5 @@
 /**
- * @file  Index JavaScript file of the project
+ * @file  JavaScript entry point of the project
  * @author <%= templateProps.authorName %> <<%= templateProps.authorMail %>>
  */
 
