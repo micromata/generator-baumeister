@@ -158,7 +158,7 @@ This file should contain the options which are otherwise prompted by Yeoman. See
     "banners": false,
     "projectType": "A static website (Static site generator using Handlebars and Frontmatters)",
     "theme": "my-theme",
-    "boilerplateAmount": "Just a little – Get started with a few example files",
+    "boilerplateAmount": "Almost nothing - Just the minimum files and folders",
     "license": "MIT",
     "authorName": "Michael Kühnel",
     "authorUrl": "http://www.micromata.de",

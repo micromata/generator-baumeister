@@ -3,14 +3,14 @@
 // Files, classes, mixins etc.
 <% if (templateProps.boilerplateAmount === 'Just a little – Get started with a few example files') { %>@import "<%= templateProps.theme %>/mixins";
 @import "<%= templateProps.theme %>/scaffolding";
-@import "<%= templateProps.theme %>/alerts";<% } %>
-
+@import "<%= templateProps.theme %>/alerts";
+<% } %>
 // Own modules
 // --------------------------------------------------
-// @import "theme/testResponsiveHelpers"; // debug
+// @import "<%= templateProps.theme %>/testResponsiveHelpers"; // debug
 <% if (templateProps.boilerplateAmount === 'Just a little – Get started with a few example files') { %>@import "<%= templateProps.theme %>/demoElements";
-@import "<%= templateProps.theme %>/footer";<% } %>
-
+@import "<%= templateProps.theme %>/footer";
+<% } %>
 // Important note //
 // You could also use this file to insert theme related style definitions
 // directly within this file. But we recommend to exclude your Sass code to
