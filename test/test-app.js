@@ -683,18 +683,17 @@ describe('Baumeister with less boilerplate code and handlebars enabled', () => {
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_demoElements.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_footer.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_mixins.scss',
-			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_scaffolding.scss',
-			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_testResponsiveHelpers.scss'
+			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_scaffolding.scss'
 		]);
 	});
 
 	it('should only import the essential Sass files within ' + _s.slugify(prompts.theme) + '.scss file', () => {
 		assert.noFileContent([
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /alerts/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /demoElements/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /footer/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /mixins/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /scaffolding/]
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /alerts"/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /demoElements"/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /footer"/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /mixins"/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /scaffolding"/]
 		]);
 	});
 });
@@ -770,11 +769,11 @@ describe('Baumeister with less boilerplate code and handlebars disabled', () => 
 
 	it('should only import the essential Sass files within ' + _s.slugify(prompts.theme) + '.scss file', () => {
 		assert.noFileContent([
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /alerts/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /demoElements/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /footer/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /mixins/],
-			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /scaffolding/]
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /alerts"/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /demoElements"/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /footer"/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /mixins"/],
+			['src/assets/scss/' + _s.slugify(prompts.theme) + '.scss', /scaffolding"/]
 		]);
 	});
 });
