@@ -526,7 +526,7 @@ module.exports = class extends Generator {
 		);
 		this.fs.copyTpl(
 			this.templatePath('src/assets/scss/_theme.scss'),
-			this.destinationPath('src/assets/scss/' + this.templateProps.theme + '.scss'), {
+			this.destinationPath('src/assets/scss/_' + this.templateProps.theme + '.scss'), {
 				templateProps: this.templateProps
 			}
 		);
