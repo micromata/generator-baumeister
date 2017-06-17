@@ -7,10 +7,10 @@ import {isProdBuild} from '../commandLineArgs';
 import {generateBanners, pkgJson, settings} from '../config';
 import merge from 'merge-stream';
 
-const bannerString = '/*! <%= pkgJson.title %> - v<%= pkgJson.version %>\n' +
-	' * <%= pkgJson.author.email %>\n' +
-	' * Copyright ©<%= yearString %> <%= pkgJson.author.name %>\n' +
-	' * <%= dateString %>\n' +
+const bannerString = '/*! <%%= pkgJson.title %> - v<%%= pkgJson.version %>\n' +
+	' * <%%= pkgJson.author.email %>\n' +
+	' * Copyright ©<%%= yearString %> <%%= pkgJson.author.name %>\n' +
+	' * <%%= dateString %>\n' +
 	' */\n';
 
 function banner(done) {
