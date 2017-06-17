@@ -212,7 +212,7 @@ describe('Baumeister with default options', () => {
 
 	it('should have the default output paths within the gulpfile', () => {
 		const arg = [
-			['gulp/config.js', /dist: 'dist'/]
+			['gulp/config.js', /dist: '.\/dist\/'/]
 		];
 		assert.fileContent(arg);
 	});
@@ -418,7 +418,7 @@ describe('Baumeister with custom output paths', () => {
 
 	it('should have the prompted output paths within the gulpfile', () => {
 		const arg = [
-			['gulp/config.js', new RegExp(escapeStringRegexp(`dist: '${prompts.distDirectory}'`), '')]
+			['gulp/config.js', new RegExp(escapeStringRegexp(`dist: './${prompts.distDirectory}/'`), '')]
 		];
 		assert.fileContent(arg);
 	});
@@ -966,7 +966,7 @@ describe('Baumeister using --yo-rc flag', () => {
 
 	it('should have the default output paths within the config file', () => {
 		const arg = [
-			['gulp/config.js', new RegExp(escapeStringRegexp(`dist: 'dist'`), '')]
+			['gulp/config.js', new RegExp(escapeStringRegexp(`dist: './dist/'`), '')]
 		];
 		assert.fileContent(arg);
 	});
