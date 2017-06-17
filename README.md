@@ -48,7 +48,7 @@ There are tons of options for now :scream:
 | `projectDescription`  | Used in the generated README and package.json  |
 | `theme`  | Name of your Bootstrap theme. Used to name a file and a folder within the Sass directory  |
 | `projectType` | Adds static site generator abilities (using Handlebars and Frontmatters) if you choose to build a static website |
-| `customPaths`  | Option to define the output paths `dist`, `docs`, `reports`  |
+| `customPaths`  | Option to define output paths |
 | `boilerplateAmount`  | Option to choose the amount of boilerplate code (HTML, Sass and JS examples)  |
 | `license`  | Option to define the license type. Defaults to MIT  |
 | `initialVersion`  | Option to define the initial version number used in generated package.json. Defaults to 0.0.0  |
@@ -153,25 +153,23 @@ This file should contain the options which are otherwise prompted by Yeoman. See
 ```json
 {
   "generator-baumeister": {
-    "projectName": "foozy",
-    "projectDescription": "boozy",
+    "projectName": "My project",
+    "projectDescription": "My projects description",
     "banner": false,
     "projectType": "A static website (Static site generator using Handlebars and Frontmatters)",
-    "theme": "foozel",
-    "boilerplateAmount": "Almost nothing - Just the minimum files and folders",
+    "theme": "my-theme",
+    "boilerplateAmount": "Just a little – Get started with a few example files",
     "license": "MIT",
     "authorName": "Michael Kühnel",
-    "authorUrl": "http://micromata.de",
-    "authorMail": "me@foobar.com",
-    "projectHomepage": "",
-    "projectRepository": "",
-    "issueTracker": "",
-    "customPaths": true,
-    "distDirectory": "myDist",
-    "docsDirectory": "myDocs",
-    "reportsDirectory": "myReports",
+    "authorUrl": "http://www.micromata.de",
+    "authorMail": "m.kuehnel@micromata.de",
+    "projectHomepage": "https://github.com/micromata/baumeister",
+    "projectRepositoryType": "git",
+    "projectRepository": "git@github.com:micromata/baumeister.git",
+    "issueTracker": "https://github.com/micromata/baumeister/issues",
+    "customPaths": false,
     "initialVersion": "1.0.0",
-    "addDistToVersionControl": true
+    "addDistToVersionControl": false
   }
 }
 ```
