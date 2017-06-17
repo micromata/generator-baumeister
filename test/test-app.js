@@ -55,7 +55,7 @@ describe('Baumeister with default options', () => {
 			'gulp/config.js',
 			'gulp/onError.js',
 			'gulp/tasks/appTemplates.js',
-			'gulp/tasks/banner.js',
+			'gulp/tasks/banners.js',
 			'gulp/tasks/bumpVersion.js',
 			'gulp/tasks/bundleExternalCSS.js',
 			'gulp/tasks/cacheBust.js',
