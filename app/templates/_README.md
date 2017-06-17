@@ -2,6 +2,8 @@
 
 <%= templateProps.projectDescription %>
 
+----
+
 # Baumeister – The frontend build workflow for your needs
 
 <p align="center">
