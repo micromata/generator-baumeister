@@ -136,6 +136,7 @@ describe('Baumeister with default options', () => {
 			'humans.txt',
 			'LICENSE',
 			'CONTRIBUTING.md',
+			'CHANGELOG.md',
 			'CODE_OF_CONDUCT.md'
 		]);
 	});
@@ -886,7 +887,9 @@ describe('Baumeister using --yo-rc flag', () => {
 			'gulpfile.babel.js',
 			'humans.txt',
 			'LICENSE',
-			'CONTRIBUTING.md'
+			'CONTRIBUTING.md',
+			'CHANGELOG.md',
+			'CODE_OF_CONDUCT.md'
 		]);
 	});
 
