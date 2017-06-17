@@ -1,16 +1,18 @@
 // Import our variables to override Bootstraps default ones
 @import "./variables";
+
 // Bootstrap Core
 // --------------------------------------------------
 @import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 /**
-* --------------------------------------------------
-* Here begins our own CSS in the rendered CSS file.
-*/
+ * --------------------------------------------------
+ * Here begins our own CSS in the rendered CSS file.
+ */
+
 // Theme
 // --------------------------------------------------
-@import "<%= templateProps.theme %>";
+@import "./<%= templateProps.theme %>";
 
 // Print Styles
 // --------------------------------------------------
