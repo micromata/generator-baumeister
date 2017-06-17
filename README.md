@@ -155,7 +155,7 @@ This file should contain the options which are otherwise prompted by Yeoman. See
   "generator-baumeister": {
     "projectName": "My project",
     "projectDescription": "My projects description",
-    "banner": false,
+    "banners": false,
     "projectType": "A static website (Static site generator using Handlebars and Frontmatters)",
     "theme": "my-theme",
     "boilerplateAmount": "Just a little – Get started with a few example files",
