@@ -44,8 +44,6 @@ module.exports = class extends Generator {
 				projectType: config.projectType || 'A static website (Static site generator using Handlebars and Frontmatters)',
 				theme: _s.slugify(config.theme),
 				distDirectory: config.distDirectory || 'dist',
-				docsDirectory: config.docsDirectory || 'docs',
-				reportsDirectory: config.reportsDirectory || 'reports',
 				authorName: config.authorName,
 				authorMail: config.authorMail,
 				authorUrl: config.authorUrl,
@@ -124,7 +122,7 @@ module.exports = class extends Generator {
 				{
 					type: 'confirm',
 					name: 'customPaths',
-					message: 'Do you like change the default output paths `dist`, `docs`, `reports`?',
+					message: 'Do you like change the default output paths?',
 					default: false,
 					store: true
 				},
@@ -133,26 +131,6 @@ module.exports = class extends Generator {
 					name: 'distDirectory',
 					message: 'Target directory for building production ready files',
 					default: 'dist',
-					when(answers) {
-						return answers.customPaths;
-					},
-					store: true
-				},
-				{
-					type: 'input',
-					name: 'docsDirectory',
-					message: 'Target directory for generating the docs',
-					default: 'docs',
-					when(answers) {
-						return answers.customPaths;
-					},
-					store: true
-				},
-				{
-					type: 'input',
-					name: 'reportsDirectory',
-					message: 'Target directory for generating the reports',
-					default: 'reports',
 					when(answers) {
 						return answers.customPaths;
 					},
@@ -281,8 +259,6 @@ module.exports = class extends Generator {
 					projectType: props.projectType,
 					theme: _s.slugify(props.theme),
 					distDirectory: props.distDirectory || 'dist',
-					docsDirectory: props.docsDirectory || 'docs',
-					reportsDirectory: props.reportsDirectory || 'reports',
 					authorName: props.authorName,
 					authorMail: props.authorMail,
 					authorUrl: props.authorUrl,

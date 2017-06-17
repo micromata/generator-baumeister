@@ -385,8 +385,6 @@ describe('Baumeister with custom output paths', () => {
 		theme: 'My theme',
 		customPaths: true,
 		distDirectory: 'disty',
-		docsDirectory: 'docsy',
-		reportsDirectory: 'reportsy',
 		authorName: 'My Name',
 		authorMail: 'name@domain.com',
 		authorUrl: 'http://www.foo.com',
