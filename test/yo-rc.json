@@ -1,0 +1,20 @@
+{
+  "generator-baumeister": {
+    "projectName": "Test this Thingy",
+    "projectDescription": "Just a test.",
+    "projectType": "A static website (Static site generator using Handlebars and Frontmatters)",
+    "theme": "My theme",
+    "customPaths": false,
+    "authorName": "My Name",
+    "authorMail": "name@domain.com",
+    "authorUrl": "http://www.foo.com",
+    "license": "MIT",
+    "initialVersion": "0.0.0",
+    "projectHomepage": "https://github.com/userName/repository",
+    "projectRepositoryType": "git",
+    "projectRepository": "git@github.com:userName/repository.git",
+    "addDistToVersionControl": false,
+    "issueTracker": "https://github.com/userName/repository/issues",
+    "boilerplateAmount": "Just a little – Get started with a few example files"
+  }
+}

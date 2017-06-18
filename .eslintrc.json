@@ -1,0 +1,10 @@
+{
+  "extends": "xo/esnext",
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "padded-blocks": 0
+  }
+}

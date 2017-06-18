@@ -1,0 +1,80 @@
+{
+  "name": "generator-baumeister",
+  "version": "1.0.0",
+  "description": "Yeoman Generator for »Baumeister«. The aim of this project is to help you to build your things. From Bootstrap themes over static websites to single page applications.",
+  "license": "MIT",
+  "main": "app/index.js",
+  "homepage": "https://github.com/micromata/generator-baumeister",
+  "repository": "micromata/generator-baumeister",
+  "author": {
+    "name": "Michael Kühnel",
+    "email": "m.kuehnel@micromata.de",
+    "url": "http://www.micromata.de"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "posttest": "grunt lint",
+    "coverage": "istanbul cover _mocha -- -R spec",
+    "coveralls": "node ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha test --report lcovonly && cat ./coverage/lcov.info | coveralls "
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "bootstrap",
+    "boilerplate",
+    "skeleton",
+    "scaffolding",
+    "scaffold",
+    "theme",
+    "themes",
+    "kickstart",
+    "kickstarter",
+    "micromata",
+    "workflow",
+    "build",
+    "gulp",
+    "static site generator",
+    "baumeister",
+    "handlebars",
+    "single page application",
+    "single page applications",
+    "es6",
+    "jest"
+  ],
+  "dependencies": {
+    "chalk": "1.1.3",
+    "global": "^4.3.2",
+    "grunt-cli": "^1.2.0",
+    "semver": "5.3.0",
+    "superb": "1.3.0",
+    "underscore.string": "3.3.4",
+    "yeoman-generator": "1.1.1",
+    "yosay": "2.0.0"
+  },
+  "devDependencies": {
+    "coveralls": "^2.13.1",
+    "escape-string-regexp": "1.0.5",
+    "eslint-config-xo": "^0.18.2",
+    "grunt": "1.0.1",
+    "grunt-bump": "0.8.0",
+    "grunt-changelog": "0.3.2",
+    "grunt-contrib-watch": "1.0.0",
+    "grunt-eslint": "^20.0.0",
+    "grunt-mocha-test": "0.13.2",
+    "grunt-newer": "1.3.0",
+    "grunt-notify": "0.4.5",
+    "istanbul": "^0.4.5",
+    "load-grunt-tasks": "3.5.2",
+    "mocha": "3.4.2",
+    "mocha-lcov-reporter": "^1.3.0",
+    "should": "11.2.1",
+    "time-grunt": "1.4.0",
+    "yeoman-assert": "^3.0.0",
+    "yeoman-test": "^1.6.0"
+  }
+}

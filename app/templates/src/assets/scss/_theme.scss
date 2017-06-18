@@ -1,0 +1,19 @@
+// Override and extend Bootstrap stuff
+// --------------------------------------------------
+// Files, classes, mixins etc.
+<% if (templateProps.boilerplateAmount === 'Just a little – Get started with a few example files') { %>@import "<%= templateProps.theme %>/mixins";
+@import "<%= templateProps.theme %>/scaffolding";
+@import "<%= templateProps.theme %>/alerts";
+<% } %>
+// Own modules
+// --------------------------------------------------
+// @import "<%= templateProps.theme %>/testResponsiveHelpers"; // debug
+<% if (templateProps.boilerplateAmount === 'Just a little – Get started with a few example files') { %>@import "<%= templateProps.theme %>/demoElements";
+@import "<%= templateProps.theme %>/footer";
+<% } %>
+// Important note //
+// You could also use this file to insert theme related style definitions
+// directly within this file. But we recommend to exclude your Sass code to
+// separate files like the examples above when you exceed a few hundred lines
+// of code. Otherwise it will definitely have a negative impact on
+// maintainability.

@@ -1,0 +1,55 @@
+dist: trusty
+language: node_js
+node_js:
+  - 6
+  - 7
+  - node
+before_install:
+  - git config --global user.email "you@example.com"
+  - git config --global user.name "Your Name"
+  - currentfolder=${PWD##*/}
+  - if [ "$currentfolder" != 'generator-baumeister' ]; then cd .. && eval "mv $currentfolder generator-baumeister" && cd generator-baumeister; fi
+install:
+  - npm install -g npm
+  - npm install -g yarn
+  - npm install -g gulpjs/gulp#3f5aba2
+  - npm install -g yo
+  - yarn
+before_script:
+- npm test
+- npm run coveralls
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/cf14f0c2c1f1b623a7dc
+    on_success: change  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: never     # options: [always|never|change] default: always
+script:
+  - npm link
+  - mkdir run-generator
+  - cd run-generator
+  - touch .yo-rc.json
+  - echo '{' > .yo-rc.json
+  - echo '"generator-baumeister":{' >> .yo-rc.json
+  - echo '"projectName":"Test this Thingy",' >> .yo-rc.json
+  - echo '"projectDescription":"Just a test.",' >> .yo-rc.json
+  - echo '"projectType":"A static website",' >> .yo-rc.json
+  - echo '"theme":"My theme",' >> .yo-rc.json
+  - echo '"customPaths":false,' >> .yo-rc.json
+  - echo '"authorName":"My Name",' >> .yo-rc.json
+  - echo '"authorMail":"name@domain.com",' >> .yo-rc.json
+  - echo '"authorUrl":"http://www.foo.com",' >> .yo-rc.json
+  - echo '"license":"MIT",' >> .yo-rc.json
+  - echo '"initialVersion":"0.0.0",' >> .yo-rc.json
+  - echo '"projectHomepage":"https://github.com/userName/repository",' >> .yo-rc.json
+  - echo '"projectRepositoryType":"git",' >> .yo-rc.json
+  - echo '"projectRepository":"git@github.com:userName/repository.git",' >> .yo-rc.json
+  - echo '"banner":false,' >> .yo-rc.json
+  - echo '"addDistToVersionControl":false,' >> .yo-rc.json
+  - echo '"issueTracker":"https://github.com/userName/repository/issues",' >> .yo-rc.json
+  - echo '"boilerplateAmount":"Just a little – Get started with a few example files"' >> .yo-rc.json
+  - echo '}' >> .yo-rc.json
+  - echo '}' >> .yo-rc.json
+  - yo baumeister --yo-rc
+  - npm run build
