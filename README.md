@@ -10,7 +10,7 @@
 # Yeoman Generator for »Baumeister«
 
 <p align="center">
-	<img width="41%" src="https://raw.githubusercontent.com/micromata/baumeister/master/src/assets/img/baumeister-logo.png" alt="Baumeister Logo"> <img width="31%" src="https://raw.githubusercontent.com/yeoman/media/master/optimized/yeoman-600x600-opaque.png" alt="Yeoman Logo">
+	<img width="41%" src="https://raw.githubusercontent.com/micromata/baumeister/master/src/assets/img/baumeister-logo.png" alt="Baumeister Logo"> <img width="31%" src="https://raw.githubusercontent.com/yeoman/media/master/optimized/yeoman-600x600-opaque.png" alt="Yeoman Logo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
 
 Using this generator will give you a solid base for your project in a matter of minutes. No matter if it’s a static website or a single page application.
@@ -19,10 +19,8 @@ Baumeister is here to help you to build your things by providing:
 
 - a file structure with focus on maintainability and upgradability
 - a Gulp workflow with the following »features«
-	- generate static sites with ease using handlebars templates
-		- optional – see [details](#writing-markup-static-sites-vs-single-page-apps)
-	- transpile, bundle and minify your code
-		- ES6 as well as Sass
+	- generate static sites with ease using handlebars templates (optional)
+	- transpile, bundle and minify your code (ES6 as well as Sass)
 	- remove `console` output and `debugger` statements in production files
 	- add vendor prefixes
 	- lint JavaScript, Sass and HTML
@@ -180,7 +178,7 @@ See [Features of this generator](#features-of-this-generator).
 
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
 
-If you'd like to get to know Yeoman better and meet one of his best friends, [Grunt](http://gruntjs.com), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+If you'd like to get to know Yeoman better, check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
 
 
 ## Contributing to this project
