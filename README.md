@@ -1,6 +1,6 @@
 [![npm version](https://badge.fury.io/js/generator-baumeister.svg)](http://badge.fury.io/js/generator-baumeister)
 [![Build Status](https://travis-ci.org/micromata/generator-baumeister.svg?branch=master)](https://travis-ci.org/micromata/generator-baumeister)
-[![Coverage Status](https://coveralls.io/repos/micromata/generator-baumeister/badge.svg?branch=master&service=github)](https://coveralls.io/github/micromata/generator-baumeister?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/micromata/generator-baumeister/badge.svg?branch=master)](https://coveralls.io/github/micromata/generator-baumeister?branch=master)
 [![devDependency Status](https://david-dm.org/micromata/generator-baumeister/dev-status.svg)](https://david-dm.org/micromata/generator-baumeister#info=devDependencies)
 [![Dependency Status](https://david-dm.org/micromata/generator-baumeister/status.svg)](https://david-dm.org/micromata/generator-baumeister#info=Dependencies)
 [![Code of Conduct](https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-orange.svg?style=flat)](CODE_OF_CONDUCT.md)
