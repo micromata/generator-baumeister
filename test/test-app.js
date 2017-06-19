@@ -94,7 +94,6 @@ describe('Baumeister with default options', () => {
 	it('should create package manager files', () => {
 		assert.file([
 			'package.json',
-			'package-lock.json',
 			'yarn.lock'
 		]);
 	});
@@ -851,7 +850,6 @@ describe('Baumeister using --yo-rc flag', () => {
 	it('should create package manager files', () => {
 		assert.file([
 			'package.json',
-			'package-lock.json',
 			'yarn.lock'
 		]);
 	});
