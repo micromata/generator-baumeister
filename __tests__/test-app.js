@@ -34,7 +34,7 @@ describe('Baumeister with default options', () => {
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
-	before(() => {
+	beforeAll(() => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
@@ -302,7 +302,7 @@ describe('Baumeister with Handlebars disabled', () => {
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
-	before(() => {
+	beforeAll(() => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
@@ -361,7 +361,7 @@ describe('Baumeister with banner', () => {
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
-	before(() => {
+	beforeAll(() => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
@@ -403,7 +403,7 @@ describe('Baumeister with custom output paths', () => {
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
-	before(() => {
+	beforeAll(() => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
@@ -451,7 +451,7 @@ describe('Baumeister without an open source license', () => {
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
-	before(() => {
+	beforeAll(() => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
@@ -514,7 +514,7 @@ describe('Baumeister with Apache License, Version 2.0', () => {
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
-	before(() => {
+	beforeAll(() => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
@@ -577,7 +577,7 @@ describe('Baumeister with GNU General Public License', () => {
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
-	before(() => {
+	beforeAll(() => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
@@ -641,7 +641,7 @@ describe('Baumeister with less boilerplate code and handlebars enabled', () => {
 		boilerplateAmount: 'Almost nothing - Just the minimum files and folders'
 	};
 
-	before(() => {
+	beforeAll(() => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
@@ -723,7 +723,7 @@ describe('Baumeister with less boilerplate code and handlebars disabled', () => 
 		boilerplateAmount: 'Almost nothing - Just the minimum files and folders'
 	};
 
-	before(() => {
+	beforeAll(() => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
@@ -802,7 +802,7 @@ describe('Baumeister with `dist` added to version control', () => {
 		boilerplateAmount: 'Just a little – Get started with a few example files'
 	};
 
-	before(() => {
+	beforeAll(() => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
@@ -831,7 +831,7 @@ describe('Baumeister using --yo-rc flag', () => {
 	// Load prompt answers from yo-rc.json
 	const prompts = JSON.parse(fs.readFileSync(path.join(__dirname, 'yo-rc.json')))['generator-baumeister'];
 
-	before(() => {
+	beforeAll(() => {
 		return helpers.run(path.join(__dirname, '../app'))
 
 		// Clear the directory and set it as the CWD
