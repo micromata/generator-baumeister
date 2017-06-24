@@ -15,10 +15,34 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "test": "mocha",
-    "posttest": "grunt lint",
-    "coverage": "istanbul cover _mocha -- -R spec",
-    "coveralls": "node ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha test --report lcovonly && cat ./coverage/lcov.info | coveralls "
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "prepublish": "nsp check",
+    "lint": "eslint . --fix",
+    "pretest": "npm run lint",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "release": "standard-version",
+    "release:patch": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "<rootDir>/app/templates"
+    ],
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "app/**/*.js",
+      "!app/templates/**/*.js"
+    ],
+    "coverageReporters": [
+      "lcov",
+      "html",
+      "text",
+      "text-summary"
+    ]
   },
   "files": [
     "app"
@@ -59,21 +83,13 @@
   "devDependencies": {
     "coveralls": "^2.13.1",
     "escape-string-regexp": "1.0.5",
+    "eslint": "^4.1.0",
     "eslint-config-xo": "^0.18.2",
-    "grunt": "1.0.1",
-    "grunt-bump": "0.8.0",
-    "grunt-changelog": "0.3.2",
-    "grunt-contrib-watch": "1.0.0",
-    "grunt-eslint": "^20.0.0",
-    "grunt-mocha-test": "0.13.2",
-    "grunt-newer": "1.3.0",
-    "grunt-notify": "0.4.5",
-    "istanbul": "^0.4.5",
-    "load-grunt-tasks": "3.5.2",
-    "mocha": "3.4.2",
-    "mocha-lcov-reporter": "^1.3.0",
+    "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
+    "nsp": "^2.6.3",
     "should": "11.2.1",
-    "time-grunt": "1.4.0",
+    "standard-version": "^4.2.0",
     "yeoman-assert": "^3.0.0",
     "yeoman-test": "^1.6.0"
   }
