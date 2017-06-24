@@ -10,7 +10,7 @@
 # Yeoman Generator for »Baumeister«
 
 <p align="center">
-	<img width="40%" src="https://cdn.rawgit.com/micromata/baumeister-media/master/dist/Baumeister-Logo-Default.svg" alt="Baumeister Logo"> <img width="31%" src="https://cdn.rawgit.com/yeoman/media/master/optimized/yeoman-600x600-opaque.png" alt="Yeoman Logo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img width="30%" src="https://cdn.rawgit.com/micromata/baumeister-media/49bb43d/dist/Baumeister-Logo-Default.svg" alt="Baumeister Logo"> <img width="31%" src="https://cdn.rawgit.com/yeoman/media/master/optimized/yeoman-600x600-opaque.png" alt="Yeoman Logo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
 
 Using this generator will give you a solid base for your project in a matter of minutes. No matter if it’s a static website or a single page application.
