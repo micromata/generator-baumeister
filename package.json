@@ -21,10 +21,10 @@
     "lint": "eslint . --fix",
     "pretest": "npm run lint",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "release": "standard-version",
-    "release:patch": "standard-version --release-as patch",
-    "release:minor": "standard-version --release-as minor",
-    "release:major": "standard-version --release-as major"
+    "release": "standard-version --tag-prefix",
+    "release:patch": "standard-version --tag-prefix --release-as patch",
+    "release:minor": "standard-version --tag-prefix --release-as minor",
+    "release:major": "standard-version --tag-prefix --release-as major"
   },
   "jest": {
     "testEnvironment": "node",
