@@ -7,7 +7,7 @@
 # Baumeister – The frontend build workflow for your needs
 
 <p align="center">
-	<img width="80%" src="https://cdn.rawgit.com/micromata/baumeister-media/master/dist/Baumeister-Logo-Default.svg" alt="Baumeister Logo">
+	<img width="50%" src="https://cdn.rawgit.com/micromata/baumeister-media/master/dist/Baumeister-Logo-Default.svg" alt="Baumeister Logo">
 </p>
 
 The aim of this project is to help you to build your things. From Bootstrap themes over static websites to single page applications. Baumeister provides:
@@ -91,7 +91,7 @@ This project uses [Gulp](http://gulpjs.com/) for its build system, with convenie
 
 #### Installing Gulp
 
-Thanks do Node.js and npm installing the Gulp command line tools globally is just this simple one-liner:
+Thanks to Node.js and npm installing the Gulp command line tools globally is just this simple one-liner:
 
 	npm install --global gulp-cli
 
@@ -698,7 +698,7 @@ We are using [stylelint-config-standard](https://github.com/stylelint/stylelint-
 .stylelintrc.json
 ```
 
-See [stylelint rules](https://stylelint.io/user-guide/rules/) in case you like get details to these rules.
+See [stylelint rules](https://stylelint.io/user-guide/rules/) in case you like get details to these rules and the [stylelint user guide](https://stylelint.io/user-guide/configuration/) to see how to configure stylelint (e.g. how to turn of rules).
 
 ### Bootlint (Markup)
 
