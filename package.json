@@ -72,6 +72,7 @@
   ],
   "dependencies": {
     "chalk": "2.0.1",
+    "command-exists": "^1.2.2",
     "global": "^4.3.2",
     "grunt-cli": "^1.2.0",
     "semver": "5.4.1",

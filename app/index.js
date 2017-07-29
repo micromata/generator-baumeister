@@ -5,6 +5,7 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const superb = require('superb');
 const _s = require('underscore.string');
+const commandExists = require('command-exists').sync;
 const helper = require('./promptingHelpers');
 
 // Define chalk styles
@@ -557,16 +558,12 @@ module.exports = class extends Generator {
 	}
 
 	install() {
+		const hasYarn = commandExists('yarn');
 		this.installDependencies({
 			skipInstall: this.options['skip-install'],
-			npm: false,
+			npm: !hasYarn,
 			bower: false,
-			yarn: true,
-			callback: error => {
-				if (error) {
-					this.log('… or alternatively run ' + chalk.yellow('npm install') + ' instead.');
-				}
-			}
+			yarn: hasYarn
 		});
 	}
 
