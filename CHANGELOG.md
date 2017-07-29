@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/micromata/generator-baumeister/compare/1.0.2...1.0.3) (2017-07-29)
+
+
+### Bug Fixes
+
+* adapt changes from Baumeister 1.0.2 ([de51ed4](https://github.com/micromata/generator-baumeister/commit/de51ed4))
+* Automatically install with npm if Yarn isn’t available ([ddda515](https://github.com/micromata/generator-baumeister/commit/ddda515))
+* Update dependencies of the generator ([5139557](https://github.com/micromata/generator-baumeister/commit/5139557))
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/micromata/generator-baumeister/compare/1.0.1...1.0.2) (2017-06-25)
 
