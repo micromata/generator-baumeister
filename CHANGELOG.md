@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/micromata/generator-baumeister/compare/1.0.3...1.1.0) (2017-07-31)
+
+
+### Bug Fixes
+
+* **generated:** Bump version number in package-lock.json as well ([121eaec](https://github.com/micromata/generator-baumeister/commit/121eaec))
+
+
+### Features
+
+* **generated:** Set polyfills via core-js ([#194](https://github.com/micromata/generator-baumeister/issues/194)) ([cef5ec7](https://github.com/micromata/generator-baumeister/commit/cef5ec7))
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/micromata/generator-baumeister/compare/1.0.2...1.0.3) (2017-07-29)
 
