@@ -499,6 +499,10 @@ module.exports = class extends Generator {
 			}
 		);
 		this.fs.copyTpl(
+			this.templatePath('src/app/polyfills.js'),
+			this.destinationPath('src/app/polyfills.js')
+		);
+		this.fs.copyTpl(
 			this.templatePath('src/assets/scss/_index.scss'),
 			this.destinationPath('src/assets/scss/index.scss'), {
 				templateProps: this.templateProps
