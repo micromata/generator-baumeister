@@ -65,7 +65,7 @@ Frequent Users, who are tired being asked the same questions again and again mig
 
 ## Quick install guide
 
-For those already using Yeoman.
+For those already using Yeoman and Gulp.
 
 ```bash
 npm install -g generator-baumeister
@@ -76,7 +76,8 @@ yo baumeister
 ## Dependencies
 
 - Node.js (>=6.0.0)
-- Gulp
+- Globally installed [Gulp CLI](https://www.npmjs.com/package/gulp-cli)
+- Globally installed [Yeoman CLI](https://www.npmjs.com/package/yo)
 
 See detailed installation instructions [over here](https://github.com/micromata/baumeister#dependencies) if you are new to this.
 
