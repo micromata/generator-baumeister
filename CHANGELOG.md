@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/micromata/generator-baumeister/compare/1.1.0...1.1.1) (2017-10-24)
+
+
+### Bug Fixes
+
+* Update dependencies of the generator ([4b538a2](https://github.com/micromata/generator-baumeister/commit/4b538a2))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/micromata/generator-baumeister/compare/1.0.3...1.1.0) (2017-07-31)
 

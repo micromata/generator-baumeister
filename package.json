@@ -1,6 +1,6 @@
 {
   "name": "generator-baumeister",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Yeoman Generator for »Baumeister«. The aim of this project is to help you to build your things. From Bootstrap themes over static websites to single page applications.",
   "license": "MIT",
   "main": "app/index.js",
