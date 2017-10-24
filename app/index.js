@@ -67,9 +67,7 @@ module.exports = class extends Generator {
 		if (!this.skipPrompts) {
 
 			// Have Yeoman greet the user.
-			this.log(yosay(
-				'Yo, welcome to the ' + superb() + ' ' + chalk.yellow('Baumeister') + ' generator!'
-			));
+			this.log(yosay('Yo, welcome to the ' + superb() + ' ' + chalk.yellow('Baumeister') + ' generator!'));
 
 			const prompts = [
 				{
@@ -572,9 +570,7 @@ module.exports = class extends Generator {
 	}
 
 	end() {
-		this.log(yosay(
-			chalk.red('That’s it!') + ' You’re all set to begin building your stuff ✌(-‿-)✌\n' +
-			'Enter `gulp --tasks` to see the available Gulp tasks.'
-		));
+		this.log(yosay(chalk.red('That’s it!') + ' You’re all set to begin building your stuff ✌(-‿-)✌\n' +
+			'Enter `gulp --tasks` to see the available Gulp tasks.'));
 	}
 };
