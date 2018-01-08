@@ -82,12 +82,12 @@ describe('Baumeister with default options', () => {
 		]);
 	});
 
-	it('should have `useHandlebars` set to `true` in gulp/config.js', () => {
-		assert.fileContent('gulp/config.js', /const useHandlebars = true;/);
+	it('should have `useHandlebars` set to `true` in baumeister.json', () => {
+		assert.fileContent('baumeister.json', /"useHandlebars": true,/);
 	});
 
-	it('should have `generateBanners` set to `false` in gulp/config.js', () => {
-		assert.fileContent('gulp/config.js', /const generateBanners = false;/);
+	it('should have `generateBanners` set to `false` in baumeister.json', () => {
+		assert.fileContent('baumeister.json', /"generateBanners": false,/);
 	});
 
 	it('should create package manager files', () => {
@@ -135,6 +135,7 @@ describe('Baumeister with default options', () => {
 		assert.file([
 			'README.md',
 			'gulpfile.babel.js',
+			'baumeister.json',
 			'humans.txt',
 			'LICENSE',
 			'CONTRIBUTING.md',
@@ -319,8 +320,8 @@ describe('Baumeister with Handlebars disabled', () => {
 			.toPromise();
 	});
 
-	it('should have `useHandlebars` set to `false` in gulp/config.js', () => {
-		assert.fileContent('gulp/config.js', /const useHandlebars = false;/);
+	it('should have `useHandlebars` set to `false` in baumeister.json', () => {
+		assert.fileContent('baumeister.json', /"useHandlebars": false,/);
 	});
 
 	it('should create no Handlebars related files', () => {
@@ -374,8 +375,8 @@ describe('Baumeister with banner', () => {
 			.withPrompts(prompts).toPromise();
 	});
 
-	it('should have `generateBanners` set to `true` in gulp/config.js', () => {
-		assert.fileContent('gulp/config.js', /const generateBanners = true;/);
+	it('should have `generateBanners` set to `true` in baumeister.json', () => {
+		assert.fileContent('baumeister.json', /"generateBanners": true,/);
 	});
 
 });

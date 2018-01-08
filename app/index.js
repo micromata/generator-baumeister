@@ -457,6 +457,12 @@ module.exports = class extends Generator {
 		}
 
 		this.fs.copyTpl(
+			this.templatePath('_baumeister.json'),
+			this.destinationPath('baumeister.json'), {
+				templateProps: this.templateProps
+			}
+		);
+		this.fs.copyTpl(
 			this.templatePath('humans.txt'),
 			this.destinationPath('humans.txt')
 		);
