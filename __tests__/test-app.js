@@ -53,33 +53,32 @@ describe('Baumeister with default options', () => {
 
 	it('should create Gulp related files', () => {
 		assert.file([
-			'gulp/commandLineArgs.js',
+			'gulp/command-line-args.js',
 			'gulp/config.js',
-			'gulp/onError.js',
-			'gulp/tasks/appTemplates.js',
+			'gulp/on-error.js',
+			'gulp/tasks/app-templates.js',
 			'gulp/tasks/banners.js',
-			'gulp/tasks/bumpVersion.js',
-			'gulp/tasks/bundleExternalCSS.js',
-			'gulp/tasks/cacheBust.js',
+			'gulp/tasks/bump-version.js',
+			'gulp/tasks/bundle-external-css.js',
+			'gulp/tasks/cache-bust.js',
 			'gulp/tasks/clean.js',
-			'gulp/tasks/clientScripts.js',
-			'gulp/tasks/commitChanges.js',
-			'gulp/tasks/copyStaticFiles.js',
-			'gulp/tasks/createChangelog.js',
-			'gulp/tasks/createTag.js',
+			'gulp/tasks/commit-changes.js',
+			'gulp/tasks/copy-static-files.js',
+			'gulp/tasks/create-changelog.js',
+			'gulp/tasks/create-tag.js',
 			'gulp/tasks/fonts.js',
 			'gulp/tasks/handlebars.js',
 			'gulp/tasks/images.js',
 			'gulp/tasks/lint.js',
-			'gulp/tasks/lintBootstrap.js',
-			'gulp/tasks/lintStyles.js',
-			'gulp/tasks/processHtml.js',
+			'gulp/tasks/lint-bootstrap.js',
+			'gulp/tasks/lint-styles.js',
+			'gulp/tasks/process-html.js',
 			'gulp/tasks/security.js',
 			'gulp/tasks/serve.js',
 			'gulp/tasks/styles.js',
 			'gulp/tasks/test.js',
-			'gulp/tasks/validateHtml.js',
-			'gulp/tasks/vendorScripts.js'
+			'gulp/tasks/validate-html.js',
+			'gulp/tasks/webpack.js'
 		]);
 	});
 
@@ -126,7 +125,7 @@ describe('Baumeister with default options', () => {
 			'src/stickyFooter.hbs',
 			'src/demoElements.hbs',
 			'src/handlebars/layouts/default.hbs',
-			'src/handlebars/helpers/addYear.js',
+			'src/handlebars/helpers/add-year.js',
 			'src/handlebars/partials/footer.hbs',
 			'src/handlebars/partials/navbar.hbs'
 		]);
@@ -663,7 +662,7 @@ describe('Baumeister with less boilerplate code and handlebars enabled', () => {
 		assert.file([
 			'src/index.hbs',
 			'src/handlebars/layouts/default.hbs',
-			'src/handlebars/helpers/addYear.js',
+			'src/handlebars/helpers/add-year.js',
 			'src/handlebars/partials/.gitkeep'
 		]);
 		assert.noFile([
@@ -876,7 +875,7 @@ describe('Baumeister using --yo-rc flag', () => {
 			'src/stickyFooter.hbs',
 			'src/demoElements.hbs',
 			'src/handlebars/layouts/default.hbs',
-			'src/handlebars/helpers/addYear.js',
+			'src/handlebars/helpers/add-year.js',
 			'src/handlebars/partials/footer.hbs',
 			'src/handlebars/partials/navbar.hbs'
 		]);

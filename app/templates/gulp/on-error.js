@@ -7,7 +7,7 @@ import notify from 'gulp-notify';
 function onError(err) {
 	notify({
 		title: 'Gulp Task Error',
-		subtitle: 'Plugin: <%= error.plugin %>',
+		subtitle: 'Plugin: <%%= error.plugin %>',
 		message: 'Check the console.'
 	}).write(err);
 

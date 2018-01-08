@@ -904,10 +904,10 @@ It can be enabled with setting the `generateBanners` property within `baumeister
 If enabled it will place the following banners to the bundled CSS and JS files:
 
 ```javascript
-/*! <%= pkgJson.title %> - v<%= pkgJson.version %>
- * <%= pkgJson.author.email %>
- * Copyright ©<%= year %> <%= pkgJson.author.name %>
- * <%= fullDate %>
+/*! <%%= pkgJson.title %> - v<%%= pkgJson.version %>
+ * <%%= pkgJson.author.email %>
+ * Copyright ©<%%= year %> <%%= pkgJson.author.name %>
+ * <%%= fullDate %>
  */
 ```
 

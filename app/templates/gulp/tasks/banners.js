@@ -9,10 +9,10 @@ import merge from 'merge-stream';
 
 const pkgJson = require('../../package.json');
 
-const banner = `/*! <%= pkgJson.title %> - v<%= pkgJson.version %>
- * <%= pkgJson.author.email %>
- * Copyright ©<%= year %> <%= pkgJson.author.name %>
- * <%= fullDate %>
+const banner = `/*! <%%= pkgJson.title %> - v<%%= pkgJson.version %>
+ * <%%= pkgJson.author.email %>
+ * Copyright ©<%%= year %> <%%= pkgJson.author.name %>
+ * <%%= fullDate %>
  */
 `;
 
