@@ -2,7 +2,7 @@ dist: trusty
 language: node_js
 node_js:
   - 6
-  - 7
+  - 8
   - node
 before_install:
   - git config --global user.email "you@example.com"
