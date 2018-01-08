@@ -136,6 +136,7 @@ describe('Baumeister with default options', () => {
 			'README.md',
 			'gulpfile.babel.js',
 			'baumeister.json',
+			'webpack.config.js',
 			'humans.txt',
 			'LICENSE',
 			'CONTRIBUTING.md',

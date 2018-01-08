@@ -463,6 +463,10 @@ module.exports = class extends Generator {
 			}
 		);
 		this.fs.copyTpl(
+			this.templatePath('webpack.config.js'),
+			this.destinationPath('webpack.config.js')
+		);
+		this.fs.copyTpl(
 			this.templatePath('humans.txt'),
 			this.destinationPath('humans.txt')
 		);
