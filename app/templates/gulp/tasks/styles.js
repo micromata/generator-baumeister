@@ -9,8 +9,8 @@ import postcss from 'gulp-postcss';
 import rename from 'gulp-rename';
 
 import {settings} from '../config';
-import {isProdBuild} from '../commandLineArgs';
-import onError from '../onError';
+import {isProdBuild} from '../command-line-args';
+import onError from '../on-error';
 
 const autoPrefixOptions = {
 	browsers: [
@@ -55,7 +55,8 @@ function styles() {
 					discardComments: {
 						removeAll: true
 					}
-				})]))
+				})
+			]))
 			.pipe(rename('index.min.css'))
 			.pipe(gulp.dest(settings.destinations.prod.styles))
 			.pipe(rename('index.uncss.min.css'))

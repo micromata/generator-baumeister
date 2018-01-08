@@ -1,7 +1,7 @@
 import browserSync from 'browser-sync';
 
 import {mainDirectories} from '../config';
-import {isProdBuild} from '../commandLineArgs';
+import {isProdBuild} from '../command-line-args';
 
 const server = browserSync.create();
 
@@ -9,7 +9,7 @@ const server = browserSync.create();
  * Serve task:
  * Run `gulp serve` respectively `gulp serve --production`
  */
-export function serve(done) {
+function serve(done) {
 	let baseDir = mainDirectories.dev;
 	if (isProdBuild()) {
 		baseDir = mainDirectories.dist;
@@ -28,7 +28,9 @@ serve.flags = {
 };
 
 //  Helper function to reload server
-export function reload(done) {
+function reload(done) {
 	server.reload();
 	done();
 }
+
+export {serve, reload};
