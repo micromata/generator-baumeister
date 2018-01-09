@@ -255,8 +255,8 @@ module.exports = class extends Generator {
 
 		// Gulp related files
 		this.fs.copyTpl(
-			this.templatePath('gulp/commandLineArgs.js'),
-			this.destinationPath('gulp/commandLineArgs.js')
+			this.templatePath('gulp/command-line-args.js'),
+			this.destinationPath('gulp/command-line-args.js')
 		);
 		this.fs.copyTpl(
 			this.templatePath('gulp/_config.js'),
@@ -265,8 +265,8 @@ module.exports = class extends Generator {
 			}
 		);
 		this.fs.copyTpl(
-			this.templatePath('gulp/onError.js'),
-			this.destinationPath('gulp/onError.js')
+			this.templatePath('gulp/on-error.js'),
+			this.destinationPath('gulp/on-error.js')
 		);
 
 		this.fs.copyTpl(
@@ -314,8 +314,8 @@ module.exports = class extends Generator {
 				}
 			);
 			this.fs.copyTpl(
-				this.templatePath('src/handlebars/helpers/addYear.js'),
-				this.destinationPath('src/handlebars/helpers/addYear.js')
+				this.templatePath('src/handlebars/helpers/add-year.js'),
+				this.destinationPath('src/handlebars/helpers/add-year.js')
 			);
 		}
 
@@ -435,6 +435,16 @@ module.exports = class extends Generator {
 				break;
 		}
 
+		this.fs.copyTpl(
+			this.templatePath('_baumeister.json'),
+			this.destinationPath('baumeister.json'), {
+				templateProps: this.templateProps
+			}
+		);
+		this.fs.copyTpl(
+			this.templatePath('webpack.config.js'),
+			this.destinationPath('webpack.config.js')
+		);
 		this.fs.copyTpl(
 			this.templatePath('humans.txt'),
 			this.destinationPath('humans.txt')
