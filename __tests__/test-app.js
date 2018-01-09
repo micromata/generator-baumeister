@@ -433,7 +433,7 @@ describe('Baumeister without an open source license', () => {
 	it('should not have a open source license', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
-		assert.fileContent('LICENSE', /All rights reserved. It is strictly prohibited to copy, redistribute, republish/);
+		assert.fileContent('LICENSE', /All rights reserved. It is strictly prohibited to copy, redistribute,/);
 		packageJson.should.have.property('license', prompts.license);
 	});
 
