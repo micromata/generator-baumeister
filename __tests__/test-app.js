@@ -182,15 +182,6 @@ describe('Baumeister with default options', () => {
 		]);
 	});
 
-	it('should render author name and email within the comments of JavaScript files', () => {
-		const regex = new RegExp(escapeStringRegexp('@author ' + prompts.authorName + ' <' + prompts.authorMail + '>'), '');
-		const arg = [
-			['src/app/base.js', regex],
-			['src/app/index.js', regex]
-		];
-		assert.fileContent(arg);
-	});
-
 	it('should have a valid package.json file', () => {
 		JSON.parse(fs.readFileSync('package.json'));
 	});
@@ -885,15 +876,6 @@ describe('Baumeister using --yo-rc flag', () => {
 		assert.fileContent([
 			['src/assets/scss/index.scss', /.\/variables/]
 		]);
-	});
-
-	it('should render author name and email within the comments of JavaScript files', () => {
-		const regex = new RegExp(escapeStringRegexp('@author ' + prompts.authorName + ' <' + prompts.authorMail + '>'), '');
-		const arg = [
-			['src/app/base.js', regex],
-			['src/app/index.js', regex]
-		];
-		assert.fileContent(arg);
 	});
 
 	it('should have a valid package.json file', () => {

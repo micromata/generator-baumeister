@@ -1,6 +1,5 @@
 /**
  * @file  JavaScript entry point of the project
- * @author <%= templateProps.authorName %> <<%= templateProps.authorMail %>>
  */
 
 import './polyfills';
