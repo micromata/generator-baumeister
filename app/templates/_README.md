@@ -917,4 +917,6 @@ review our [Code of Conduct](CODE_OF_CONDUCT.md) as well as our [guidelines for 
 ## License
 
 Please be aware of the licenses of the components we use in this project.
-Everything else that has been developed by the contributions to this project is under [MIT License](LICENSE).
+<% if (templateProps.license === 'All rights reserved') { %>Everything else that has been developed by the contributions to this project is not licensed under an open source license. See [License](LICENSE).
+<% } else if (templateProps.license === 'Apache License, Version 2.0') { %>Everything else that has been developed by the contributions to this project is licensed under [<%= templateProps.license %>](LICENSE).
+<% } else { %>Everything else that has been developed by the contributions to this project is licensed under [<%= templateProps.license %> license](LICENSE).<% } %>

@@ -394,10 +394,8 @@ module.exports = class extends Generator {
 			}
 		);
 		this.fs.copyTpl(
-			this.templatePath('_gulpfile.babel.js'),
-			this.destinationPath('gulpfile.babel.js'), {
-				templateProps: this.templateProps
-			}
+			this.templatePath('gulpfile.babel.js'),
+			this.destinationPath('gulpfile.babel.js')
 		);
 
 		switch (this.templateProps.license) {
