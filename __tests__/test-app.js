@@ -992,15 +992,6 @@ describe('Baumeister using --yo-rc flag', () => {
 
 describe('Baumeister prompting helpers', () => {
 
-	describe('→ validateThemeName()', () => {
-		it('should accept any string', () => {
-			assert.equal(helper.validateThemeName('my-theme'), true);
-		});
-		it('should fail with an empty string', () => {
-			assert.equal(helper.validateThemeName(''), chalk.red('Oops. This is used to name a file and a directory and can’t left blank.'));
-		});
-	});
-
 	describe('→ validateSemverVersion()', () => {
 		it('should accept a valid semver version number', () => {
 			assert.equal(helper.validateSemverVersion('1.0.0'), true);

@@ -94,8 +94,7 @@ module.exports = class extends Generator {
 				{
 					type: 'input',
 					name: 'theme',
-					message: 'How should your Bootstrap theme be named in the Sass files?',
-					validate: helper.validateThemeName
+					default: 'theme'
 				},
 				{
 					type: 'list',
