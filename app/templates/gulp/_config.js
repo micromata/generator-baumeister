@@ -12,7 +12,7 @@ export const generateBanners = configFile.generateBanners;
 
 export const mainDirectories = {
 	dev: './server/',
-	dist: './<%= templateProps.distDirectory %>/'
+	dist: './dist/'
 };
 
 export const settings = {
