@@ -251,6 +251,10 @@ describe('Baumeister with default options', () => {
 		packageJson.should.have.property('license', prompts.license);
 	});
 
+	it('should have the correct license in the README file', () => {
+		assert.fileContent('README.md', /MIT license/);
+	});
+
 	it('should have the initial version number in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 		packageJson.should.have.property('version', prompts.initialVersion);
@@ -433,6 +437,10 @@ describe('Baumeister without an open source license', () => {
 		packageJson.should.have.property('license', prompts.license);
 	});
 
+	it('should have the correct license in the README file', () => {
+		assert.fileContent('README.md', /not licensed under an open source license/);
+	});
+
 });
 
 describe('Baumeister with Apache License, Version 2.0', () => {
@@ -496,6 +504,10 @@ describe('Baumeister with Apache License, Version 2.0', () => {
 		packageJson.should.have.property('license', prompts.license);
 	});
 
+	it('should have the correct license in the README file', () => {
+		assert.fileContent('README.md', /Apache License, Version 2.0/);
+	});
+
 });
 
 describe('Baumeister with GNU General Public License', () => {
@@ -557,6 +569,10 @@ describe('Baumeister with GNU General Public License', () => {
 
 		assert.fileContent('LICENSE', /GNU General Public License/);
 		packageJson.should.have.property('license', prompts.license);
+	});
+
+	it('should have the correct license in the README file', () => {
+		assert.fileContent('README.md', /GNU GPLv3 license/);
 	});
 
 });
