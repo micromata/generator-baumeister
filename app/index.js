@@ -43,7 +43,6 @@ module.exports = class extends Generator {
 				projectDescription: config.projectDescription,
 				projectType: config.projectType || 'A static website (Static site generator using Handlebars and Frontmatters)',
 				theme: _s.slugify(config.theme),
-				distDirectory: config.distDirectory || 'dist',
 				authorName: config.authorName,
 				authorMail: config.authorMail,
 				authorUrl: config.authorUrl,
@@ -106,23 +105,6 @@ module.exports = class extends Generator {
 						'Just a little – Get started with a few example files',
 						'Almost nothing - Just the minimum files and folders'
 					],
-					store: true
-				},
-				{
-					type: 'confirm',
-					name: 'customPaths',
-					message: 'Do you like change the default output paths?',
-					default: false,
-					store: true
-				},
-				{
-					type: 'input',
-					name: 'distDirectory',
-					message: 'Target directory for building production ready files',
-					default: 'dist',
-					when(answers) {
-						return answers.customPaths;
-					},
 					store: true
 				},
 				{
@@ -232,7 +214,6 @@ module.exports = class extends Generator {
 					projectDescription: props.projectDescription,
 					projectType: props.projectType,
 					theme: _s.slugify(props.theme),
-					distDirectory: props.distDirectory || 'dist',
 					authorName: props.authorName,
 					authorMail: props.authorMail,
 					authorUrl: props.authorUrl,

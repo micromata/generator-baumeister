@@ -381,55 +381,6 @@ describe('Baumeister with banner', () => {
 
 });
 
-describe('Baumeister with custom output paths', () => {
-
-	// Define prompt answers
-	const prompts = {
-		projectName: '',
-		projectDescription: '',
-		theme: 'My theme',
-		customPaths: true,
-		distDirectory: 'disty',
-		authorName: 'My Name',
-		authorMail: 'name@domain.com',
-		authorUrl: 'http://www.foo.com',
-		license: 'MIT',
-		initialVersion: '0.0.0',
-		projectHomepage: 'https://github.com/userName/repository',
-		projectRepositoryType: 'git',
-		projectRepository: 'git@github.com:userName/repository.git',
-		banners: false,
-		addDistToVersionControl: false,
-		issueTracker: 'https://github.com/userName/repository/issues',
-		boilerplateAmount: 'Just a little – Get started with a few example files'
-	};
-
-	beforeAll(() => {
-		return helpers.run(path.join(__dirname, '../app'))
-
-		// Clear the directory and set it as the CWD
-			.inDir(path.join(os.tmpdir(), './temp-test'))
-
-			// Mock options passed in
-			.withOptions({
-				'skip-install': true
-			})
-
-			// Mock the prompt answers
-			.withPrompts(prompts)
-
-			.toPromise();
-	});
-
-	it('should have the prompted output paths within the gulpfile', () => {
-		const arg = [
-			['gulp/config.js', new RegExp(escapeStringRegexp(`dist: './${prompts.distDirectory}/'`), '')]
-		];
-		assert.fileContent(arg);
-	});
-
-});
-
 describe('Baumeister without an open source license', () => {
 
 	// Define prompt answers
