@@ -6,13 +6,6 @@ const error = chalk.red;
 
 const helper = {};
 
-helper.validateThemeName = function (value) {
-	if (value === '') {
-		return error('Oops. This is used to name a file and a directory and can’t left blank.');
-	}
-	return true;
-};
-
 helper.validateSemverVersion = function (value) {
 	if (semver.valid(value)) {
 		return true;
