@@ -63,6 +63,7 @@ describe('Baumeister with default options', () => {
 			'gulp/tasks/cache-bust.js',
 			'gulp/tasks/clean.js',
 			'gulp/tasks/commit-changes.js',
+			'gulp/tasks/copy-assets.js',
 			'gulp/tasks/copy-static-files.js',
 			'gulp/tasks/create-changelog.js',
 			'gulp/tasks/create-tag.js',
