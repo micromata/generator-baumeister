@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/micromata/generator-baumeister/compare/2.0.0...2.0.1) (2018-02-12)
+
+
+### Bug Fixes
+
+* adapt breaking changes of updated dev dependencies ([874b294](https://github.com/micromata/generator-baumeister/commit/874b294))
+* copy additional directories in src/assets to build directories ([0af86b4](https://github.com/micromata/generator-baumeister/commit/0af86b4))
+* update dependencies of generated project ([d8a9780](https://github.com/micromata/generator-baumeister/commit/d8a9780))
+* Update dependencies of the generator ([d1e1d41](https://github.com/micromata/generator-baumeister/commit/d1e1d41))
+* update dev dependencies of the generated project ([62067f7](https://github.com/micromata/generator-baumeister/commit/62067f7))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/micromata/generator-baumeister/compare/1.1.1...2.0.0) (2018-01-09)
 
