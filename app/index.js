@@ -259,10 +259,8 @@ module.exports = class extends Generator {
 			this.destinationPath('gulp/command-line-args.js')
 		);
 		this.fs.copyTpl(
-			this.templatePath('gulp/_config.js'),
-			this.destinationPath('gulp/config.js'), {
-				templateProps: this.templateProps
-			}
+			this.templatePath('gulp/config.js'),
+			this.destinationPath('gulp/config.js')
 		);
 		this.fs.copyTpl(
 			this.templatePath('gulp/on-error.js'),
