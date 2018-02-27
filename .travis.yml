@@ -9,15 +9,11 @@ before_install:
   - git config --global user.name "Your Name"
   - currentfolder=${PWD##*/}
   - if [ "$currentfolder" != 'generator-baumeister' ]; then cd .. && eval "mv $currentfolder generator-baumeister" && cd generator-baumeister; fi
-install:
-  - npm install -g npm
-  - npm install -g yarn
-  - npm install -g gulpjs/gulp#3f5aba2
-  - npm install -g yo
-  - yarn
 before_script:
-- npm test
-- npm run coveralls
+  - npm install -g gulp@4.x.x
+  - npm install -g yo
+  - npm test
+  - npm run coveralls
 notifications:
   webhooks:
     urls:
