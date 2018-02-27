@@ -17,7 +17,7 @@ describe('Baumeister with default options', () => {
 	const prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		projectType: 'A static website (Static site generator using Handlebars and Frontmatters)',
+		projectType: 'staticSite',
 		theme: 'My theme',
 		customPaths: false,
 		authorName: 'My Name',
@@ -31,7 +31,7 @@ describe('Baumeister with default options', () => {
 		banners: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
-		boilerplateAmount: 'Just a little – Get started with a few example files'
+		boilerplateAmount: 'little'
 	};
 
 	beforeAll(() => {
@@ -283,7 +283,7 @@ describe('Baumeister with Handlebars disabled', () => {
 	const prompts = {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
-		projectType: 'A single page application (using plain HTML and the template engine provided by your framework)',
+		projectType: 'spa',
 		theme: 'My theme',
 		customPaths: false,
 		authorName: 'My Name',
@@ -297,7 +297,7 @@ describe('Baumeister with Handlebars disabled', () => {
 		banners: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
-		boilerplateAmount: 'Just a little – Get started with a few example files'
+		boilerplateAmount: 'little'
 	};
 
 	beforeAll(() => {
@@ -356,7 +356,7 @@ describe('Baumeister with banner', () => {
 		banners: true,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
-		boilerplateAmount: 'Just a little – Get started with a few example files'
+		boilerplateAmount: 'little'
 	};
 
 	beforeAll(() => {
@@ -397,7 +397,7 @@ describe('Baumeister without an open source license', () => {
 		banners: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
-		boilerplateAmount: 'Just a little – Get started with a few example files'
+		boilerplateAmount: 'little'
 	};
 
 	beforeAll(() => {
@@ -464,7 +464,7 @@ describe('Baumeister with Apache License, Version 2.0', () => {
 		banners: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
-		boilerplateAmount: 'Just a little – Get started with a few example files'
+		boilerplateAmount: 'little'
 	};
 
 	beforeAll(() => {
@@ -531,7 +531,7 @@ describe('Baumeister with GNU General Public License', () => {
 		banners: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
-		boilerplateAmount: 'Just a little – Get started with a few example files'
+		boilerplateAmount: 'little'
 	};
 
 	beforeAll(() => {
@@ -586,7 +586,7 @@ describe('Baumeister with less boilerplate code and handlebars enabled', () => {
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
 		theme: 'My theme',
-		projectType: 'A static website (Static site generator using Handlebars and Frontmatters)',
+		projectType: 'staticSite',
 		customPaths: false,
 		authorName: 'My Name',
 		authorMail: 'name@domain.com',
@@ -599,7 +599,7 @@ describe('Baumeister with less boilerplate code and handlebars enabled', () => {
 		banners: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
-		boilerplateAmount: 'Almost nothing - Just the minimum files and folders'
+		boilerplateAmount: 'minimum'
 	};
 
 	beforeAll(() => {
@@ -668,7 +668,7 @@ describe('Baumeister with less boilerplate code and handlebars disabled', () => 
 		projectName: 'Test this Thingy',
 		projectDescription: 'Just a test.',
 		theme: 'My theme',
-		projectType: 'A single page application (using plain HTML and the template engine provided by your framework)',
+		projectType: 'spa',
 		customPaths: false,
 		authorName: 'My Name',
 		authorMail: 'name@domain.com',
@@ -681,7 +681,7 @@ describe('Baumeister with less boilerplate code and handlebars disabled', () => 
 		banners: false,
 		addDistToVersionControl: false,
 		issueTracker: 'https://github.com/userName/repository/issues',
-		boilerplateAmount: 'Almost nothing - Just the minimum files and folders'
+		boilerplateAmount: 'minimum'
 	};
 
 	beforeAll(() => {
@@ -760,7 +760,7 @@ describe('Baumeister with `dist` added to version control', () => {
 		banners: false,
 		addDistToVersionControl: true,
 		issueTracker: 'https://github.com/userName/repository/issues',
-		boilerplateAmount: 'Just a little – Get started with a few example files'
+		boilerplateAmount: 'little'
 	};
 
 	beforeAll(() => {
@@ -1010,6 +1010,20 @@ describe('Baumeister prompting helpers', () => {
 		});
 		it('should return an empty string when regex for Github clone URLs don’t match', () => {
 			assert.equal(helper.defaultIssueTracker({projectRepository: ''}), '');
+		});
+	});
+
+	describe('→ filterProjectType()', () => {
+		it('should return the correct aliases for both project types', () => {
+			assert.equal(helper.filterProjectType('A static website (Static site generator using Handlebars and Frontmatters)'), 'staticSite');
+			assert.equal(helper.filterProjectType('A single page application (using plain HTML and the template engine provided by your framework)'), 'spa');
+		});
+	});
+
+	describe('→ filterBoilerplateAmount()', () => {
+		it('should return the correct aliases for both boilerplate options', () => {
+			assert.equal(helper.filterBoilerplateAmount('Just a little – Get started with a few example files'), 'little');
+			assert.equal(helper.filterBoilerplateAmount('Almost nothing - Just the minimum files and folders'), 'minimum');
 		});
 	});
 

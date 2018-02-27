@@ -41,7 +41,7 @@ module.exports = class extends Generator {
 				title: _s.titleize(config.projectName),
 				namespace: _s.camelize(_s.slugify(config.projectName)),
 				projectDescription: config.projectDescription,
-				projectType: config.projectType || 'A static website (Static site generator using Handlebars and Frontmatters)',
+				projectType: config.projectType,
 				theme: _s.slugify(config.theme),
 				authorName: config.authorName,
 				authorMail: config.authorMail,
@@ -89,6 +89,7 @@ module.exports = class extends Generator {
 						'A static website (Static site generator using Handlebars and Frontmatters)',
 						'A single page application (using plain HTML and the template engine provided by your framework)'
 					],
+					filter: helper.filterProjectType,
 					store: true
 				},
 				{
@@ -105,6 +106,7 @@ module.exports = class extends Generator {
 						'Just a little – Get started with a few example files',
 						'Almost nothing - Just the minimum files and folders'
 					],
+					filter: helper.filterBoilerplateAmount,
 					store: true
 				},
 				{
@@ -304,7 +306,7 @@ module.exports = class extends Generator {
 			}
 		);
 
-		if (this.templateProps.projectType === 'A static website (Static site generator using Handlebars and Frontmatters)') {
+		if (this.templateProps.projectType === 'staticSite') {
 			this.fs.copyTpl(
 				this.templatePath('src/handlebars/layouts/_default.hbs'),
 				this.destinationPath('src/handlebars/layouts/default.hbs'), {
@@ -318,8 +320,8 @@ module.exports = class extends Generator {
 		}
 
 		switch (this.templateProps.boilerplateAmount) {
-			case 'Just a little – Get started with a few example files':
-				if (this.templateProps.projectType === 'A static website (Static site generator using Handlebars and Frontmatters)') {
+			case 'little':
+				if (this.templateProps.projectType === 'staticSite') {
 					this.fs.copyTpl(
 						this.templatePath('src/handlebars/partials/footer.hbs'),
 						this.destinationPath('src/handlebars/partials/footer.hbs')
@@ -361,8 +363,8 @@ module.exports = class extends Generator {
 					);
 				}
 				break;
-			case 'Almost nothing - Just the minimum files and folders':
-				if (this.templateProps.projectType === 'A static website (Static site generator using Handlebars and Frontmatters)') {
+			case 'minimum':
+				if (this.templateProps.projectType === 'staticSite') {
 					this.fs.copyTpl(
 						this.templatePath('src/handlebars/partials/gitkeep'),
 						this.destinationPath('src/handlebars/partials/.gitkeep')
@@ -380,8 +382,7 @@ module.exports = class extends Generator {
 					);
 				}
 				break;
-			default:
-				break;
+				// No default
 		}
 
 		// Project files
@@ -429,8 +430,7 @@ module.exports = class extends Generator {
 					}
 				);
 				break;
-			default:
-				break;
+				// No default
 		}
 
 		this.fs.copyTpl(
@@ -504,7 +504,7 @@ module.exports = class extends Generator {
 			}
 		);
 
-		if (this.templateProps.boilerplateAmount === 'Just a little – Get started with a few example files') {
+		if (this.templateProps.boilerplateAmount === 'little') {
 
 			this.fs.copyTpl(
 				this.templatePath('src/assets/scss/_theme/_alerts.scss'),
