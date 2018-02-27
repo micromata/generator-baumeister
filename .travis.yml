@@ -34,7 +34,7 @@ script:
   - echo '"generator-baumeister":{' >> .yo-rc.json
   - echo '"projectName":"Test this Thingy",' >> .yo-rc.json
   - echo '"projectDescription":"Just a test.",' >> .yo-rc.json
-  - echo '"projectType":"A static website",' >> .yo-rc.json
+  - echo '"projectType":"staticSite",' >> .yo-rc.json
   - echo '"theme":"My theme",' >> .yo-rc.json
   - echo '"customPaths":false,' >> .yo-rc.json
   - echo '"authorName":"My Name",' >> .yo-rc.json
@@ -48,7 +48,7 @@ script:
   - echo '"banner":false,' >> .yo-rc.json
   - echo '"addDistToVersionControl":false,' >> .yo-rc.json
   - echo '"issueTracker":"https://github.com/userName/repository/issues",' >> .yo-rc.json
-  - echo '"boilerplateAmount":"Just a little – Get started with a few example files"' >> .yo-rc.json
+  - echo '"boilerplateAmount":"little"' >> .yo-rc.json
   - echo '}' >> .yo-rc.json
   - echo '}' >> .yo-rc.json
   - yo baumeister --yo-rc

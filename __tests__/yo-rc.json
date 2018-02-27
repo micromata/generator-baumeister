@@ -2,7 +2,7 @@
   "generator-baumeister": {
     "projectName": "Test this Thingy",
     "projectDescription": "Just a test.",
-    "projectType": "A static website (Static site generator using Handlebars and Frontmatters)",
+    "projectType": "staticSite",
     "theme": "My theme",
     "customPaths": false,
     "authorName": "My Name",
@@ -15,6 +15,6 @@
     "projectRepository": "git@github.com:userName/repository.git",
     "addDistToVersionControl": false,
     "issueTracker": "https://github.com/userName/repository/issues",
-    "boilerplateAmount": "Just a little – Get started with a few example files"
+    "boilerplateAmount": "little"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "useHandlebars": <%= templateProps.projectType === 'A static website (Static site generator using Handlebars and Frontmatters)' %>,
+  "useHandlebars": <%= templateProps.projectType === 'staticSite' %>,
   "generateBanners": <%= templateProps.banners === true %>,
   "bundleCSS": [],
   "bundleExternalJS": [
