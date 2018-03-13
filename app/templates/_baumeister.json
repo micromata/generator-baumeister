@@ -6,7 +6,10 @@
     "jquery",
     "bootstrap"
   ],
-  "includeStaticFiles": [],
+  "vendor": {
+    "bundleCSS": [],
+    "includeStaticFiles": []
+  },
   "webpack": {
     "DefinePlugin": {
       "dev": {},
