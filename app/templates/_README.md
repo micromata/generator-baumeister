@@ -408,7 +408,6 @@ src/assets/scss
 ├── index.scss
 └── theme
     ├── _alerts.scss
-    ├── _demoElements.scss
     ├── _footer.scss
     ├── _mixins.scss
     ├── _scaffolding.scss

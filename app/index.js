@@ -513,12 +513,6 @@ module.exports = class extends Generator {
 				}
 			);
 			this.fs.copyTpl(
-				this.templatePath('src/assets/scss/_theme/_demoElements.scss'),
-				this.destinationPath('src/assets/scss/' + this.templateProps.theme + '/_demoElements.scss'), {
-					templateProps: this.templateProps
-				}
-			);
-			this.fs.copyTpl(
 				this.templatePath('src/assets/scss/_theme/_footer.scss'),
 				this.destinationPath('src/assets/scss/' + this.templateProps.theme + '/_footer.scss'), {
 					templateProps: this.templateProps

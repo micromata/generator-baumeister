@@ -11,21 +11,19 @@
 
 	<!-- Libs -->
 	<!-- build:css libs/libs.min.css?rev=@@hash -->
-	<link href="libs/libs.css" rel="stylesheet"/>
+	<link href="libs/libs.css" rel="stylesheet">
 	<!-- /build -->
 
 	<!-- Our compiled and merged Sass files -->
 	<!-- build:css assets/css/index.min.css?rev=@@hash -->
-	<link href="assets/css/index.css" rel="stylesheet"/>
+	<link href="assets/css/index.css" rel="stylesheet">
 	<!-- /build -->
 
 	<!--
 	Replace "no-js" class with "js" in case JavaScript is available.
 	You can delete this when you feel the need to make use of modernizr.
 	-->
-	<script>(function (h) {
-		h.className = h.className.replace('no-js', 'js')
-	})(document.documentElement)</script>
+	<script>(function(h){h.className = h.className.replace('no-js', 'js')})(document.documentElement)</script>
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory. -->
 
@@ -34,48 +32,41 @@
 
 <body>
 
-<!-- begin: navbar -->
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="index.html">Baumeister</a>
-		</div>
-		<!-- begin: navbar-collapse -->
-		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li class="active">
-					<a href="index.html">Home</a>
-				</li>
-			</ul>
-		</div>
-		<!-- end: navbar-collapse -->
-	</div>
-</div>
-<!-- end: navbar -->
-
-<!-- begin: content container -->
-<div class="container">
-
 	<!-- begin: content -->
-	<h1>Bootstrap starter template</h1>
-	<p class="lead">
-		Use this document as a way to quickly start any new project.
-		<br>All you get is this text and a mostly barebones HTML document.
-	</p>
-	<p>
-		Borrowed from the <a href="http://getbootstrap.com/examples/starter-template/">Bootstrap starter template</a>.
-	</p>
+		<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+			<a class="navbar-brand" href="index.html">Baumeister</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="index.html">Home</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link" href="demoElements.html">Demo Elements</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link" href="stickyFooter.html">Sticky footer</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<main class="container">
+
+			<h1>Bootstrap starter template</h1>
+			<p class="lead">
+				Use this document as a way to quickly start any new project.
+				<br>All you get is this text and a mostly barebones HTML document.
+			</p>
+			<p>
+				Borrowed from the <a href="https://getbootstrap.com/docs/4.0/examples/starter-template/">Bootstrap starter template</a>.
+			</p>
+
+		</main>
+
 	<!-- end: content -->
-
-</div>
-<!-- end: content container -->
-
 
 <!--
 JavaScript
@@ -99,7 +90,6 @@ replaced in the production ready build.
 <!-- build:js app/app.bundle.min.js?rev=@@hash -->
 <script src="app/app.bundle.js"></script>
 <!-- /build -->
-
 
 <!-- External scripts (eg. analytics) should be placed here -->
 </body>

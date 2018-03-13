@@ -158,7 +158,6 @@ describe('Baumeister with default options', () => {
 			'src/assets/scss/_print.scss',
 			'src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_alerts.scss',
-			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_demoElements.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_footer.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_mixins.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_scaffolding.scss',
@@ -171,7 +170,6 @@ describe('Baumeister with default options', () => {
 		assert.fileContent([
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /testResponsiveHelpers/],
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /alerts/],
-			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /demoElements/],
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /footer/],
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /mixins/],
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /scaffolding/]
@@ -643,7 +641,6 @@ describe('Baumeister with less boilerplate code and handlebars enabled', () => {
 	it('should create just the essential Sass files', () => {
 		assert.noFile([
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_alerts.scss',
-			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_demoElements.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_footer.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_mixins.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_scaffolding.scss'
@@ -653,7 +650,6 @@ describe('Baumeister with less boilerplate code and handlebars enabled', () => {
 	it('should only import the essential Sass files within _' + _s.slugify(prompts.theme) + '.scss file', () => {
 		assert.noFileContent([
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /alerts"/],
-			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /demoElements"/],
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /footer"/],
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /mixins"/],
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /scaffolding"/]
@@ -722,7 +718,6 @@ describe('Baumeister with less boilerplate code and handlebars disabled', () => 
 	it('should create just the essential Sass files', () => {
 		assert.noFile([
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_alerts.scss',
-			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_demoElements.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_footer.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_ribbon.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_mixins.scss',
@@ -733,7 +728,6 @@ describe('Baumeister with less boilerplate code and handlebars disabled', () => 
 	it('should only import the essential Sass files within _' + _s.slugify(prompts.theme) + '.scss file', () => {
 		assert.noFileContent([
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /alerts"/],
-			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /demoElements"/],
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /footer"/],
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /mixins"/],
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /scaffolding"/]
@@ -870,7 +864,6 @@ describe('Baumeister using --yo-rc flag', () => {
 			'src/assets/scss/_print.scss',
 			'src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_alerts.scss',
-			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_demoElements.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_footer.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_mixins.scss',
 			'src/assets/scss/' + _s.slugify(prompts.theme) + '/_scaffolding.scss',
@@ -883,7 +876,6 @@ describe('Baumeister using --yo-rc flag', () => {
 		assert.fileContent([
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /testResponsiveHelpers/],
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /alerts/],
-			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /demoElements/],
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /footer/],
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /mixins/],
 			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /scaffolding/]
