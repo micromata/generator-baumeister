@@ -296,6 +296,10 @@ module.exports = class extends Generator {
 			this.destinationPath('.stylelintrc.json')
 		);
 		this.fs.copyTpl(
+			this.templatePath('gitattributes'),
+			this.destinationPath('.gitattributes')
+		);
+		this.fs.copyTpl(
 			this.templatePath('_gitignore'),
 			this.destinationPath('.gitignore'), {
 				templateProps: this.templateProps
