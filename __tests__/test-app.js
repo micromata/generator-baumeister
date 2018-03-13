@@ -104,6 +104,7 @@ describe('Baumeister with default options', () => {
 	it('should create dot files', () => {
 		assert.file([
 			'.editorconfig',
+			'.gitattributes',
 			'.gitignore',
 			'.babelrc',
 			'.travis.yml',
@@ -810,6 +811,7 @@ describe('Baumeister using --yo-rc flag', () => {
 	it('should create dot files', () => {
 		assert.file([
 			'.editorconfig',
+			'.gitattributes',
 			'.gitignore',
 			'.eslintrc.json',
 			'src/app/.eslintrc.json'
