@@ -109,7 +109,6 @@ describe('Baumeister with default options', () => {
 			'.babelrc',
 			'.travis.yml',
 			'.eslintrc.json',
-			'src/app/.eslintrc.json',
 			'.stylelintrc.json'
 		]);
 	});
@@ -813,8 +812,7 @@ describe('Baumeister using --yo-rc flag', () => {
 			'.editorconfig',
 			'.gitattributes',
 			'.gitignore',
-			'.eslintrc.json',
-			'src/app/.eslintrc.json'
+			'.eslintrc.json'
 		]);
 	});
 
