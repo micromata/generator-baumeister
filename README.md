@@ -18,9 +18,10 @@ Using this generator will give you a solid base for your project in a matter of 
 Baumeister is here to help you to build your things by providing:
 
 - a file structure with focus on maintainability and upgradability
-- a Gulp workflow with the following »features«
+- a build setup based on Webpack and npm scripts with the following »features«
 	- generate static sites with ease using handlebars templates (optional)
 	- transpile, bundle and minify your code (ES6 as well as Sass)
+	- visualize size of bundled files with an interactive zoomable treemap
 	- remove `console` output and `debugger` statements in production files
 	- add vendor prefixes
 	- lint JavaScript, Sass and HTML
@@ -65,7 +66,7 @@ Frequent Users, who are tired being asked the same questions again and again mig
 
 ## Quick install guide
 
-For those already using Yeoman and Gulp.
+For those already using Yeoman.
 
 ```bash
 npm install -g generator-baumeister
@@ -76,7 +77,6 @@ yo baumeister
 ## Dependencies
 
 - Node.js (>=6.0.0)
-- Globally installed [Gulp CLI](https://www.npmjs.com/package/gulp-cli)
 - Globally installed [Yeoman CLI](https://www.npmjs.com/package/yo)
 
 See detailed installation instructions [over here](https://github.com/micromata/baumeister#dependencies) if you are new to this.

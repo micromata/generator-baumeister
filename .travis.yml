@@ -10,7 +10,6 @@ before_install:
   - currentfolder=${PWD##*/}
   - if [ "$currentfolder" != 'generator-baumeister' ]; then cd .. && eval "mv $currentfolder generator-baumeister" && cd generator-baumeister; fi
 before_script:
-  - npm install -g gulp@4.x.x
   - npm install -g yo
   - npm test
   - npm run coveralls
@@ -49,3 +48,4 @@ script:
   - echo '}' >> .yo-rc.json
   - yo baumeister --yo-rc
   - npm run build
+  - npm run build:dev

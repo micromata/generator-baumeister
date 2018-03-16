@@ -251,23 +251,10 @@ module.exports = class extends Generator {
 			this.destinationPath('src/app/__tests__')
 		);
 
-		// Gulp related files
+		// Build process files
 		this.fs.copyTpl(
-			this.templatePath('gulp/command-line-args.js'),
-			this.destinationPath('gulp/command-line-args.js')
-		);
-		this.fs.copyTpl(
-			this.templatePath('gulp/config.js'),
-			this.destinationPath('gulp/config.js')
-		);
-		this.fs.copyTpl(
-			this.templatePath('gulp/on-error.js'),
-			this.destinationPath('gulp/on-error.js')
-		);
-
-		this.fs.copyTpl(
-			this.templatePath('gulp/tasks'),
-			this.destinationPath('gulp/tasks')
+			this.templatePath('build'),
+			this.destinationPath('build')
 		);
 
 		// Dotfiles
@@ -388,10 +375,6 @@ module.exports = class extends Generator {
 				templateProps: this.templateProps
 			}
 		);
-		this.fs.copyTpl(
-			this.templatePath('gulpfile.babel.js'),
-			this.destinationPath('gulpfile.babel.js')
-		);
 
 		switch (this.templateProps.license) {
 			case 'MIT':
@@ -429,6 +412,7 @@ module.exports = class extends Generator {
 				// No default
 		}
 
+		// Config files
 		this.fs.copyTpl(
 			this.templatePath('_baumeister.json'),
 			this.destinationPath('baumeister.json'), {
@@ -436,9 +420,11 @@ module.exports = class extends Generator {
 			}
 		);
 		this.fs.copyTpl(
-			this.templatePath('webpack.config.js'),
-			this.destinationPath('webpack.config.js')
+			this.templatePath('postcss.config.js'),
+			this.destinationPath('postcss.config.js')
 		);
+
+		// Other meta files
 		this.fs.copyTpl(
 			this.templatePath('humans.txt'),
 			this.destinationPath('humans.txt')
@@ -468,20 +454,16 @@ module.exports = class extends Generator {
 			this.destinationPath('src/assets/img')
 		);
 		this.fs.copyTpl(
-			this.templatePath('src/app/_base.js'),
-			this.destinationPath('src/app/base.js'), {
-				templateProps: this.templateProps
-			}
+			this.templatePath('src/app/base/base.js'),
+			this.destinationPath('src/app/base/base.js')
 		);
 		this.fs.copyTpl(
-			this.templatePath('src/app/_index.js'),
-			this.destinationPath('src/app/index.js'), {
-				templateProps: this.templateProps
-			}
+			this.templatePath('src/app/index.js'),
+			this.destinationPath('src/app/index.js')
 		);
 		this.fs.copyTpl(
-			this.templatePath('src/app/polyfills.js'),
-			this.destinationPath('src/app/polyfills.js')
+			this.templatePath('src/app/base/polyfills.js'),
+			this.destinationPath('src/app/base/polyfills.js')
 		);
 		this.fs.copyTpl(
 			this.templatePath('src/assets/scss/_index.scss'),
