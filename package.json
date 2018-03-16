@@ -61,7 +61,7 @@
     "micromata",
     "workflow",
     "build",
-    "gulp",
+    "webpack",
     "static site generator",
     "baumeister",
     "handlebars",

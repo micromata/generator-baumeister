@@ -51,36 +51,21 @@ describe('Baumeister with default options', () => {
 			.toPromise();
 	});
 
-	it('should create Gulp related files', () => {
+	it('should create files related to the build process', () => {
 		assert.file([
-			'gulp/command-line-args.js',
-			'gulp/config.js',
-			'gulp/on-error.js',
-			'gulp/tasks/app-templates.js',
-			'gulp/tasks/banners.js',
-			'gulp/tasks/bump-version.js',
-			'gulp/tasks/bundle-external-css.js',
-			'gulp/tasks/cache-bust.js',
-			'gulp/tasks/clean.js',
-			'gulp/tasks/commit-changes.js',
-			'gulp/tasks/copy-assets.js',
-			'gulp/tasks/copy-static-files.js',
-			'gulp/tasks/create-changelog.js',
-			'gulp/tasks/create-tag.js',
-			'gulp/tasks/fonts.js',
-			'gulp/tasks/handlebars.js',
-			'gulp/tasks/images.js',
-			'gulp/tasks/lint.js',
-			'gulp/tasks/lint-bootstrap.js',
-			'gulp/tasks/lint-styles.js',
-			'gulp/tasks/process-html.js',
-			'gulp/tasks/security.js',
-			'gulp/tasks/serve.js',
-			'gulp/tasks/styles.js',
-			'gulp/tasks/test.js',
-			'gulp/tasks/validate-html.js',
-			'gulp/tasks/webpack.js'
+			'build/config.js',
+			'build/handlebars.js',
+			'build/webpack.base.babel.js',
+			'build/webpack.dev.babel.js',
+			'build/webpack.prod.babel.js'
 		]);
+	});
+
+	it('should have the default output paths within the build config', () => {
+		const arg = [
+			['build/config.js', new RegExp(escapeStringRegexp(`prod: '../dist/'`), '')]
+		];
+		assert.fileContent(arg);
 	});
 
 	it('should have `useHandlebars` set to `true` in baumeister.json', () => {
@@ -134,9 +119,8 @@ describe('Baumeister with default options', () => {
 	it('should create other project files', () => {
 		assert.file([
 			'README.md',
-			'gulpfile.babel.js',
 			'baumeister.json',
-			'webpack.config.js',
+			'postcss.config.js',
 			'humans.txt',
 			'LICENSE',
 			'CONTRIBUTING.md',
@@ -150,9 +134,9 @@ describe('Baumeister with default options', () => {
 			'src/assets',
 			'src/assets/fonts',
 			'src/assets/img',
-			'src/app/base.js',
+			'src/app/base/base.js',
 			'src/app/index.js',
-			'src/app/polyfills.js',
+			'src/app/base/polyfills.js',
 			'src/assets/scss/index.scss',
 			'src/assets/scss/_print.scss',
 			'src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss',
@@ -207,13 +191,6 @@ describe('Baumeister with default options', () => {
 	it('should render author name within the meta tags of HTML files', () => {
 		const regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '">'), '');
 		assert.fileContent('src/handlebars/layouts/default.hbs', regex);
-	});
-
-	it('should have the default output paths within the gulpfile', () => {
-		const arg = [
-			['gulp/config.js', /dist: '.\/dist\/'/]
-		];
-		assert.fileContent(arg);
 	});
 
 	it('should have authors name in package.json and LICENSE', () => {
@@ -841,7 +818,6 @@ describe('Baumeister using --yo-rc flag', () => {
 	it('should create other project files', () => {
 		assert.file([
 			'README.md',
-			'gulpfile.babel.js',
 			'humans.txt',
 			'LICENSE',
 			'CONTRIBUTING.md',
@@ -855,9 +831,9 @@ describe('Baumeister using --yo-rc flag', () => {
 			'src/assets',
 			'src/assets/fonts',
 			'src/assets/img',
-			'src/app/base.js',
+			'src/app/base/base.js',
 			'src/app/index.js',
-			'src/app/polyfills.js',
+			'src/app/base/polyfills.js',
 			'src/assets/scss/index.scss',
 			'src/assets/scss/_print.scss',
 			'src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss',
@@ -914,9 +890,9 @@ describe('Baumeister using --yo-rc flag', () => {
 		assert.fileContent('src/handlebars/layouts/default.hbs', regex);
 	});
 
-	it('should have the default output paths within the config file', () => {
+	it('should have the default output paths within the build config file', () => {
 		const arg = [
-			['gulp/config.js', new RegExp(escapeStringRegexp(`dist: './dist/'`), '')]
+			['build/config.js', new RegExp(escapeStringRegexp(`prod: '../dist/'`), '')]
 		];
 		assert.fileContent(arg);
 	});
