@@ -2,6 +2,62 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0-beta.0"></a>
+# [3.0.0-beta.0](https://github.com/micromata/generator-baumeister/compare/2.0.1...3.0.0-beta.0) (2018-03-18)
+
+
+### Code Refactoring
+
+* **baumeister.json:** Rename properties related to vendor files ([a594563](https://github.com/micromata/generator-baumeister/commit/a594563))
+
+
+### Features
+
+* remove Yarn lockfiles 👋🏻 ([b6f1fbf](https://github.com/micromata/generator-baumeister/commit/b6f1fbf))
+* **eslint:** Simplify setup and include two additional plugins ([f039c24](https://github.com/micromata/generator-baumeister/commit/f039c24))
+* Replace Gulp with Webpack (and npm scripts) ([c6116ad](https://github.com/micromata/generator-baumeister/commit/c6116ad))
+* Upgrade to Bootstrap 4 ([c7b4264](https://github.com/micromata/generator-baumeister/commit/c7b4264))
+
+
+### BREAKING CHANGES
+
+* 1. Gulp and all the tasks are gone. But most of the npm scripts still do what they did before. Here are the main scripts needed for developing and building your project.
+
+| Command                 | Description |
+| ----------------------- | --- |
+| `npm start`             | *Builds for development, starts a webserver, watches files for changes, rebuilds incremental and reloads your browser.* |
+| `npm test`              | *Lints your JavaScript files and runs unit test via the Jest CLI.* |
+| `npm run test:watch`    | *Runs unit test with Jests watch option.* |
+| `npm run build`         | *Builds for production to `dist` directory.* |
+| `npm run build:check`   | *Starts a static fileserver serving the `dist` directory.* |
+| `npm run build:analyze` | *Starts »Webpack Bundle Analyzer« to visualize size of Webpack output files* |
+
+See package.json scripts section for all available scripts.
+
+2. The polyfills bundle is gone and the references to the bundles in default.hbs respectively the HTML files has changed to:
+<!-- Bundled vendor CSS files -->
+@@vendor.css
+
+<!-- Our compiled and merged Sass files -->
+@@app.css
+
+<!-- Vendor JS -->
+@@vendor.js
+
+<!-- Own JS -->
+@@app.js
+
+3. We switched from using UnCSS to PurifyCSS for remo0ving unused CSS.
+Due to the concept of Webpack we only generate one CSS bundle. PurifyCSS is turned off by default.
+
+To activate PurifyCSS set the `usePurifyCSS` option in within `baumeister.json` to `true`.
+In addition you can define a PurifyCSS `whitelist` defining an array of selectors that should not be removed.
+* **eslint:** This adds [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn) and the [eslint-plugin-import](https://github.com/benmosher/eslint-plugin-import) which might introduce new linting errors. You might want to turn off rules in `/.eslintrc.json` in case you find them too opinionated.
+* **baumeister.json:** The properties `bundleCSS` and `includeStaticFiles` in baumeister.json are moved to `vendor.bundleCSS` and `vendor.includeStaticFiles`. You have to adapt these changes in case you have added dependencies via these properties.
+* See [Bootstrap v4 migration guide](https://getbootstrap.com/docs/4.0/migration/) to read about the most notable as well as breaking changes.
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/micromata/generator-baumeister/compare/2.0.0...2.0.1) (2018-02-12)
 
