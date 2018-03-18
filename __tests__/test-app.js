@@ -979,18 +979,4 @@ describe('Baumeister prompting helpers', () => {
 		});
 	});
 
-	describe('→ filterProjectType()', () => {
-		it('should return the correct aliases for both project types', () => {
-			assert.equal(helper.filterProjectType('A static website (Static site generator using Handlebars and Frontmatters)'), 'staticSite');
-			assert.equal(helper.filterProjectType('A single page application (using plain HTML and the template engine provided by your framework)'), 'spa');
-		});
-	});
-
-	describe('→ filterBoilerplateAmount()', () => {
-		it('should return the correct aliases for both boilerplate options', () => {
-			assert.equal(helper.filterBoilerplateAmount('Just a little – Get started with a few example files'), 'little');
-			assert.equal(helper.filterBoilerplateAmount('Almost nothing - Just the minimum files and folders'), 'minimum');
-		});
-	});
-
 });

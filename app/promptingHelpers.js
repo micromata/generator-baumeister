@@ -22,18 +22,4 @@ helper.defaultIssueTracker = function (answers) {
 	return '';
 };
 
-helper.filterProjectType = function (answer) {
-	if (answer === 'A static website (Static site generator using Handlebars and Frontmatters)') {
-		return 'staticSite';
-	}
-	return 'spa';
-};
-
-helper.filterBoilerplateAmount = function (answer) {
-	if (answer === 'Just a little – Get started with a few example files') {
-		return 'little';
-	}
-	return 'minimum';
-};
-
 module.exports = helper;
