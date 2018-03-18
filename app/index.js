@@ -87,10 +87,16 @@ module.exports = class extends Generator {
 					name: 'projectType',
 					message: 'What to you want to build?',
 					choices: [
-						'A static website (Static site generator using Handlebars and Frontmatters)',
-						'A single page application (using plain HTML and the template engine provided by your framework)'
+						{
+							name: 'A static website (Static site generator using Handlebars and Frontmatters)',
+							value: 'staticSite'
+						},
+						{
+							name: 'A single page application (using plain HTML and the template engine provided by your framework)',
+							value: 'spa'
+						}
 					],
-					filter: helper.filterProjectType,
+					default: 'staticSite',
 					store: true
 				},
 				{
@@ -104,10 +110,16 @@ module.exports = class extends Generator {
 					name: 'boilerplateAmount',
 					message: 'With how many boilerplate code you like to get started with?',
 					choices: [
-						'Just a little – Get started with a few example files',
-						'Almost nothing - Just the minimum files and folders'
+						{
+							name: 'Just a little – Get started with a few example files',
+							value: 'little'
+						},
+						{
+							name: 'Almost nothing - Just the minimum files and folders',
+							value: 'minimum'
+						}
 					],
-					filter: helper.filterBoilerplateAmount,
+					default: 'little',
 					store: true
 				},
 				{
@@ -120,6 +132,7 @@ module.exports = class extends Generator {
 						'GNU GPLv3',
 						'All rights reserved'
 					],
+					default: 'MIT',
 					store: true
 				},
 				{
