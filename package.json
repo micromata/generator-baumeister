@@ -73,6 +73,7 @@
   "dependencies": {
     "chalk": "^2.3.2",
     "command-exists": "1.2.2",
+    "common-tags": "^1.7.2",
     "global": "4.3.2",
     "semver": "5.5.0",
     "superb": "2.0.0",
