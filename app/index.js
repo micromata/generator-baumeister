@@ -5,6 +5,7 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const superb = require('superb');
 const _s = require('underscore.string');
+const stripIndents = require('common-tags').stripIndents;
 const commandExists = require('command-exists').sync;
 const helper = require('./promptingHelpers');
 
@@ -66,7 +67,7 @@ module.exports = class extends Generator {
 		if (!this.skipPrompts) {
 
 			// Have Yeoman greet the user.
-			this.log(yosay('Yo, welcome to the ' + superb() + ' ' + chalk.yellow('Baumeister') + ' generator!'));
+			this.log(yosay(`Yo, welcome to the ${superb()} ${chalk.yellow('Baumeister')} generator!`));
 
 			const prompts = [
 				{
@@ -529,7 +530,7 @@ module.exports = class extends Generator {
 	}
 
 	end() {
-		this.log(yosay(chalk.red('That’s it!') + ' You’re all set to begin building your stuff ✌(-‿-)✌\n' +
-			'Enter `gulp --tasks` to see the available Gulp tasks.'));
+		this.log(yosay(stripIndents`${chalk.green('That’s it!')} You’re all set to begin building your stuff ✌(-‿-)✌
+			Enter ${chalk.yellow.bold('npm start')} to start right away.`));
 	}
 };
