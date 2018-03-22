@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0-beta.1"></a>
+# [3.0.0-beta.1](https://github.com/micromata/generator-baumeister/compare/3.0.0-beta.0...3.0.0-beta.1) (2018-03-22)
+
+
+### Bug Fixes
+
+* Open Webpack dev server with --host flag ([1ae864e](https://github.com/micromata/generator-baumeister/commit/1ae864e))
+* Referencing fonts from within Sass files ([9cd84e9](https://github.com/micromata/generator-baumeister/commit/9cd84e9)), closes [micromata/baumeister#236](https://github.com/micromata/baumeister/issues/236)
+
+
+### Features
+
+* Dynamically import and lazy load polyfills ([ef5f6b5](https://github.com/micromata/generator-baumeister/commit/ef5f6b5)), closes [micromata/baumeister#235](https://github.com/micromata/baumeister/issues/235)
+
+
+
 <a name="3.0.0-beta.0"></a>
 # [3.0.0-beta.0](https://github.com/micromata/generator-baumeister/compare/2.0.1...3.0.0-beta.0) (2018-03-18)
 
