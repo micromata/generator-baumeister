@@ -1,10 +1,12 @@
 {
   "extends": "baumeister",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "allowImportExportEverywhere": true
+},
   "overrides": [
     {
-      "files": [
-        "build/*.js"
-      ],
+      "files": ["build/*.js"],
       "rules": {
         "no-console": "off",
         "unicorn/no-process-exit": "off"
