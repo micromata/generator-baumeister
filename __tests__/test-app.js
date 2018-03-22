@@ -55,9 +55,14 @@ describe('Baumeister with default options', () => {
 		assert.file([
 			'build/config.js',
 			'build/handlebars.js',
-			'build/webpack.base.babel.js',
-			'build/webpack.dev.babel.js',
-			'build/webpack.prod.babel.js'
+			'build/webpack.config.babel.js',
+			'build/webpack/config.dev-server.js',
+			'build/webpack/config.entry.js',
+			'build/webpack/config.module.rules.js',
+			'build/webpack/config.output.js',
+			'build/webpack/config.plugins.js',
+			'build/webpack/helpers.js',
+			'build/webpack/plugin.generate-css-file.js'
 		]);
 	});
 
