@@ -27,7 +27,6 @@ Baumeister is here to help you to build your things by providing:
 	- lint JavaScript, Sass and HTML
 	- optimize images (lossless)
 	- start a local server
-	- keep browsers in sync for testing
 	- delete unused CSS (optional)
 	- check for know vulnerabilities in dependencies
 	- release new versions
