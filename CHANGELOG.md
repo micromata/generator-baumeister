@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* Open Webpack dev server with --host flag ([1ae864e](https://github.com/micromata/generator-baumeister/commit/1ae864e))
+* Open webpack dev server with --host flag ([1ae864e](https://github.com/micromata/generator-baumeister/commit/1ae864e))
 * Referencing fonts from within Sass files ([9cd84e9](https://github.com/micromata/generator-baumeister/commit/9cd84e9)), closes [micromata/baumeister#236](https://github.com/micromata/baumeister/issues/236)
 
 
@@ -31,7 +31,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 * remove Yarn lockfiles 👋🏻 ([b6f1fbf](https://github.com/micromata/generator-baumeister/commit/b6f1fbf))
 * **eslint:** Simplify setup and include two additional plugins ([f039c24](https://github.com/micromata/generator-baumeister/commit/f039c24))
-* Replace Gulp with Webpack (and npm scripts) ([c6116ad](https://github.com/micromata/generator-baumeister/commit/c6116ad))
+* Replace Gulp with webpack (and npm scripts) ([c6116ad](https://github.com/micromata/generator-baumeister/commit/c6116ad))
 * Upgrade to Bootstrap 4 ([c7b4264](https://github.com/micromata/generator-baumeister/commit/c7b4264))
 
 
@@ -46,7 +46,7 @@ All notable changes to this project will be documented in this file. See [standa
 | `npm run test:watch`    | *Runs unit test with Jests watch option.* |
 | `npm run build`         | *Builds for production to `dist` directory.* |
 | `npm run build:check`   | *Starts a static fileserver serving the `dist` directory.* |
-| `npm run build:analyze` | *Starts »Webpack Bundle Analyzer« to visualize size of Webpack output files* |
+| `npm run build:analyze` | *Starts »webpack bundle analyzer« to visualize size of webpack output files* |
 
 See package.json scripts section for all available scripts.
 
@@ -64,7 +64,7 @@ See package.json scripts section for all available scripts.
 @@app.js
 
 3. We switched from using UnCSS to PurifyCSS for remo0ving unused CSS.
-Due to the concept of Webpack we only generate one CSS bundle. PurifyCSS is turned off by default.
+Due to the concept of webpack we only generate one CSS bundle. PurifyCSS is turned off by default.
 
 To activate PurifyCSS set the `usePurifyCSS` option in within `baumeister.json` to `true`.
 In addition you can define a PurifyCSS `whitelist` defining an array of selectors that should not be removed.
@@ -117,7 +117,7 @@ In addition you can define a PurifyCSS `whitelist` defining an array of selector
 	> * **linting:** fix stylelint errors ([62a4087](https://github.com/micromata/baumeister/commit/62a4087))
 	> * **settings:** revert generateBanners setting to false ([68eebf5](https://github.com/micromata/baumeister/commit/68eebf5))
   * > #### Code Refactoring
-	  > * **bundling:** Replace Browserify with Webpack ([eb96f75](https://github.com/micromata/baumeister/commit/eb96f75)), closes [#209](https://github.com/micromata/baumeister/issues/209) [#211](https://github.com/micromata/baumeister/issues/211)
+	  > * **bundling:** Replace Browserify with webpack ([eb96f75](https://github.com/micromata/baumeister/commit/eb96f75)), closes [#209](https://github.com/micromata/baumeister/issues/209) [#211](https://github.com/micromata/baumeister/issues/211)
   * > #### Features
     > * **linting:** Add eslint rules to ensure consistent filenames ([#201](https://github.com/micromata/baumeister/issues/201)) ([82e24a8](https://github.com/micromata/baumeister/commit/82e24a8)), closes [#197](https://github.com/micromata/baumeister/issues/197)
     > * **settings:** Move settings to baumeister.json ([c4029a4](https://github.com/micromata/baumeister/commit/c4029a4)), closes [#212](https://github.com/micromata/baumeister/issues/212) [#213](https://github.com/micromata/baumeister/issues/213)

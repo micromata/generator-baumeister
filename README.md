@@ -18,7 +18,7 @@ Using this generator will give you a solid base for your project in a matter of 
 Baumeister is here to help you to build your things by providing:
 
 - a file structure with focus on maintainability and upgradability
-- a build setup based on Webpack and npm scripts with the following »features«
+- a build setup based on webpack and npm scripts with the following »features«
 	- generate static sites with ease using handlebars templates (optional)
 	- transpile, bundle and minify your code (ES6 as well as Sass)
 	- visualize size of bundled files with an interactive zoomable treemap
