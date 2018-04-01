@@ -140,8 +140,12 @@ In the root directory is a file named `baumeister.json` which you can be used to
   },
   "webpack": {
     "DefinePlugin": {
-      "development": {},
-      "production": {}
+      "development": {
+        "PRODUCTION": false
+      },
+      "production": {
+        "PRODUCTION": true
+      }
     },
     "ProvidePlugin": {
       "$": "jquery",
