@@ -277,6 +277,10 @@ module.exports = class extends Generator {
 			this.destinationPath('.babelrc')
 		);
 		this.fs.copyTpl(
+			this.templatePath('src/app/babelrc'),
+			this.destinationPath('src/app/.babelrc')
+		);
+		this.fs.copyTpl(
 			this.templatePath('travis.yml'),
 			this.destinationPath('.travis.yml')
 		);

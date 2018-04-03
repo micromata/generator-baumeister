@@ -97,6 +97,7 @@ describe('Baumeister with default options', () => {
 			'.gitattributes',
 			'.gitignore',
 			'.babelrc',
+			'src/app/.babelrc',
 			'.travis.yml',
 			'.eslintrc.json',
 			'.stylelintrc.json'
