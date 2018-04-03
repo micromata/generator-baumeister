@@ -59,6 +59,7 @@ describe('Baumeister with default options', () => {
 			'build/webpack/config.dev-server.js',
 			'build/webpack/config.entry.js',
 			'build/webpack/config.module.rules.js',
+			'build/webpack/config.optimization.js',
 			'build/webpack/config.output.js',
 			'build/webpack/config.plugins.js',
 			'build/webpack/helpers.js'
