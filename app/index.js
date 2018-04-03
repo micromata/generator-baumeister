@@ -467,17 +467,13 @@ module.exports = class extends Generator {
 			this.templatePath('src/assets/img'),
 			this.destinationPath('src/assets/img')
 		);
-		this.fs.copyTpl(
-			this.templatePath('src/app/base/base.js'),
-			this.destinationPath('src/app/base/base.js')
+		this.fs.copy(
+			this.templatePath('src/app/base'),
+			this.destinationPath('src/app/base')
 		);
 		this.fs.copyTpl(
 			this.templatePath('src/app/index.js'),
 			this.destinationPath('src/app/index.js')
-		);
-		this.fs.copyTpl(
-			this.templatePath('src/app/base/polyfills.js'),
-			this.destinationPath('src/app/base/polyfills.js')
 		);
 		this.fs.copyTpl(
 			this.templatePath('src/assets/scss/_index.scss'),

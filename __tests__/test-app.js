@@ -61,8 +61,7 @@ describe('Baumeister with default options', () => {
 			'build/webpack/config.module.rules.js',
 			'build/webpack/config.output.js',
 			'build/webpack/config.plugins.js',
-			'build/webpack/helpers.js',
-			'build/webpack/plugin.generate-css-file.js'
+			'build/webpack/helpers.js'
 		]);
 	});
 
