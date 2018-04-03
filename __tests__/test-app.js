@@ -73,12 +73,26 @@ describe('Baumeister with default options', () => {
 		assert.fileContent(arg);
 	});
 
+	it('should not have historyApiFallback in dev server settings', () => {
+		assert.noFileContent([
+			['build/webpack/config.dev-server.js', /historyApiFallback: true,/]
+		]);
+	});
+
 	it('should have `useHandlebars` set to `true` in baumeister.json', () => {
 		assert.fileContent('baumeister.json', /"useHandlebars": true,/);
 	});
 
 	it('should have `generateBanners` set to `false` in baumeister.json', () => {
 		assert.fileContent('baumeister.json', /"generateBanners": false,/);
+	});
+
+	it('should have the default ProvidePlugin settings in baumeister.json', () => {
+		assert.fileContent([
+			['baumeister.json', /"ProvidePlugin": {\n/],
+			['baumeister.json', /"\$": "jquery",/],
+			['baumeister.json', /"jQuery": "jquery"/]
+		]);
 	});
 
 	it('should create package manager files', () => {
@@ -104,6 +118,21 @@ describe('Baumeister with default options', () => {
 		]);
 	});
 
+	it('should not have React related plugins in .babelrc', () => {
+		assert.noFileContent([
+			['src/app/.babelrc', /transform-class-properties/],
+			['src/app/.babelrc', /transform-react-jsx/]
+		]);
+	});
+
+	it('should not have React related settings in .eslintrc', () => {
+		assert.noFileContent([
+			['.eslintrc.json', /"plugin:react\/recommended"/],
+			['.eslintrc.json', /"plugins": \["react"],/],
+			['.eslintrc.json', /"ecmaFeatures": {"jsx": true}/]
+		]);
+	});
+
 	it('should have `/dist` directory in .gitignore', () => {
 		assert.fileContent([
 			['.gitignore', /dist/]
@@ -122,6 +151,14 @@ describe('Baumeister with default options', () => {
 		]);
 	});
 
+	it('should not create html files', () => {
+		assert.noFile([
+			'src/index.html',
+			'src/stickyFooter.html',
+			'src/demoElements.html'
+		]);
+	});
+
 	it('should create other project files', () => {
 		assert.file([
 			'README.md',
@@ -135,14 +172,33 @@ describe('Baumeister with default options', () => {
 		]);
 	});
 
+	it('should create JS file ', () => {
+		assert.file([
+			'src/app/base/base.js',
+			'src/app/index.js',
+			'src/app/base/polyfills.js'
+		]);
+	});
+
+	it('should import Bootstrap in index.js', () => {
+		assert.fileContent([
+			['src/app/index.js', /import 'bootstrap';/]
+		]);
+	});
+
+	it('should not use React in index.js', () => {
+		assert.noFileContent([
+			['src/app/index.js', /import React from 'react';/],
+			['src/app/index.js', /import ReactDOM from 'react-dom';/],
+			['src/app/index.js', /ReactDOM\.render/]
+		]);
+	});
+
 	it('should create assets', () => {
 		assert.file([
 			'src/assets',
 			'src/assets/fonts',
 			'src/assets/img',
-			'src/app/base/base.js',
-			'src/app/index.js',
-			'src/app/base/polyfills.js',
 			'src/assets/scss/index.scss',
 			'src/assets/scss/_print.scss',
 			'src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss',
@@ -165,7 +221,7 @@ describe('Baumeister with default options', () => {
 		]);
 	});
 
-	it('should import `_variables.scss` within `index.scss` file', () => {
+	it('should import \'_variables.scss\' within \'index.scss\' file', () => {
 		assert.fileContent([
 			['src/assets/scss/index.scss', /.\/variables/]
 		]);
@@ -180,6 +236,31 @@ describe('Baumeister with default options', () => {
 		packageJson.should.have.property('name', _s.slugify(prompts.projectName));
 		packageJson.should.have.property('title', _s.titleize(prompts.projectName));
 		packageJson.should.have.property('description', prompts.projectDescription);
+	});
+
+	describe('Dependencies', () => {
+		it('should have jQuery and popper.js', () => {
+			assert.fileContent([
+				['package.json', /jquery/],
+				['package.json', /popper.js/]
+			]);
+		});
+
+		it('should not have React and related dependencies', () => {
+			assert.noFileContent([
+				['package.json', /react/],
+				['package.json', /react-dom/],
+				['package.json', /prop-types/]
+			]);
+		});
+
+		it('should not have React related dev dependencies', () => {
+			assert.noFileContent([
+				['package.json', /eslint-plugin-react/],
+				['package.json', /babel-plugin-transform-react-jsx/],
+				['package.json', /babel-plugin-transform-class-properties/]
+			]);
+		});
 	});
 
 	it('should render project name and description in README.md', () => {
@@ -258,7 +339,7 @@ describe('Baumeister with default options', () => {
 
 });
 
-describe('Baumeister with Handlebars disabled', () => {
+describe('Baumeister generating a single page app', () => {
 	// Define prompt answers
 	const prompts = {
 		projectName: 'Test this Thingy',
@@ -296,8 +377,11 @@ describe('Baumeister with Handlebars disabled', () => {
 			.toPromise();
 	});
 
-	it('should have `useHandlebars` set to `false` in baumeister.json', () => {
-		assert.fileContent('baumeister.json', /"useHandlebars": false,/);
+	it('should have adapted settings in baumeister.json', () => {
+		assert.fileContent([
+			['baumeister.json', /"useHandlebars": false,/],
+			['baumeister.json', /"ProvidePlugin": {}/]
+		]);
 	});
 
 	it('should create no Handlebars related files', () => {
@@ -307,11 +391,91 @@ describe('Baumeister with Handlebars disabled', () => {
 		]);
 	});
 
-	it('should create example html files', () => {
+	it('should create just the essential html files', () => {
 		assert.file([
-			'src/index.html',
+			'src/index.html'
+		]);
+		assert.noFile([
 			'src/stickyFooter.html',
 			'src/demoElements.html'
+		]);
+	});
+
+	it('should have an additional container in index.html', () => {
+		assert.fileContent([
+			['src/index.html', /<div id="root" \/>/]
+		]);
+	});
+
+	it('should have a base element in index.html', () => {
+		assert.fileContent([
+			['src/index.html', /<base href="\/">/]
+		]);
+	});
+
+	it('should not include navigation in index.html', () => {
+		assert.noFileContent([
+			['src/index.html', /role="navigation"/]
+		]);
+	});
+
+	describe('Dependencies', () => {
+		it('should not have jQuery and popper.js', () => {
+			assert.noFileContent([
+				['package.json', /jquery/],
+				['package.json', /popper.js/]
+			]);
+		});
+
+		it('should have React and related dependencies', () => {
+			assert.fileContent([
+				['package.json', /react/],
+				['package.json', /react-dom/],
+				['package.json', /prop-types/]
+			]);
+		});
+
+		it('should have React related dev dependencies', () => {
+			assert.fileContent([
+				['package.json', /eslint-plugin-react/],
+				['package.json', /babel-plugin-transform-react-jsx/],
+				['package.json', /babel-plugin-transform-class-properties/]
+			]);
+		});
+	});
+
+	it('should have React related plugins in .babelrc', () => {
+		assert.fileContent([
+			['src/app/.babelrc', /transform-class-properties/],
+			['src/app/.babelrc', /transform-react-jsx/]
+		]);
+	});
+
+	it('should have React related settings in .eslintrc', () => {
+		assert.fileContent([
+			['.eslintrc.json', /"plugin:react\/recommended"/],
+			['.eslintrc.json', /"plugins": \["react"],/],
+			['.eslintrc.json', /"ecmaFeatures": {"jsx": true}/]
+		]);
+	});
+
+	it('should have historyApiFallback in dev server settings', () => {
+		assert.fileContent([
+			['build/webpack/config.dev-server.js', /historyApiFallback: true,/]
+		]);
+	});
+
+	it('should not import Bootstrap in index.js', () => {
+		assert.noFileContent([
+			['src/app/index.js', /import 'bootstrap';/]
+		]);
+	});
+
+	it('should use React in index.js', () => {
+		assert.fileContent([
+			['src/app/index.js', /import React from 'react';/],
+			['src/app/index.js', /import ReactDOM from 'react-dom';/],
+			['src/app/index.js', /ReactDOM\.render/]
 		]);
 	});
 });
@@ -554,7 +718,7 @@ describe('Baumeister with GNU General Public License', () => {
 
 });
 
-describe('Baumeister with less boilerplate code and handlebars enabled', () => {
+describe('Baumeister with less boilerplate code as static website', () => {
 
 	// Define prompt answers
 	const prompts = {
@@ -633,7 +797,7 @@ describe('Baumeister with less boilerplate code and handlebars enabled', () => {
 	});
 });
 
-describe('Baumeister with less boilerplate code and handlebars disabled', () => {
+describe('Baumeister with less boilerplate code as single page app', () => {
 
 	// Define prompt answers
 	const prompts = {
@@ -854,7 +1018,7 @@ describe('Baumeister using --yo-rc flag', () => {
 		]);
 	});
 
-	it('should import `_variables.scss` within `index.scss` file', () => {
+	it('should import \'_variables.scss\' within \'index.scss\' file', () => {
 		assert.fileContent([
 			['src/assets/scss/index.scss', /.\/variables/]
 		]);

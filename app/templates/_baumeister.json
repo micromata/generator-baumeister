@@ -30,9 +30,9 @@
         "PRODUCTION": true
       }
     },
-    "ProvidePlugin": {
+    "ProvidePlugin": <% if (templateProps.projectType === 'staticSite') { %>{
       "$": "jquery",
       "jQuery": "jquery"
-    }
+    }<% } else { %>{}<% } %>
   }
 }
