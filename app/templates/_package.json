@@ -53,12 +53,18 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
-    "core-js": "^2.5.4",
+    "core-js": "^2.5.4",<% if (templateProps.projectType === 'staticSite') { %>
     "jquery": "^3.3.1",
-    "popper.js": "^1.14.1",
+    "popper.js": "^1.14.1",<% } else { %>
+    "prop-types": "^15.6.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",<% } %>
     "promise-polyfill": "^7.1.1"
   },
-  "devDependencies": {
+  "devDependencies": {<% if (templateProps.projectType === 'spa') { %>
+    "eslint-plugin-react": "^7.7.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",<% } %>
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.4",

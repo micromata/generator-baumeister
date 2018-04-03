@@ -92,7 +92,7 @@ module.exports = class extends Generator {
 							value: 'staticSite'
 						},
 						{
-							name: 'A single page application (using plain HTML and the template engine provided by your framework)',
+							name: 'A single page application (using React)',
 							value: 'spa'
 						}
 					],
@@ -267,8 +267,50 @@ module.exports = class extends Generator {
 
 		// Build process files
 		this.fs.copyTpl(
-			this.templatePath('build'),
-			this.destinationPath('build')
+			this.templatePath('build/config.js'),
+			this.destinationPath('build/config.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('build/handlebars.js'),
+			this.destinationPath('build/handlebars.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('build/webpack.config.babel.js'),
+			this.destinationPath('build/webpack.config.babel.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('build/webpack/_config.dev-server.js'),
+			this.destinationPath('build/webpack/config.dev-server.js'), {
+				templateProps: this.templateProps
+			}
+		);
+		this.fs.copyTpl(
+			this.templatePath('build/webpack/config.entry.js'),
+			this.destinationPath('build/webpack/config.entry.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('build/webpack/config.module.rules.js'),
+			this.destinationPath('build/webpack/config.module.rules.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('build/webpack/config.optimization.js'),
+			this.destinationPath('build/webpack/config.optimization.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('build/webpack/config.output.js'),
+			this.destinationPath('build/webpack/config.output.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('build/webpack/config.plugins.js'),
+			this.destinationPath('build/webpack/config.plugins.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('build/webpack/config.stats.js'),
+			this.destinationPath('build/webpack/config.stats.js')
+		);
+		this.fs.copyTpl(
+			this.templatePath('build/webpack/helpers.js'),
+			this.destinationPath('build/webpack/helpers.js')
 		);
 
 		// Dotfiles
@@ -277,8 +319,10 @@ module.exports = class extends Generator {
 			this.destinationPath('.babelrc')
 		);
 		this.fs.copyTpl(
-			this.templatePath('src/app/babelrc'),
-			this.destinationPath('src/app/.babelrc')
+			this.templatePath('src/app/_babelrc'),
+			this.destinationPath('src/app/.babelrc'), {
+				templateProps: this.templateProps
+			}
 		);
 		this.fs.copyTpl(
 			this.templatePath('travis.yml'),
@@ -289,8 +333,10 @@ module.exports = class extends Generator {
 			this.destinationPath('.editorconfig')
 		);
 		this.fs.copyTpl(
-			this.templatePath('eslintrc.json'),
-			this.destinationPath('.eslintrc.json')
+			this.templatePath('_eslintrc.json'),
+			this.destinationPath('.eslintrc.json'), {
+				templateProps: this.templateProps
+			}
 		);
 		this.fs.copyTpl(
 			this.templatePath('stylelintrc.json'),
@@ -318,6 +364,13 @@ module.exports = class extends Generator {
 				this.templatePath('src/handlebars/helpers/add-year.js'),
 				this.destinationPath('src/handlebars/helpers/add-year.js')
 			);
+		} else {
+			this.fs.copyTpl(
+				this.templatePath('src/_index.html'),
+				this.destinationPath('src/index.html'), {
+					templateProps: this.templateProps
+				}
+			);
 		}
 
 		switch (this.templateProps.boilerplateAmount) {
@@ -343,25 +396,6 @@ module.exports = class extends Generator {
 						this.templatePath('src/stickyFooter.hbs'),
 						this.destinationPath('src/stickyFooter.hbs')
 					);
-				} else {
-					this.fs.copyTpl(
-						this.templatePath('src/_index-little-boilerplate.html'),
-						this.destinationPath('src/index.html'), {
-							templateProps: this.templateProps
-						}
-					);
-					this.fs.copyTpl(
-						this.templatePath('src/_demoElements.html'),
-						this.destinationPath('src/demoElements.html'), {
-							templateProps: this.templateProps
-						}
-					);
-					this.fs.copyTpl(
-						this.templatePath('src/_stickyFooter.html'),
-						this.destinationPath('src/stickyFooter.html'), {
-							templateProps: this.templateProps
-						}
-					);
 				}
 				break;
 			case 'minimum':
@@ -373,13 +407,6 @@ module.exports = class extends Generator {
 					this.fs.copyTpl(
 						this.templatePath('src/index-no-boilerplate.hbs'),
 						this.destinationPath('src/index.hbs')
-					);
-				} else {
-					this.fs.copyTpl(
-						this.templatePath('src/_index-no-boilerplate.html'),
-						this.destinationPath('src/index.html'), {
-							templateProps: this.templateProps
-						}
 					);
 				}
 				break;
@@ -476,8 +503,10 @@ module.exports = class extends Generator {
 			this.destinationPath('src/app/base')
 		);
 		this.fs.copyTpl(
-			this.templatePath('src/app/index.js'),
-			this.destinationPath('src/app/index.js')
+			this.templatePath('src/app/_index.js'),
+			this.destinationPath('src/app/index.js'), {
+				templateProps: this.templateProps
+			}
 		);
 		this.fs.copyTpl(
 			this.templatePath('src/assets/scss/_index.scss'),
