@@ -4,7 +4,6 @@
     "projectDescription": "Just a test.",
     "projectType": "staticSite",
     "theme": "My theme",
-    "customPaths": false,
     "authorName": "My Name",
     "authorMail": "name@domain.com",
     "authorUrl": "http://www.foo.com",

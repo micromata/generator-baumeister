@@ -46,7 +46,6 @@ There are tons of options for now :scream:
 | `projectDescription`  | Used in the generated README and package.json  |
 | `theme`  | Name of your Bootstrap theme. Used to name a file and a folder within the Sass directory  |
 | `projectType` | Adds static site generator abilities (using Handlebars and Frontmatters) if you choose to build a static website |
-| `customPaths`  | Option to define output paths |
 | `boilerplateAmount`  | Option to choose the amount of boilerplate code (HTML, Sass and JS examples)  |
 | `license`  | Option to define the license type. Defaults to MIT  |
 | `initialVersion`  | Option to define the initial version number used in generated package.json. Defaults to 0.0.0  |
@@ -165,7 +164,6 @@ This file should contain the options which are otherwise prompted by Yeoman. See
     "projectRepositoryType": "git",
     "projectRepository": "git@github.com:micromata/baumeister.git",
     "issueTracker": "https://github.com/micromata/baumeister/issues",
-    "customPaths": false,
     "initialVersion": "1.0.0",
     "addDistToVersionControl": false
   }
