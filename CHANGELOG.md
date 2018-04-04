@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/micromata/generator-baumeister/compare/3.0.0-beta.1...3.0.0) (2018-04-04)
+
+
+### Code Refactoring
+
+* **scripts:** serve build via `npm run build:serve` ([496a15b](https://github.com/micromata/generator-baumeister/commit/496a15b))
+
+
+### Features
+
+* add PRODUCTION constant to ESLint config ([fbc804b](https://github.com/micromata/generator-baumeister/commit/fbc804b))
+* first class support for React SPAs ([2f00fb4](https://github.com/micromata/generator-baumeister/commit/2f00fb4))
+* improve the cacheability of the vendor bundle ([d9b60e4](https://github.com/micromata/generator-baumeister/commit/d9b60e4))
+* reduce noise in terminal (especially in watch mode) ([46aea0b](https://github.com/micromata/generator-baumeister/commit/46aea0b))
+* setup Babel plugin transform-imports ([b779eef](https://github.com/micromata/generator-baumeister/commit/b779eef))
+* setup tree shaking ([b490094](https://github.com/micromata/generator-baumeister/commit/b490094))
+
+
+### BREAKING CHANGES
+
+* **scripts:** Changed the npm script name for serving the dist directory from `npm run build:check ` to `npm run build:serve`
+* The webpack runtime has moved into a separate file. Therefore you need to add a reference to that file into your HTML / Handlebars file(s) before the vendor bundle:
+  
+  ```html
+  <!-- webpack runtime JS -->
+  @@runtime.js
+  
+  <!-- Vendor JS -->
+  @@vendor.js
+  
+  <!-- Own JS -->
+  @@app.js
+  ```
+  
+  See <https://developers.google.com/web/fundamentals/performance/webpack/use-long-term-caching#webpack_runtime_code> for details about the why.
+
+
+
 <a name="3.0.0-beta.1"></a>
 # [3.0.0-beta.1](https://github.com/micromata/generator-baumeister/compare/3.0.0-beta.0...3.0.0-beta.1) (2018-03-22)
 
