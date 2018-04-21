@@ -28,7 +28,7 @@ Baumeister is here to help you to build your things by providing:
 	- optimize images (lossless)
 	- start a local server
 	- delete unused CSS (optional)
-	- check for know vulnerabilities in dependencies
+	- check for known vulnerabilities in dependencies
 	- release new versions
 	- run unit tests and create coverage reports
 	- and more.
@@ -38,7 +38,7 @@ Please check the epic [README](https://github.com/micromata/baumeister) of »Bau
 ## Features of this generator
 
 There are tons of options for now :scream:  
-… but don’t be afraid – most of them are optional and you probably won’t see them all because some are depending on others. Plus the ones that probably don’t change from one project to the other are stored for your convenience.
+… but don’t be afraid – most of them are optional and you probably won’t see them all because some are dependent on others. Plus the ones that probably don’t change from one project to another are stored for your convenience.
 
 | Option  | Description |
 | ------------- | ------------- |
@@ -57,7 +57,7 @@ There are tons of options for now :scream:
 | `banner`  | Optionally adds a comment banner containing author name, version and build date to your production files (CSS and JS)  |
 | `addDistToVersionControl`  | Option to decide whether to add the `dist` directory to version control or include it in `.gitignore` |
 
-Frequent Users, who are tired being asked the same questions again and again might use a config file called `.yo-rc.json` like described [here](#--yo-rc).
+Frequent users, who are tired of being asked the same questions over again might like to use a config file called `.yo-rc.json` described [here](#--yo-rc).
 
 ---
 
@@ -89,7 +89,7 @@ Trick question. It's not a thing. It's this guy:
 
 Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
 
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
+Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves onto your hard drive. *Make sure you clean up, he likes new and shiny things.*
 
 ```bash
 npm install -g yo
@@ -170,7 +170,7 @@ This file should contain the options which are otherwise prompted by Yeoman. See
 }
 ```
 
-See [Features of this generator](#features-of-this-generator).
+See the [Features of this generator](#features-of-this-generator).
 
 ### Getting To Know Yeoman
 
