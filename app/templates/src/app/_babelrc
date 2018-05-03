@@ -6,7 +6,8 @@
 		}
 	},
 	"plugins": [
-		"syntax-dynamic-import",<% if (templateProps.projectType === 'spa') { %>
+		"syntax-dynamic-import",
+		"transform-object-rest-spread",<% if (templateProps.projectType === 'spa') { %>
 		"transform-class-properties",
 		"transform-react-jsx",<% } %>
 		[
