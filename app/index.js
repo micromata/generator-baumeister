@@ -573,6 +573,6 @@ module.exports = class extends Generator {
 
 	end() {
 		this.log(yosay(stripIndents`${chalk.green('That’s it!')} You’re all set to begin building your stuff ✌(-‿-)✌
-			Enter ${chalk.yellow.bold('npm start')} to start right away.`));
+			Enter ${chalk.yellow.bold('npm run tasks')} to start right away.`));
 	}
 };
