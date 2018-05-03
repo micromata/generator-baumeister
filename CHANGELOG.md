@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/micromata/generator-baumeister/compare/3.0.0...3.1.0) (2018-05-03)
+
+
+### Bug Fixes
+
+* bring back object-rest-spread babel plugin for client code ([6792fb8](https://github.com/micromata/generator-baumeister/commit/6792fb8))
+* Linting error caused by updating eslint-config-xo ([ac9b3a8](https://github.com/micromata/generator-baumeister/commit/ac9b3a8))
+
+
+### Features
+
+* Add interactive menu to list and run the most important scripts ([6e97c48](https://github.com/micromata/generator-baumeister/commit/6e97c48))
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/micromata/generator-baumeister/compare/3.0.0-beta.1...3.0.0) (2018-04-04)
 
