@@ -46,6 +46,7 @@ script:
   - echo '"boilerplateAmount":"little"' >> .yo-rc.json
   - echo '}' >> .yo-rc.json
   - echo '}' >> .yo-rc.json
-  - yo baumeister --yo-rc
+  - yo baumeister --yo-rc --skip-install
+  - npm ci
   - npm run build
   - npm run build:dev
