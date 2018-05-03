@@ -71,27 +71,27 @@
     "jest"
   ],
   "dependencies": {
-    "chalk": "^2.3.2",
-    "command-exists": "1.2.2",
+    "chalk": "^2.4.1",
+    "command-exists": "1.2.6",
     "common-tags": "^1.7.2",
     "global": "4.3.2",
     "semver": "5.5.0",
     "superb": "2.0.0",
     "underscore.string": "3.3.4",
-    "yeoman-generator": "2.0.3",
-    "yosay": "2.0.1"
+    "yeoman-generator": "2.0.5",
+    "yosay": "2.0.2"
   },
   "devDependencies": {
-    "coveralls": "^3.0.0",
+    "coveralls": "^3.0.1",
     "escape-string-regexp": "1.0.5",
     "eslint": "^4.19.1",
-    "eslint-config-xo": "^0.20.1",
+    "eslint-config-xo": "^0.22.0",
     "jest": "^22.4.3",
     "jest-cli": "^22.4.3",
     "nsp": "^3.2.1",
     "should": "13.2.1",
     "standard-version": "^4.3.0",
-    "yeoman-assert": "^3.1.0",
+    "yeoman-assert": "^3.1.1",
     "yeoman-test": "^1.7.0"
   }
 }
