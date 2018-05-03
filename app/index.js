@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const superb = require('superb');
 const _s = require('underscore.string');
-const stripIndents = require('common-tags').stripIndents;
+const {stripIndents} = require('common-tags');
 const commandExists = require('command-exists').sync;
 const helper = require('./promptingHelpers');
 
