@@ -47,6 +47,6 @@ script:
   - echo '}' >> .yo-rc.json
   - echo '}' >> .yo-rc.json
   - yo baumeister --yo-rc --skip-install
-  - npm ci
+  - npm install
   - npm run build
   - npm run build:dev
