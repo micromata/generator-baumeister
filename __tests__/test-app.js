@@ -12,7 +12,6 @@ const chalk = require('chalk');
 const helper = require('../app/promptingHelpers');
 
 describe('Baumeister with default options', () => {
-
 	// Define prompt answers
 	const prompts = {
 		projectName: 'Test this Thingy',
@@ -34,20 +33,23 @@ describe('Baumeister with default options', () => {
 	};
 
 	beforeAll(() => {
-		return helpers.run(path.join(__dirname, '../app'))
+		return (
+			helpers
+				.run(path.join(__dirname, '../app'))
 
-		// Clear the directory and set it as the CWD
-			.inDir(path.join(os.tmpdir(), './temp-test'))
+				// Clear the directory and set it as the CWD
+				.inDir(path.join(os.tmpdir(), './temp-test'))
 
-			// Mock options passed in
-			.withOptions({
-				'skip-install': true
-			})
+				// Mock options passed in
+				.withOptions({
+					'skip-install': true
+				})
 
-			// Mock the prompt answers
-			.withPrompts(prompts)
+				// Mock the prompt answers
+				.withPrompts(prompts)
 
-			.toPromise();
+				.toPromise()
+		);
 	});
 
 	it('should create files related to the build process', () => {
@@ -67,16 +69,12 @@ describe('Baumeister with default options', () => {
 	});
 
 	it('should have the default output paths within the build config', () => {
-		const arg = [
-			['build/config.js', new RegExp(escapeStringRegexp('prod: \'../dist/\''), '')]
-		];
+		const arg = [['build/config.js', new RegExp(escapeStringRegexp("prod: '../dist/'"), '')]];
 		assert.fileContent(arg);
 	});
 
 	it('should not have historyApiFallback in dev server settings', () => {
-		assert.noFileContent([
-			['build/webpack/config.dev-server.js', /historyApiFallback: true,/]
-		]);
+		assert.noFileContent([['build/webpack/config.dev-server.js', /historyApiFallback: true,/]]);
 	});
 
 	it('should have `useHandlebars` set to `true` in baumeister.json', () => {
@@ -96,9 +94,7 @@ describe('Baumeister with default options', () => {
 	});
 
 	it('should create package manager files', () => {
-		assert.file([
-			'package.json'
-		]);
+		assert.file(['package.json']);
 	});
 
 	it('should create dummy test file', () => {
@@ -134,9 +130,7 @@ describe('Baumeister with default options', () => {
 	});
 
 	it('should have `/dist` directory in .gitignore', () => {
-		assert.fileContent([
-			['.gitignore', /dist/]
-		]);
+		assert.fileContent([['.gitignore', /dist/]]);
 	});
 
 	it('should create handlebars files', () => {
@@ -152,11 +146,7 @@ describe('Baumeister with default options', () => {
 	});
 
 	it('should not create html files', () => {
-		assert.noFile([
-			'src/index.html',
-			'src/stickyFooter.html',
-			'src/demoElements.html'
-		]);
+		assert.noFile(['src/index.html', 'src/stickyFooter.html', 'src/demoElements.html']);
 	});
 
 	it('should create other project files', () => {
@@ -173,17 +163,11 @@ describe('Baumeister with default options', () => {
 	});
 
 	it('should create JS file ', () => {
-		assert.file([
-			'src/app/base/base.js',
-			'src/app/index.js',
-			'src/app/base/polyfills.js'
-		]);
+		assert.file(['src/app/base/base.js', 'src/app/index.js', 'src/app/base/polyfills.js']);
 	});
 
 	it('should import Bootstrap in index.js', () => {
-		assert.fileContent([
-			['src/app/index.js', /import 'bootstrap';/]
-		]);
+		assert.fileContent([['src/app/index.js', /import 'bootstrap';/]]);
 	});
 
 	it('should not use React in index.js', () => {
@@ -221,10 +205,8 @@ describe('Baumeister with default options', () => {
 		]);
 	});
 
-	it('should import \'_variables.scss\' within \'index.scss\' file', () => {
-		assert.fileContent([
-			['src/assets/scss/index.scss', /.\/variables/]
-		]);
+	it("should import '_variables.scss' within 'index.scss' file", () => {
+		assert.fileContent([['src/assets/scss/index.scss', /.\/variables/]]);
 	});
 
 	it('should have a valid package.json file', () => {
@@ -240,10 +222,7 @@ describe('Baumeister with default options', () => {
 
 	describe('Dependencies', () => {
 		it('should have jQuery and popper.js', () => {
-			assert.fileContent([
-				['package.json', /jquery/],
-				['package.json', /popper.js/]
-			]);
+			assert.fileContent([['package.json', /jquery/], ['package.json', /popper.js/]]);
 		});
 
 		it('should not have React and related dependencies', () => {
@@ -276,7 +255,10 @@ describe('Baumeister with default options', () => {
 	});
 
 	it('should render author name within the meta tags of HTML files', () => {
-		const regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '">'), '');
+		const regex = new RegExp(
+			escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '">'),
+			''
+		);
 		assert.fileContent('src/handlebars/layouts/default.hbs', regex);
 	});
 
@@ -310,7 +292,10 @@ describe('Baumeister with default options', () => {
 	it('should have a MIT LICENSE', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
-		assert.fileContent('LICENSE', /copy, modify, merge, publish, distribute, sublicense, and\/or sell/);
+		assert.fileContent(
+			'LICENSE',
+			/copy, modify, merge, publish, distribute, sublicense, and\/or sell/
+		);
 		packageJson.should.have.property('license', prompts.license);
 	});
 
@@ -329,14 +314,12 @@ describe('Baumeister with default options', () => {
 		packageJson.should.have.property('homepage', prompts.projectHomepage);
 		packageJson.should.have.propertyByPath('repository', 'type').eql(prompts.projectRepositoryType);
 		packageJson.should.have.propertyByPath('repository', 'url').eql(prompts.projectRepository);
-
 	});
 
 	it('should have the issue tracker url in package.json', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 		packageJson.should.have.propertyByPath('bugs', 'url').eql(prompts.issueTracker);
 	});
-
 });
 
 describe('Baumeister generating a single page app', () => {
@@ -361,20 +344,23 @@ describe('Baumeister generating a single page app', () => {
 	};
 
 	beforeAll(() => {
-		return helpers.run(path.join(__dirname, '../app'))
+		return (
+			helpers
+				.run(path.join(__dirname, '../app'))
 
-		// Clear the directory and set it as the CWD
-			.inDir(path.join(os.tmpdir(), './temp-test'))
+				// Clear the directory and set it as the CWD
+				.inDir(path.join(os.tmpdir(), './temp-test'))
 
-			// Mock options passed in
-			.withOptions({
-				'skip-install': true
-			})
+				// Mock options passed in
+				.withOptions({
+					'skip-install': true
+				})
 
-			// Mock the prompt answers
-			.withPrompts(prompts)
+				// Mock the prompt answers
+				.withPrompts(prompts)
 
-			.toPromise();
+				.toPromise()
+		);
 	});
 
 	it('should have adapted settings in baumeister.json', () => {
@@ -385,46 +371,29 @@ describe('Baumeister generating a single page app', () => {
 	});
 
 	it('should create no Handlebars related files', () => {
-		assert.noFile([
-			'src/**/*.hbs',
-			'src/handlebars'
-		]);
+		assert.noFile(['src/**/*.hbs', 'src/handlebars']);
 	});
 
 	it('should create just the essential html files', () => {
-		assert.file([
-			'src/index.html'
-		]);
-		assert.noFile([
-			'src/stickyFooter.html',
-			'src/demoElements.html'
-		]);
+		assert.file(['src/index.html']);
+		assert.noFile(['src/stickyFooter.html', 'src/demoElements.html']);
 	});
 
 	it('should have an additional container in index.html', () => {
-		assert.fileContent([
-			['src/index.html', /<div id="root" \/>/]
-		]);
+		assert.fileContent([['src/index.html', /<div id="root" \/>/]]);
 	});
 
 	it('should have a base element in index.html', () => {
-		assert.fileContent([
-			['src/index.html', /<base href="\/">/]
-		]);
+		assert.fileContent([['src/index.html', /<base href="\/">/]]);
 	});
 
 	it('should not include navigation in index.html', () => {
-		assert.noFileContent([
-			['src/index.html', /role="navigation"/]
-		]);
+		assert.noFileContent([['src/index.html', /role="navigation"/]]);
 	});
 
 	describe('Dependencies', () => {
 		it('should not have jQuery and popper.js', () => {
-			assert.noFileContent([
-				['package.json', /jquery/],
-				['package.json', /popper.js/]
-			]);
+			assert.noFileContent([['package.json', /jquery/], ['package.json', /popper.js/]]);
 		});
 
 		it('should have React and related dependencies', () => {
@@ -460,15 +429,11 @@ describe('Baumeister generating a single page app', () => {
 	});
 
 	it('should have historyApiFallback in dev server settings', () => {
-		assert.fileContent([
-			['build/webpack/config.dev-server.js', /historyApiFallback: true,/]
-		]);
+		assert.fileContent([['build/webpack/config.dev-server.js', /historyApiFallback: true,/]]);
 	});
 
 	it('should not import Bootstrap in index.js', () => {
-		assert.noFileContent([
-			['src/app/index.js', /import 'bootstrap';/]
-		]);
+		assert.noFileContent([['src/app/index.js', /import 'bootstrap';/]]);
 	});
 
 	it('should use React in index.js', () => {
@@ -481,7 +446,6 @@ describe('Baumeister generating a single page app', () => {
 });
 
 describe('Baumeister with banner', () => {
-
 	// Define prompt answers
 	const prompts = {
 		projectName: 'Test this Thingy',
@@ -502,26 +466,28 @@ describe('Baumeister with banner', () => {
 	};
 
 	beforeAll(() => {
-		return helpers.run(path.join(__dirname, '../app'))
+		return (
+			helpers
+				.run(path.join(__dirname, '../app'))
 
-		// Clear the directory and set it as the CWD
-			.inDir(path.join(os.tmpdir(), './temp-test'))
+				// Clear the directory and set it as the CWD
+				.inDir(path.join(os.tmpdir(), './temp-test'))
 
-		// Mock options passed in
-			.withOptions({'skip-install': true})
+				// Mock options passed in
+				.withOptions({ 'skip-install': true })
 
-		// Mock the prompt answers
-			.withPrompts(prompts).toPromise();
+				// Mock the prompt answers
+				.withPrompts(prompts)
+				.toPromise()
+		);
 	});
 
 	it('should have `generateBanners` set to `true` in baumeister.json', () => {
 		assert.fileContent('baumeister.json', /"generateBanners": true,/);
 	});
-
 });
 
 describe('Baumeister without an open source license', () => {
-
 	// Define prompt answers
 	const prompts = {
 		projectName: 'Test this Thingy',
@@ -542,20 +508,23 @@ describe('Baumeister without an open source license', () => {
 	};
 
 	beforeAll(() => {
-		return helpers.run(path.join(__dirname, '../app'))
+		return (
+			helpers
+				.run(path.join(__dirname, '../app'))
 
-		// Clear the directory and set it as the CWD
-			.inDir(path.join(os.tmpdir(), './temp-test'))
+				// Clear the directory and set it as the CWD
+				.inDir(path.join(os.tmpdir(), './temp-test'))
 
-			// Mock options passed in
-			.withOptions({
-				'skip-install': true
-			})
+				// Mock options passed in
+				.withOptions({
+					'skip-install': true
+				})
 
-			// Mock the prompt answers
-			.withPrompts(prompts)
+				// Mock the prompt answers
+				.withPrompts(prompts)
 
-			.toPromise();
+				.toPromise()
+		);
 	});
 
 	it('should have authors name in LICENSE', () => {
@@ -576,18 +545,19 @@ describe('Baumeister without an open source license', () => {
 	it('should not have a open source license', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
-		assert.fileContent('LICENSE', /All rights reserved. It is strictly prohibited to copy, redistribute,/);
+		assert.fileContent(
+			'LICENSE',
+			/All rights reserved. It is strictly prohibited to copy, redistribute,/
+		);
 		packageJson.should.have.property('license', prompts.license);
 	});
 
 	it('should have the correct license in the README file', () => {
 		assert.fileContent('README.md', /not licensed under an open source license/);
 	});
-
 });
 
 describe('Baumeister with Apache License, Version 2.0', () => {
-
 	// Define prompt answers
 	const prompts = {
 		projectName: 'Test this Thingy',
@@ -608,20 +578,23 @@ describe('Baumeister with Apache License, Version 2.0', () => {
 	};
 
 	beforeAll(() => {
-		return helpers.run(path.join(__dirname, '../app'))
+		return (
+			helpers
+				.run(path.join(__dirname, '../app'))
 
-		// Clear the directory and set it as the CWD
-			.inDir(path.join(os.tmpdir(), './temp-test'))
+				// Clear the directory and set it as the CWD
+				.inDir(path.join(os.tmpdir(), './temp-test'))
 
-			// Mock options passed in
-			.withOptions({
-				'skip-install': true
-			})
+				// Mock options passed in
+				.withOptions({
+					'skip-install': true
+				})
 
-			// Mock the prompt answers
-			.withPrompts(prompts)
+				// Mock the prompt answers
+				.withPrompts(prompts)
 
-			.toPromise();
+				.toPromise()
+		);
 	});
 
 	it('should have authors name in LICENSE', () => {
@@ -649,11 +622,9 @@ describe('Baumeister with Apache License, Version 2.0', () => {
 	it('should have the correct license in the README file', () => {
 		assert.fileContent('README.md', /Apache License, Version 2.0/);
 	});
-
 });
 
 describe('Baumeister with GNU General Public License', () => {
-
 	// Define prompt answers
 	const prompts = {
 		projectName: 'Test this Thingy',
@@ -674,20 +645,23 @@ describe('Baumeister with GNU General Public License', () => {
 	};
 
 	beforeAll(() => {
-		return helpers.run(path.join(__dirname, '../app'))
+		return (
+			helpers
+				.run(path.join(__dirname, '../app'))
 
-		// Clear the directory and set it as the CWD
-			.inDir(path.join(os.tmpdir(), './temp-test'))
+				// Clear the directory and set it as the CWD
+				.inDir(path.join(os.tmpdir(), './temp-test'))
 
-			// Mock options passed in
-			.withOptions({
-				'skip-install': true
-			})
+				// Mock options passed in
+				.withOptions({
+					'skip-install': true
+				})
 
-			// Mock the prompt answers
-			.withPrompts(prompts)
+				// Mock the prompt answers
+				.withPrompts(prompts)
 
-			.toPromise();
+				.toPromise()
+		);
 	});
 
 	it('should have authors name in LICENSE', () => {
@@ -715,11 +689,9 @@ describe('Baumeister with GNU General Public License', () => {
 	it('should have the correct license in the README file', () => {
 		assert.fileContent('README.md', /GNU GPLv3 license/);
 	});
-
 });
 
 describe('Baumeister with less boilerplate code as static website', () => {
-
 	// Define prompt answers
 	const prompts = {
 		projectName: 'Test this Thingy',
@@ -741,20 +713,23 @@ describe('Baumeister with less boilerplate code as static website', () => {
 	};
 
 	beforeAll(() => {
-		return helpers.run(path.join(__dirname, '../app'))
+		return (
+			helpers
+				.run(path.join(__dirname, '../app'))
 
-		// Clear the directory and set it as the CWD
-			.inDir(path.join(os.tmpdir(), './temp-test'))
+				// Clear the directory and set it as the CWD
+				.inDir(path.join(os.tmpdir(), './temp-test'))
 
-			// Mock options passed in
-			.withOptions({
-				'skip-install': true
-			})
+				// Mock options passed in
+				.withOptions({
+					'skip-install': true
+				})
 
-			// Mock the prompt answers
-			.withPrompts(prompts)
+				// Mock the prompt answers
+				.withPrompts(prompts)
 
-			.toPromise();
+				.toPromise()
+		);
 	});
 
 	it('should create just the essential handlebars files', () => {
@@ -773,9 +748,7 @@ describe('Baumeister with less boilerplate code as static website', () => {
 	});
 
 	it('should not include navigation and content in index.hbs', () => {
-		assert.noFileContent([
-			['src/index.hbs', /navbar|<p/g]
-		]);
+		assert.noFileContent([['src/index.hbs', /navbar|<p/g]]);
 	});
 
 	it('should create just the essential Sass files', () => {
@@ -787,18 +760,22 @@ describe('Baumeister with less boilerplate code as static website', () => {
 		]);
 	});
 
-	it('should only import the essential Sass files within _' + _s.slugify(prompts.theme) + '.scss file', () => {
-		assert.noFileContent([
-			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /alerts"/],
-			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /footer"/],
-			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /mixins"/],
-			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /scaffolding"/]
-		]);
-	});
+	it(
+		'should only import the essential Sass files within _' +
+			_s.slugify(prompts.theme) +
+			'.scss file',
+		() => {
+			assert.noFileContent([
+				['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /alerts"/],
+				['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /footer"/],
+				['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /mixins"/],
+				['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /scaffolding"/]
+			]);
+		}
+	);
 });
 
 describe('Baumeister with less boilerplate code as single page app', () => {
-
 	// Define prompt answers
 	const prompts = {
 		projectName: 'Test this Thingy',
@@ -820,26 +797,27 @@ describe('Baumeister with less boilerplate code as single page app', () => {
 	};
 
 	beforeAll(() => {
-		return helpers.run(path.join(__dirname, '../app'))
+		return (
+			helpers
+				.run(path.join(__dirname, '../app'))
 
-		// Clear the directory and set it as the CWD
-			.inDir(path.join(os.tmpdir(), './temp-test'))
+				// Clear the directory and set it as the CWD
+				.inDir(path.join(os.tmpdir(), './temp-test'))
 
-			// Mock options passed in
-			.withOptions({
-				'skip-install': true
-			})
+				// Mock options passed in
+				.withOptions({
+					'skip-install': true
+				})
 
-			// Mock the prompt answers
-			.withPrompts(prompts)
+				// Mock the prompt answers
+				.withPrompts(prompts)
 
-			.toPromise();
+				.toPromise()
+		);
 	});
 
 	it('should create just the essential html files', () => {
-		assert.file([
-			'src/index.html'
-		]);
+		assert.file(['src/index.html']);
 		assert.noFile([
 			'src/stickyFooter.html',
 			'src/demoElements.html',
@@ -849,9 +827,7 @@ describe('Baumeister with less boilerplate code as single page app', () => {
 	});
 
 	it('should not include navigation in index.html', () => {
-		assert.noFileContent([
-			['src/index.html', /role="navigation"/]
-		]);
+		assert.noFileContent([['src/index.html', /role="navigation"/]]);
 	});
 
 	it('should create just the essential Sass files', () => {
@@ -864,18 +840,22 @@ describe('Baumeister with less boilerplate code as single page app', () => {
 		]);
 	});
 
-	it('should only import the essential Sass files within _' + _s.slugify(prompts.theme) + '.scss file', () => {
-		assert.noFileContent([
-			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /alerts"/],
-			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /footer"/],
-			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /mixins"/],
-			['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /scaffolding"/]
-		]);
-	});
+	it(
+		'should only import the essential Sass files within _' +
+			_s.slugify(prompts.theme) +
+			'.scss file',
+		() => {
+			assert.noFileContent([
+				['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /alerts"/],
+				['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /footer"/],
+				['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /mixins"/],
+				['src/assets/scss/_' + _s.slugify(prompts.theme) + '.scss', /scaffolding"/]
+			]);
+		}
+	);
 });
 
 describe('Baumeister with `dist` added to version control', () => {
-
 	// Define prompt answers
 	const prompts = {
 		projectName: 'Test this Thingy',
@@ -896,69 +876,65 @@ describe('Baumeister with `dist` added to version control', () => {
 	};
 
 	beforeAll(() => {
-		return helpers.run(path.join(__dirname, '../app'))
+		return (
+			helpers
+				.run(path.join(__dirname, '../app'))
 
-		// Clear the directory and set it as the CWD
-			.inDir(path.join(os.tmpdir(), './temp-test'))
+				// Clear the directory and set it as the CWD
+				.inDir(path.join(os.tmpdir(), './temp-test'))
 
-			// Mock options passed in
-			.withOptions({
-				'skip-install': true
-			})
+				// Mock options passed in
+				.withOptions({
+					'skip-install': true
+				})
 
-			// Mock the prompt answers
-			.withPrompts(prompts)
+				// Mock the prompt answers
+				.withPrompts(prompts)
 
-			.toPromise();
+				.toPromise()
+		);
 	});
 
 	it('should not have `/dist` directory in .gitignore', () => {
-		assert.noFileContent([
-			['.gitignore', /dist/]
-		]);
+		assert.noFileContent([['.gitignore', /dist/]]);
 	});
 });
 
 describe('Baumeister using --yo-rc flag', () => {
-
 	// Load prompt answers from yo-rc.json
-	const prompts = JSON.parse(fs.readFileSync(path.join(__dirname, 'yo-rc.json')))['generator-baumeister'];
+	const prompts = JSON.parse(fs.readFileSync(path.join(__dirname, 'yo-rc.json')))[
+		'generator-baumeister'
+	];
 
 	beforeAll(() => {
-		return helpers.run(path.join(__dirname, '../app'))
+		return (
+			helpers
+				.run(path.join(__dirname, '../app'))
 
-		// Clear the directory and set it as the CWD
-			.inDir(path.join(os.tmpdir(), './temp-test'), () => {
-				fs.writeFileSync('.yo-rc.json', fs.readFileSync(path.join(__dirname, 'yo-rc.json')));
-			})
+				// Clear the directory and set it as the CWD
+				.inDir(path.join(os.tmpdir(), './temp-test'), () => {
+					fs.writeFileSync('.yo-rc.json', fs.readFileSync(path.join(__dirname, 'yo-rc.json')));
+				})
 
-			.withOptions({
-				'skip-install': true,
-				'yo-rc': true
-			})
+				.withOptions({
+					'skip-install': true,
+					'yo-rc': true
+				})
 
-			.toPromise();
+				.toPromise()
+		);
 	});
 
 	it('should create package manager files', () => {
-		assert.file([
-			'package.json'
-		]);
+		assert.file(['package.json']);
 	});
 
 	it('should create dot files', () => {
-		assert.file([
-			'.editorconfig',
-			'.gitattributes',
-			'.gitignore',
-			'.eslintrc.json'
-		]);
+		assert.file(['.editorconfig', '.gitattributes', '.gitignore', '.eslintrc.json']);
 	});
 
 	it('should have `/dist` directory in .gitignore', () => {
-		assert.fileContent([
-			['.gitignore', /dist/]
-		]);
+		assert.fileContent([['.gitignore', /dist/]]);
 	});
 
 	it('should create handlebars files', () => {
@@ -973,7 +949,7 @@ describe('Baumeister using --yo-rc flag', () => {
 		]);
 	});
 
-	it('shouldn\'t create a static index.html file', () => {
+	it("shouldn't create a static index.html file", () => {
 		assert.noFile(['src/index.html']);
 	});
 
@@ -1018,10 +994,8 @@ describe('Baumeister using --yo-rc flag', () => {
 		]);
 	});
 
-	it('should import \'_variables.scss\' within \'index.scss\' file', () => {
-		assert.fileContent([
-			['src/assets/scss/index.scss', /.\/variables/]
-		]);
+	it("should import '_variables.scss' within 'index.scss' file", () => {
+		assert.fileContent([['src/assets/scss/index.scss', /.\/variables/]]);
 	});
 
 	it('should have a valid package.json file', () => {
@@ -1048,14 +1022,15 @@ describe('Baumeister using --yo-rc flag', () => {
 	});
 
 	it('should render author name within the meta tags of HTML files', () => {
-		const regex = new RegExp(escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '">'), '');
+		const regex = new RegExp(
+			escapeStringRegexp('<meta name="author" content="' + prompts.authorName + '">'),
+			''
+		);
 		assert.fileContent('src/handlebars/layouts/default.hbs', regex);
 	});
 
 	it('should have the default output paths within the build config file', () => {
-		const arg = [
-			['build/config.js', new RegExp(escapeStringRegexp('prod: \'../dist/\''), '')]
-		];
+		const arg = [['build/config.js', new RegExp(escapeStringRegexp("prod: '../dist/'"), '')]];
 		assert.fileContent(arg);
 	});
 
@@ -1094,7 +1069,10 @@ describe('Baumeister using --yo-rc flag', () => {
 	it('should have a MIT LICENSE', () => {
 		const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
-		assert.fileContent('LICENSE', /copy, modify, merge, publish, distribute, sublicense, and\/or sell/);
+		assert.fileContent(
+			'LICENSE',
+			/copy, modify, merge, publish, distribute, sublicense, and\/or sell/
+		);
 		packageJson.should.have.property('license', prompts.license);
 	});
 
@@ -1109,7 +1087,6 @@ describe('Baumeister using --yo-rc flag', () => {
 		packageJson.should.have.property('homepage', prompts.projectHomepage);
 		packageJson.should.have.propertyByPath('repository', 'type').eql(prompts.projectRepositoryType);
 		packageJson.should.have.propertyByPath('repository', 'url').eql(prompts.projectRepository);
-
 	});
 
 	it('should have the issue tracker url in package.json', () => {
@@ -1119,26 +1096,39 @@ describe('Baumeister using --yo-rc flag', () => {
 });
 
 describe('Baumeister prompting helpers', () => {
-
 	describe('→ validateSemverVersion()', () => {
 		it('should accept a valid semver version number', () => {
 			assert.equal(helper.validateSemverVersion('1.0.0'), true);
 		});
 		it('should fail with a invalid semver version number', () => {
-			assert.equal(helper.validateSemverVersion('beta-1'), chalk.red('Please enter a valid semver version, i.e. MAJOR.MINOR.PATCH. See → https://nodesource.com/blog/semver-a-primer/'));
+			assert.equal(
+				helper.validateSemverVersion('beta-1'),
+				chalk.red(
+					'Please enter a valid semver version, i.e. MAJOR.MINOR.PATCH. See → https://nodesource.com/blog/semver-a-primer/'
+				)
+			);
 		});
 	});
 
 	describe('→ defaultIssueTracker()', () => {
 		it('should return a GitHub issues link for HTTPS repo clone URLs', () => {
-			assert.equal(helper.defaultIssueTracker({projectRepository: 'https://github.com/micromata/baumeister.git'}), 'https://github.com/micromata/baumeister/issues');
+			assert.equal(
+				helper.defaultIssueTracker({
+					projectRepository: 'https://github.com/micromata/baumeister.git'
+				}),
+				'https://github.com/micromata/baumeister/issues'
+			);
 		});
 		it('should return a GitHub issues link for SSH repo clone URLs', () => {
-			assert.equal(helper.defaultIssueTracker({projectRepository: 'git@github.com:micromata/baumeister.git'}), 'https://github.com/micromata/baumeister/issues');
+			assert.equal(
+				helper.defaultIssueTracker({
+					projectRepository: 'git@github.com:micromata/baumeister.git'
+				}),
+				'https://github.com/micromata/baumeister/issues'
+			);
 		});
 		it('should return an empty string when regex for Github clone URLs don’t match', () => {
-			assert.equal(helper.defaultIssueTracker({projectRepository: ''}), '');
+			assert.equal(helper.defaultIssueTracker({ projectRepository: '' }), '');
 		});
 	});
-
 });
