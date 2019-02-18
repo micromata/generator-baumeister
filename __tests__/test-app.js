@@ -116,8 +116,8 @@ describe('Baumeister with default options', () => {
 
 	it('should not have React related plugins in .babelrc', () => {
 		assert.noFileContent([
-			['src/app/.babelrc', /transform-class-properties/],
-			['src/app/.babelrc', /transform-react-jsx/]
+			['src/app/.babelrc', /plugin-proposal-class-properties/],
+			['src/app/.babelrc', /plugin-transform-react-jsx/]
 		]);
 	});
 
@@ -236,8 +236,8 @@ describe('Baumeister with default options', () => {
 		it('should not have React related dev dependencies', () => {
 			assert.noFileContent([
 				['package.json', /eslint-plugin-react/],
-				['package.json', /babel-plugin-transform-react-jsx/],
-				['package.json', /babel-plugin-transform-class-properties/]
+				['package.json', /@babel\/plugin-transform-react-jsx/],
+				['package.json', /@babel\/plugin-proposal-class-properties/]
 			]);
 		});
 	});
@@ -407,16 +407,16 @@ describe('Baumeister generating a single page app', () => {
 		it('should have React related dev dependencies', () => {
 			assert.fileContent([
 				['package.json', /eslint-plugin-react/],
-				['package.json', /babel-plugin-transform-react-jsx/],
-				['package.json', /babel-plugin-transform-class-properties/]
+				['package.json', /@babel\/plugin-transform-react-jsx/],
+				['package.json', /@babel\/plugin-proposal-class-properties/]
 			]);
 		});
 	});
 
 	it('should have React related plugins in .babelrc', () => {
 		assert.fileContent([
-			['src/app/.babelrc', /transform-class-properties/],
-			['src/app/.babelrc', /transform-react-jsx/]
+			['src/app/.babelrc', /plugin-proposal-class-properties/],
+			['src/app/.babelrc', /plugin-transform-react-jsx/]
 		]);
 	});
 

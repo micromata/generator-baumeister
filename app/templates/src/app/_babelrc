@@ -1,30 +1,17 @@
 {
-	"presets": [["env", {"modules": false}]],
+	"presets": [["@babel/preset-env", {"modules": false}]],
 	"env": {
 		"test": {
-			"presets": [["env", {"modules": "commonjs"}]]
+			"presets": [["@babel/preset-env", {"modules": "commonjs"}]]
 		}
 	},
 	"plugins": [
-		"syntax-dynamic-import",
-		"transform-object-rest-spread",<% if (templateProps.projectType === 'spa') { %>
-		"transform-class-properties",
-		"transform-react-jsx",<% } %>
-		[
-			"transform-runtime",
-			{
-				"polyfill": false,
-				"regenerator": true
-			}
-		],
-		[
-			"transform-regenerator",
-			{
-				"asyncGenerators": true,
-				"generators": true,
-				"async": true
-			}
-		],
+		"@babel/plugin-syntax-dynamic-import",
+		"@babel/plugin-proposal-object-rest-spread",<% if (templateProps.projectType === 'spa') { %>
+		"@babel/plugin-proposal-class-properties",
+		"@babel/plugin-transform-react-jsx",<% } %>
+		"@babel/plugin-transform-runtime",
+		"@babel/plugin-transform-regenerator",
 		[
 			"transform-imports",
 			{
