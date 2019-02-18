@@ -63,14 +63,14 @@
     }
   },
   "dependencies": {
-    "bootstrap": "^4.0.0",
-    "core-js": "^2.5.4",<% if (templateProps.projectType === 'staticSite') { %>
+    "bootstrap": "^4.2.1",
+    "core-js": "^2.6.4",<% if (templateProps.projectType === 'staticSite') { %>
     "jquery": "^3.3.1",
-    "popper.js": "^1.14.1",<% } else { %>
-    "prop-types": "^15.6.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",<% } %>
-    "promise-polyfill": "^7.1.1"
+    "popper.js": "^1.14.7",<% } else { %>
+    "prop-types": "^15.7.2",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",<% } %>
+    "promise-polyfill": "^8.1.0"
   },
   "devDependencies": {<% if (templateProps.projectType === 'spa') { %>
     "eslint-plugin-react": "^7.7.0",
