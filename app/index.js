@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const superb = require('superb');
 const _s = require('underscore.string');
-const {stripIndents} = require('common-tags');
+const { stripIndents } = require('common-tags');
 const commandExists = require('command-exists').sync;
 const helper = require('./promptingHelpers');
 
@@ -13,7 +13,6 @@ const helper = require('./promptingHelpers');
 const info = chalk.yellow.reset;
 
 module.exports = class extends Generator {
-
 	constructor(args, opts) {
 		super(args, opts);
 
@@ -65,7 +64,6 @@ module.exports = class extends Generator {
 
 	prompting() {
 		if (!this.skipPrompts) {
-
 			// Have Yeoman greet the user.
 			this.log(yosay(`Yo, welcome to the ${superb()} ${chalk.yellow('Baumeister')} generator!`));
 
@@ -126,12 +124,7 @@ module.exports = class extends Generator {
 					type: 'list',
 					name: 'license',
 					message: 'Choose a license for you project',
-					choices: [
-						'MIT',
-						'Apache License, Version 2.0',
-						'GNU GPLv3',
-						'All rights reserved'
-					],
+					choices: ['MIT', 'Apache License, Version 2.0', 'GNU GPLv3', 'All rights reserved'],
 					default: 'MIT',
 					store: true
 				},
@@ -144,7 +137,9 @@ module.exports = class extends Generator {
 				{
 					type: 'input',
 					name: 'authorUrl',
-					message: 'What’s the the URL of your website? ' + info('(not the projects website if they differ – used in package.json and License)'),
+					message:
+						'What’s the the URL of your website? ' +
+						info('(not the projects website if they differ – used in package.json and License)'),
 					store: true
 				},
 				{
@@ -158,7 +153,9 @@ module.exports = class extends Generator {
 				{
 					type: 'confirm',
 					name: 'additionalInfo',
-					message: 'Do you like to add additional info to package.json? ' + info('(email address, projects homepage, repository etc.)'),
+					message:
+						'Do you like to add additional info to package.json? ' +
+						info('(email address, projects homepage, repository etc.)'),
 					default: true,
 					store: true
 				},
@@ -199,14 +196,16 @@ module.exports = class extends Generator {
 				{
 					type: 'confirm',
 					name: 'banners',
-					message: 'Do you like to add comment headers containing meta information to your production files?',
+					message:
+						'Do you like to add comment headers containing meta information to your production files?',
 					default: false,
 					store: true
 				},
 				{
 					type: 'confirm',
 					name: 'addDistToVersionControl',
-					message: 'Do you like to add your production ready files (`dist` directory) to version control?',
+					message:
+						'Do you like to add your production ready files (`dist` directory) to version control?',
 					default: false,
 					store: true
 				},
@@ -245,19 +244,15 @@ module.exports = class extends Generator {
 					issueTracker: props.issueTracker,
 					boilerplateAmount: props.boilerplateAmount
 				};
-
 			});
 		}
 	}
 
 	writing() {
 		// Packagemanager files
-		this.fs.copyTpl(
-			this.templatePath('_package.json'),
-			this.destinationPath('package.json'), {
-				templateProps: this.templateProps
-			}
-		);
+		this.fs.copyTpl(this.templatePath('_package.json'), this.destinationPath('package.json'), {
+			templateProps: this.templateProps
+		});
 
 		// Tests
 		this.fs.copyTpl(
@@ -266,10 +261,7 @@ module.exports = class extends Generator {
 		);
 
 		// Build process files
-		this.fs.copyTpl(
-			this.templatePath('build/config.js'),
-			this.destinationPath('build/config.js')
-		);
+		this.fs.copyTpl(this.templatePath('build/config.js'), this.destinationPath('build/config.js'));
 		this.fs.copyTpl(
 			this.templatePath('build/handlebars.js'),
 			this.destinationPath('build/handlebars.js')
@@ -280,7 +272,8 @@ module.exports = class extends Generator {
 		);
 		this.fs.copyTpl(
 			this.templatePath('build/webpack/_config.dev-server.js'),
-			this.destinationPath('build/webpack/config.dev-server.js'), {
+			this.destinationPath('build/webpack/config.dev-server.js'),
+			{
 				templateProps: this.templateProps
 			}
 		);
@@ -314,49 +307,33 @@ module.exports = class extends Generator {
 		);
 
 		// Dotfiles
-		this.fs.copyTpl(
-			this.templatePath('babelrc'),
-			this.destinationPath('.babelrc')
-		);
+		this.fs.copyTpl(this.templatePath('babelrc'), this.destinationPath('.babelrc'));
 		this.fs.copyTpl(
 			this.templatePath('src/app/_babelrc'),
-			this.destinationPath('src/app/.babelrc'), {
+			this.destinationPath('src/app/.babelrc'),
+			{
 				templateProps: this.templateProps
 			}
 		);
-		this.fs.copyTpl(
-			this.templatePath('travis.yml'),
-			this.destinationPath('.travis.yml')
-		);
-		this.fs.copyTpl(
-			this.templatePath('editorconfig'),
-			this.destinationPath('.editorconfig')
-		);
-		this.fs.copyTpl(
-			this.templatePath('_eslintrc.json'),
-			this.destinationPath('.eslintrc.json'), {
-				templateProps: this.templateProps
-			}
-		);
+		this.fs.copyTpl(this.templatePath('travis.yml'), this.destinationPath('.travis.yml'));
+		this.fs.copyTpl(this.templatePath('editorconfig'), this.destinationPath('.editorconfig'));
+		this.fs.copyTpl(this.templatePath('_eslintrc.json'), this.destinationPath('.eslintrc.json'), {
+			templateProps: this.templateProps
+		});
 		this.fs.copyTpl(
 			this.templatePath('stylelintrc.json'),
 			this.destinationPath('.stylelintrc.json')
 		);
-		this.fs.copyTpl(
-			this.templatePath('gitattributes'),
-			this.destinationPath('.gitattributes')
-		);
-		this.fs.copyTpl(
-			this.templatePath('_gitignore'),
-			this.destinationPath('.gitignore'), {
-				templateProps: this.templateProps
-			}
-		);
+		this.fs.copyTpl(this.templatePath('gitattributes'), this.destinationPath('.gitattributes'));
+		this.fs.copyTpl(this.templatePath('_gitignore'), this.destinationPath('.gitignore'), {
+			templateProps: this.templateProps
+		});
 
 		if (this.templateProps.projectType === 'staticSite') {
 			this.fs.copyTpl(
 				this.templatePath('src/handlebars/layouts/_default.hbs'),
-				this.destinationPath('src/handlebars/layouts/default.hbs'), {
+				this.destinationPath('src/handlebars/layouts/default.hbs'),
+				{
 					templateProps: this.templateProps
 				}
 			);
@@ -367,7 +344,8 @@ module.exports = class extends Generator {
 		} else {
 			this.fs.copyTpl(
 				this.templatePath('src/_index.html'),
-				this.destinationPath('src/index.html'), {
+				this.destinationPath('src/index.html'),
+				{
 					templateProps: this.templateProps
 				}
 			);
@@ -412,57 +390,47 @@ module.exports = class extends Generator {
 				}
 
 				break;
-				// No default
+			// No default
 		}
 
 		// Project files
-		this.fs.copyTpl(
-			this.templatePath('_README.md'),
-			this.destinationPath('README.md'), {
-				templateProps: this.templateProps
-			}
-		);
+		this.fs.copyTpl(this.templatePath('_README.md'), this.destinationPath('README.md'), {
+			templateProps: this.templateProps
+		});
 
 		switch (this.templateProps.license) {
 			case 'MIT':
-				this.fs.copyTpl(
-					this.templatePath('_LICENSE-MIT'),
-					this.destinationPath('LICENSE'), {
-						templateProps: this.templateProps
-					}
-				);
+				this.fs.copyTpl(this.templatePath('_LICENSE-MIT'), this.destinationPath('LICENSE'), {
+					templateProps: this.templateProps
+				});
 				break;
 			case 'Apache License, Version 2.0':
-				this.fs.copyTpl(
-					this.templatePath('_LICENSE-APACHE-2.0'),
-					this.destinationPath('LICENSE'), {
-						templateProps: this.templateProps
-					}
-				);
+				this.fs.copyTpl(this.templatePath('_LICENSE-APACHE-2.0'), this.destinationPath('LICENSE'), {
+					templateProps: this.templateProps
+				});
 				break;
 			case 'GNU GPLv3':
-				this.fs.copyTpl(
-					this.templatePath('_LICENSE-GNU'),
-					this.destinationPath('LICENSE'), {
-						templateProps: this.templateProps
-					}
-				);
+				this.fs.copyTpl(this.templatePath('_LICENSE-GNU'), this.destinationPath('LICENSE'), {
+					templateProps: this.templateProps
+				});
 				break;
 			case 'All rights reserved':
 				this.fs.copyTpl(
 					this.templatePath('_LICENSE-ALL-RIGHTS-RESERVED'),
-					this.destinationPath('LICENSE'), {
+					this.destinationPath('LICENSE'),
+					{
 						templateProps: this.templateProps
 					}
 				);
 				break;
-				// No default
+			// No default
 		}
 
 		// Config files
 		this.fs.copyTpl(
 			this.templatePath('_baumeister.json'),
-			this.destinationPath('baumeister.json'), {
+			this.destinationPath('baumeister.json'),
+			{
 				templateProps: this.templateProps
 			}
 		);
@@ -472,47 +440,32 @@ module.exports = class extends Generator {
 		);
 
 		// Other meta files
-		this.fs.copyTpl(
-			this.templatePath('humans.txt'),
-			this.destinationPath('humans.txt')
-		);
-		this.fs.copyTpl(
-			this.templatePath('CONTRIBUTING.md'),
-			this.destinationPath('CONTRIBUTING.md')
-		);
-		this.fs.copyTpl(
-			this.templatePath('CHANGELOG.md'),
-			this.destinationPath('CHANGELOG.md')
-		);
+		this.fs.copyTpl(this.templatePath('humans.txt'), this.destinationPath('humans.txt'));
+		this.fs.copyTpl(this.templatePath('CONTRIBUTING.md'), this.destinationPath('CONTRIBUTING.md'));
+		this.fs.copyTpl(this.templatePath('CHANGELOG.md'), this.destinationPath('CHANGELOG.md'));
 		this.fs.copyTpl(
 			this.templatePath('_CODE_OF_CONDUCT.md'),
-			this.destinationPath('CODE_OF_CONDUCT.md'), {
+			this.destinationPath('CODE_OF_CONDUCT.md'),
+			{
 				templateProps: this.templateProps
 			}
 		);
 
 		// Assets
-		this.fs.copy(
-			this.templatePath('src/assets/fonts'),
-			this.destinationPath('src/assets/fonts')
-		);
-		this.fs.copy(
-			this.templatePath('src/assets/img'),
-			this.destinationPath('src/assets/img')
-		);
-		this.fs.copy(
-			this.templatePath('src/app/base'),
-			this.destinationPath('src/app/base')
-		);
+		this.fs.copy(this.templatePath('src/assets/fonts'), this.destinationPath('src/assets/fonts'));
+		this.fs.copy(this.templatePath('src/assets/img'), this.destinationPath('src/assets/img'));
+		this.fs.copy(this.templatePath('src/app/base'), this.destinationPath('src/app/base'));
 		this.fs.copyTpl(
 			this.templatePath('src/app/_index.js'),
-			this.destinationPath('src/app/index.js'), {
+			this.destinationPath('src/app/index.js'),
+			{
 				templateProps: this.templateProps
 			}
 		);
 		this.fs.copyTpl(
 			this.templatePath('src/assets/scss/_index.scss'),
-			this.destinationPath('src/assets/scss/index.scss'), {
+			this.destinationPath('src/assets/scss/index.scss'),
+			{
 				templateProps: this.templateProps
 			}
 		);
@@ -522,22 +475,24 @@ module.exports = class extends Generator {
 		);
 		this.fs.copyTpl(
 			this.templatePath('src/assets/scss/_theme.scss'),
-			this.destinationPath('src/assets/scss/_' + this.templateProps.theme + '.scss'), {
+			this.destinationPath('src/assets/scss/_' + this.templateProps.theme + '.scss'),
+			{
 				templateProps: this.templateProps
 			}
 		);
 
 		if (this.templateProps.boilerplateAmount === 'little') {
-
 			this.fs.copyTpl(
 				this.templatePath('src/assets/scss/_theme/_alerts.scss'),
-				this.destinationPath('src/assets/scss/' + this.templateProps.theme + '/_alerts.scss'), {
+				this.destinationPath('src/assets/scss/' + this.templateProps.theme + '/_alerts.scss'),
+				{
 					templateProps: this.templateProps
 				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('src/assets/scss/_theme/_footer.scss'),
-				this.destinationPath('src/assets/scss/' + this.templateProps.theme + '/_footer.scss'), {
+				this.destinationPath('src/assets/scss/' + this.templateProps.theme + '/_footer.scss'),
+				{
 					templateProps: this.templateProps
 				}
 			);
@@ -554,13 +509,14 @@ module.exports = class extends Generator {
 
 		this.fs.copyTpl(
 			this.templatePath('src/assets/scss/_theme/_testResponsiveHelpers.scss'),
-			this.destinationPath('src/assets/scss/' + this.templateProps.theme + '/_testResponsiveHelpers.scss')
+			this.destinationPath(
+				'src/assets/scss/' + this.templateProps.theme + '/_testResponsiveHelpers.scss'
+			)
 		);
 		this.fs.copyTpl(
 			this.templatePath('src/assets/scss/_variables.scss'),
 			this.destinationPath('src/assets/scss/_variables.scss')
 		);
-
 	}
 
 	install() {
@@ -574,7 +530,11 @@ module.exports = class extends Generator {
 	}
 
 	end() {
-		this.log(yosay(stripIndents`${chalk.green('That’s it!')} You’re all set to begin building your stuff ✌(-‿-)✌
-			Enter ${chalk.yellow.bold('npm run tasks')} to start right away.`));
+		this.log(
+			yosay(stripIndents`${chalk.green(
+				'That’s it!'
+			)} You’re all set to begin building your stuff ✌(-‿-)✌
+			Enter ${chalk.yellow.bold('npm run tasks')} to start right away.`)
+		);
 	}
 };
