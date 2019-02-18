@@ -68,7 +68,7 @@ describe('Baumeister with default options', () => {
 
 	it('should have the default output paths within the build config', () => {
 		const arg = [
-			['build/config.js', new RegExp(escapeStringRegexp(`prod: '../dist/'`), '')]
+			['build/config.js', new RegExp(escapeStringRegexp('prod: \'../dist/\''), '')]
 		];
 		assert.fileContent(arg);
 	});
@@ -1054,7 +1054,7 @@ describe('Baumeister using --yo-rc flag', () => {
 
 	it('should have the default output paths within the build config file', () => {
 		const arg = [
-			['build/config.js', new RegExp(escapeStringRegexp(`prod: '../dist/'`), '')]
+			['build/config.js', new RegExp(escapeStringRegexp('prod: \'../dist/\''), '')]
 		];
 		assert.fileContent(arg);
 	});
