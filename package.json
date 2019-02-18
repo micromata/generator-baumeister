@@ -39,9 +39,14 @@
     }
   },
   "lint-staged": {
-    "*.{js,json}": [
-      "npm run prettier:write",
-      "git add"
+    "linters": {
+      "*.{js,json}": [
+        "npm run prettier:write",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "./app/templates/**"
     ]
   },
   "jest": {
