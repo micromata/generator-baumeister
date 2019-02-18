@@ -3,7 +3,7 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
-const superb = require('superb');
+const superb = require('superb').random;
 const _s = require('underscore.string');
 const { stripIndents } = require('common-tags');
 const commandExists = require('command-exists').sync;
