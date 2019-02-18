@@ -397,6 +397,7 @@ module.exports = class extends Generator {
 						this.destinationPath('src/stickyFooter.hbs')
 					);
 				}
+
 				break;
 			case 'minimum':
 				if (this.templateProps.projectType === 'staticSite') {
@@ -409,6 +410,7 @@ module.exports = class extends Generator {
 						this.destinationPath('src/index.hbs')
 					);
 				}
+
 				break;
 				// No default
 		}
