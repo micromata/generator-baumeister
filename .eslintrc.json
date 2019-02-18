@@ -1,5 +1,5 @@
 {
-  "extends": "xo/esnext",
+  "extends": ["xo/esnext", "prettier", "prettier/unicorn"],
   "env": {
     "node": true,
     "jest": true
