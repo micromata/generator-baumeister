@@ -23,7 +23,26 @@
     "release": "standard-version --tag-prefix",
     "release:patch": "standard-version --tag-prefix --release-as patch",
     "release:minor": "standard-version --tag-prefix --release-as minor",
-    "release:major": "standard-version --tag-prefix --release-as major"
+    "release:major": "standard-version --tag-prefix --release-as major",
+    "prettier": "prettier",
+    "prettier:write": "npm run prettier --silent -- --write",
+    "prettier:write:all": "npm run prettier --silent -- --write \"./**/*.{js,json}\" \"!./app/templates/**\" \"!./coverage/**\"",
+    "prettier:check:all": "npm run prettier --silent -- --check \"./**/*.{js,json}\" \"!./app/templates/**\" \"!./coverage/**\""
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json}": [
+      "npm run prettier:write",
+      "git add"
+    ]
   },
   "jest": {
     "testEnvironment": "node",
@@ -84,9 +103,13 @@
     "coveralls": "^3.0.2",
     "escape-string-regexp": "1.0.5",
     "eslint": "^5.14.0",
+    "eslint-config-prettier": "^4.0.0",
     "eslint-config-xo": "^0.26.0",
+    "husky": "^1.3.1",
     "jest": "^24.1.0",
     "jest-cli": "^24.1.0",
+    "lint-staged": "^8.1.4",
+    "prettier": "^1.16.4",
     "should": "13.2.3",
     "standard-version": "^5.0.0",
     "yeoman-assert": "^3.1.1",
