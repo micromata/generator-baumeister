@@ -1,7 +1,7 @@
 {
   "extends": [
-    "baumeister"<% if (templateProps.projectType === 'spa') { %>,
-    "plugin:react/recommended"<% } %>
+    "baumeister", "prettier", "prettier/unicorn"<% if (templateProps.projectType === 'spa') { %>,
+    "plugin:react/recommended", "prettier/react"<% } %>
   ],<% if (templateProps.projectType === 'spa') { %>
   "plugins": ["react"],<% } %>
   "parser": "babel-eslint",
