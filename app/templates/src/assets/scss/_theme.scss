@@ -1,14 +1,14 @@
 // Override and extend Bootstrap stuff
 // --------------------------------------------------
 // Files, classes, mixins etc.
-<% if (templateProps.boilerplateAmount === 'little') { %>@import "<%= templateProps.theme %>/mixins";
-@import "<%= templateProps.theme %>/scaffolding";
-@import "<%= templateProps.theme %>/alerts";
+<% if (templateProps.boilerplateAmount === 'little') { %>@import '<%= templateProps.theme %>/mixins';
+@import '<%= templateProps.theme %>/scaffolding';
+@import '<%= templateProps.theme %>/alerts';
 <% } %>
 // Own modules
 // --------------------------------------------------
-// @import "<%= templateProps.theme %>/testResponsiveHelpers"; // debug
-<% if (templateProps.boilerplateAmount === 'little') { %>@import "<%= templateProps.theme %>/footer";
+// @import '<%= templateProps.theme %>/testResponsiveHelpers'; // debug
+<% if (templateProps.boilerplateAmount === 'little') { %>@import '<%= templateProps.theme %>/footer';
 <% } %>
 // Important note //
 // You could also use this file to insert theme related style definitions
