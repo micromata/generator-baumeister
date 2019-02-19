@@ -30,7 +30,6 @@
     "prettier:check:all": "npm run prettier --silent -- --check \"./**/*.{js,json}\" \"!./app/templates/**\" \"!./coverage/**\""
   },
   "prettier": {
-    "printWidth": 100,
     "singleQuote": true
   },
   "husky": {
