@@ -41,9 +41,9 @@ import '../assets/scss/index.scss';
 
   ReactDOM.render(
     <HelloWorld/>,
-    document.getElementById('root')
+    document.querySelector('#root')
   );
 
-})().catch(err => {
-  console.error(err);
+})().catch(error => {
+  console.error(error);
 });<% } %>
