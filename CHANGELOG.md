@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [4.0.0](https://github.com/micromata/generator-baumeister/compare/3.1.0...4.0.0) (2019-02-20)
+
+
+### Bug Fixes
+
+* **baumeister:** Add missing dev dependency ([c0b89a9](https://github.com/micromata/generator-baumeister/commit/c0b89a9))
+* **baumeister:** Fix linting errors introduced by updating ESLint, plugins and configs ([f38ea91](https://github.com/micromata/generator-baumeister/commit/f38ea91))
+* **baumeister:** Initially lint files with npm start ([19e2e83](https://github.com/micromata/generator-baumeister/commit/19e2e83))
+* **baumeister:** Loading images via webpack ([ff0b206](https://github.com/micromata/generator-baumeister/commit/ff0b206))
+* **baumeister:** Resolve error running tests on Node 6 ([68744fe](https://github.com/micromata/generator-baumeister/commit/68744fe))
+* **baumeister:** Update webpack and webpack-cli to fix build errors ([c820435](https://github.com/micromata/generator-baumeister/commit/c820435)), closes [#69](https://github.com/micromata/generator-baumeister/issues/69)
+* **generator:** Add templates directory to lint-staged export path ([82f7f84](https://github.com/micromata/generator-baumeister/commit/82f7f84))
+
+
+### Features
+
+* **baumeister:** Auto format code using prettier as pre-commit hook ([6ea3dbf](https://github.com/micromata/generator-baumeister/commit/6ea3dbf))
+* **baumeister:** Enable to define baumeister config in package.json ([fcfdc6c](https://github.com/micromata/generator-baumeister/commit/fcfdc6c))
+* **baumeister:** Move tooling configs to package.json ([68f31d8](https://github.com/micromata/generator-baumeister/commit/68f31d8)), closes [#270](https://github.com/micromata/generator-baumeister/issues/270)
+* **baumeister:** Update ESLint, plugins and shared configs to their latest versions ([3c6be02](https://github.com/micromata/generator-baumeister/commit/3c6be02))
+* **baumeister:** Update husky to v1.x.x ([4f35c94](https://github.com/micromata/generator-baumeister/commit/4f35c94))
+* **baumeister:** Update Jest to v24.x.x and Babel to v7.x.x ([7ac9da2](https://github.com/micromata/generator-baumeister/commit/7ac9da2))
+* **baumeister:** Update production dependencies ([4a54e3c](https://github.com/micromata/generator-baumeister/commit/4a54e3c))
+
+
+### BREAKING CHANGES
+
+* **baumeister:** Auto formatting introduces a new dev dependency which requires Node.JS `>= 8.6`
+
+We are using [prettier](https://prettier.io) to format JavaScript, JSON and SCSS files automatically before you commit your files to Git via a pre-commit hook.
+
+The prettier settings are defined in `.prettierrc` in the project root. In case prettier is to opinated for you or you don’t want Prettier to change your files without the chance to review the changes you just have to delete the pre-commit hook with in the `package.json`:
+
+```json
+"husky": {
+  "hooks": {
+    "post-merge": "npm install",
+    "pre-commit": "lint-staged"
+  }
+}
+```
+
+But we totally recommend you to give this workflow a chance, because it’s just one more thing you don’t have to care about.
+* **baumeister:** Since the update to Husky v1.x.x you need to update the husky config which can be autmated by running `./node_modules/.bin/husky-upgrade`. See <https://github.com/typicode/husky#upgrading-from-014> for details.
+* **baumeister:** The updates of ESLint, plugins and shared configs to their latest versions might break your build since new versions have introduced new rules which might introduce linting errors in your code base.
+
+Tip: Run `npm run eslint:fix` to see which errors are autofixable. And remenber to turn off rules in /.eslintrc.json in case you find them too opinionated.
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/micromata/generator-baumeister/compare/3.0.0...3.1.0) (2018-05-03)
 
