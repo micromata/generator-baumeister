@@ -84,20 +84,28 @@ describe('Baumeister with default options', () => {
     ]);
   });
 
-  it('should have `useHandlebars` set to `true` in baumeister.json', () => {
-    assert.fileContent('baumeister.json', /"useHandlebars": true,/);
+  it('should have `useHandlebars` set to `true` in Baumeister settings', () => {
+    const packageJson = JSON.parse(fs.readFileSync('package.json'));
+    packageJson.should.have
+      .propertyByPath('baumeister', 'useHandlebars')
+      .eql(true);
   });
 
-  it('should have `generateBanners` set to `false` in baumeister.json', () => {
-    assert.fileContent('baumeister.json', /"generateBanners": false,/);
+  it('should have `generateBanners` set to `false` in Baumeister settings', () => {
+    const packageJson = JSON.parse(fs.readFileSync('package.json'));
+    packageJson.should.have
+      .propertyByPath('baumeister', 'generateBanners')
+      .eql(false);
   });
 
-  it('should have the default ProvidePlugin settings in baumeister.json', () => {
-    assert.fileContent([
-      ['baumeister.json', /"ProvidePlugin": {\n/],
-      ['baumeister.json', /"\$": "jquery",/],
-      ['baumeister.json', /"jQuery": "jquery"/]
-    ]);
+  it('should have the default ProvidePlugin settings in Baumeister settings', () => {
+    const packageJson = JSON.parse(fs.readFileSync('package.json'));
+    packageJson.should.have
+      .propertyByPath('baumeister', 'webpack', 'ProvidePlugin')
+      .eql({
+        $: 'jquery',
+        jQuery: 'jquery'
+      });
   });
 
   it('should create package manager files', () => {
@@ -113,26 +121,22 @@ describe('Baumeister with default options', () => {
       '.editorconfig',
       '.gitattributes',
       '.gitignore',
-      '.babelrc',
-      'src/app/.babelrc',
-      '.travis.yml',
-      '.eslintrc.json',
-      '.stylelintrc.json'
+      '.travis.yml'
     ]);
   });
 
-  it('should not have React related plugins in .babelrc', () => {
+  it('should not have React related plugins in Babel settings', () => {
     assert.noFileContent([
-      ['src/app/.babelrc', /plugin-proposal-class-properties/],
-      ['src/app/.babelrc', /plugin-transform-react-jsx/]
+      ['package.json', /plugin-proposal-class-properties/],
+      ['package.json', /plugin-transform-react-jsx/]
     ]);
   });
 
-  it('should not have React related settings in .eslintrc', () => {
+  it('should not have React related settings in ESLint config', () => {
     assert.noFileContent([
-      ['.eslintrc.json', /"plugin:react\/recommended"/],
-      ['.eslintrc.json', /"plugins": \["react"],/],
-      ['.eslintrc.json', /"ecmaFeatures": {"jsx": true}/]
+      ['package.json', /"plugin:react\/recommended"/],
+      ['package.json', /"plugins": \["react"],/],
+      ['package.json', /"ecmaFeatures": {"jsx": true}/]
     ]);
   });
 
@@ -163,7 +167,6 @@ describe('Baumeister with default options', () => {
   it('should create other project files', () => {
     assert.file([
       'README.md',
-      'baumeister.json',
       'postcss.config.js',
       'humans.txt',
       'LICENSE',
@@ -257,11 +260,10 @@ describe('Baumeister with default options', () => {
     });
 
     it('should not have React and related dependencies', () => {
-      assert.noFileContent([
-        ['package.json', /react/],
-        ['package.json', /react-dom/],
-        ['package.json', /prop-types/]
-      ]);
+      const packageJson = JSON.parse(fs.readFileSync('package.json'));
+      packageJson.should.not.have.propertyByPath('dependencies', 'react');
+      packageJson.should.not.have.propertyByPath('dependencies', 'react-dom');
+      packageJson.should.not.have.propertyByPath('dependencies', 'prop-types');
     });
 
     it('should not have React related dev dependencies', () => {
@@ -331,7 +333,7 @@ describe('Baumeister with default options', () => {
 
   it('should have the current year within the LICENSE', () => {
     const regex = new RegExp(
-      escapeStringRegexp(new Date().getFullYear() + ''),
+      escapeStringRegexp(String(new Date().getFullYear())),
       ''
     ); // eslint-disable-line no-implicit-coercion
     assert.fileContent('LICENSE', regex);
@@ -417,11 +419,14 @@ describe('Baumeister generating a single page app', () => {
     );
   });
 
-  it('should have adapted settings in baumeister.json', () => {
-    assert.fileContent([
-      ['baumeister.json', /"useHandlebars": false,/],
-      ['baumeister.json', /"ProvidePlugin": {}/]
-    ]);
+  it('should have adapted settings in Baumeister settings', () => {
+    const packageJson = JSON.parse(fs.readFileSync('package.json'));
+    packageJson.should.have
+      .propertyByPath('baumeister', 'useHandlebars')
+      .eql(false);
+    packageJson.should.have
+      .propertyByPath('baumeister', 'webpack', 'ProvidePlugin')
+      .eql({});
   });
 
   it('should create no Handlebars related files', () => {
@@ -470,18 +475,18 @@ describe('Baumeister generating a single page app', () => {
     });
   });
 
-  it('should have React related plugins in .babelrc', () => {
+  it('should have React related plugins in Babel settings', () => {
     assert.fileContent([
-      ['src/app/.babelrc', /plugin-proposal-class-properties/],
-      ['src/app/.babelrc', /plugin-transform-react-jsx/]
+      ['package.json', /plugin-proposal-class-properties/],
+      ['package.json', /plugin-transform-react-jsx/]
     ]);
   });
 
-  it('should have React related settings in .eslintrc', () => {
+  it('should have React related settings in ESLint config', () => {
     assert.fileContent([
-      ['.eslintrc.json', /"plugin:react\/recommended"/],
-      ['.eslintrc.json', /"plugins": \["react"],/],
-      ['.eslintrc.json', /"ecmaFeatures": {"jsx": true}/]
+      ['package.json', /"plugin:react\/recommended"/],
+      ['package.json', /"plugins": \["react"],/],
+      ['package.json', /"ecmaFeatures": { "jsx": true }/]
     ]);
   });
 
@@ -541,8 +546,11 @@ describe('Baumeister with banner', () => {
     );
   });
 
-  it('should have `generateBanners` set to `true` in baumeister.json', () => {
-    assert.fileContent('baumeister.json', /"generateBanners": true,/);
+  it('should have `generateBanners` set to `true` in Baumeister settings', () => {
+    const packageJson = JSON.parse(fs.readFileSync('package.json'));
+    packageJson.should.have
+      .propertyByPath('baumeister', 'generateBanners')
+      .eql(true);
   });
 });
 
@@ -598,7 +606,7 @@ describe('Baumeister without an open source license', () => {
 
   it('should have the current year within the LICENSE', () => {
     const regex = new RegExp(
-      escapeStringRegexp(new Date().getFullYear() + ''),
+      escapeStringRegexp(String(new Date().getFullYear())),
       ''
     ); // eslint-disable-line no-implicit-coercion
     assert.fileContent('LICENSE', regex);
@@ -674,7 +682,7 @@ describe('Baumeister with Apache License, Version 2.0', () => {
 
   it('should have the current year within the LICENSE', () => {
     const regex = new RegExp(
-      escapeStringRegexp(new Date().getFullYear() + ''),
+      escapeStringRegexp(String(new Date().getFullYear())),
       ''
     ); // eslint-disable-line no-implicit-coercion
     assert.fileContent('LICENSE', regex);
@@ -747,7 +755,7 @@ describe('Baumeister with GNU General Public License', () => {
 
   it('should have the current year within the LICENSE', () => {
     const regex = new RegExp(
-      escapeStringRegexp(new Date().getFullYear() + ''),
+      escapeStringRegexp(String(new Date().getFullYear())),
       ''
     ); // eslint-disable-line no-implicit-coercion
     assert.fileContent('LICENSE', regex);
@@ -1013,12 +1021,7 @@ describe('Baumeister using --yo-rc flag', () => {
   });
 
   it('should create dot files', () => {
-    assert.file([
-      '.editorconfig',
-      '.gitattributes',
-      '.gitignore',
-      '.eslintrc.json'
-    ]);
+    assert.file(['.editorconfig', '.gitattributes', '.gitignore']);
   });
 
   it('should have `/dist` directory in .gitignore', () => {
@@ -1183,7 +1186,7 @@ describe('Baumeister using --yo-rc flag', () => {
 
   it('should have the current year within the LICENSE', () => {
     const regex = new RegExp(
-      escapeStringRegexp(new Date().getFullYear() + ''),
+      escapeStringRegexp(String(new Date().getFullYear())),
       ''
     ); // eslint-disable-line no-implicit-coercion
     assert.fileContent('LICENSE', regex);
