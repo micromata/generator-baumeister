@@ -20,30 +20,30 @@ import { consoleErrorFix, ieViewportFix } from './base/base';
 import '../assets/scss/index.scss';
 
 <% if (templateProps.projectType === 'staticSite') { %>$(async () => {
-	// Wait with further execution until needed polyfills are loaded.
-	await applyPolyfills();
+  // Wait with further execution until needed polyfills are loaded.
+  await applyPolyfills();
 
-	consoleErrorFix();
-	ieViewportFix();
+  consoleErrorFix();
+  ieViewportFix();
 
-	console.log('YaY, my first ES6-Module !!!!');
+  console.log('YaY, my first ES6-Module !!!!');
 });
 <% } else { %>(async () => {
-	// Wait with further execution until needed polyfills are loaded.
-	await applyPolyfills();
+  // Wait with further execution until needed polyfills are loaded.
+  await applyPolyfills();
 
-	consoleErrorFix();
-	ieViewportFix();
+  consoleErrorFix();
+  ieViewportFix();
 
-	function HelloWorld() {
-		return <h1>Hello World!</h1>;
-	}
+  function HelloWorld() {
+    return <h1>Hello World!</h1>;
+  }
 
-	ReactDOM.render(
-		<HelloWorld/>,
-		document.getElementById('root')
-	);
+  ReactDOM.render(
+    <HelloWorld/>,
+    document.getElementById('root')
+  );
 
 })().catch(err => {
-	console.error(err);
+  console.error(err);
 });<% } %>
