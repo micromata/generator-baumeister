@@ -335,34 +335,12 @@ module.exports = class extends Generator {
 
     // Dotfiles
     this.fs.copyTpl(
-      this.templatePath('babelrc'),
-      this.destinationPath('.babelrc')
-    );
-    this.fs.copyTpl(
-      this.templatePath('src/app/_babelrc'),
-      this.destinationPath('src/app/.babelrc'),
-      {
-        templateProps: this.templateProps
-      }
-    );
-    this.fs.copyTpl(
       this.templatePath('travis.yml'),
       this.destinationPath('.travis.yml')
     );
     this.fs.copyTpl(
       this.templatePath('editorconfig'),
       this.destinationPath('.editorconfig')
-    );
-    this.fs.copyTpl(
-      this.templatePath('_eslintrc.json'),
-      this.destinationPath('.eslintrc.json'),
-      {
-        templateProps: this.templateProps
-      }
-    );
-    this.fs.copyTpl(
-      this.templatePath('stylelintrc.json'),
-      this.destinationPath('.stylelintrc.json')
     );
     this.fs.copyTpl(
       this.templatePath('gitattributes'),
@@ -490,13 +468,6 @@ module.exports = class extends Generator {
     }
 
     // Config files
-    this.fs.copyTpl(
-      this.templatePath('_baumeister.json'),
-      this.destinationPath('baumeister.json'),
-      {
-        templateProps: this.templateProps
-      }
-    );
     this.fs.copyTpl(
       this.templatePath('postcss.config.js'),
       this.destinationPath('postcss.config.js')

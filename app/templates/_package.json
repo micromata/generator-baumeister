@@ -151,6 +151,135 @@
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.1"
   },
+  "baumeister": {
+    "useHandlebars": <%= templateProps.projectType === 'staticSite' %>,
+    "purifyCSS": {
+      "usePurifyCSS": false,
+      "whitelist": [
+        "*navbar*",
+        "*modal*",
+        "*dropdown*",
+        "*carousel*",
+        "*tooltip*",
+        "open",
+        "fade",
+        "collapse",
+        "collapsing",
+        "in"
+      ]
+    },
+    "generateBanners": <%= templateProps.banners === true %>,
+    "cacheBusting": true,
+    "vendor": {
+      "bundleCSS": [],
+      "includeStaticFiles": []
+    },
+    "webpack": {
+      "DefinePlugin": {
+        "development": {
+          "PRODUCTION": false
+        },
+        "production": {
+          "PRODUCTION": true
+        }
+      },
+      "ProvidePlugin": <% if (templateProps.projectType === 'staticSite') { %>{
+        "$": "jquery",
+        "jQuery": "jquery"
+      }<% } else { %>{}<% } %>
+    }
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-object-rest-spread"
+    ],
+    "overrides": [
+      {
+        "include": "./src/app/**",
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "modules": false
+            }
+          ]
+        ],
+        "env": {
+          "test": {
+            "presets": [
+              [
+                "@babel/preset-env",
+                {
+                  "modules": "commonjs"
+                }
+              ]
+            ]
+          }
+        },
+        "plugins": [
+          "@babel/plugin-syntax-dynamic-import",
+          "@babel/plugin-proposal-object-rest-spread",<% if (templateProps.projectType === 'spa') { %>
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-transform-react-jsx",<% } %>
+          "@babel/plugin-transform-runtime",
+          "@babel/plugin-transform-regenerator",
+          [
+            "transform-imports",
+            {
+              "lodash": {
+                "transform": "lodash/${member}",
+                "preventFullImport": true
+              },
+              "reactstrap": {
+                "transform": "reactstrap/lib/${member}",
+                "preventFullImport": true
+              },
+              "react-bootstrap": {
+                "transform": "react-bootstrap/lib/${member}",
+                "preventFullImport": true
+              },
+              "react-router": {
+                "transform": "react-router/${member}",
+                "preventFullImport": true
+              }
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "baumeister",<% if (templateProps.projectType === 'spa') { %>
+      "plugin:react/recommended",<% } %>
+      "prettier",
+      "prettier/unicorn"<% if (templateProps.projectType === 'spa') { %>,
+      "prettier/react"<% } %>
+    ],<% if (templateProps.projectType === 'spa') { %>
+    "plugins": ["react"],<% } %>
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "allowImportExportEverywhere": true<% if (templateProps.projectType === 'spa') { %>,
+      "ecmaFeatures": { "jsx": true }<% } %>
+    },
+    "globals": {
+      "PRODUCTION": false
+    },
+    "overrides": [
+      {
+        "files": [
+          "build/*.js"
+        ],
+        "rules": {
+          "no-console": "off",
+          "unicorn/no-process-exit": "off"
+        }
+      }
+    ]
+  },
   "prettier": {
     "singleQuote": true,
     "jsxBracketSameLine": true
@@ -170,6 +299,38 @@
       "text",
       "text-summary"
     ]
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard",
+      "stylelint-config-prettier"
+    ],
+    "rules": {
+      "number-leading-zero": [
+        "always",
+        {
+          "severity": "warning"
+        }
+      ],
+      "at-rule-no-unknown": [
+        true,
+        {
+          "ignoreAtRules": [
+            "extend",
+            "mixin",
+            "include",
+            "at-root",
+            "debug",
+            "warn",
+            "error",
+            "if",
+            "for",
+            "each",
+            "while"
+          ]
+        }
+      ]
+    }
   },
   "husky": {
     "hooks": {
