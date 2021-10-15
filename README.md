@@ -1,11 +1,15 @@
 [![npm version](https://badge.fury.io/js/generator-baumeister.svg)](http://badge.fury.io/js/generator-baumeister)
 [![Build Status](https://travis-ci.org/micromata/generator-baumeister.svg?branch=master)](https://travis-ci.org/micromata/generator-baumeister)
-[![Coverage Status](https://coveralls.io/repos/github/micromata/generator-baumeister/badge.svg?branch=master)](https://coveralls.io/github/micromata/generator-baumeister?branch=master)
-[![devDependency Status](https://david-dm.org/micromata/generator-baumeister/dev-status.svg)](https://david-dm.org/micromata/generator-baumeister#info=devDependencies)
-[![Dependency Status](https://david-dm.org/micromata/generator-baumeister/status.svg)](https://david-dm.org/micromata/generator-baumeister#info=Dependencies)
-[![Code of Conduct](https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-orange.svg?style=flat)](CODE_OF_CONDUCT.md)
-  [![Join the chat at https://gitter.im/micromata/baumeister](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/micromata/baumeister?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Twitter](https://img.shields.io/badge/Twitter-%40baumeister__io%20-blue.svg?style=flat)](https://twitter.com/baumeister_io)
+[![Coverage Status](https://coveralls.io/repos/github/micromata/generator-baumeister/badge.svg?branch=master)](https://coveralls.io/github/micromata/generator-baumeister?branch=master) [![Code of Conduct](https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-orange.svg?style=flat)](CODE_OF_CONDUCT.md)
+
+## Sorry, this project is unmaintained 😢
+
+We recommend the following tooling:
+
+- React Apps: [Create React Apps](https://reactjs.org/docs/create-a-new-react-app.html) or [Parcel](https://parceljs.org/)
+- Static Sites: [Eleventy](https://www.11ty.dev/) or [Awesome Static Web Site Generators](https://github.com/myles/awesome-static-generators)
+
+<hr>
 
 # Yeoman Generator for »Baumeister«
 
